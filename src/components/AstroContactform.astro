@@ -1,0 +1,174 @@
+---
+import Button from "@/components/Button.astro";
+import { WEB3FORMS_ACCESS_KEY } from "astro:env/server";
+---
+
+<!-- // Styling Requires Tailwind CSS -->
+<form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  id="form"
+  class="needs-validation"
+  data-astro-reload
+  novalidate>
+  <!-- Add your Web3Forms Access Key -->
+  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+
+  <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
+  <div class="mb-5">
+    <input
+      type="text"
+      placeholder="Vorname und Nachname"
+      required
+      class="w-full px-4 py-3 border placeholder:text-slate-400 rounded-md outline-none focus:ring-4 border-slate-300 focus:border-slate-600 ring-slate-100"
+      name="name"
+    />
+    <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
+      Bitte geben Sie Ihren vollen Namen ein.
+    </div>  
+  </div>
+  <div class="mb-5">
+    <label for="email_address" class="sr-only">Email Address</label><input
+      id="email_address"
+      type="email"
+      placeholder="E-Mail-Adresse"
+      name="email"
+      required
+      class="w-full px-4 py-3 border placeholder:text-slate-400 rounded-md outline-none focus:ring-4 border-slate-300 focus:border-slate-600 ring-slate-100"
+    />
+    <div class="empty-feedback text-red-400 text-sm mt-1">
+      Bitte geben Sie Ihre E-Mail-Adresse ein.
+    </div>
+    <div class="invalid-feedback text-red-400 text-sm mt-1">
+      Bitte geben Sie eine gültige E-Mail-Adresse ein.
+    </div>
+  </div>
+  <div class="mb-5">
+    <label for="telefon" class="sr-only">Telefon</label><input
+      id="telefon"
+      type="tel"
+      placeholder="Telefon"
+      name="telefon"
+      required
+      class="w-full px-4 py-3 border placeholder:text-slate-400 rounded-md outline-none focus:ring-4 border-slate-300 focus:border-slate-600 ring-slate-100"
+    />
+    <div class="empty-feedback text-red-400 text-sm mt-1">
+      Bitte geben Sie Ihre Telefonnummer ein.
+    </div>
+    <div class="invalid-feedback text-red-400 text-sm mt-1">
+      Bitte geben Sie eine gültige Telefonnummer ein.
+    </div>
+  </div>
+  <div class="mb-5">
+    <select id="betreff" name="betreff" required
+      class="w-full px-4 py-3 border rounded-md outline-none
+             focus:ring-4 border-slate-300 focus:border-slate-600 ring-slate-100
+             text-text invalid:text-slate-400">
+      <option value="" selected disabled hidden>Bitte wählen Sie einen Betreff</option>
+      <option value="tour-booking">Frage zu meiner Buchung</option>
+      <option value="tour-inquiry">Infos zu einzelnen Touren</option>
+      <option value="custom-tour">Touranfrage/Reservierung</option>
+      <option value="general">Allgemeine Anfrage</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <textarea
+      name="message"
+      required
+      placeholder="Nachricht"
+      class="w-full px-4 py-3 border placeholder:text-slate-400 rounded-md outline-none h-36 focus:ring-4 border-slate-300 focus:border-slate-600 ring-slate-100"
+    ></textarea>
+    <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
+      Bitte geben Sie Ihre Nachricht ein.
+    </div>
+  </div>
+
+  
+
+  <div class="flex items-start space-x-3 mt-5">
+    <input type="checkbox" id="privacy" name="privacy" required class="ml-2 -mr-1 h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded">
+    <label for="privacy" class="text-sm text-gray-400">
+      Ich stimme der <a href="/datenschutz" class="text-accent1 hover:text-accent2-wine underline">Datenschutzerklärung</a> zu. *
+    </label>
+  </div>
+  <div id="result" class="mt-3 text-center"></div>
+  <Button type="submit" class="bg-accent1 text-background"  size="lg" block>Nachricht senden</Button>
+</form>
+
+<style>
+  .invalid-feedback,
+  .empty-feedback {
+    display: none;
+  }
+
+  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
+    display: block;
+  }
+
+  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  .is-invalid,
+  .was-validated :invalid {
+    border-color: #dc3545;
+  }
+</style>
+
+<script is:inline>
+  // use astro:page-load event if you are using View Transitions
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+      const form = document.getElementById("form");
+      const result = document.getElementById("result");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        form.classList.add("was-validated");
+        if (!form.checkValidity()) {
+          form.querySelectorAll(":invalid")[0].focus();
+          return;
+        }
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        result.innerHTML = "Sending...";
+
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: json,
+        })
+          .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+              result.classList.add("text-green-500");
+              result.innerHTML = json.message;
+            } else {
+              console.log(response);
+              result.classList.add("text-red-500");
+              result.innerHTML = json.message;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            result.innerHTML = "Something went wrong!";
+          })
+          .then(function () {
+            form.reset();
+            form.classList.remove("was-validated");
+            setTimeout(() => {
+              result.style.display = "none";
+            }, 5000);
+          });
+      });
+    },
+    { once: true }
+  );
+</script>

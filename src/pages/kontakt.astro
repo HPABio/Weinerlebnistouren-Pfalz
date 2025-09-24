@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import '@/styles/global.css';
+import AstroContactform from '@/components/AstroContactform.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import CompressedMjVineYardColorPencilSketch from '@images/compressed/webP/compressed-mj-vineYard-ColorPencilSketch.webp';
@@ -143,7 +144,8 @@ import CompressedMjVineYardColorPencilSketch from '@images/compressed/webP/compr
 					<!-- Contact Form -->
 					<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
 						<h2 class="text-3xl font-bold text-gray-900 mb-6">Nachricht senden</h2>
-						<form action="/api/contact" method="POST" class="space-y-6" id="contactForm">
+						<AstroContactform />
+						<form action="/api/contact" method="POST" class="hidden space-y-6" id="contactForm">
 							<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 								<div>
 									<label for="firstName" class="block text-sm font-medium text-gray-700 mb-0 md:mb-2">Vorname *</label>

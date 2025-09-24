@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.0.24",
+    "vite": "^7.1.7",
     "vite-plugin-compression": "^0.5.1"
   },
   "engines": {
