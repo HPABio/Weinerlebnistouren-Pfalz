@@ -219,7 +219,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                 (tour) => tour.id === selectedTour.id
               );
               const prevIndex =
-                currentIndex === 0 ? tours.length - 1 : currentIndex - 1;
+                currentIndex === 1 ? tours.length - 1 : currentIndex - 1;
               setSelectedTour(tours[prevIndex]);
             }}
             className="ml-6 p-3 lg:p-4 bg-white/20 backdrop-blur-md rounded-full border border-white/30 hover:bg-white/30 hover:scale-110 transition-all duration-300 group"
@@ -518,7 +518,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                               transition={{ duration: 1.2 }}>
                               <div className="relative flex flex-col items-center pt-2 ">
                                 <h2 className="text-[32rem] leading-none text-text/30 font-bold">
-                                  4
+                                  5
                                 </h2>
                               </div>
                             </motion.div>
