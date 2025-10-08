@@ -5,6 +5,9 @@ import HeylWeintourenLogoNoBottleDark from "@images/Heyl-Weintouren-Logo-(noBott
 const { isDarkMode = false } = Astro.props;
 const { isHome = false } = Astro.props;
 const { isTours = false } = Astro.props;
+const { isGruppen = false } = Astro.props;
+const { isKontakt = false } = Astro.props;
+const { isStart = false } = Astro.props;
 ---
 
 <header
@@ -23,8 +26,15 @@ const { isTours = false } = Astro.props;
     >
       <li>
         <a
-          href={isHome ? "/#hero" : "/"}
-          class="hover:text-accent2-wine hover:font-bold transition">Start</a
+          href={isHome ? "/#hero" : "/start"}
+          class={
+            isStart
+              ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 group"
+              : "hover:text-accent2-wine hover:font-bold transition"
+          }
+          >
+            {isStart ? "START" : "Start"}
+          </a
         >
       </li>
       <li>
@@ -32,38 +42,42 @@ const { isTours = false } = Astro.props;
           href={isTours
             ? "https://eveeno.com/de/event-cal/34263?style=grid"
             : "/tours"}
-          class="inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova
-           bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105
-            transform transition-all duration-200 hover:text-base hover:pl-9 group"
-          ><p>
-            <span
-              class="hidden group-hover:inline-block absolute top-1 left-3
-            text-lg font-extrabold font-bonanova bg-stone-50 text-transparent bg-clip-text pt-1"
-              >🍇</span
-            >
-            {isTours ? "BUCHEN" : "TOUREN"}
-          </p></a
-        >
-      </li>
+          class=`${isTours ? "hover:pl-9" : ""} ${isTours || isHome ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 hover:text-base group" : "hover:text-accent2-wine hover:font-bold transition"}`>
+            <span class={isTours ? "hidden group-hover:inline-block absolute top-1 left-3 text-lg font-extrabold font-bonanova bg-stone-50 text-transparent bg-clip-text pt-1" : "hidden"}
+              >👉🏼</span>
+              {isHome ? "TOUREN" : isTours ? "BUCHEN" : "Touren"}
+              </a>
+            </li>
       <li>
         <a
           href="/gruppen"
-          class={isHome
-            ? "hover:text-accent2-wine hover:font-bold transition"
-            : "hover:text-accent2-wine hover:font-bold transition"}>Gruppen</a
+          class={
+            isGruppen
+              ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 group"
+              : "hover:text-accent2-wine hover:font-bold transition"
+          }
         >
-        <li class={isHome ? "inline-block" : "hidden"}>
+          {isGruppen ? "GRUPPEN" : "Gruppen"}
+        </a>
+      </li>
+        <!-- <li class={isHome ? "inline-block" : "hidden"}>
           <a
             href="/#about-me"
             class="hover:text-accent2-wine hover:font-bold transition"
             >Über mich</a
           >
-        </li>
+        </li> -->
         <li>
           <a
             href="/kontakt"
-            class="hover:text-accent2-wine hover:font-bold transition"
-            >Kontakt</a
+            class={
+              isKontakt
+                ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 group"
+                : "hover:text-accent2-wine hover:font-bold transition"
+            }
+            >
+              {isKontakt ? "KONTAKT" : "Kontakt"}
+            </a
           >
         </li>
       </li>
