@@ -1,229 +1,387 @@
 ---
-import { Image } from 'astro:assets';
-import '@/styles/global.css';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
-import CompressedMjVineYardColorPencilSketch from '@images/compressed/webP/compressed-mj-vineYard-ColorPencilSketch.webp';
+import { Image } from "astro:assets";
+import "@/styles/global.css";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import CompressedMjVineYardColorPencilSketch from "@images/compressed/webP/compressed-mj-vineYard-ColorPencilSketch.webp";
 ---
 
 <html lang="de">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>Datenschutzerklärung - Heyl Weinerlebnistouren</title>
-		<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
-	</head>
-	<body>
-		<Header isHome={false} />
-		<main class="min-h-screen bg-gradient-to-b from-white to-gray-50">
-			<!-- Banner Section -->
-			<div class="relative w-full h-[30vw] min-h-[250px] max-h-[300px]"
-			style={{backgroundImage: `url("${CompressedMjVineYardColorPencilSketch.src}")`, backgroundSize: "cover", backgroundPosition: "100% 50%",}}>
-				<div class="w-full h-full flex items-center justify-center
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Datenschutzerklärung - Heyl Weinerlebnistouren</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header isHome={false} />
+    <main class="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <!-- Banner Section -->
+      <div
+        class="relative w-full h-[30vw] min-h-[250px] max-h-[300px]"
+        style={{
+          backgroundImage: `url("${CompressedMjVineYardColorPencilSketch.src}")`,
+          backgroundSize: "cover",
+          backgroundPosition: "100% 50%",
+        }}>
+        <div
+          class="w-full h-full flex items-center justify-center
 				bg-gradient-to-t from-black/80 via-black/60 to-transparent">
-					<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-						<div class="text-center flex flex-col items-center justify-center">
-							<h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-100 mb-6">Datenschutzerklärung</h1>
-							<p class=" text-sm sm:text-base md:text-xl lg:text-2xl sm:max-w-md md:max-w-xl  text-accent1 max-w-4xl mx-auto leading-relaxed">
-								Informationen zum Datenschutz gemäß DSGVO
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center flex flex-col items-center justify-center">
+              <h1
+                class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-100 mb-6">
+                Datenschutzerklärung
+              </h1>
+              <p
+                class="text-sm sm:text-base md:text-xl lg:text-2xl sm:max-w-md md:max-w-xl text-accent1 max-w-4xl mx-auto leading-relaxed">
+                Informationen zum Datenschutz gemäß DSGVO
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-			<!-- Content -->
-			<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-				<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 space-y-8">
-					
-					<!-- Einleitung -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">1. Einleitung</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Diese Datenschutzerklärung informiert Sie über Art, Umfang und Zweck der Verarbeitung personenbezogener Daten auf unserer Website und in den damit verbundenen Online-Diensten.</p>
-							<p class="hidden">Verantwortliche Stelle im Sinne der Datenschutzgesetze ist:</p>
-							<p class="font-semibold hidden">Brigitta Heyl<br>
-							Geführte Wein-Erlebnistouren<br>
-							E-Mail: <span class="text-accent1">brigitta.heyl@kwb-pfalz.de</span><br>
-							Telefon: <span class="text-accent1">+49 170 7110535</span></p>
-						</div>
-					</section>
+      <!-- Content -->
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div
+          class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 space-y-8">
+          <!-- Einleitung -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Einleitung</h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges
+                Anliegen. Diese Datenschutzerklärung informiert Sie über Art,
+                Umfang und Zweck der Verarbeitung personenbezogener Daten auf
+                unserer Website und in den damit verbundenen Online-Diensten.
+              </p>
+              <p class="hidden">
+                Verantwortliche Stelle im Sinne der Datenschutzgesetze ist:
+              </p>
+              <p class="font-semibold hidden">
+                Brigitta Heyl<br />
+                Geführte Wein-Erlebnistouren<br />
+                E-Mail: <span class="text-accent1"
+                  >weinerlebnistouren.pfalz@gmail.com
+                </span><br />
+                Telefon: <span class="text-accent1">+49 170 7110535</span>
+              </p>
+            </div>
+          </section>
 
-					<!-- Erhebung und Verarbeitung personenbezogener Daten -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">2. Erhebung und Verarbeitung personenbezogener Daten</h2>
-						<div class="space-y-4 text-gray-700">
-							<p><strong>2.1 Automatisch erfasste Daten</strong></p>
-							<p>Beim Besuch unserer Website werden automatisch folgende Informationen erfasst:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li>IP-Adresse des zugreifenden Rechners</li>
-								<li>Datum und Uhrzeit des Zugriffs</li>
-								<li>Name und URL der abgerufenen Datei</li>
-								<li>Übertragene Datenmenge</li>
-								<li>Meldung über erfolgreichen Abruf</li>
-								<li>Webbrowser und Betriebssystem</li>
-								<li>Website, von der aus der Zugriff erfolgt (Referrer)</li>
-							</ul>
-							
-							<p><strong>2.2 Manuell eingegebene Daten</strong></p>
-							<p>Bei der Nutzung unseres Kontaktformulars werden folgende Daten erfasst:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li>Name (Vor- und Nachname)</li>
-								<li>E-Mail-Adresse</li>
-								<li>Telefonnummer (optional)</li>
-								<li>Betreff der Nachricht</li>
-								<li>Inhalt der Nachricht</li>
-							</ul>
-						</div>
-					</section>
+          <!-- Erhebung und Verarbeitung personenbezogener Daten -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              2. Erhebung und Verarbeitung personenbezogener Daten
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p><strong>2.1 Automatisch erfasste Daten</strong></p>
+              <p>
+                Beim Besuch unserer Website werden automatisch folgende
+                Informationen erfasst:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>IP-Adresse des zugreifenden Rechners</li>
+                <li>Datum und Uhrzeit des Zugriffs</li>
+                <li>Name und URL der abgerufenen Datei</li>
+                <li>Übertragene Datenmenge</li>
+                <li>Meldung über erfolgreichen Abruf</li>
+                <li>Webbrowser und Betriebssystem</li>
+                <li>Website, von der aus der Zugriff erfolgt (Referrer)</li>
+              </ul>
 
-					<!-- Zweck der Datenverarbeitung -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">3. Zweck der Datenverarbeitung</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Die automatisch erfassten Daten werden zu folgenden Zwecken verarbeitet:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li>Gewährleistung eines reibungslosen Verbindungsaufbaus der Website</li>
-								<li>Gewährleistung einer komfortablen Nutzung unserer Website</li>
-								<li>Auswertung der Systemsicherheit und -stabilität</li>
-								<li>Weitere administrative Zwecke</li>
-							</ul>
-							
-							<p>Die über das Kontaktformular eingegebenen Daten werden verwendet für:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li>Die Bearbeitung Ihrer Anfrage</li>
-								<li>Die Kontaktaufnahme mit Ihnen</li>
-								<li>Die Organisation und Durchführung von Wein-Erlebnistouren</li>
-								<li>Die Erfüllung vertraglicher Verpflichtungen</li>
-							</ul>
-						</div>
-					</section>
+              <p><strong>2.2 Manuell eingegebene Daten</strong></p>
+              <p>
+                Bei der Nutzung unseres Kontaktformulars werden folgende Daten
+                erfasst:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>Name (Vor- und Nachname)</li>
+                <li>E-Mail-Adresse</li>
+                <li>Telefonnummer (optional)</li>
+                <li>Betreff der Nachricht</li>
+                <li>Inhalt der Nachricht</li>
+              </ul>
+            </div>
+          </section>
 
-					<!-- Rechtsgrundlagen -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">4. Rechtsgrundlagen der Datenverarbeitung</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf folgenden Rechtsgrundlagen:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li><strong>Art. 6 Abs. 1 lit. a DSGVO:</strong> Einwilligung (bei Kontaktformular)</li>
-								<li><strong>Art. 6 Abs. 1 lit. b DSGVO:</strong> Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen</li>
-								<li><strong>Art. 6 Abs. 1 lit. f DSGVO:</strong> Berechtigtes Interesse (bei automatisch erfassten Daten)</li>
-							</ul>
-						</div>
-					</section>
+          <!-- Zweck der Datenverarbeitung -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              3. Zweck der Datenverarbeitung
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Die automatisch erfassten Daten werden zu folgenden Zwecken
+                verarbeitet:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>
+                  Gewährleistung eines reibungslosen Verbindungsaufbaus der
+                  Website
+                </li>
+                <li>
+                  Gewährleistung einer komfortablen Nutzung unserer Website
+                </li>
+                <li>Auswertung der Systemsicherheit und -stabilität</li>
+                <li>Weitere administrative Zwecke</li>
+              </ul>
 
-					<!-- Speicherdauer -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">5. Speicherdauer</h2>
-						<div class="space-y-4 text-gray-700">
-							<p><strong>5.1 Automatisch erfasste Daten:</strong></p>
-							<p>Diese Daten werden nach 7 Tagen automatisch gelöscht.</p>
-							
-							<p><strong>5.2 Kontaktformular-Daten:</strong></p>
-							<p>Diese Daten werden gelöscht, sobald sie für die Zweckerreichung nicht mehr erforderlich sind, spätestens jedoch nach 3 Jahren.</p>
-							
-							<p><strong>5.3 Vertragsdaten:</strong></p>
-							<p>Vertragsbezogene Daten werden gemäß den gesetzlichen Aufbewahrungsfristen (in der Regel 10 Jahre) gespeichert.</p>
-						</div>
-					</section>
+              <p>
+                Die über das Kontaktformular eingegebenen Daten werden verwendet
+                für:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>Die Bearbeitung Ihrer Anfrage</li>
+                <li>Die Kontaktaufnahme mit Ihnen</li>
+                <li>
+                  Die Organisation und Durchführung von Wein-Erlebnistouren
+                </li>
+                <li>Die Erfüllung vertraglicher Verpflichtungen</li>
+              </ul>
+            </div>
+          </section>
 
-					<!-- Weitergabe von Daten -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">6. Weitergabe von Daten</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Eine Weitergabe Ihrer personenbezogenen Daten an Dritte erfolgt nur in folgenden Fällen:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li>Sie haben Ihre ausdrückliche Einwilligung erteilt</li>
-								<li>Die Weitergabe ist zur Erfüllung vertraglicher Verpflichtungen erforderlich (z.B. an Weingüter für Tour-Organisation)</li>
-								<li>Wir sind gesetzlich dazu verpflichtet</li>
-								<li>Die Weitergabe dient der Durchsetzung, Ausübung oder Verteidigung von Rechtsansprüchen</li>
-							</ul>
-							<p>Eine Weitergabe an Drittländer außerhalb der EU/EWR erfolgt nicht.</p>
-						</div>
-					</section>
+          <!-- Rechtsgrundlagen -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              4. Rechtsgrundlagen der Datenverarbeitung
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf
+                folgenden Rechtsgrundlagen:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>
+                  <strong>Art. 6 Abs. 1 lit. a DSGVO:</strong> Einwilligung (bei
+                  Kontaktformular)
+                </li>
+                <li>
+                  <strong>Art. 6 Abs. 1 lit. b DSGVO:</strong> Erfüllung eines Vertrags
+                  oder vorvertraglicher Maßnahmen
+                </li>
+                <li>
+                  <strong>Art. 6 Abs. 1 lit. f DSGVO:</strong> Berechtigtes Interesse
+                  (bei automatisch erfassten Daten)
+                </li>
+              </ul>
+            </div>
+          </section>
 
-					<!-- Cookies -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">7. Cookies</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Unsere Website verwendet Cookies. Cookies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden.</p>
-							<p><strong>7.1 Technisch notwendige Cookies:</strong></p>
-							<p>Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden.</p>
-							<p><strong>7.2 Analyse-Cookies:</strong></p>
-							<p>Diese Cookies helfen uns, die Nutzung unserer Website zu verstehen und zu verbessern. Sie können diese Cookies ablehnen.</p>
-						</div>
-					</section>
+          <!-- Speicherdauer -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              5. Speicherdauer
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p><strong>5.1 Automatisch erfasste Daten:</strong></p>
+              <p>Diese Daten werden nach 7 Tagen automatisch gelöscht.</p>
 
-					<!-- Ihre Rechte -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">8. Ihre Rechte</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li><strong>Auskunftsrecht:</strong> Sie können Auskunft über die zu Ihrer Person gespeicherten Daten verlangen</li>
-								<li><strong>Berichtigungsrecht:</strong> Sie können die Berichtigung falscher Daten verlangen</li>
-								<li><strong>Löschungsrecht:</strong> Sie können die Löschung Ihrer Daten verlangen</li>
-								<li><strong>Einschränkungsrecht:</strong> Sie können die Einschränkung der Verarbeitung verlangen</li>
-								<li><strong>Datenübertragbarkeitsrecht:</strong> Sie können die Übertragung Ihrer Daten verlangen</li>
-								<li><strong>Widerspruchsrecht:</strong> Sie können der Verarbeitung widersprechen</li>
-								<li><strong>Widerrufsrecht:</strong> Sie können Ihre Einwilligung jederzeit widerrufen</li>
-							</ul>
-							<p>Zur Ausübung dieser Rechte kontaktieren Sie uns unter: info@heyl-weintouren.de</p>
-						</div>
-					</section>
+              <p><strong>5.2 Kontaktformular-Daten:</strong></p>
+              <p>
+                Diese Daten werden gelöscht, sobald sie für die Zweckerreichung
+                nicht mehr erforderlich sind, spätestens jedoch nach 3 Jahren.
+              </p>
 
-					<!-- Beschwerderecht -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">9. Beschwerderecht</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren. Die zuständige Aufsichtsbehörde für uns ist:</p>
-							<p class="font-semibold">Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz<br>
-							Postfach 30 40<br>
-							55020 Mainz<br>
-							E-Mail: poststelle@datenschutz.rlp.de</p>
-						</div>
-					</section>
+              <p><strong>5.3 Vertragsdaten:</strong></p>
+              <p>
+                Vertragsbezogene Daten werden gemäß den gesetzlichen
+                Aufbewahrungsfristen (in der Regel 10 Jahre) gespeichert.
+              </p>
+            </div>
+          </section>
 
-					<!-- Sicherheit -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">10. Datensicherheit</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre Daten gegen Manipulation, Verlust, Zerstörung oder gegen den Zugriff unberechtigter Personen zu schützen. Unsere Sicherheitsmaßnahmen werden entsprechend der technologischen Entwicklung fortlaufend verbessert.</p>
-						</div>
-					</section>
+          <!-- Weitergabe von Daten -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              6. Weitergabe von Daten
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Eine Weitergabe Ihrer personenbezogenen Daten an Dritte erfolgt
+                nur in folgenden Fällen:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>Sie haben Ihre ausdrückliche Einwilligung erteilt</li>
+                <li>
+                  Die Weitergabe ist zur Erfüllung vertraglicher Verpflichtungen
+                  erforderlich (z.B. an Weingüter für Tour-Organisation)
+                </li>
+                <li>Wir sind gesetzlich dazu verpflichtet</li>
+                <li>
+                  Die Weitergabe dient der Durchsetzung, Ausübung oder
+                  Verteidigung von Rechtsansprüchen
+                </li>
+              </ul>
+              <p>
+                Eine Weitergabe an Drittländer außerhalb der EU/EWR erfolgt
+                nicht.
+              </p>
+            </div>
+          </section>
 
-					<!-- Änderungen der Datenschutzerklärung -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">11. Änderungen der Datenschutzerklärung</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen. Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung.</p>
-						</div>
-					</section>
+          <!-- Cookies -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">7. Cookies</h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Unsere Website verwendet Cookies. Cookies sind kleine
+                Textdateien, die auf Ihrem Endgerät gespeichert werden.
+              </p>
+              <p><strong>7.1 Technisch notwendige Cookies:</strong></p>
+              <p>
+                Diese Cookies sind für den Betrieb der Website erforderlich und
+                können nicht deaktiviert werden.
+              </p>
+              <p><strong>7.2 Analyse-Cookies:</strong></p>
+              <p>
+                Diese Cookies helfen uns, die Nutzung unserer Website zu
+                verstehen und zu verbessern. Sie können diese Cookies ablehnen.
+              </p>
+            </div>
+          </section>
 
-					<!-- Kontakt -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">12. Kontakt</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Bei Fragen zur Erhebung, Verarbeitung oder Nutzung Ihrer personenbezogenen Daten wenden Sie sich bitte an:</p>
-							<p class="font-semibold">Brigitta Heyl<br>
-							Geführte Wein-Erlebnistouren<br>
-							E-Mail: <span class="text-accent1">brigitta.heyl@kwb-pfalz.de</span><br>
-							Telefon: <span class="text-accent1">+49 170 7110535</span></p>
-						</div>
-					</section>
+          <!-- Ihre Rechte -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              8. Ihre Rechte
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Sie haben folgende Rechte bezüglich Ihrer personenbezogenen
+                Daten:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>
+                  <strong>Auskunftsrecht:</strong> Sie können Auskunft über die zu
+                  Ihrer Person gespeicherten Daten verlangen
+                </li>
+                <li>
+                  <strong>Berichtigungsrecht:</strong> Sie können die Berichtigung
+                  falscher Daten verlangen
+                </li>
+                <li>
+                  <strong>Löschungsrecht:</strong> Sie können die Löschung Ihrer
+                  Daten verlangen
+                </li>
+                <li>
+                  <strong>Einschränkungsrecht:</strong> Sie können die Einschränkung
+                  der Verarbeitung verlangen
+                </li>
+                <li>
+                  <strong>Datenübertragbarkeitsrecht:</strong> Sie können die Übertragung
+                  Ihrer Daten verlangen
+                </li>
+                <li>
+                  <strong>Widerspruchsrecht:</strong> Sie können der Verarbeitung
+                  widersprechen
+                </li>
+                <li>
+                  <strong>Widerrufsrecht:</strong> Sie können Ihre Einwilligung jederzeit
+                  widerrufen
+                </li>
+              </ul>
+              <p>
+                Zur Ausübung dieser Rechte kontaktieren Sie uns unter:
+                info@heyl-weintouren.de
+              </p>
+            </div>
+          </section>
 
-					<!-- Stand -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">Stand der Datenschutzerklärung</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Stand: September 2025</p>
-							<p>Diese Datenschutzerklärung wird regelmäßig überprüft und bei Bedarf aktualisiert.</p>
-						</div>
-					</section>
-				</div>
-			</div>
-		</main>
-		<Footer />
-	</body>
+          <!-- Beschwerderecht -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              9. Beschwerderecht
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde
+                über die Verarbeitung Ihrer personenbezogenen Daten zu
+                beschweren. Die zuständige Aufsichtsbehörde für uns ist:
+              </p>
+              <p class="font-semibold">
+                Der Landesbeauftragte für den Datenschutz und die
+                Informationsfreiheit Rheinland-Pfalz<br />
+                Postfach 30 40<br />
+                55020 Mainz<br />
+                E-Mail: poststelle@datenschutz.rlp.de
+              </p>
+            </div>
+          </section>
+
+          <!-- Sicherheit -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              10. Datensicherheit
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Wir setzen technische und organisatorische Sicherheitsmaßnahmen
+                ein, um Ihre Daten gegen Manipulation, Verlust, Zerstörung oder
+                gegen den Zugriff unberechtigter Personen zu schützen. Unsere
+                Sicherheitsmaßnahmen werden entsprechend der technologischen
+                Entwicklung fortlaufend verbessert.
+              </p>
+            </div>
+          </section>
+
+          <!-- Änderungen der Datenschutzerklärung -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              11. Änderungen der Datenschutzerklärung
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Wir behalten uns vor, diese Datenschutzerklärung anzupassen,
+                damit sie stets den aktuellen rechtlichen Anforderungen
+                entspricht oder um Änderungen unserer Leistungen in der
+                Datenschutzerklärung umzusetzen. Für Ihren erneuten Besuch gilt
+                dann die neue Datenschutzerklärung.
+              </p>
+            </div>
+          </section>
+
+          <!-- Kontakt -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">12. Kontakt</h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Bei Fragen zur Erhebung, Verarbeitung oder Nutzung Ihrer
+                personenbezogenen Daten wenden Sie sich bitte an:
+              </p>
+              <p class="font-semibold">
+                Brigitta Heyl<br />
+                Geführte Wein-Erlebnistouren<br />
+                E-Mail: <span class="text-accent1"
+                  >weinerlebnistouren.pfalz@gmail.com
+                </span><br />
+                Telefon: <span class="text-accent1">+49 170 7110535</span>
+              </p>
+            </div>
+          </section>
+
+          <!-- Stand -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              Stand der Datenschutzerklärung
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>Stand: September 2025</p>
+              <p>
+                Diese Datenschutzerklärung wird regelmäßig überprüft und bei
+                Bedarf aktualisiert.
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
 </html>

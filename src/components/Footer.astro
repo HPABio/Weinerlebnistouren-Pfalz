@@ -1,148 +1,318 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import HWELogoV2NoText from "@images/HWE-LogoV2-noText.svg";
 import GimmeldingenMap from "@images/GimmeldingenMap.jpg";
 ---
 
-<footer id="footer" class="w-full h-fit bg-gradient-to-b from-white to-gray-50 border-t border-gray-200 relative overflow-hidden">
-  <Image src={GimmeldingenMap} alt="GimmeldingenMap" fetchpriority='low' loading="lazy" class="w-full h-full absolute top-[50%] translate-y-[-50%] left-0 object-cover object-center opacity-[1]" />
-  <div class="absolute bottom-0 left-0 w-full h-[40vh] bg-gradient-to-t from-stone-300/80 via-stone-300/70 to-transparent  "/>
-  <div class="inset-0 bg-gradient-to-b from-slate-100/90 via-stone-100/60 to-transparent  relative ">
+<footer
+  id="footer"
+  class="w-full h-fit bg-gradient-to-b from-white to-gray-50 border-t border-gray-200 relative overflow-hidden">
+  <Image
+    src={GimmeldingenMap}
+    alt="GimmeldingenMap"
+    fetchpriority="low"
+    loading="lazy"
+    class="w-full h-full absolute top-[50%] translate-y-[-50%] left-0 object-cover object-center opacity-[1]"
+  />
+  <div
+    class="absolute bottom-0 left-0 w-full h-[40vh] bg-gradient-to-t from-stone-300/80 via-stone-300/70 to-transparent">
+  </div>
+  <div
+    class="inset-0 bg-gradient-to-b from-slate-100/90 via-stone-100/60 to-transparent relative">
     <!-- Main Footer Content -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 overflow-hidden relative">
-        <div class="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-x-32 md:gap-x-8 gap-y-14 px-14 lg:px-0">
-          
-          <!-- Company Info -->
-          <div class="lg:col-span-1 row-start-1 flex flex-col justify-end lg:justify-between items-start ">
-            <Image src={HWELogoV2NoText} alt="Heyl Weinerlebnistouren Logo" fetchpriority='low' loading="lazy" class="h-12 w-auto mr-3 sm:hidden" />
-            <div class="flex items-center mb-4">
-              <Image src={HWELogoV2NoText} alt="Heyl Weinerlebnistouren Logo" fetchpriority='low' loading="lazy" class="h-12 w-auto mr-3 hidden sm:block" />
-              <div>
-                <h3 class="text-lg font-semibold text-gray-900">Heyl Weinerlebnistouren</h3>
-                <p class="text-sm text-gray-600">Geführte Wein-Erlebnistouren</p>
-              </div>
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 overflow-hidden relative">
+      <div
+        class="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-x-32 md:gap-x-8 gap-y-14 px-14 lg:px-0">
+        <!-- Company Info -->
+        <div
+          class="lg:col-span-1 row-start-1 flex flex-col justify-end lg:justify-between items-start">
+          <Image
+            src={HWELogoV2NoText}
+            alt="Heyl Weinerlebnistouren Logo"
+            fetchpriority="low"
+            loading="lazy"
+            class="h-12 w-auto mr-3 sm:hidden"
+          />
+          <div class="flex items-center mb-4">
+            <Image
+              src={HWELogoV2NoText}
+              alt="Heyl Weinerlebnistouren Logo"
+              fetchpriority="low"
+              loading="lazy"
+              class="h-12 w-auto mr-3 hidden sm:block"
+            />
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">
+                Heyl Weinerlebnistouren
+              </h3>
+              <p class="text-sm text-gray-600">Geführte Wein-Erlebnistouren</p>
             </div>
-            <div class="flex flex-col justify-between">
-            <p class="text-sm text-gray-600 mb-4 hidden sm:block max-w-sm lg:max-w-none">
-              Entdecken Sie die Pfalz mit professionellen Wein-Erlebnistouren durch die schönsten Weinberge und Weingüter.
+          </div>
+          <div class="flex flex-col justify-between">
+            <p
+              class="text-sm text-gray-600 mb-4 hidden sm:block max-w-sm lg:max-w-none">
+              Entdecken Sie die Pfalz mit professionellen Wein-Erlebnistouren
+              durch die schönsten Weinberge und Weingüter.
             </p>
             <div class="flex space-x-4">
-              <a href="mailto:brigitta.heyl@kwb-pfalz.de" class="text-accent1 hover:text-accent2-wine transition-colors">
+              <a
+                href="mailto:weinerlebnistouren.pfalz@gmail.com
+"
+                class="text-accent1 hover:text-accent2-wine transition-colors">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                  <path
+                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                  ></path>
+                  <path
+                    d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                  ></path>
                 </svg>
               </a>
-              <a href="tel:+491707110535" class="text-accent1 hover:text-accent2-wine transition-colors">
+              <a
+                href="tel:+491707110535"
+                class="text-accent1 hover:text-accent2-wine transition-colors">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                  <path
+                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                  ></path>
                 </svg>
               </a>
               <div class="flex items-center space-x-1">
-                <p class="text-accent1 hover:text-accent2-wine transition-colors">
+                <p
+                  class="text-accent1 hover:text-accent2-wine transition-colors">
                   📰
                 </p>
-                <a href="https://www.rheinpfalz.de/lokal/neustadt_artikel,-zwische-mandel-und-könig-ludwig-erlebnisführung-in-gimmeldingen-_arid,5622874.html" class="text-text/40 hover:text-accent2-wine transition-colors">
+                <a
+                  href="https://www.rheinpfalz.de/lokal/neustadt_artikel,-zwische-mandel-und-könig-ludwig-erlebnisführung-in-gimmeldingen-_arid,5622874.html"
+                  class="text-text/40 hover:text-accent2-wine transition-colors">
                   [<span class="text-accent1">1</span>]
                 </a>
-                <a href="https://www.rheinpfalz.de/pfalzleben/pfalzgefuehl_artikel,-wein-erlebnistour-mandelblüte-meerspinne-monarchen-in-neustadt-gimmeldingen-_arid,5753081.html" class="text-text/40 hover:text-accent2-wine transition-colors">
+                <a
+                  href="https://www.rheinpfalz.de/pfalzleben/pfalzgefuehl_artikel,-wein-erlebnistour-mandelblüte-meerspinne-monarchen-in-neustadt-gimmeldingen-_arid,5753081.html"
+                  class="text-text/40 hover:text-accent2-wine transition-colors">
                   [<span class="text-accent1">2</span>]
                 </a>
-                <a href="https://www.rheinpfalz.de/lokal/neustadt_artikel,-besondere-weinbergswanderung-mit-napoleon-durch-die-reben-_arid,5806456.html" class="text-text/40 hover:text-accent2-wine transition-colors">
+                <a
+                  href="https://www.rheinpfalz.de/lokal/neustadt_artikel,-besondere-weinbergswanderung-mit-napoleon-durch-die-reben-_arid,5806456.html"
+                  class="text-text/40 hover:text-accent2-wine transition-colors">
                   [<span class="text-accent1">3</span>]
                 </a>
               </div>
             </div>
           </div>
-          </div>
-
-          <!-- Navigation Links -->
-          <div class="lg:col-span-1 row-start-2 md:row-start-1 pt-0 sm:pt-4 md:pt-0 md:ml-14 sm:mt-0 mt-10">
-            <h3 class="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-4">Navigation</h3>
-            <ul class="lg:space-y-1 space-y-0 text-xs leading-snug sm:leading-tight sm:text-sm">
-              <li><a href="/" class="text-gray-600 hover:text-gray-900 transition-colors">Startseite</a></li>
-              <li><a href="/tours" class="text-gray-600 hover:text-gray-900 transition-colors">Touren</a></li>
-              <li><a href="/gruppen" class="text-gray-600 hover:text-gray-900 transition-colors">Gruppen</a></li>
-              <li><a href="/#about-me" class="text-gray-600 hover:text-gray-900 transition-colors">Über mich</a></li>
-              <li><a href="/weingueter" class="text-gray-600 hover:text-gray-900 transition-colors">Weingüter</a></li>
-              <!-- <li><a href="/impressum" class="text-gray-600 hover:text-gray-900 transition-colors">Impressum</a></li> -->
-              <!-- <li><a href="/datenschutz" class="text-gray-600 hover:text-gray-900 transition-colors">Datenschutz</a></li> -->
-              <!-- <li><a href="/newsletter" class=" text-gray-600 hover:text-gray-900 transition-colors">Newsletter</a></li> -->
-              <!-- <li><a href="/barrierefreiheit" class="text-gray-600 hover:text-gray-900 transition-colors">Erklärung zur Barrierefreiheit</a></li> -->
-            </ul>
-          </div>
-
-          <!-- Collaborators -->
-          <div class="lg:col-span-1 row-start-2 md:row-start-1 sm:mt-0 mt-10">
-            <h3 class="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-4">Partner</h3>
-            <ul class="lg:space-y-1 space-y-0 text-xs leading-snug sm:leading-tight sm:text-sm">
-              <li><a href="https://www.neustadt.eu/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors">Tourist-Info Neustadt</a></li>
-              <li><a href="http://www.gimmeldingen.de/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors">Gimmeldingen</a></li>
-              <li><a href="https://www.kultur-und-weinbotschafter.de/pfalz" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors">Kultur-und Weinbotschafter Pfalz</a></li>
-              <li><a href="https://www.mandelbluete-pfalz.de/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors">Pfälzer Mandelblüte</a></li>
-              <li><a href="https://www.pfalz.de/de" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors">Zum Wohl die Pfalz</a></li>
-            </ul>
-          </div>
         </div>
 
-
-        <!-- MOBILE Contact Card Section -->
-  <div id="get-in-touch-mobile" class="block md:hidden w-full max-w-[75%] sm:max-w-sm mx-auto relative z-10 mt-12 md:mt-16 mb-8">
-    <div class="bg-gradient-to-br from-stone-50/85 to-stone-100/50 rounded-xl shadow-lg border border-stone-200/50 p-6 md:p-8 md:pb-6 relative overflow-hidden">
-      <!-- Background decoration -->
-      <div class="absolute top-0 right-0 w-24 h-24 opacity-10">
-        <svg viewBox="0 0 100 100" class="w-full h-full text-accent1/20">
-          <path d="M50 0 L100 50 L50 100 L0 50 Z" fill="currentColor"/>
-        </svg>
-      </div>
-      
-      <div class="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-        <!-- Left side with button (2/3 width) -->
-        <div class="flex-1 md:w-2/3 md:max-w- lg:w-2/3 text-center md:text-left leading-tight">
-          <h3 class="sm:text-xl text-left font-bold font-bonanova tracking-tight sm:leading-none mb-8 sm:mb-4">
-            <span class="text-accent1/80">Sie haben noch <br class="md:hidden block">offene Fragen?</span>
+        <!-- Navigation Links -->
+        <div
+          class="lg:col-span-1 row-start-2 md:row-start-1 pt-0 sm:pt-4 md:pt-0 md:ml-14 sm:mt-0 mt-10">
+          <h3
+            class="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-4">
+            Navigation
           </h3>
-          <p class="max-w-44 sm:max-w-64 text-[12px] sm:text-sm text-left text-stone-600/50 sm:text-stone-600/70 font-normal mb-4 sm:mb-0 lg:mb-4 leading-relaxed sm:leading-snug">
-            Ich helfe Ihnen <br class="sm:hidden block"/> gerne weiter  <br /> und beantworte alle <br class="sm:hidden block"/> Ihre Fragen zu unseren <br/>Wein-Erlebnistouren.
-          </p>
-          <div class="flex md:justify-start justify-center my-5 md:my-3">
-            <a href="/kontakt" class="inline-flex items-center px-4 py-1 bg-gradient-to-r from-accent1 to-accent1/80 text-white font-semibold text-xs rounded-full shadow-lg hover:from-accent1/90 hover:to-accent1/70 transform hover:scale-105 transition-all duration-300 group">
-              <p>Kontaktieren Sie mich <span class="hidden sm:inline">hier</span></p>
-              <svg class="rotate-180 w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
-            </a>
-          </div>
+          <ul
+            class="lg:space-y-1 space-y-0 text-xs leading-snug sm:leading-tight sm:text-sm">
+            <li>
+              <a
+                href="/"
+                class="text-gray-600 hover:text-gray-900 transition-colors"
+                >Startseite</a>
+            </li>
+            <li>
+              <a
+                href="/tours"
+                class="text-gray-600 hover:text-gray-900 transition-colors"
+                >Touren</a>
+            </li>
+            <li>
+              <a
+                href="/gruppen"
+                class="text-gray-600 hover:text-gray-900 transition-colors"
+                >Gruppen</a>
+            </li>
+            <li>
+              <a
+                href="/#about-me"
+                class="text-gray-600 hover:text-gray-900 transition-colors"
+                >Über mich</a>
+            </li>
+            <li>
+              <a
+                href="/weingueter"
+                class="text-gray-600 hover:text-gray-900 transition-colors"
+                >Weingüter</a>
+            </li>
+            <!-- <li><a href="/impressum" class="text-gray-600 hover:text-gray-900 transition-colors">Impressum</a></li> -->
+            <!-- <li><a href="/datenschutz" class="text-gray-600 hover:text-gray-900 transition-colors">Datenschutz</a></li> -->
+            <!-- <li><a href="/newsletter" class=" text-gray-600 hover:text-gray-900 transition-colors">Newsletter</a></li> -->
+            <!-- <li><a href="/barrierefreiheit" class="text-gray-600 hover:text-gray-900 transition-colors">Erklärung zur Barrierefreiheit</a></li> -->
+          </ul>
+        </div>
+
+        <!-- Collaborators -->
+        <div class="lg:col-span-1 row-start-2 md:row-start-1 sm:mt-0 mt-10">
+          <h3
+            class="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-4">
+            Partner
+          </h3>
+          <ul
+            class="lg:space-y-1 space-y-0 text-xs leading-snug sm:leading-tight sm:text-sm">
+            <li>
+              <a
+                href="https://www.neustadt.eu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 hover:text-gray-900 transition-colors"
+                >Tourist-Info Neustadt</a>
+            </li>
+            <li>
+              <a
+                href="http://www.gimmeldingen.de/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 hover:text-gray-900 transition-colors"
+                >Gimmeldingen</a>
+            </li>
+            <li>
+              <a
+                href="https://www.kultur-und-weinbotschafter.de/pfalz"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 hover:text-gray-900 transition-colors"
+                >Kultur-und Weinbotschafter Pfalz</a>
+            </li>
+            <li>
+              <a
+                href="https://www.mandelbluete-pfalz.de/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 hover:text-gray-900 transition-colors"
+                >Pfälzer Mandelblüte</a>
+            </li>
+            <li>
+              <a
+                href="https://www.pfalz.de/de"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 hover:text-gray-900 transition-colors"
+                >Zum Wohl die Pfalz</a>
+            </li>
+          </ul>
         </div>
       </div>
-      <p class="max-w-22 text-[10px] sm:text-xs sm:leading-tight mx-auto font-light text-gray-700/60 sm:text-gray-700 text-center w-full relative z-10 ">
-        "Ich freue mich darauf, Sie auf eine meiner Touren mitzunehmen!"
-      </p>
-    </div>
-    
-    <div class="w-fit h-fit absolute top-0 right-[0%] translate-x-[15%] sm:translate-y-[-26%] md:translate-x-[-5%] md:translate-y-[-16%] lg:translate-x-[-20%] lg:translate-y-[-30%]">
-      <Image src={HWELogoV2NoText} loading="lazy" fetchpriority="auto" alt="Vineyard background" class="relative w-[150px] md:w-[200px] object-cover opacity-85" />
-    </div>
-  </div>
 
+      <!-- MOBILE Contact Card Section -->
+      <div
+        id="get-in-touch-mobile"
+        class="block md:hidden w-full max-w-[75%] sm:max-w-sm mx-auto relative z-10 mt-12 md:mt-16 mb-8">
+        <div
+          class="bg-gradient-to-br from-stone-50/85 to-stone-100/50 rounded-xl shadow-lg border border-stone-200/50 p-6 md:p-8 md:pb-6 relative overflow-hidden">
+          <!-- Background decoration -->
+          <div class="absolute top-0 right-0 w-24 h-24 opacity-10">
+            <svg viewBox="0 0 100 100" class="w-full h-full text-accent1/20">
+              <path d="M50 0 L100 50 L50 100 L0 50 Z" fill="currentColor"
+              ></path>
+            </svg>
+          </div>
 
-        <div class="border-b border-gray-300 h-1 w-[70%] mx-auto mt-4 sm:mt-0 sm:my-8"/>
-        <!-- Bottom Section -->
-        <div class="pt-8 px-10">
-          <div class="flex flex-col md:flex-row justify-between items-center">
-            <p class="text-sm text-gray-500 mb-4 md:mb-0 text-center md:text-left">
-              &copy; 2025 Brigitta Heyl –<br class="md:hidden"/> Wein-Erlebnistouren-Pfalz <br class="sm:hidden"/>| Alle Rechte vorbehalten | <br class="sm:hidden"/> Design by <a href="mailto:biocentra.info@gmail.com" target="_blank" rel="noopener noreferrer" class="text-accent1 hover:text-gray-700 transition-colors">Hendrik Cooper</a> 
-            </p>
-            <div class="flex space-x-6">
-              <a href="/kontakt" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">Kontakt</a>
-              <a href="/impressum" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">Impressum</a>
-              <a href="/datenschutz" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">Datenschutz</a>
-              <!-- <a href="/barrierefreiheit" class=" text-sm text-gray-500 hover:text-gray-700 transition-colors">Barrierefreiheit</a> -->
+          <div
+            class="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <!-- Left side with button (2/3 width) -->
+            <div
+              class="flex-1 md:w-2/3 md:max-w- lg:w-2/3 text-center md:text-left leading-tight">
+              <h3
+                class="sm:text-xl text-left font-bold font-bonanova tracking-tight sm:leading-none mb-8 sm:mb-4">
+                <span class="text-accent1/80"
+                  >Sie haben noch <br class="md:hidden block" />offene Fragen?</span
+                >
+              </h3>
+              <p
+                class="max-w-44 sm:max-w-64 text-[12px] sm:text-sm text-left text-stone-600/50 sm:text-stone-600/70 font-normal mb-4 sm:mb-0 lg:mb-4 leading-relaxed sm:leading-snug">
+                Ich helfe Ihnen <br class="sm:hidden block" /> gerne weiter <br
+                /> und beantworte alle <br class="sm:hidden block" /> Ihre Fragen
+                zu unseren <br />Wein-Erlebnistouren.
+              </p>
+              <div class="flex md:justify-start justify-center my-5 md:my-3">
+                <a
+                  href="/kontakt"
+                  class="inline-flex items-center px-4 py-1 bg-gradient-to-r from-accent1 to-accent1/80 text-white font-semibold text-xs rounded-full shadow-lg hover:from-accent1/90 hover:to-accent1/70 transform hover:scale-105 transition-all duration-300 group">
+                  <p>
+                    Kontaktieren Sie mich <span class="hidden sm:inline"
+                      >hier</span>
+                  </p>
+                  <svg
+                    class="rotate-180 w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
+          <p
+            class="max-w-22 text-[10px] sm:text-xs sm:leading-tight mx-auto font-light text-gray-700/60 sm:text-gray-700 text-center w-full relative z-10">
+            "Ich freue mich darauf, Sie auf eine meiner Touren mitzunehmen!"
+          </p>
         </div>
-  </div>
 
-  
-</div>
-</footer> 
+        <div
+          class="w-fit h-fit absolute top-0 right-[0%] translate-x-[15%] sm:translate-y-[-26%] md:translate-x-[-5%] md:translate-y-[-16%] lg:translate-x-[-20%] lg:translate-y-[-30%]">
+          <Image
+            src={HWELogoV2NoText}
+            loading="lazy"
+            fetchpriority="auto"
+            alt="Vineyard background"
+            class="relative w-[150px] md:w-[200px] object-cover opacity-85"
+          />
+        </div>
+      </div>
+
+      <div
+        class="border-b border-gray-300 h-1 w-[70%] mx-auto mt-4 sm:mt-0 sm:my-8">
+      </div>
+      <!-- Bottom Section -->
+      <div class="pt-8 px-10">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p
+            class="text-sm text-gray-500 mb-4 md:mb-0 text-center md:text-left">
+            &copy; 2025 Brigitta Heyl –<br class="md:hidden" /> Wein-Erlebnistouren-Pfalz
+            <br class="sm:hidden" />| Alle Rechte vorbehalten | <br
+              class="sm:hidden"
+            /> Design by <a
+              href="mailto:biocentra.info@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent1 hover:text-gray-700 transition-colors"
+              >Hendrik Cooper</a
+            >
+          </p>
+          <div class="flex space-x-6">
+            <a
+              href="/kontakt"
+              class="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              >Kontakt</a
+            >
+            <a
+              href="/impressum"
+              class="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              >Impressum</a
+            >
+            <a
+              href="/datenschutz"
+              class="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              >Datenschutz</a
+            >
+            <!-- <a href="/barrierefreiheit" class=" text-sm text-gray-500 hover:text-gray-700 transition-colors">Barrierefreiheit</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
