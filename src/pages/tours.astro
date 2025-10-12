@@ -49,8 +49,8 @@ const images = {
 		<Header isDarkMode={false} isTours={true} />
 		
 		<!-- mobile only -->
-		 <h1 class="text-center text-2xl font-bold sm:hidden h-[20vh] mt-20 flex items-center justify-center"> 🚧 ATTENTION 🚧 <br/> The mobile version of this page is not available at this moment </h1>
-		<InteractiveToursMobile client:load images={images} backgroundImage={MJWallWithGrapes} className="hidden" /> 	
+		<h1 class="text-center text-2xl font-bold sm:hidden h-[20vh] mt-20 items-center justify-center hidden"> 🚧 ATTENTION 🚧 <br/> The mobile version of this page is not available at this moment </h1>
+		<InteractiveToursMobile client:load images={images} backgroundImage={MJWallWithGrapes} className="block sm:hidden" /> 	
 		<!-- <InteractiveToursMobileV2 client:load images={images} backgroundImage={MJWallWithGrapes} className="md:hidden" /> 	 -->
 
 		<!-- SM Screens and bigger -->
