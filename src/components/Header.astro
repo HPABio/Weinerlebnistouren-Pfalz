@@ -11,8 +11,7 @@ const { isStart = false } = Astro.props;
 ---
 
 <header
-  class="w-screen h-[70px] flex items-center justify-center sticky top-0 z-50 backdrop-blur-[5px] shadow-md shadow-stone-400/30 bg-stone-50/40"
->
+  class="w-screen h-[70px] flex items-center justify-center sticky top-0 z-50 backdrop-blur-[5px] shadow-md shadow-stone-400/30 bg-stone-50/40">
   <nav class="h-full w-screen flex items-center justify-between py-2 px-6">
     <a href="/#hero" class="text-2xl font-bold text-accent1 z-50">
       <Image
@@ -22,20 +21,15 @@ const { isStart = false } = Astro.props;
       />
     </a>
     <ul
-      class="hidden sm:flex space-x-6 font-inter tracking-wider text-xs sm:text-lg font-light my-auto h-full items-center"
-    >
+      class="hidden sm:flex space-x-6 font-inter tracking-wider text-xs sm:text-lg font-light my-auto h-full items-center">
       <li>
         <a
           href={isHome ? "/#hero" : "/start"}
-          class={
-            isStart
-              ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 group"
-              : "hover:text-accent2-wine hover:font-bold transition"
-          }
-          >
-            {isStart ? "START" : "Start"}
-          </a
-        >
+          class={isStart
+            ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 group"
+            : "hover:text-accent2-wine hover:font-bold transition"}>
+          {isStart ? "START" : "Start"}
+        </a>
       </li>
       <li>
         <a
@@ -43,210 +37,200 @@ const { isStart = false } = Astro.props;
             ? "https://eveeno.com/de/event-cal/34263?style=grid"
             : "/tours"}
           class=`${isTours ? "hover:pl-9" : ""} ${isTours || isHome ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 hover:text-base group" : "hover:text-accent2-wine hover:font-bold transition"}`>
-            <span class={isTours ? "hidden group-hover:inline-block absolute top-1 left-3 text-lg font-extrabold font-bonanova bg-stone-50 text-transparent bg-clip-text pt-1" : "hidden"}
-              >👉🏼</span>
-              {isHome ? "TOUREN" : isTours ? "BUCHEN" : "Touren"}
-              </a>
-            </li>
+          <span
+            class={isTours
+              ? "hidden group-hover:inline-block absolute top-1 left-3 text-lg font-extrabold font-bonanova bg-stone-50 text-transparent bg-clip-text pt-1"
+              : "hidden"}>👉🏼</span
+          >
+          {isHome ? "TOUREN" : isTours ? "BUCHEN" : "Touren"}
+        </a>
+      </li>
       <li>
         <a
           href="/gruppen"
-          class={
-            isGruppen
-              ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 group"
-              : "hover:text-accent2-wine hover:font-bold transition"
-          }
-        >
+          class={isGruppen
+            ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 group"
+            : "hover:text-accent2-wine hover:font-bold transition"}>
           {isGruppen ? "GRUPPEN" : "Gruppen"}
         </a>
       </li>
-        <!-- <li class={isHome ? "inline-block" : "hidden"}>
+      <!-- <li class={isHome ? "inline-block" : "hidden"}>
           <a
             href="/#about-me"
             class="hover:text-accent2-wine hover:font-bold transition"
             >Über mich</a
           >
         </li> -->
-        <li>
-          <a
-            href="/kontakt"
-            class={
-              isKontakt
-                ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 group"
-                : "hover:text-accent2-wine hover:font-bold transition"
-            }
-            >
-              {isKontakt ? "KONTAKT" : "Kontakt"}
-            </a
-          >
-        </li>
+      <li>
+        <a
+          href="/kontakt"
+          class={isKontakt
+            ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 group"
+            : "hover:text-accent2-wine hover:font-bold transition"}>
+          {isKontakt ? "KONTAKT" : "Kontakt"}
+        </a>
       </li>
-      <div class="sm:hidden flex items-center">
-        <button id="menu-btn" class="hamburger z-50 focus:outline-none">
-          <span class="hamburger-top"></span>
-          <span class="hamburger-middle"></span>
-          <span class="hamburger-bottom"></span>
-        </button>
-      </div>
     </ul>
+    <div class="sm:hidden flex items-center">
+      <button id="menu-btn" class="hamburger z-50 focus:outline-none">
+        <span class="hamburger-top"></span>
+        <span class="hamburger-middle"></span>
+        <span class="hamburger-bottom"></span>
+      </button>
+    </div>
+  </nav>
 
-    <!-- Mobile Menu -->
-    <div
-      id="menu"
-      class="fixed h-fit w-full inset-0 z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none
+  <!-- Mobile Menu -->
+  <div
+    id="menu"
+    class="fixed h-fit w-full inset-0 z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none
     transition-all duration-300 ease-in-out transform -translate-y-full bg-gradient-to-t from-transparent via-stone-50 to-stone-50
-    pt-12 pb-96"
-    >
-      <ul class="flex flex-col items-center space-y-8">
-        <li>
-          <a
-            href={isHome ? "/#hero" : "/"}
-            class="mobile-nav-link text-3xl font-bonanova">Start</a
-          >
-        </li>
-        <li>
-          <a href="/gruppen" class="mobile-nav-link text-3xl font-bonanova"
-            >Gruppen</a
-          >
-        </li>
-        <!-- <li class={isHome ? "hidden" : "block"}>
+    pt-12 pb-96">
+    <ul class="flex flex-col items-center space-y-8">
+      <li>
+        <a
+          href={isHome ? "/#hero" : "/"}
+          class="mobile-nav-link text-3xl font-bonanova">Start</a
+        >
+      </li>
+      <li>
+        <a href="/gruppen" class="mobile-nav-link text-3xl font-bonanova"
+          >Gruppen</a
+        >
+      </li>
+      <!-- <li class={isHome ? "hidden" : "block"}>
         <a
           href={isHome ? "/#about-me" : "/"}
           class="mobile-nav-link text-3xl font-bonanova">Über mich</a
         >
       </li> -->
-        <li>
-          <a
-            href={isHome ? "#get-in-touch-mobile" : "/kontakt"}
-            class="mobile-nav-link text-3xl font-bonanova">Kontakt</a
-          >
-        </li>
-        <li>
-          <a
-            href="/tours"
-            class="inline-flex items-center px-8 py-3 font-semibold text-xl rounded-full shadow-lg font-bonanova
+      <li>
+        <a
+          href={isHome ? "#get-in-touch-mobile" : "/kontakt"}
+          class="mobile-nav-link text-3xl font-bonanova">Kontakt</a
+        >
+      </li>
+      <li>
+        <a
+          href="/tours"
+          class="inline-flex items-center px-8 py-3 font-semibold text-xl rounded-full shadow-lg font-bonanova
           bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50/90
           hover:text-amber-950 hover:from-amber-700 hover:to-orange-700 transform hover:scale-105 transition-all duration-200"
-            >TOUREN</a
-          >
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <style>
-    .hamburger {
-      cursor: pointer;
-      width: 24px;
-      height: 24px;
-      transition: all 0.25s;
-      position: relative;
-    }
-
-    .hamburger-top,
-    .hamburger-middle,
-    .hamburger-bottom {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 24px;
-      height: 2px;
-      background: #4b3a2b; /* Using text color from your config */
-      transform: rotate(0);
-      transition: all 0.5s;
-    }
-
-    .hamburger-middle {
-      transform: translateY(7px);
-    }
-
-    .hamburger-bottom {
-      transform: translateY(14px);
-    }
-
-    .open .hamburger-top {
-      transform: rotate(45deg) translateY(6px) translateX(6px);
-    }
-
-    .open .hamburger-middle {
-      display: none;
-    }
-
-    .open .hamburger-bottom {
-      transform: rotate(-45deg) translateY(6px) translateX(-6px);
-    }
-    .mobile-nav-link {
-      @apply text-text/80 hover:text-accent1 transition-colors duration-300;
-    }
-  </style>
-
-  <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const menu = document.getElementById("menu");
-
-    const toggleMenu = () => {
-      menuBtn.classList.toggle("open");
-      const isOpen = menuBtn.classList.contains("open");
-      if (isOpen) {
-        menu.classList.remove(
-          "opacity-0",
-          "pointer-events-none",
-          "-translate-y-full"
-        );
-        menu.classList.add(
-          "opacity-100",
-          "pointer-events-auto",
-          "translate-y-0"
-        );
-      } else {
-        menu.classList.remove(
-          "opacity-100",
-          "pointer-events-auto",
-          "translate-y-0"
-        );
-        menu.classList.add(
-          "opacity-0",
-          "pointer-events-none",
-          "-translate-y-full"
-        );
-      }
-      document.body.classList.toggle("overflow-hidden");
-    };
-
-    menuBtn.addEventListener("click", toggleMenu);
-
-    // Close menu when a link is clicked
-    const navLinks = menu.querySelectorAll("a");
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        if (!menu.classList.contains("pointer-events-none")) {
-          toggleMenu();
-        }
-      });
-    });
-
-    // Handle smooth scrolling with header offset
-    const handleAnchorClick = (e) => {
-      const href = e.target.getAttribute("href");
-      if (href && href.includes("#")) {
-        e.preventDefault();
-        const targetId = href.split("#")[1];
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          const headerHeight = 70; // Height of the fixed header
-          const targetPosition = targetElement.offsetTop - headerHeight;
-          window.scrollTo({
-            top: targetPosition,
-            behavior: "smooth",
-          });
-        }
-      }
-    };
-
-    // Add click handlers to all anchor links in the header
-    const allNavLinks = document.querySelectorAll('header a[href*="#"]');
-    allNavLinks.forEach((link) => {
-      link.addEventListener("click", handleAnchorClick);
-    });
-  </script>
+          >TOUREN</a
+        >
+      </li>
+    </ul>
+  </div>
 </header>
+
+<style>
+  .hamburger {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+  }
+
+  .hamburger-top,
+  .hamburger-middle,
+  .hamburger-bottom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: #4b3a2b; /* Using text color from your config */
+    transform: rotate(0);
+    transition: all 0.5s;
+  }
+
+  .hamburger-middle {
+    transform: translateY(7px);
+  }
+
+  .hamburger-bottom {
+    transform: translateY(14px);
+  }
+
+  .open .hamburger-top {
+    transform: rotate(45deg) translateY(6px) translateX(6px);
+  }
+
+  .open .hamburger-middle {
+    display: none;
+  }
+
+  .open .hamburger-bottom {
+    transform: rotate(-45deg) translateY(6px) translateX(-6px);
+  }
+  .mobile-nav-link {
+    @apply text-text/80 hover:text-accent1 transition-colors duration-300;
+  }
+</style>
+
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const menu = document.getElementById("menu");
+
+  const toggleMenu = () => {
+    menuBtn.classList.toggle("open");
+    const isOpen = menuBtn.classList.contains("open");
+    if (isOpen) {
+      menu.classList.remove(
+        "opacity-0",
+        "pointer-events-none",
+        "-translate-y-full"
+      );
+      menu.classList.add("opacity-100", "pointer-events-auto", "translate-y-0");
+    } else {
+      menu.classList.remove(
+        "opacity-100",
+        "pointer-events-auto",
+        "translate-y-0"
+      );
+      menu.classList.add(
+        "opacity-0",
+        "pointer-events-none",
+        "-translate-y-full"
+      );
+    }
+    document.body.classList.toggle("overflow-hidden");
+  };
+
+  menuBtn.addEventListener("click", toggleMenu);
+
+  // Close menu when a link is clicked
+  const navLinks = menu.querySelectorAll("a");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (!menu.classList.contains("pointer-events-none")) {
+        toggleMenu();
+      }
+    });
+  });
+
+  // Handle smooth scrolling with header offset
+  const handleAnchorClick = (e) => {
+    const href = e.target.getAttribute("href");
+    if (href && href.includes("#")) {
+      e.preventDefault();
+      const targetId = href.split("#")[1];
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const headerHeight = 70; // Height of the fixed header
+        const targetPosition = targetElement.offsetTop - headerHeight;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
+
+  // Add click handlers to all anchor links in the header
+  const allNavLinks = document.querySelectorAll('header a[href*="#"]');
+  allNavLinks.forEach((link) => {
+    link.addEventListener("click", handleAnchorClick);
+  });
+</script>
