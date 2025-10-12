@@ -15,6 +15,8 @@ import HWELogoV2noText from '@images/HWE-LogoV2-noText.svg';
 import GroupDescriptionOverview from '@/components/GroupDescriptionOverview.astro';
 import GroupDescriptionOverviewV2 from '@/components/GroupDescriptionOverview-V2.astro';
 import GroupDescriptionOverviewV3 from '@/components/GroupDescriptionOverview-V3.astro';
+
+
 ---
 
 <html lang="de">
@@ -26,9 +28,9 @@ import GroupDescriptionOverviewV3 from '@/components/GroupDescriptionOverview-V3
 		<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<Header isHome={false} />
+		<Header isHome={false} isGroupe={true} />
 		<main class="min-h-screen bg-gradient-to-b from-white to-gray-50 relative">
-			<ScreenSizeDEVTOOL />
+			<!-- <ScreenSizeDEVTOOL /> -->
 			<!-- Hero Section -->
 			<div class="relative w-full h-[30vw] min-h-[250px] max-h-[300px]"
 			style={{backgroundImage: `url("${CompressedMjVineYardColorPencilSketch.src}")`, backgroundSize: "cover", backgroundPosition: "100% 50%",}}>
