@@ -427,7 +427,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                           className={`w-full h-full object-cover object-center  ${
                             selectedTour.id === tour.id
                               ? "brightness-100 "
-                              : "group-hover:scale-110 group-hover:contrast-100 brightness-[0.7] contrast-[0.7]"
+                              : "group-hover:scale-110 group-hover:contrast-100 brightness-[1] contrast-[1]"
                           }`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
@@ -443,8 +443,8 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                         <div className="absolute bottom-4 left-4 right-4 ">
                           <h4
                             className="text-white/40 font-bold font-bonanova
-                                text-[0.6rem] md:text-[0.7rem] lg:text-[0.8rem] xl:text-[0.9rem] group-hover:text-white leading-tight drop-shadow-lg">
-                            {tour.title}
+                                text-[0.6rem] md:text-[0.5rem] lg:text-[0.8rem] xl:text-[0.9rem] group-hover:text-white leading-tight drop-shadow-lg">
+                            {tour.title} 
                           </h4>
                         </div>
 
@@ -703,7 +703,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                                   : selectedTour.info}{" "}
                                 •
                               </p>
-                              <h2 className="w-3/4 text-3xl lg:text-5xl font-bold font-bonanova text-gray-800 xl:pr-32   ">
+                              <h2 className="text-3xl lg:text-[40px] font-bold font-bonanova text-gray-800 xl:pr-32 ">
                                 {selectedTour.id === "welcome"
                                   ? tours[1].title
                                   : selectedTour.title}
@@ -714,7 +714,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                           <div className="w-full flex justify-between items-start border-0 border-green-500">
                             {/* Booking Button HERE */}
                             {/* <BookingButtonV1 /> */}
-                            <BookingButtonV2toRight classNames="w-[450px] h-full -ml-3 mt-10 justify-start border-0 border-blue-500" />
+                            <BookingButtonV2toRight classNames="w-[450px] h-full -ml-3 mt-4 justify-start border-0 border-blue-500" />
                             {/* <BookingButtonV2toLeft classNames="w-[450px] h-full ml-8 mt-10 justify-end border-0 border-blue-500" /> */}
                           </div>
                         </div>
