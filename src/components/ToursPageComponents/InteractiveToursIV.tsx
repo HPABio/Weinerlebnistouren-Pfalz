@@ -61,7 +61,8 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       season: "Frühling",
       images: {
         card: images.MJAlmondFlowerMosaicGlass.src,
-        background: backgroundImage.src,
+        background: images.MJAlmondFlowerMosaicGlass.src,
+        // background: backgroundImage.src,
         objectPosition: "object-[50%_20%]",
         bgObjectPosition: "object-contain",
       },
@@ -88,7 +89,8 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       season: "Sommer",
       images: {
         card: images.WassermühleImWald.src,
-        background: backgroundImage.src,
+        background: images.WassermühleImWald.src,
+        // background: backgroundImage.src,
         objectPosition: "object-[50%_20%]",
         bgObjectPosition: "object-[50%_36%]",
       },
@@ -114,7 +116,8 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       season: "Frühling - Herbst",
       images: {
         card: images.MJBachusMosaicGlass.src,
-        background: backgroundImage.src,
+        background: images.MJBachusMosaicGlass.src,
+        // background: backgroundImage.src,
         objectPosition: "object-[50%_20%]",
         bgObjectPosition: "object-[50%_50%]",
       },
@@ -142,7 +145,8 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       season: "Winter",
       images: {
         card: images.MJGlühweinV1.src,
-        background: backgroundImage.src,
+        background: images.MJGlühweinV1.src,
+        // background: backgroundImage.src,
         objectPosition: "object-[50%_28%]",
         bgObjectPosition: "object-center",
       },
@@ -201,7 +205,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
           <img
             src={selectedTour.images.background}
             alt="Tour Background"
-            className="w-full h-full object-cover object-center scale-[2] md:scale-[1.5] lg:scale-[1]"
+            className="w-full h-full object-cover object-top scale-[2] md:scale-[1.5] lg:scale-[1]"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/85" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/35" />
