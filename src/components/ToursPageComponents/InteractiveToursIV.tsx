@@ -205,7 +205,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
           <img
             src={selectedTour.images.background}
             alt="Tour Background"
-            className="w-full h-full object-cover object-top scale-[2] md:scale-[1.5] lg:scale-[1]"
+            className="w-full h-full object-cover object-center scale-[2] md:scale-[1.5] lg:scale-[1]"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/85" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/35" />
