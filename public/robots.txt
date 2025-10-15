@@ -1,0 +1,13 @@
+# robots.txt for Weinerlebnistouren-Heyl
+# Allow all bots to crawl the site
+
+User-agent: *
+Allow: /
+
+# Disallow admin or private pages if any
+# Disallow: /admin/
+# Disallow: /private/
+
+# Reference to sitemap
+Sitemap: https://www.your-domain.com/sitemap.xml
+
