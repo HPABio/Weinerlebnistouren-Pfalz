@@ -9,5 +9,4 @@ Allow: /
 # Disallow: /private/
 
 # Reference to sitemap
-Sitemap: https://www.your-domain.com/sitemap.xml
-
+Sitemap: https://www.weinerlebnistouren-pfalz.de/sitemap.xml
