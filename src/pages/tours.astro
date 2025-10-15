@@ -36,6 +36,18 @@ const images = {
 
 <html lang="de">
 	<head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-G6LFB82PZ9"></script>
+		<script>
+		  // Ensure TypeScript compatibility
+		  declare global {
+			interface Window { dataLayer: any[] }
+		  }
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(...args: any[]) { window.dataLayer.push(args); }
+		  gtag('js', new Date());
+		  gtag('config', 'G-G6LFB82PZ9');
+		</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href={favicon.src} />
