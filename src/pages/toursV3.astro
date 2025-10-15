@@ -5,6 +5,11 @@ import InteractiveTours from '@/components/ToursPageComponents/InteractiveTours'
 import InteractiveToursMobile from '@/components/ToursPageComponents/InteractiveTours-mobile';
 import InteractiveToursMobileV2 from '@/components/ToursPageComponents/InteractiveTours-mobileV2';
 import ScreenSizeDEVTOOL from '@/components/ScreenSizeDEVTOOL.astro';
+import InteractiveToursIV from '@/components/ToursPageComponents/InteractiveToursIV';
+import InteractiveToursVertical from '@/components/ToursPageComponents/InteractiveToursVertical';
+import Tours from '@/components/ToursPageComponents/Tours';
+
+
 
 import favicon from '@images/favicon.svg';
 import Header from '@/components/Header.astro';
@@ -44,6 +49,9 @@ const images = {
 		<div class="fixed w-full h-[80px]  bg-black -translate-y-[80px] "/>
 		<div class="fixed w-full h-[80px]  bg-gradient-to-br from-stone-300/25 via-stone-900/40 to-transparent -translate-y-[80px] "/>
 	    <!-- <ScreenSizeDEVTOOL /> -->
+		<InteractiveToursMobile client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="md:hidden" />
+		<InteractiveToursIV client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="hidden sm:block" />
+		<InteractiveToursVertical client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="hidden md:block" />
 		<InteractiveTours client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="hidden md:block" />
 		<InteractiveToursMobileV2 client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="md:hidden block" />
 		<!-- <InteractiveToursMobile client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="md:hidden" /> -->
