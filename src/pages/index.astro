@@ -12,6 +12,18 @@ import ScreenSizeDEVTOOL from "@/components/ScreenSizeDEVTOOL.astro";
 
 <html lang="de">
   <head>
+    <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6LFB82PZ9"></script>
+      <script>
+        // Ensure TypeScript compatibility
+        declare global {
+          interface Window { dataLayer: any[] }
+        }
+        window.dataLayer = window.dataLayer || [];
+        function gtag(...args: any[]) { window.dataLayer.push(args); }
+        gtag('js', new Date());
+        gtag('config', 'G-G6LFB82PZ9');
+      </script>
     <meta name="viewport" content="width=device-width" charset="UTF-8" />
     <link
       rel="icon"
@@ -26,7 +38,7 @@ import ScreenSizeDEVTOOL from "@/components/ScreenSizeDEVTOOL.astro";
     />
   </head>
   <body class="bg-stone-50">
-    <!-- <ScreenSizeDEVTOOL /> -->
+    <ScreenSizeDEVTOOL />
     <Header isHome={true} />
     <main>
       <Hero />
