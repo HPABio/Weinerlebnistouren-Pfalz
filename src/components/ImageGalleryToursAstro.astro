@@ -1,6 +1,6 @@
 ---
 // src/components/ImageGalleryToursAstro.astro
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 interface Props {
   numberOfImages?: number;
@@ -11,7 +11,7 @@ const { numberOfImages = 12, className = "" } = Astro.props;
 
 // Import all images from the onSitePhotos folder
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/images/compressed/onSitePhotos/**/*.{png,jpg,jpeg,webp}',
+  "../assets/images/compressed/onSitePhotos/**/*.{png,jpg,jpeg,webp}",
   { eager: true }
 );
 
@@ -40,21 +40,20 @@ const selectedImages = selectedPaths.map((path) => {
 
 <div class={`image-gallery-tours ${className}`}>
   <div class="masonry-grid">
-    {selectedImages.map((imageSrc, index) => (
-      <div 
-        class="masonry-item"
-        data-index={index}
-      >
-        <Image
-          src={imageSrc}
-          alt={`Tour photo ${index + 1}`}
-          class="gallery-image"
-          loading={index < 4 ? "eager" : "lazy"}
-          quality={85}
-          format="webp"
-        />
-      </div>
-    ))}
+    {
+      selectedImages.map((imageSrc, index) => (
+        <div class="masonry-item" data-index={index}>
+          <Image
+            src={imageSrc}
+            alt={`Tour photo ${index + 1}`}
+            class="gallery-image"
+            loading={index < 4 ? "eager" : "lazy"}
+            quality={65}
+            format="webp"
+          />
+        </div>
+      ))
+    }
   </div>
 </div>
 
@@ -134,17 +133,40 @@ const selectedImages = selectedPaths.map((path) => {
     }
   }
 
-  .masonry-item[data-index="0"] { animation-delay: 0s; }
-  .masonry-item[data-index="1"] { animation-delay: 0.05s; }
-  .masonry-item[data-index="2"] { animation-delay: 0.1s; }
-  .masonry-item[data-index="3"] { animation-delay: 0.15s; }
-  .masonry-item[data-index="4"] { animation-delay: 0.2s; }
-  .masonry-item[data-index="5"] { animation-delay: 0.25s; }
-  .masonry-item[data-index="6"] { animation-delay: 0.3s; }
-  .masonry-item[data-index="7"] { animation-delay: 0.35s; }
-  .masonry-item[data-index="8"] { animation-delay: 0.4s; }
-  .masonry-item[data-index="9"] { animation-delay: 0.45s; }
-  .masonry-item[data-index="10"] { animation-delay: 0.5s; }
-  .masonry-item[data-index="11"] { animation-delay: 0.55s; }
+  .masonry-item[data-index="0"] {
+    animation-delay: 0s;
+  }
+  .masonry-item[data-index="1"] {
+    animation-delay: 0.05s;
+  }
+  .masonry-item[data-index="2"] {
+    animation-delay: 0.1s;
+  }
+  .masonry-item[data-index="3"] {
+    animation-delay: 0.15s;
+  }
+  .masonry-item[data-index="4"] {
+    animation-delay: 0.2s;
+  }
+  .masonry-item[data-index="5"] {
+    animation-delay: 0.25s;
+  }
+  .masonry-item[data-index="6"] {
+    animation-delay: 0.3s;
+  }
+  .masonry-item[data-index="7"] {
+    animation-delay: 0.35s;
+  }
+  .masonry-item[data-index="8"] {
+    animation-delay: 0.4s;
+  }
+  .masonry-item[data-index="9"] {
+    animation-delay: 0.45s;
+  }
+  .masonry-item[data-index="10"] {
+    animation-delay: 0.5s;
+  }
+  .masonry-item[data-index="11"] {
+    animation-delay: 0.55s;
+  }
 </style>
-
