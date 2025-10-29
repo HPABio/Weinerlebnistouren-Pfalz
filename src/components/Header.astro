@@ -25,10 +25,8 @@ const { isStart = false } = Astro.props;
       <li>
         <a
           href={isHome ? "/#hero" : "/"}
-          class={isStart
-            ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 group"
-            : "hover:text-accent2-wine hover:font-bold transition"}>
-          {isStart ? "START" : "Start"}
+          class=`${isHome ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 hover:text-base group" : "hover:text-accent2-wine hover:font-bold transition"}`>
+          {isHome ? "START" : "Start"}
         </a>
       </li>
       <li>
@@ -36,13 +34,13 @@ const { isStart = false } = Astro.props;
           href={isTours
             ? "https://eveeno.com/de/event-cal/34263?style=grid"
             : "/tours"}
-          class=`${isTours ? "hover:pl-9" : ""} ${isTours || isHome ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 hover:text-base group" : "hover:text-accent2-wine hover:font-bold transition"}`>
+          class=`${isTours ? "hover:pl-9" : ""} ${isTours ? "inline-flex items-center px-4 py-2 font-semibold text-xs sm:text-sm rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50 hover:scale-105 transform transition-all duration-200 hover:text-base group" : "hover:text-accent2-wine hover:font-bold transition"}`>
           <span
             class={isTours
               ? "hidden group-hover:inline-block absolute top-1 left-3 text-lg font-extrabold font-bonanova bg-stone-50 text-transparent bg-clip-text pt-1"
               : "hidden"}>👉🏼</span
           >
-          {isHome ? "TOUREN" : isTours ? "BUCHEN" : "Touren"}
+          {isTours ? "Buchen" : "Touren"}
         </a>
       </li>
       <li>
