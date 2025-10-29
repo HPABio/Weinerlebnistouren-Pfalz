@@ -9,6 +9,7 @@ import {
   BookingButtonV2toRight,
   BookingButtonV2toLeft,
 } from "../BookingButtons/BookingButtonV2";
+import ImageGalleryTours from "../ImageGalleryTours";
 
 interface Props {
   images: {
@@ -760,6 +761,28 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                     </motion.div>
                   </AnimatePresence>
                 </div>
+
+                {/* Image Gallery */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={selectedTour.id + "-gallery"}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.6, delay: 0.4 },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      y: -20,
+                      transition: { duration: 0.3 },
+                    }}>
+                    <ImageGalleryTours
+                      numberOfImages={12}
+                      className="bg-gradient-to-b from-stone-50 to-stone-100"
+                    />
+                  </motion.div>
+                </AnimatePresence>
 
                 {/* Enhanced Booking Section */}
                 <div className="relative  bg-stone-200 bg-gradient-to-b from-stone-50 to-amber-50/20 p-8 pb-10 ">

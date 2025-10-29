@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Brigitta's on-site photos
+src/assets/images/onSitePhotos/Brigitta/

@@ -1,17 +1,17 @@
 ---
 // src/pages/tours.astro
-import '@/styles/global.css';
-import InteractiveTours from '@/components/ToursPageComponents/InteractiveTours';
-import InteractiveToursIV from '@/components/ToursPageComponents/InteractiveToursIV';
-import InteractiveToursVertical from '@/components/ToursPageComponents/InteractiveToursVertical';
-import InteractiveToursMobile from '@/components/ToursPageComponents/InteractiveTours-mobile';
-import InteractiveToursMobileV2 from '@/components/ToursPageComponents/InteractiveTours-mobileV2';
-import ScreenSizeDEVTOOL from '@/components/ScreenSizeDEVTOOL.astro';
-import ToursV2 from '@/components/ToursPageComponents/ToursV2.astro';
+import "@/styles/global.css";
+import InteractiveTours from "@/components/ToursPageComponents/InteractiveTours";
+import InteractiveToursIV from "@/components/ToursPageComponents/InteractiveToursIV";
+import InteractiveToursVertical from "@/components/ToursPageComponents/InteractiveToursVertical";
+import InteractiveToursMobile from "@/components/ToursPageComponents/InteractiveTours-mobile";
+import InteractiveToursMobileV2 from "@/components/ToursPageComponents/InteractiveTours-mobileV2";
+import ScreenSizeDEVTOOL from "@/components/ScreenSizeDEVTOOL.astro";
+import ToursV2 from "@/components/ToursPageComponents/ToursV2.astro";
 
-import favicon from '@images/favicon.svg';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
+import favicon from "@images/favicon.svg";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
 
 import MJAlmondFlowerV1 from "@images/compressed/webP/compressed-mj-almondFlowerV1.webp";
 import MJAlmondFlowerMosaicGlass from "@images/compressed/webP/compressed-mj-almondFlower-mosaicGlass.webp";
@@ -35,41 +35,64 @@ const images = {
 ---
 
 <html lang="de">
-	<head>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-G6LFB82PZ9"></script>
-		<script>
-		  // Ensure TypeScript compatibility
-		  declare global {
-			interface Window { dataLayer: any[] }
-		  }
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(...args: any[]) { window.dataLayer.push(args); }
-		  gtag('js', new Date());
-		  gtag('config', 'G-G6LFB82PZ9');
-		</script>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={favicon.src} />
-		<link rel="preload" as="image" href={MJAlmondFlowerMosaicGlass.src}>
-		<title>Unsere Touren</title>
-		<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
-	</head>
-	<body class="">
-		<!-- <ScreenSizeDEVTOOL /> -->
-		<!-- Development Navigation Buttons -->
-		<Header isDarkMode={false} isTours={true} />
-		
-		<!-- mobile only -->
-		<h1 class="text-center text-2xl font-bold sm:hidden h-[20vh] mt-20 items-center justify-center hidden"> 🚧 ATTENTION 🚧 <br/> The mobile version of this page is not available at this moment </h1>
-		<InteractiveToursMobile client:load images={images} backgroundImage={MJWallWithGrapes} className="block sm:hidden" /> 	
-		<!-- <InteractiveToursMobileV2 client:load images={images} backgroundImage={MJWallWithGrapes} className="md:hidden" /> 	 -->
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6LFB82PZ9"
+    ></script>
+    <script>
+      // Ensure TypeScript compatibility
+      declare global {
+        interface Window {
+          dataLayer: any[];
+        }
+      }
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: any[]) {
+        window.dataLayer.push(args);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-G6LFB82PZ9");
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href={favicon.src} />
+    <link rel="preload" as="image" href={MJAlmondFlowerMosaicGlass.src} />
+    <title>Unsere Touren</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="">
+    <!-- <ScreenSizeDEVTOOL /> -->
+    <!-- Development Navigation Buttons -->
+    <Header isDarkMode={false} isTours={true} />
 
-		<!-- SM Screens and bigger -->
-		<!-- <InteractiveTours client:load images={images} backgroundImage={MJWallWithGrapes} className="hidden sm:block" /> -->
-		<InteractiveToursIV client:load images={images} backgroundImage={MJWallWithGrapes} className="hidden sm:block" />
-		<!-- <InteractiveToursVertical client:load images={images} backgroundImage={MJWallWithGrapes} className="hidden md:block" /> -->
-		<!-- <GetInTouch className="hidden md:block -mt-[600px]  bg-gradient-to-t from-stone-100 to-transparent" /> -->
-		<Footer />
-	</body>
+    <!-- mobile only -->
+    <h1
+      class="text-center text-2xl font-bold sm:hidden h-[20vh] mt-20 items-center justify-center hidden">
+      🚧 ATTENTION 🚧 <br /> The mobile version of this page is not available at
+      this moment
+    </h1>
+    <InteractiveToursMobile
+      client:load
+      images={images}
+      backgroundImage={MJWallWithGrapes}
+      className="block sm:hidden"
+    />
+    <!-- <InteractiveToursMobileV2 client:load images={images} backgroundImage={MJWallWithGrapes} className="md:hidden" /> 	 -->
+
+    <!-- SM Screens and bigger -->
+    <!-- <InteractiveTours client:load images={images} backgroundImage={MJWallWithGrapes} className="hidden sm:block" /> -->
+    <InteractiveToursIV
+      client:load
+      images={images}
+      backgroundImage={MJWallWithGrapes}
+      className="hidden sm:block"
+    />
+    <!-- <InteractiveToursVertical client:load images={images} backgroundImage={MJWallWithGrapes} className="hidden md:block" /> -->
+
+    <!-- <GetInTouch className="hidden md:block -mt-[600px]  bg-gradient-to-t from-stone-100 to-transparent" /> -->
+    <Footer />
+  </body>
 </html>
