@@ -9,7 +9,7 @@ import {
   BookingButtonV2toRight,
   BookingButtonV2toLeft,
 } from "../BookingButtons/BookingButtonV2";
-import ImageGalleryTours from "../ImageGalleryTours";
+
 
 interface Props {
   images: {
@@ -65,7 +65,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         background: images.MJAlmondFlowerMosaicGlass.src,
         // background: backgroundImage.src,
         objectPosition: "object-[50%_20%]",
-        bgObjectPosition: "object-contain",
+        bgObjectPosition: "object-top",
       },
       // <p class="mb-4">Erlebe mit Freunden, Kollegen und Familie eine unterhaltsame Weinerlebnistour durch die rosa blühenden Weinberge von Gimmeldingen. Geführt von einer zertifizierten Kultur- und Weinbotschafterin erwartet Dich eine spannende Mischung aus Natur, Genuss und kurzweiligen historischen Episoden - perfekt für alle Sinne! Das erwartet dich:</p>
       longDescription: `
@@ -120,7 +120,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         background: images.MJBachusMosaicGlass.src,
         // background: backgroundImage.src,
         objectPosition: "object-[50%_20%]",
-        bgObjectPosition: "object-[50%_50%]",
+        bgObjectPosition: "object-top",
       },
       longDescription: `
       <p class="mb-4 text-gray-900/80 text-xl">🌿 Weinberge/historischer Ortskern •  🍷 5 Weine/5 Häppchen  • 🤝 Teamevent/Zeitreise • ⏱️ 4 Stunden/4 km</p>
@@ -149,7 +149,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         background: images.MJGlühweinV1.src,
         // background: backgroundImage.src,
         objectPosition: "object-[50%_28%]",
-        bgObjectPosition: "object-center",
+        bgObjectPosition: "object-top",
       },
       longDescription: `
         <p class="mb-4 text-gray-900/80 text-xl">❄️ Winterzauber  •  🔥 5 Glühweine & Co+Snacks  • 🤝 Teamevent+Zeitreise • ⏱️ 4 Stunden/4 km</p>
@@ -206,7 +206,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
           <img
             src={selectedTour.images.background}
             alt="Tour Background"
-            className="w-full h-full object-cover object-center scale-[2] md:scale-[1.5] lg:scale-[1]"
+            className={`w-full h-full object-cover scale-[2] md:scale-[1.5] lg:scale-[1] ${selectedTour.images.bgObjectPosition}`}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/85" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/35" />
@@ -777,23 +777,9 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                       y: -20,
                       transition: { duration: 0.3 },
                     }}>
-                    <ImageGalleryTours
-                      numberOfImages={12}
-                      className="bg-gradient-to-b from-stone-50 to-stone-100"
-                    />
+                  
                   </motion.div>
                 </AnimatePresence>
-
-                {/* Enhanced Booking Section */}
-                <div className="relative  bg-stone-200 bg-gradient-to-b from-stone-50 to-amber-50/20 p-8 pb-10 ">
-                  <GetInTouch className="max-w-xl lg:max-w-2xl mx-auto my-0" />
-
-                  <div className="relative z-10">
-                    <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-                      <div className="text-center lg:text-left max-w-lg"></div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

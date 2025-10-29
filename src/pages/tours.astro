@@ -8,6 +8,7 @@ import InteractiveToursMobile from "@/components/ToursPageComponents/Interactive
 import InteractiveToursMobileV2 from "@/components/ToursPageComponents/InteractiveTours-mobileV2";
 import ScreenSizeDEVTOOL from "@/components/ScreenSizeDEVTOOL.astro";
 import ToursV2 from "@/components/ToursPageComponents/ToursV2.astro";
+import ImageGalleryToursAstro from "@/components/ImageGalleryToursAstro.astro";
 
 import favicon from "@images/favicon.svg";
 import Header from "@/components/Header.astro";
@@ -92,7 +93,13 @@ const images = {
     />
     <!-- <InteractiveToursVertical client:load images={images} backgroundImage={MJWallWithGrapes} className="hidden md:block" /> -->
 
+    <!-- Image Gallery Section -->
+    <ImageGalleryToursAstro numberOfImages={12} className="bg-stone-50" />
+
     <!-- <GetInTouch className="hidden md:block -mt-[600px]  bg-gradient-to-t from-stone-100 to-transparent" /> -->
+    <GetInTouch
+      className="bg-gradient-to-t from-stone-100 to-transparent mt-10 pb-12"
+    />
     <Footer />
   </body>
 </html>
