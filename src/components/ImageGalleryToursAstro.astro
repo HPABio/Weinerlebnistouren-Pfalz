@@ -19,22 +19,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 const imagePaths = Object.keys(images);
 const allImages = imagePaths.map((path) => images[path].default);
 
-// Use a seed based on current timestamp for server-side randomization
-// This will be different for each build/request in SSR mode
-const seed = Date.now();
-function seededRandom(seed: number, index: number): number {
-  const x = Math.sin(seed + index) * 10000;
-  return x - Math.floor(x);
-}
-
-// Shuffle using seeded random
-const shuffled = [...allImages].sort(
-  () => seededRandom(seed, Math.random() * 1000) - 0.5
-);
-const selectedImages = shuffled.slice(
-  0,
-  Math.min(numberOfImages, allImages.length)
-);
+// Include ALL images - the client-side script will randomly select which to show
+const selectedImages = allImages;
 ---
 
 <div class={`w-full px-4 py-8 ${className}`}>
@@ -60,49 +46,112 @@ const selectedImages = shuffled.slice(
       ))
     }
   </div>
+  
+  <!-- Refresh Button -->
+  <div class="flex justify-end mt-6">
+    <button
+      id="refresh-gallery-btn"
+      class="refresh-gallery-btn group relative w-12 h-12 bg-gradient-to-br from-stone-50/85 to-stone-100/50 shadow-md border border-stone-200/50 rounded-full transition-all duration-300 hover:shadow-lg hover:from-stone-100/90 hover:to-stone-50/60 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-40 disabled:cursor-not-allowed"
+      aria-label="Neue Bilder laden">
+      <svg class="refresh-icon w-5 h-5 mx-auto text-stone-600/70 transition-transform duration-500 group-hover:rotate-180 group-hover:text-accent1/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+      </svg>
+    </button>
+  </div>
 </div>
 
 <script>
   // Client-side randomization and image loading handler
-  function initGallery() {
+  function selectAndDisplayImages(isRefresh = false) {
     const container = document.querySelector(".gallery-container");
     if (!container) return;
 
     const galleryItems = container.querySelectorAll(".gallery-item");
+    const numberOfImages = parseInt(container.getAttribute("data-num-images") || "12");
 
-    // Shuffle the gallery items for true randomization on each page load
-    const itemsArray = Array.from(galleryItems);
-    const shuffled = itemsArray.sort(() => Math.random() - 0.5);
+    // If refreshing, first fade out current images
+    if (isRefresh) {
+      galleryItems.forEach((item) => {
+        item.classList.remove("loaded");
+      });
+    }
 
-    // Re-append in random order
-    shuffled.forEach((item, newIndex) => {
-      container.appendChild(item);
-      // Update animation delay for new order
-      (item as HTMLElement).style.animationDelay = `${newIndex * 0.05}s`;
-      (item as HTMLElement).setAttribute("data-index", newIndex.toString());
-    });
+    // Small delay to allow fade out animation
+    setTimeout(() => {
+      // Convert to array and shuffle for true randomization on each page load
+      const itemsArray = Array.from(galleryItems);
+      const shuffled = itemsArray.sort(() => Math.random() - 0.5);
 
-    // Handle image loading
-    galleryItems.forEach((item) => {
-      const img = item.querySelector("img");
+      // Select only the first numberOfImages items
+      const selectedItems = shuffled.slice(0, numberOfImages);
+      const unselectedItems = shuffled.slice(numberOfImages);
 
-      if (img) {
-        // If image is already loaded (cached), show immediately
-        if (img.complete) {
-          item.classList.add("loaded");
-        } else {
-          // Wait for image to load
-          img.addEventListener("load", () => {
+      // Hide unselected items
+      unselectedItems.forEach((item) => {
+        (item as HTMLElement).style.display = "none";
+      });
+
+      // Re-append selected items in random order
+      selectedItems.forEach((item, newIndex) => {
+        container.appendChild(item);
+        (item as HTMLElement).style.display = "block"; // Ensure it's visible
+        // Update animation delay for new order
+        (item as HTMLElement).style.animationDelay = `${newIndex * 0.05}s`;
+        (item as HTMLElement).setAttribute("data-index", newIndex.toString());
+      });
+
+      // Handle image loading for selected items only
+      selectedItems.forEach((item) => {
+        const img = item.querySelector("img");
+
+        if (img) {
+          // If image is already loaded (cached), show immediately
+          if (img.complete) {
             item.classList.add("loaded");
-          });
+          } else {
+            // Wait for image to load
+            img.addEventListener("load", () => {
+              item.classList.add("loaded");
+            });
 
-          // Fallback in case of error
-          img.addEventListener("error", () => {
-            item.classList.add("loaded");
-          });
+            // Fallback in case of error
+            img.addEventListener("error", () => {
+              item.classList.add("loaded");
+            });
+          }
         }
-      }
-    });
+      });
+    }, isRefresh ? 300 : 0);
+  }
+
+  function initGallery() {
+    selectAndDisplayImages(false);
+
+    // Add click handler for refresh button
+    const refreshBtn = document.getElementById("refresh-gallery-btn");
+    if (refreshBtn) {
+      refreshBtn.addEventListener("click", () => {
+        // Disable button temporarily
+        refreshBtn.setAttribute("disabled", "true");
+        
+        // Add spinning animation to icon
+        const icon = refreshBtn.querySelector(".refresh-icon");
+        if (icon) {
+          icon.classList.add("rotating");
+        }
+
+        // Refresh the gallery
+        selectAndDisplayImages(true);
+
+        // Re-enable button after animation completes
+        setTimeout(() => {
+          refreshBtn.removeAttribute("disabled");
+          if (icon) {
+            icon.classList.remove("rotating");
+          }
+        }, 1000);
+      });
+    }
   }
 
   // Run on initial load
@@ -129,14 +178,31 @@ const selectedImages = shuffled.slice(
     }
   }
 
+  /* Rotation animation for refresh icon */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   /* Gallery items start invisible */
   .gallery-item {
     opacity: 0;
+    display: none; /* Hide all initially, JS will show selected ones */
+    transition: opacity 0.3s ease-out;
   }
 
   /* Only animate when loaded */
   .gallery-item.loaded {
     animation: fadeInUp 0.5s ease forwards;
+  }
+
+  /* Apply spinning animation to icon */
+  .refresh-icon.rotating {
+    animation: spin 1s linear;
   }
 
   /* Improve lazy loading performance */
