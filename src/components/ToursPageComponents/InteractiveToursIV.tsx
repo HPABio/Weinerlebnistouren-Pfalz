@@ -475,7 +475,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                       className="w-full h-full object-cover object-top grayscale contrast-150 opacity-20"
                     />
                     {/* Tour Information Display - Auto Cycling - Background */}
-                    <div className="w-full h-full absolute top-0 left-0 flex flex-col justify-center items-center py-8 pr-14 ">
+                    <div className="w-full h-full absolute top-0 left-0 flex flex-col justify-center items-center py-8 pr-4 ">
                         <AnimatePresence mode="wait">
                           {/* Distance Block */}
                           {currentInfoIndex === 0 && (
@@ -521,7 +521,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                               exit={{ opacity: 0, y: -20 }}
                               transition={{ duration: 1.2 }}>
                               <div className="relative flex flex-col items-center pt-2 ">
-                                <h2 className="text-[32rem] leading-none text-text/30 font-bold">
+                                <h2 className="text-[30rem] leading-none text-text/30 font-bold">
                                   5
                                 </h2>
                               </div>
@@ -537,7 +537,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -20 }}
                               transition={{ duration: 1.2 }}>
-                              <div className="relative flex flex-col items-center overflow-hidden">
+                              <div className="relative flex flex-col items-center">
                                 <h2 className="text-[18rem] lg:text-[20rem] xl:text-[24rem] leading-none text-text/40 lg:text-text/50 xl:text-text/70 font-bold">
                                   28
                                 </h2>
@@ -553,7 +553,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                       absolute top-0 right-0 bg-gradient-to-r from-amber-50/40 to-transparent">
 
                       {/* Tour Information Display - Auto Cycling */}
-                      <div className="w-full h-full flex flex-col justify-center items-center py-8 pr-14 ">
+                      <div className="w-full h-full flex flex-col justify-center items-center py-8 pr-4 ">
                         <AnimatePresence mode="wait">
                           {/* Distance Block */}
                           {currentInfoIndex === 0 && (
