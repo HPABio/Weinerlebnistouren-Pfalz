@@ -4,9 +4,11 @@ export default defineConfig({
   preview: {
     allowedHosts: [
       "weinerlebnistouren-pfalz.de",
-      ".weinerlebnistouren-pfalz.de",
+      "wwww.weinerlebnistouren-pfalz.de",
+      "dev.weinerlebnistouren-pfalz.de",
       "weinerlebnistouren-heyl.de",
-      ".weinerlebnistouren-heyl.de"
+      "www.weinerlebnistouren-heyl.de",
+      "www.devweinerlebnistouren-heyl.de"
     ],
     host: "0.0.0.0",
     port: 80,
