@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css";
 import favicon from "@images/favicon.svg";
+import CookieConsent from "@/components/CookieConsent.astro";
 
 interface Props {
   content?: {
@@ -60,5 +61,6 @@ const title = content.title || "Weinerlebnistouren - Pfalz";
   </head>
   <body>
     <slot />
+    <CookieConsent />
   </body>
 </html>

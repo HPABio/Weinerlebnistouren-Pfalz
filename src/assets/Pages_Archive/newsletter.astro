@@ -1,212 +1,386 @@
 ---
-import '@/styles/global.css';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
+import "@/styles/global.css";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
 ---
 
 <html lang="de">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>Newsletter - Heyl Weinerlebnistouren</title>
-		<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
-	</head>
-	<body>
-		<Header isHome={false} />
-		<main class="min-h-screen bg-gradient-to-b from-white to-gray-50">
-			<!-- Hero Section -->
-			<div class="relative bg-gradient-to-r from-orange-50 to-amber-50 py-16">
-				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div class="text-center">
-						<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Newsletter</h1>
-						<p class="text-xl text-gray-600 max-w-3xl mx-auto">
-							Bleiben Sie auf dem Laufenden über neue Wein-Erlebnistouren, Events und Neuigkeiten aus der Pfalz
-						</p>
-					</div>
-				</div>
-			</div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Newsletter - Weinerlebnistouren-Pfalz</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header isHome={false} />
+    <main class="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <!-- Hero Section -->
+      <div class="relative bg-gradient-to-r from-orange-50 to-amber-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Newsletter
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              Bleiben Sie auf dem Laufenden über neue Wein-Erlebnistouren,
+              Events und Neuigkeiten aus der Pfalz
+            </p>
+          </div>
+        </div>
+      </div>
 
-			<!-- Content -->
-			<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-					
-					<!-- Newsletter Info -->
-					<div class="space-y-8">
-						<div>
-							<h2 class="text-3xl font-bold text-gray-900 mb-6">Was erwartet Sie in unserem Newsletter?</h2>
-							<div class="space-y-6">
-								<div class="flex items-start space-x-4">
-									<div class="flex-shrink-0">
-										<div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-											<svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-											</svg>
-										</div>
-									</div>
-									<div>
-										<h3 class="text-lg font-semibold text-gray-900">Neue Touren & Angebote</h3>
-										<p class="text-gray-600">Erfahren Sie als Erste von neuen Wein-Erlebnistouren und exklusiven Angeboten.</p>
-									</div>
-								</div>
+      <!-- Content -->
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Newsletter Info -->
+          <div class="space-y-8">
+            <div>
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                Was erwartet Sie in unserem Newsletter?
+              </h2>
+              <div class="space-y-6">
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                      <svg
+                        class="w-6 h-6 text-orange-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900">
+                      Neue Touren & Angebote
+                    </h3>
+                    <p class="text-gray-600">
+                      Erfahren Sie als Erste von neuen Wein-Erlebnistouren und
+                      exklusiven Angeboten.
+                    </p>
+                  </div>
+                </div>
 
-								<div class="flex items-start space-x-4">
-									<div class="flex-shrink-0">
-										<div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-											<svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-											</svg>
-										</div>
-									</div>
-									<div>
-										<h3 class="text-lg font-semibold text-gray-900">Weingut-Highlights</h3>
-										<p class="text-gray-600">Entdecken Sie besondere Weingüter und deren Geschichten aus der Pfalz.</p>
-									</div>
-								</div>
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                      <svg
+                        class="w-6 h-6 text-orange-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900">
+                      Weingut-Highlights
+                    </h3>
+                    <p class="text-gray-600">
+                      Entdecken Sie besondere Weingüter und deren Geschichten
+                      aus der Pfalz.
+                    </p>
+                  </div>
+                </div>
 
-								<div class="flex items-start space-x-4">
-									<div class="flex-shrink-0">
-										<div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-											<svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-											</svg>
-										</div>
-									</div>
-									<div>
-										<h3 class="text-lg font-semibold text-gray-900">Events & Termine</h3>
-										<p class="text-gray-600">Verpassen Sie keine wichtigen Wein-Events und saisonale Highlights.</p>
-									</div>
-								</div>
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                      <svg
+                        class="w-6 h-6 text-orange-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900">
+                      Events & Termine
+                    </h3>
+                    <p class="text-gray-600">
+                      Verpassen Sie keine wichtigen Wein-Events und saisonale
+                      Highlights.
+                    </p>
+                  </div>
+                </div>
 
-								<div class="flex items-start space-x-4">
-									<div class="flex-shrink-0">
-										<div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-											<svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-											</svg>
-										</div>
-									</div>
-									<div>
-										<h3 class="text-lg font-semibold text-gray-900">Weinwissen & Tipps</h3>
-										<p class="text-gray-600">Wertvolle Tipps rund um Wein, Degustation und die Pfälzer Weinkultur.</p>
-									</div>
-								</div>
-							</div>
-						</div>
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                      <svg
+                        class="w-6 h-6 text-orange-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900">
+                      Weinwissen & Tipps
+                    </h3>
+                    <p class="text-gray-600">
+                      Wertvolle Tipps rund um Wein, Degustation und die Pfälzer
+                      Weinkultur.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-						<!-- Newsletter Details -->
-						<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-							<h3 class="text-xl font-semibold text-gray-900 mb-4">Newsletter-Details</h3>
-							<ul class="space-y-3 text-gray-600">
-								<li class="flex items-center">
-									<svg class="w-4 h-4 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-									</svg>
-									Erscheint monatlich
-								</li>
-								<li class="flex items-center">
-									<svg class="w-4 h-4 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-									</svg>
-									Kostenlos und unverbindlich
-								</li>
-								<li class="flex items-center">
-									<svg class="w-4 h-4 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-									</svg>
-									Jederzeit kündbar
-								</li>
-								<li class="flex items-center">
-									<svg class="w-4 h-4 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-										<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-									</svg>
-									Keine Weitergabe an Dritte
-								</li>
-							</ul>
-						</div>
+            <!-- Newsletter Details -->
+            <div
+              class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">
+                Newsletter-Details
+              </h3>
+              <ul class="space-y-3 text-gray-600">
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-orange-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Erscheint monatlich
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-orange-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Kostenlos und unverbindlich
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-orange-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Jederzeit kündbar
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-orange-500 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Keine Weitergabe an Dritte
+                </li>
+              </ul>
+            </div>
 
-						<!-- Testimonials -->
-						<div class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg p-6">
-							<h3 class="text-xl font-semibold text-gray-900 mb-4">Was unsere Newsletter-Abonnenten sagen</h3>
-							<div class="space-y-4">
-								<blockquote class="text-gray-700 italic">
-									"Der Newsletter ist immer eine schöne Überraschung im Posteingang. Tolle Tipps für neue Weingüter und Events!"
-								</blockquote>
-								<p class="text-sm text-gray-600">- Maria S., regelmäßige Teilnehmerin</p>
-							</div>
-						</div>
-					</div>
+            <!-- Testimonials -->
+            <div
+              class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">
+                Was unsere Newsletter-Abonnenten sagen
+              </h3>
+              <div class="space-y-4">
+                <blockquote class="text-gray-700 italic">
+                  "Der Newsletter ist immer eine schöne Überraschung im
+                  Posteingang. Tolle Tipps für neue Weingüter und Events!"
+                </blockquote>
+                <p class="text-sm text-gray-600">
+                  - Maria S., regelmäßige Teilnehmerin
+                </p>
+              </div>
+            </div>
+          </div>
 
-					<!-- Newsletter Signup Form -->
-					<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-						<h2 class="text-3xl font-bold text-gray-900 mb-6">Newsletter abonnieren</h2>
-						<form class="space-y-6">
-							<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-								<div>
-									<label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">Vorname *</label>
-									<input type="text" id="firstName" name="firstName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors">
-								</div>
-								<div>
-									<label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Nachname *</label>
-									<input type="text" id="lastName" name="lastName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors">
-								</div>
-							</div>
-							
-							<div>
-								<label for="email" class="block text-sm font-medium text-gray-700 mb-2">E-Mail-Adresse *</label>
-								<input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors">
-								<p class="text-sm text-gray-500 mt-1">Ihre E-Mail-Adresse wird nur für den Newsletter verwendet.</p>
-							</div>
-							
-							<div>
-								<label for="interests" class="block text-sm font-medium text-gray-700 mb-2">Interessengebiete (optional)</label>
-								<select id="interests" name="interests" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors">
-									<option value="">Alle Themen interessieren mich</option>
-									<option value="tours">Neue Touren & Angebote</option>
-									<option value="wineries">Weingut-Highlights</option>
-									<option value="events">Events & Termine</option>
-									<option value="knowledge">Weinwissen & Tipps</option>
-								</select>
-							</div>
-							
-							<div class="flex items-start space-x-3">
-								<input type="checkbox" id="privacy" name="privacy" required class="mt-1 h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded">
-								<label for="privacy" class="text-sm text-gray-600">
-									Ich stimme der <a href="/datenschutz" class="text-orange-600 hover:text-orange-700 underline">Datenschutzerklärung</a> zu und möchte den Newsletter erhalten. *
-								</label>
-							</div>
-							
-							<div class="flex items-start space-x-3">
-								<input type="checkbox" id="marketing" name="marketing" class="mt-1 h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded">
-								<label for="marketing" class="text-sm text-gray-600">
-									Ich bin damit einverstanden, dass meine Daten für Marketingzwecke verwendet werden dürfen.
-								</label>
-							</div>
-							
-							<button type="submit" class="w-full bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-700 transition-colors focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
-								Newsletter abonnieren
-							</button>
-						</form>
+          <!-- Newsletter Signup Form -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">
+              Newsletter abonnieren
+            </h2>
+            <form class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="firstName"
+                    class="block text-sm font-medium text-gray-700 mb-2"
+                    >Vorname *</label
+                  >
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="lastName"
+                    class="block text-sm font-medium text-gray-700 mb-2"
+                    >Nachname *</label
+                  >
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                  />
+                </div>
+              </div>
 
-						<!-- Newsletter Management -->
-						<div class="mt-8 pt-8 border-t border-gray-200">
-							<h3 class="text-lg font-semibold text-gray-900 mb-4">Newsletter verwalten</h3>
-							<div class="space-y-4">
-								<p class="text-sm text-gray-600">
-									Bereits abonniert? Sie können Ihren Newsletter jederzeit 
-									<a href="#" class="text-orange-600 hover:text-orange-700 underline">abbestellen</a> oder 
-									<a href="#" class="text-orange-600 hover:text-orange-700 underline">Ihre Einstellungen ändern</a>.
-								</p>
-								<p class="text-sm text-gray-600">
-									Haben Sie Fragen zum Newsletter? Kontaktieren Sie uns gerne unter 
-									<a href="mailto:newsletter@heyl-weintouren.de" class="text-orange-600 hover:text-orange-700">newsletter@heyl-weintouren.de</a>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</main>
-		<Footer />
-	</body>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >E-Mail-Adresse *</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                />
+                <p class="text-sm text-gray-500 mt-1">
+                  Ihre E-Mail-Adresse wird nur für den Newsletter verwendet.
+                </p>
+              </div>
+
+              <div>
+                <label
+                  for="interests"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Interessengebiete (optional)</label
+                >
+                <select
+                  id="interests"
+                  name="interests"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors">
+                  <option value="">Alle Themen interessieren mich</option>
+                  <option value="tours">Neue Touren & Angebote</option>
+                  <option value="wineries">Weingut-Highlights</option>
+                  <option value="events">Events & Termine</option>
+                  <option value="knowledge">Weinwissen & Tipps</option>
+                </select>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <input
+                  type="checkbox"
+                  id="privacy"
+                  name="privacy"
+                  required
+                  class="mt-1 h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
+                />
+                <label for="privacy" class="text-sm text-gray-600">
+                  Ich stimme der <a
+                    href="/datenschutz"
+                    class="text-orange-600 hover:text-orange-700 underline"
+                    >Datenschutzerklärung</a
+                  > zu und möchte den Newsletter erhalten. *
+                </label>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <input
+                  type="checkbox"
+                  id="marketing"
+                  name="marketing"
+                  class="mt-1 h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
+                />
+                <label for="marketing" class="text-sm text-gray-600">
+                  Ich bin damit einverstanden, dass meine Daten für
+                  Marketingzwecke verwendet werden dürfen.
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-700 transition-colors focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
+                Newsletter abonnieren
+              </button>
+            </form>
+
+            <!-- Newsletter Management -->
+            <div class="mt-8 pt-8 border-t border-gray-200">
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                Newsletter verwalten
+              </h3>
+              <div class="space-y-4">
+                <p class="text-sm text-gray-600">
+                  Bereits abonniert? Sie können Ihren Newsletter jederzeit
+                  <a
+                    href="#"
+                    class="text-orange-600 hover:text-orange-700 underline"
+                    >abbestellen</a
+                  > oder
+                  <a
+                    href="#"
+                    class="text-orange-600 hover:text-orange-700 underline"
+                    >Ihre Einstellungen ändern</a
+                  >.
+                </p>
+                <p class="text-sm text-gray-600">
+                  Haben Sie Fragen zum Newsletter? Kontaktieren Sie uns gerne
+                  unter
+                  <a
+                    href="mailto:newsletter@heyl-weintouren.de"
+                    class="text-orange-600 hover:text-orange-700"
+                    >newsletter@heyl-weintouren.de</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
 </html>

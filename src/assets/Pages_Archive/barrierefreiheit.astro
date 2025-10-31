@@ -1,220 +1,377 @@
 ---
-import '@/styles/global.css';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
+import "@/styles/global.css";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
 ---
 
 <html lang="de">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>Erklärung zur Barrierefreiheit - Heyl Weinerlebnistouren</title>
-		<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
-	</head>
-	<body>
-		<Header isHome={false} />
-		<main class="min-h-screen bg-gradient-to-b from-white to-gray-50">
-			<!-- Hero Section -->
-			<div class="relative bg-gradient-to-r from-orange-50 to-amber-50 py-16">
-				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div class="text-center">
-						<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Erklärung zur Barrierefreiheit</h1>
-						<p class="text-xl text-gray-600 max-w-3xl mx-auto">
-							Informationen zur Zugänglichkeit unserer Website
-						</p>
-					</div>
-				</div>
-			</div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Erklärung zur Barrierefreiheit - Weinerlebnistouren-Pfalz</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header isHome={false} />
+    <main class="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <!-- Hero Section -->
+      <div class="relative bg-gradient-to-r from-orange-50 to-amber-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Erklärung zur Barrierefreiheit
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              Informationen zur Zugänglichkeit unserer Website
+            </p>
+          </div>
+        </div>
+      </div>
 
-			<!-- Content -->
-			<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-				<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 space-y-8">
-					
-					<!-- Einleitung -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">1. Einleitung</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Als Anbieter von Wein-Erlebnistouren ist es uns ein wichtiges Anliegen, unsere Website für alle Besucher zugänglich zu gestalten. Diese Erklärung zur Barrierefreiheit informiert Sie über den Stand der Zugänglichkeit unserer Website und die Maßnahmen, die wir zur Verbesserung der Barrierefreiheit ergreifen.</p>
-							<p>Diese Erklärung gilt für die Website <strong>heyl-weintouren.de</strong> und alle zugehörigen Unterseiten.</p>
-						</div>
-					</section>
+      <!-- Content -->
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div
+          class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 space-y-8">
+          <!-- Einleitung -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Einleitung</h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Als Anbieter von Wein-Erlebnistouren ist es uns ein wichtiges
+                Anliegen, unsere Website für alle Besucher zugänglich zu
+                gestalten. Diese Erklärung zur Barrierefreiheit informiert Sie
+                über den Stand der Zugänglichkeit unserer Website und die
+                Maßnahmen, die wir zur Verbesserung der Barrierefreiheit
+                ergreifen.
+              </p>
+              <p>
+                Diese Erklärung gilt für die Website <strong
+                  >heyl-weintouren.de</strong
+                > und alle zugehörigen Unterseiten.
+              </p>
+            </div>
+          </section>
 
-					<!-- Stand der Barrierefreiheit -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">2. Stand der Barrierefreiheit</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Diese Website ist teilweise barrierefrei. Die Erstellung erfolgt unter Berücksichtigung der folgenden Standards und Richtlinien:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li>WCAG 2.1 (Web Content Accessibility Guidelines) Level AA</li>
-								<li>BITV 2.0 (Barrierefreie-Informationstechnik-Verordnung)</li>
-								<li>EN 301 549 V3.2.1 (Accessibility requirements for ICT products and services)</li>
-							</ul>
-						</div>
-					</section>
+          <!-- Stand der Barrierefreiheit -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              2. Stand der Barrierefreiheit
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Diese Website ist teilweise barrierefrei. Die Erstellung erfolgt
+                unter Berücksichtigung der folgenden Standards und Richtlinien:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>
+                  WCAG 2.1 (Web Content Accessibility Guidelines) Level AA
+                </li>
+                <li>BITV 2.0 (Barrierefreie-Informationstechnik-Verordnung)</li>
+                <li>
+                  EN 301 549 V3.2.1 (Accessibility requirements for ICT products
+                  and services)
+                </li>
+              </ul>
+            </div>
+          </section>
 
-					<!-- Barrierefreie Funktionen -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">3. Barrierefreie Funktionen unserer Website</h2>
-						<div class="space-y-6">
-							<div class="bg-orange-50 rounded-lg p-6">
-								<h3 class="text-lg font-semibold text-gray-900 mb-4">3.1 Navigation und Struktur</h3>
-								<ul class="list-disc list-inside space-y-2 text-gray-700">
-									<li>Klare und konsistente Navigation</li>
-									<li>Logische Dokumentstruktur mit aussagekräftigen Überschriften</li>
-									<li>Breadcrumb-Navigation für bessere Orientierung</li>
-									<li>Skip-Links für direkten Zugang zum Hauptinhalt</li>
-								</ul>
-							</div>
+          <!-- Barrierefreie Funktionen -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              3. Barrierefreie Funktionen unserer Website
+            </h2>
+            <div class="space-y-6">
+              <div class="bg-orange-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                  3.1 Navigation und Struktur
+                </h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Klare und konsistente Navigation</li>
+                  <li>
+                    Logische Dokumentstruktur mit aussagekräftigen Überschriften
+                  </li>
+                  <li>Breadcrumb-Navigation für bessere Orientierung</li>
+                  <li>Skip-Links für direkten Zugang zum Hauptinhalt</li>
+                </ul>
+              </div>
 
-							<div class="bg-orange-50 rounded-lg p-6">
-								<h3 class="text-lg font-semibold text-gray-900 mb-4">3.2 Texte und Inhalte</h3>
-								<ul class="list-disc list-inside space-y-2 text-gray-700">
-									<li>Ausreichender Kontrast zwischen Text und Hintergrund</li>
-									<li>Vergrößerbare Schrift (bis 200% ohne Verlust der Funktionalität)</li>
-									<li>Klare, verständliche Sprache</li>
-									<li>Alternative Texte für Bilder und Grafiken</li>
-								</ul>
-							</div>
+              <div class="bg-orange-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                  3.2 Texte und Inhalte
+                </h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Ausreichender Kontrast zwischen Text und Hintergrund</li>
+                  <li>
+                    Vergrößerbare Schrift (bis 200% ohne Verlust der
+                    Funktionalität)
+                  </li>
+                  <li>Klare, verständliche Sprache</li>
+                  <li>Alternative Texte für Bilder und Grafiken</li>
+                </ul>
+              </div>
 
-							<div class="bg-orange-50 rounded-lg p-6">
-								<h3 class="text-lg font-semibold text-gray-900 mb-4">3.3 Formulare und Interaktionen</h3>
-								<ul class="list-disc list-inside space-y-2 text-gray-700">
-									<li>Beschriftete Formularfelder mit klaren Anweisungen</li>
-									<li>Fehlermeldungen in verständlicher Sprache</li>
-									<li>Vollständige Tastaturnavigation möglich</li>
-									<li>Fokus-Indikatoren für bessere Orientierung</li>
-								</ul>
-							</div>
+              <div class="bg-orange-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                  3.3 Formulare und Interaktionen
+                </h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Beschriftete Formularfelder mit klaren Anweisungen</li>
+                  <li>Fehlermeldungen in verständlicher Sprache</li>
+                  <li>Vollständige Tastaturnavigation möglich</li>
+                  <li>Fokus-Indikatoren für bessere Orientierung</li>
+                </ul>
+              </div>
 
-							<div class="bg-orange-50 rounded-lg p-6">
-								<h3 class="text-lg font-semibold text-gray-900 mb-4">3.4 Technische Aspekte</h3>
-								<ul class="list-disc list-inside space-y-2 text-gray-700">
-									<li>Semantisches HTML für bessere Screenreader-Kompatibilität</li>
-									<li>Responsive Design für verschiedene Bildschirmgrößen</li>
-									<li>Ladezeiten-Optimierung für bessere Nutzererfahrung</li>
-									<li>Konsistente Farbgebung und Design-Elemente</li>
-								</ul>
-							</div>
-						</div>
-					</section>
+              <div class="bg-orange-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                  3.4 Technische Aspekte
+                </h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>
+                    Semantisches HTML für bessere Screenreader-Kompatibilität
+                  </li>
+                  <li>Responsive Design für verschiedene Bildschirmgrößen</li>
+                  <li>Ladezeiten-Optimierung für bessere Nutzererfahrung</li>
+                  <li>Konsistente Farbgebung und Design-Elemente</li>
+                </ul>
+              </div>
+            </div>
+          </section>
 
-					<!-- Bekannte Barrieren -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">4. Bekannte Barrieren</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Wir sind uns bewusst, dass noch nicht alle Bereiche unserer Website vollständig barrierefrei sind. Folgende Barrieren sind uns bekannt:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li>Einige ältere Bilder haben noch keine vollständigen Alt-Texte</li>
-								<li>Bestimmte interaktive Elemente könnten für Screenreader optimiert werden</li>
-								<li>Einige PDF-Dokumente sind noch nicht vollständig barrierefrei</li>
-								<li>Videos haben noch keine Untertitel oder Audiodeskription</li>
-							</ul>
-							<p>Wir arbeiten kontinuierlich daran, diese Barrieren zu beseitigen.</p>
-						</div>
-					</section>
+          <!-- Bekannte Barrieren -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              4. Bekannte Barrieren
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Wir sind uns bewusst, dass noch nicht alle Bereiche unserer
+                Website vollständig barrierefrei sind. Folgende Barrieren sind
+                uns bekannt:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>
+                  Einige ältere Bilder haben noch keine vollständigen Alt-Texte
+                </li>
+                <li>
+                  Bestimmte interaktive Elemente könnten für Screenreader
+                  optimiert werden
+                </li>
+                <li>
+                  Einige PDF-Dokumente sind noch nicht vollständig barrierefrei
+                </li>
+                <li>
+                  Videos haben noch keine Untertitel oder Audiodeskription
+                </li>
+              </ul>
+              <p>
+                Wir arbeiten kontinuierlich daran, diese Barrieren zu
+                beseitigen.
+              </p>
+            </div>
+          </section>
 
-					<!-- Verbesserungsmaßnahmen -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">5. Geplante Verbesserungsmaßnahmen</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Um die Barrierefreiheit unserer Website weiter zu verbessern, planen wir folgende Maßnahmen:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li>Vollständige Überprüfung und Ergänzung aller Alt-Texte</li>
-								<li>Implementierung von ARIA-Labels für bessere Screenreader-Unterstützung</li>
-								<li>Erstellung barrierefreier PDF-Alternativen</li>
-								<li>Hinzufügung von Untertiteln zu Video-Inhalten</li>
-								<li>Regelmäßige Barrierefreiheit-Tests mit verschiedenen Hilfstechnologien</li>
-								<li>Schulung unseres Teams in barrierefreier Webentwicklung</li>
-							</ul>
-						</div>
-					</section>
+          <!-- Verbesserungsmaßnahmen -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              5. Geplante Verbesserungsmaßnahmen
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Um die Barrierefreiheit unserer Website weiter zu verbessern,
+                planen wir folgende Maßnahmen:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>Vollständige Überprüfung und Ergänzung aller Alt-Texte</li>
+                <li>
+                  Implementierung von ARIA-Labels für bessere
+                  Screenreader-Unterstützung
+                </li>
+                <li>Erstellung barrierefreier PDF-Alternativen</li>
+                <li>Hinzufügung von Untertiteln zu Video-Inhalten</li>
+                <li>
+                  Regelmäßige Barrierefreiheit-Tests mit verschiedenen
+                  Hilfstechnologien
+                </li>
+                <li>Schulung unseres Teams in barrierefreier Webentwicklung</li>
+              </ul>
+            </div>
+          </section>
 
-					<!-- Hilfstechnologien -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">6. Unterstützte Hilfstechnologien</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Unsere Website wurde getestet und optimiert für folgende Hilfstechnologien:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li>Screenreader (NVDA, JAWS, VoiceOver)</li>
-								<li>Vergrößerungssoftware</li>
-								<li>Sprachausgabe-Systeme</li>
-								<li>Verschiedene Browser (Chrome, Firefox, Safari, Edge)</li>
-								<li>Mobile Geräte und Tablets</li>
-							</ul>
-						</div>
-					</section>
+          <!-- Hilfstechnologien -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              6. Unterstützte Hilfstechnologien
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Unsere Website wurde getestet und optimiert für folgende
+                Hilfstechnologien:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>Screenreader (NVDA, JAWS, VoiceOver)</li>
+                <li>Vergrößerungssoftware</li>
+                <li>Sprachausgabe-Systeme</li>
+                <li>Verschiedene Browser (Chrome, Firefox, Safari, Edge)</li>
+                <li>Mobile Geräte und Tablets</li>
+              </ul>
+            </div>
+          </section>
 
-					<!-- Kontakt bei Problemen -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">7. Kontakt bei Barrierefreiheits-Problemen</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Falls Sie auf Barrieren auf unserer Website stoßen oder Verbesserungsvorschläge haben, kontaktieren Sie uns gerne:</p>
-							<div class="bg-gray-50 rounded-lg p-6">
-								<p class="font-semibold">Brigitta Heyl</p>
-								<p>Geführte Wein-Erlebnistouren</p>
-								<p>E-Mail: <a href="mailto:barrierefreiheit@heyl-weintouren.de" class="text-orange-600 hover:text-orange-700">barrierefreiheit@heyl-weintouren.de</a></p>
-								<p>Telefon: <a href="tel:+49123456789" class="text-orange-600 hover:text-orange-700">+49 123 456789</a></p>
-							</div>
-							<p>Wir bemühen uns, Ihre Anfragen innerhalb von 5 Werktagen zu beantworten.</p>
-						</div>
-					</section>
+          <!-- Kontakt bei Problemen -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              7. Kontakt bei Barrierefreiheits-Problemen
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Falls Sie auf Barrieren auf unserer Website stoßen oder
+                Verbesserungsvorschläge haben, kontaktieren Sie uns gerne:
+              </p>
+              <div class="bg-gray-50 rounded-lg p-6">
+                <p class="font-semibold">Brigitta Heyl</p>
+                <p>Geführte Wein-Erlebnistouren</p>
+                <p>
+                  E-Mail: <a
+                    href="mailto:barrierefreiheit@heyl-weintouren.de"
+                    class="text-orange-600 hover:text-orange-700"
+                    >barrierefreiheit@heyl-weintouren.de</a>
+                </p>
+                <p>
+                  Telefon: <a
+                    href="tel:+49123456789"
+                    class="text-orange-600 hover:text-orange-700"
+                    >+49 123 456789</a>
+                </p>
+              </div>
+              <p>
+                Wir bemühen uns, Ihre Anfragen innerhalb von 5 Werktagen zu
+                beantworten.
+              </p>
+            </div>
+          </section>
 
-					<!-- Schlichtungsverfahren -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">8. Schlichtungsverfahren</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Falls Sie mit unserer Antwort nicht zufrieden sind, können Sie sich an die Schlichtungsstelle wenden:</p>
-							<div class="bg-gray-50 rounded-lg p-6">
-								<p class="font-semibold">Schlichtungsstelle nach dem Behindertengleichstellungsgesetz</p>
-								<p>beim Beauftragten der Bundesregierung für die Belange von Menschen mit Behinderungen</p>
-								<p>Mauerstraße 53<br>
-								10117 Berlin</p>
-								<p>E-Mail: <a href="mailto:info@schlichtungsstelle-bgg.de" class="text-orange-600 hover:text-orange-700">info@schlichtungsstelle-bgg.de</a></p>
-								<p>Telefon: <a href="tel:+493022722700" class="text-orange-600 hover:text-orange-700">+49 30 227 227 00</a></p>
-							</div>
-						</div>
-					</section>
+          <!-- Schlichtungsverfahren -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              8. Schlichtungsverfahren
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Falls Sie mit unserer Antwort nicht zufrieden sind, können Sie
+                sich an die Schlichtungsstelle wenden:
+              </p>
+              <div class="bg-gray-50 rounded-lg p-6">
+                <p class="font-semibold">
+                  Schlichtungsstelle nach dem Behindertengleichstellungsgesetz
+                </p>
+                <p>
+                  beim Beauftragten der Bundesregierung für die Belange von
+                  Menschen mit Behinderungen
+                </p>
+                <p>
+                  Mauerstraße 53<br />
+                  10117 Berlin
+                </p>
+                <p>
+                  E-Mail: <a
+                    href="mailto:info@schlichtungsstelle-bgg.de"
+                    class="text-orange-600 hover:text-orange-700"
+                    >info@schlichtungsstelle-bgg.de</a>
+                </p>
+                <p>
+                  Telefon: <a
+                    href="tel:+493022722700"
+                    class="text-orange-600 hover:text-orange-700"
+                    >+49 30 227 227 00</a>
+                </p>
+              </div>
+            </div>
+          </section>
 
-					<!-- Rechtliche Grundlagen -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">9. Rechtliche Grundlagen</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Diese Erklärung zur Barrierefreiheit basiert auf folgenden rechtlichen Grundlagen:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li>Behindertengleichstellungsgesetz (BGG)</li>
-								<li>Barrierefreie-Informationstechnik-Verordnung (BITV 2.0)</li>
-								<li>EU-Richtlinie 2016/2102 über den barrierefreien Zugang zu Websites und mobilen Anwendungen öffentlicher Stellen</li>
-							</ul>
-						</div>
-					</section>
+          <!-- Rechtliche Grundlagen -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              9. Rechtliche Grundlagen
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Diese Erklärung zur Barrierefreiheit basiert auf folgenden
+                rechtlichen Grundlagen:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>Behindertengleichstellungsgesetz (BGG)</li>
+                <li>Barrierefreie-Informationstechnik-Verordnung (BITV 2.0)</li>
+                <li>
+                  EU-Richtlinie 2016/2102 über den barrierefreien Zugang zu
+                  Websites und mobilen Anwendungen öffentlicher Stellen
+                </li>
+              </ul>
+            </div>
+          </section>
 
-					<!-- Datum und Aktualisierung -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">10. Datum und Aktualisierung</h2>
-						<div class="space-y-4 text-gray-700">
-							<p><strong>Erstellt am:</strong> Januar 2024</p>
-							<p><strong>Letzte Überprüfung:</strong> Januar 2024</p>
-							<p><strong>Nächste Überprüfung geplant:</strong> Juli 2024</p>
-							<p>Diese Erklärung zur Barrierefreiheit wird regelmäßig überprüft und bei Bedarf aktualisiert, um den aktuellen Stand der Barrierefreiheit unserer Website zu reflektieren.</p>
-						</div>
-					</section>
+          <!-- Datum und Aktualisierung -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              10. Datum und Aktualisierung
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p><strong>Erstellt am:</strong> Januar 2024</p>
+              <p><strong>Letzte Überprüfung:</strong> Januar 2024</p>
+              <p><strong>Nächste Überprüfung geplant:</strong> Juli 2024</p>
+              <p>
+                Diese Erklärung zur Barrierefreiheit wird regelmäßig überprüft
+                und bei Bedarf aktualisiert, um den aktuellen Stand der
+                Barrierefreiheit unserer Website zu reflektieren.
+              </p>
+            </div>
+          </section>
 
-					<!-- Zusätzliche Informationen -->
-					<section>
-						<h2 class="text-2xl font-bold text-gray-900 mb-4">11. Zusätzliche Informationen</h2>
-						<div class="space-y-4 text-gray-700">
-							<p>Für weitere Informationen zur Barrierefreiheit im Internet empfehlen wir folgende Ressourcen:</p>
-							<ul class="list-disc list-inside space-y-2 ml-4">
-								<li><a href="https://www.w3.org/WAI/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-700">Web Accessibility Initiative (WAI)</a></li>
-								<li><a href="https://www.einfach-fuer-alle.de/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-700">Einfach für Alle - Aktion Mensch</a></li>
-								<li><a href="https://www.bfit-bund.de/" target="_blank" rel="noopener noreferrer" class="text-orange-600 hover:text-orange-700">BFIT-Bund - Barrierefreiheit in der Informationstechnik</a></li>
-							</ul>
-						</div>
-					</section>
-				</div>
-			</div>
-		</main>
-		<Footer />
-	</body>
+          <!-- Zusätzliche Informationen -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              11. Zusätzliche Informationen
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Für weitere Informationen zur Barrierefreiheit im Internet
+                empfehlen wir folgende Ressourcen:
+              </p>
+              <ul class="list-disc list-inside space-y-2 ml-4">
+                <li>
+                  <a
+                    href="https://www.w3.org/WAI/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-orange-600 hover:text-orange-700"
+                    >Web Accessibility Initiative (WAI)</a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.einfach-fuer-alle.de/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-orange-600 hover:text-orange-700"
+                    >Einfach für Alle - Aktion Mensch</a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.bfit-bund.de/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-orange-600 hover:text-orange-700"
+                    >BFIT-Bund - Barrierefreiheit in der Informationstechnik</a>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
 </html>

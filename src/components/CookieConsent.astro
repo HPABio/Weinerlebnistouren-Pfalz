@@ -1,0 +1,16 @@
+---
+// CookieConsent component that initializes vanilla-cookieconsent
+import "vanilla-cookieconsent/dist/cookieconsent.css";
+---
+
+<!-- Initialize cookie consent -->
+<script>
+  import * as CookieConsent from "vanilla-cookieconsent";
+  import { cookieConsentConfig } from "@/scripts/CookieConsentConfig";
+  
+  // Run only in browser
+  if (typeof window !== "undefined") {
+    CookieConsent.run(cookieConsentConfig);
+  }
+</script>
+

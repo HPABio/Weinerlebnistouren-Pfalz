@@ -22,14 +22,20 @@
     "nodemailer": "^7.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sharp": "^0.34.3"
+    "sharp": "^0.34.3",
+    "vanilla-cookieconsent": "^3.1.0"
   },
   "devDependencies": {
     "tailwindcss": "^3.0.24",
     "vite": "^7.1.7",
-    "vite-plugin-compression": "^0.5.1"
+    "vite-plugin-compression": "^0.5.1",
+    "@types/bun": "latest"
   },
   "engines": {
     "node": ">=20.0.0"
+  },
+  "private": true,
+  "peerDependencies": {
+    "typescript": "^5"
   }
 }
