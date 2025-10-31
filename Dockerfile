@@ -10,8 +10,7 @@ COPY . .
 RUN bun run build
 
 ENV NODE_ENV=production
-ENV PORT=80
-EXPOSE 80
+
 
 # 👇 Critical for Coolify+Traefik
-CMD ["bun", "run", "preview", "--", "--host", "0.0.0.0", "--port", "${PORT}"]
+CMD ["bun", "run", "preview", "--", "--host", "0.0.0.0", "--port", "80"]
