@@ -1,47 +1,22 @@
 ---
-import "@/styles/global.css";
+import Layout from "@/layouts/main.astro";
 import Header from "@/components/Header.astro";
 import Hero from "@/components/Hero.astro";
 import Footer from "@/components/Footer.astro";
 import BubbleSection from "@/components/BubbleSection.astro";
 import OpenerSection from "@/components/OpenerSection.astro";
-import favicon from "@images/favicon.svg";
 import AboutMe from "@/components/AboutMe.astro";
 import ScreenSizeDEVTOOL from "@/components/ScreenSizeDEVTOOL.astro";
 ---
 
-<html lang="de">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6LFB82PZ9"></script>
-    <script>
-      // Ensure TypeScript compatibility
-      declare global {
-        interface Window { dataLayer: any[] }
-      }
-      window.dataLayer = window.dataLayer || [];
-      function gtag(...args: any[]) { window.dataLayer.push(args); }
-      gtag('js', new Date());
-      gtag('config', 'G-G6LFB82PZ9');
-    </script>
-    <meta name="viewport" content="width=device-width" charset="UTF-8" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href={favicon.src}
-      fetchpriority="high"
-    />
-    <title>Weinerlebnistouren - Pfalz</title>
-  </head>
-  <body class="bg-stone-50">
-    <!-- <ScreenSizeDEVTOOL /> -->
-    <Header isStart={true} />
-    <main>
-      <Hero />
-      <OpenerSection />
-      <BubbleSection loading="lazy" />
-      <AboutMe loading="lazy" fetchpriority="low"/>
-    </main>
-    <Footer loading="lazy" fetchpriority="low" />
-  </body>
-</html>
+<Layout content={{ title: "Weinerlebnistouren - Pfalz" }}>
+  <!-- <ScreenSizeDEVTOOL /> -->
+  <Header isStart={true} />
+  <main>
+    <Hero />
+    <OpenerSection />
+    <BubbleSection loading="lazy" />
+    <AboutMe loading="lazy" fetchpriority="low"/>
+  </main>
+  <Footer loading="lazy" fetchpriority="low" />
+</Layout>

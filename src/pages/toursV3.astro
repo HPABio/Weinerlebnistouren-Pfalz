@@ -1,6 +1,6 @@
 ---
 // src/pages/tours.astro
-import '@/styles/global.css';
+import Layout from "@/layouts/main.astro";
 import InteractiveTours from '@/components/ToursPageComponents/InteractiveTours';
 import InteractiveToursMobile from '@/components/ToursPageComponents/InteractiveTours-mobile';
 import InteractiveToursMobileV2 from '@/components/ToursPageComponents/InteractiveTours-mobileV2';
@@ -8,9 +8,6 @@ import ScreenSizeDEVTOOL from '@/components/ScreenSizeDEVTOOL.astro';
 import InteractiveToursIV from '@/components/ToursPageComponents/InteractiveToursIV';
 import InteractiveToursVertical from '@/components/ToursPageComponents/InteractiveToursVertical';
 
-
-
-import favicon from '@images/favicon.svg';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 
@@ -34,26 +31,19 @@ const images = {
 // Note: Tour parameter is now read directly in the React component
 ---
 
-<html lang="de">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={favicon.src} />
-		<link rel="preload" as="image" href={MJAlmondFlowerMosaicGlass.src}>
-		<title>Unsere Touren</title>
-		<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
-	</head>
-	<body class="bg-gradient-to-b from-black via-stone-100/75 to-transparent">
-		<Header isDarkMode={true} isHome={false} />
-		<div class="fixed w-full h-[80px]  bg-black -translate-y-[80px] "/>
-		<div class="fixed w-full h-[80px]  bg-gradient-to-br from-stone-300/25 via-stone-900/40 to-transparent -translate-y-[80px] "/>
-	    <!-- <ScreenSizeDEVTOOL /> -->
-		<InteractiveToursMobile client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="md:hidden" />
-		<InteractiveToursIV client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="hidden sm:block" />
-		<InteractiveToursVertical client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="hidden md:block" />
-		<InteractiveTours client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="hidden md:block" />
-		<InteractiveToursMobileV2 client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="md:hidden block" />
-		<!-- <InteractiveToursMobile client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="md:hidden" /> -->
-		<Footer />
-	</body>
-</html>
+<Layout content={{ title: "Unsere Touren" }}>
+  <link slot="head" rel="preload" as="image" href={MJAlmondFlowerMosaicGlass.src} />
+  <div class="bg-gradient-to-b from-black via-stone-100/75 to-transparent">
+    <Header isDarkMode={true} isHome={false} />
+    <div class="fixed w-full h-[80px]  bg-black -translate-y-[80px] "/>
+    <div class="fixed w-full h-[80px]  bg-gradient-to-br from-stone-300/25 via-stone-900/40 to-transparent -translate-y-[80px] "/>
+    <!-- <ScreenSizeDEVTOOL /> -->
+    <InteractiveToursMobile client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="md:hidden" />
+    <InteractiveToursIV client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="hidden sm:block" />
+    <InteractiveToursVertical client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="hidden md:block" />
+    <InteractiveTours client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="hidden md:block" />
+    <InteractiveToursMobileV2 client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="md:hidden block" />
+    <!-- <InteractiveToursMobile client:load images={images} backgroundImage={MJAlmondFlowerMosaicGlass} className="md:hidden" /> -->
+    <Footer />
+  </div>
+</Layout>

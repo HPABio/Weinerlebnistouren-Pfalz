@@ -1,35 +1,64 @@
 ---
-import '@/styles/global.css';
-const { content } = Astro.props;
+import "@/styles/global.css";
+import favicon from "@images/favicon.svg";
+
+interface Props {
+  content?: {
+    title?: string;
+    description?: string;
+  };
+}
+
+const { content = {} } = Astro.props;
+const title = content.title || "Weinerlebnistouren - Pfalz";
 ---
 
 <html lang="de">
-	<head>
-		<!-- Google tag (gtag.js) -->
-		<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-G6LFB82PZ9"></script>
-		<script is:inline>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G6LFB82PZ9"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-		// This should ALWAYS be set before the gtag("config", "G-XXXXXXXXXX"); line
-		gtag("consent", "default", {
-			ad_storage: "denied",
-			ad_user_data: "denied",
-			ad_personalization: "denied",
-			analytics_storage: "denied",
-		});
+      // This should ALWAYS be set before the gtag("config", "G-XXXXXXXXXX"); line
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+      });
 
-		gtag('config', 'G-G6LFB82PZ9');
-		</script>
+      gtag("config", "G-G6LFB82PZ9");
+    </script>
 
-		
-		<meta name="viewport" content="width=device-width" charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{content.title}</title>
-		<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
-	</head>
-	<body>
-		<slot />
-	</body>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={favicon.src}
+      fetchpriority="high"
+    />
+    <title>{title}</title>
+    {
+      content.description && (
+        <meta name="description" content={content.description} />
+      )
+    }
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
