@@ -9,9 +9,9 @@ COPY . .
 RUN bun run build
 
 ########## RUNTIME ##########
-FROM oven/bun:1-alpine AS runtime
+FROM node:20-alpine AS runtime
 WORKDIR /srv
-RUN bun install --global serve@14
+RUN npm i -g serve@14
 COPY --from=build /app/dist ./dist
 
 ENV PORT=80
