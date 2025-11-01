@@ -5,6 +5,8 @@ import tailwind from "@astrojs/tailwind";
 import compress from "vite-plugin-compression";
 import { loadEnv } from "vite";
 
+import sitemap from "@astrojs/sitemap";
+
 const { WEB3FORMS_ACCESS_KEY } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
 export default defineConfig({
@@ -13,7 +15,8 @@ export default defineConfig({
       WEB3FORMS_ACCESS_KEY: envField.string({ context: "server", access: "secret" })
     },
   },
-  integrations: [react(), tailwind()],
+  site: "https://www.weinerlebnistouren-pfalz.de",
+  integrations: [react(), tailwind(), sitemap()],
   vite: {
     plugins: [
       compress({
