@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # Brigitta's on-site photos
 src/assets/images/onSitePhotos/Brigitta/
+
+#Archive folders
+src/Archive
