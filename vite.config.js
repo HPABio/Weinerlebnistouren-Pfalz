@@ -1,6 +1,4 @@
-import { defineConfig } from "vite";
-
-export default defineConfig({
+export default {
   preview: {
     allowedHosts: [
       "weinerlebnistouren-pfalz.de",
@@ -13,4 +11,4 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 80,
   },
-});
+};
