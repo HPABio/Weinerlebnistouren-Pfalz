@@ -552,84 +552,33 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                 </div>
               </div>
             </div>
+          </section>
 
-            <!-- Travel Groups Section -->
-            <section
-              class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-orange-200/50 relative">
-              <div class="grid grid-cols-1 lg:grid-cols-2">
-                <!-- Image Area left LG and bigger -->
+          <!-- Travel Groups Section -->
+          <section
+            class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-orange-200/50 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+              <!-- Image Area left LG and bigger -->
+              <div
+                class="hidden lg:flex items-center justify-center order-2 lg:order-1 relative overflow-hidden">
+                <Image
+                  src={GeminiTravelBus}
+                  loading="lazy"
+                  fetchpriority="auto"
+                  alt="Reisegruppen"
+                  class="w-full h-full object-cover absolute top-0 left-[50%] translate-x-[-80%] translate-y-[-30%] z-0 scale-[2.2]"
+                />
                 <div
-                  class="hidden lg:flex items-center justify-center order-2 lg:order-1 relative overflow-hidden">
-                  <Image
-                    src={GeminiTravelBus}
-                    loading="lazy"
-                    fetchpriority="auto"
-                    alt="Reisegruppen"
-                    class="w-full h-full object-cover absolute top-0 left-[50%] translate-x-[-80%] translate-y-[-30%] z-0 scale-[2.2]"
-                  />
-                  <div
-                    class="flex items-center justify-center h-full w-full z-10 relative
+                  class="flex items-center justify-center h-full w-full z-10 relative
 									bg-gradient-to-tl from-white via-white/70 to-white/15">
-                    <div
-                      class="text-center w-full h-full flex flex-col items-center justify-center
+                  <div
+                    class="text-center w-full h-full flex flex-col items-center justify-center
 									bg-gradient-to-tl from-white via-white/40 to-white/0">
-                      <!-- <h3 class="text-3xl font-bold text-gray-900 my-6 leading-none">Reisegruppen</h3> -->
-                      <div
-                        class="hidden lg:flex relative aspect-square p-8 bg-white/80 rounded-full items-center justify-center flex-col mx-auto mb-2">
-                        <svg
-                          class="w-full h-full absolute m-auto text-text/5 p-12 z-0"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24">
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
-                          ></path>
-                        </svg>
-                        <p
-                          class="hidden lg:block text-accent1 text-6xl tracking-tighter mx-4 z-10 mt-4">
-                          30-50
-                        </p>
-                        <p
-                          class="hidden lg:block text-accent1 -mt-4 text-lg tracking-widest uppercase z-10">
-                          Personen
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Image Area right MD and smaller -->
-                <div class="inset-0 lg:hidden">
-                  <Image
-                    src={GeminiTravelBus}
-                    loading="lazy"
-                    fetchpriority="auto"
-                    alt="Kleingruppen"
-                    class="w-1/2 aspect-square object-cover absolute bottom-24 sm:bottom-0 -right-12 z-0 scale-[2.5] sm:scale-[2.1]"
-                  />
-                  <div
-                    class="w-full h-full absolute top-0 left-0 bg-gradient-to-br from-white via-white/50 to-white/0">
-                  </div>
-                  <div
-                    class="w-full h-[60%] sm:h-full absolute bottom-0 sm:top-0 left-0 bg-gradient-to-b from-white via-white to-transparent">
-                  </div>
-                  <div
-                    class="w-full h-full absolute top-0 left-0 bg-gradient-to-r from-white via-white to-transparent">
-                  </div>
-                  <div
-                    class="sm:hidden w-full h-[20%] absolute bottom-0 left-0 bg-gradient-to-t from-white via-white to-transparent">
-                  </div>
-                </div>
-                <!-- Content Area right -->
-                <div class="p-8 lg:p-12 order-1 lg:order-2 relative z-10">
-                  <div
-                    class="flex flex-row items-center justify-center mx-auto mb-3">
+                    <!-- <h3 class="text-3xl font-bold text-gray-900 my-6 leading-none">Reisegruppen</h3> -->
                     <div
-                      class="lg:hidden flex w-24 aspect-square bg-stone-50/80 rounded-full items-center justify-center mx-auto mb-3">
+                      class="hidden lg:flex relative aspect-square p-8 bg-white/80 rounded-full items-center justify-center flex-col mx-auto mb-2">
                       <svg
-                        class="w-12 h-12 text-accent2-wine"
+                        class="w-full h-full absolute m-auto text-text/5 p-12 z-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24">
@@ -640,98 +589,48 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                           d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
                         ></path>
                       </svg>
-                    </div>
-                    <h2 class="w-4/5 text-3xl font-bold text-text mb-6">
-                      Reisegruppen & Reisebusse
-                    </h2>
-                  </div>
-                  <p
-                    class="text-sm sm:text-base text-text/60 mb-8 px-8 leading-relaxed">
-                    Kürzere thematische Führungen (1-2h) zu Wein, Weinlagen oder
-                    Mandelblüte für private Gruppen, Reisegruppen oder
-                    Reisebusse oder auch als After-Work Event für Firmen.
-                    Genießen Sie auf der Durchfahrt oder im Rahmen eines
-                    Workshops, eines Festes oder Ihres Urlaubes eine kleine
-                    Auszeit, je nach individuellem Zeitplan auch mit 1-3 Weinen
-                    und Snacks.
-                  </p>
-                  <div class="space-y-4 mb-8">
-                    <div class="flex items-start space-x-3">
-                      <svg
-                        class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      <div>
-                        <h4 class="font-semibold text-gray-900">
-                          Thematische Führungen
-                        </h4>
-                        <p class="text-gray-600">
-                          Mandelblüte, Weinberglagen, Dorfführung,
-                          Mussbachführung
-                        </p>
-                      </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                      <svg
-                        class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      <div>
-                        <h4 class="font-semibold text-gray-900">
-                          Individuelle Planung
-                        </h4>
-                        <p class="text-gray-600">
-                          Anpassung an Ihre Zeitpläne und Interessen
-                        </p>
-                      </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                      <svg
-                        class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      <div>
-                        <h4 class="font-semibold text-gray-900">
-                          Optimierte Dauer
-                        </h4>
-                        <p class="text-gray-600">
-                          1-2 Stunden für perfekte Integration an ihren Zeitplan
-                        </p>
-                      </div>
+                      <p
+                        class="hidden lg:block text-accent1 text-6xl tracking-tighter mx-4 z-10 mt-4">
+                        30-50
+                      </p>
+                      <p
+                        class="hidden lg:block text-accent1 -mt-4 text-lg tracking-widest uppercase z-10">
+                        Personen
+                      </p>
                     </div>
                   </div>
-                  <div class="block lg:hidden">
-                    <p
-                      class="text-text/40 font-bold mt-12 text-base tracking-widest uppercase">
-                      Geeignet Für
-                    </p>
-                    <p class="text-accent1/80 text-6xl -mt-1">30-50</p>
-                    <p
-                      class="text-accent1 -mt-4 text-3xl tracking-wide uppercase font-playfair">
-                      Personen
-                    </p>
-                  </div>
-                  <a
-                    href="/kontakt"
-                    class="inline-flex items-center px-6 py-3 bg-accent2-plum mb-4 bg-gradient-to-r from-accent2-wine to-accent2-wine/80 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors">
-                    Anfrage senden
+                </div>
+              </div>
+              <!-- Image Area right MD and smaller -->
+              <div class="inset-0 lg:hidden">
+                <Image
+                  src={GeminiTravelBus}
+                  loading="lazy"
+                  fetchpriority="auto"
+                  alt="Kleingruppen"
+                  class="w-1/2 aspect-square object-cover absolute bottom-24 sm:bottom-0 -right-12 z-0 scale-[2.5] sm:scale-[2.1]"
+                />
+                <div
+                  class="w-full h-full absolute top-0 left-0 bg-gradient-to-br from-white via-white/50 to-white/0">
+                </div>
+                <div
+                  class="w-full h-[60%] sm:h-full absolute bottom-0 sm:top-0 left-0 bg-gradient-to-b from-white via-white to-transparent">
+                </div>
+                <div
+                  class="w-full h-full absolute top-0 left-0 bg-gradient-to-r from-white via-white to-transparent">
+                </div>
+                <div
+                  class="sm:hidden w-full h-[20%] absolute bottom-0 left-0 bg-gradient-to-t from-white via-white to-transparent">
+                </div>
+              </div>
+              <!-- Content Area right -->
+              <div class="p-8 lg:p-12 order-1 lg:order-2 relative z-10">
+                <div
+                  class="flex flex-row items-center justify-center mx-auto mb-3">
+                  <div
+                    class="lg:hidden flex w-24 aspect-square bg-stone-50/80 rounded-full items-center justify-center mx-auto mb-3">
                     <svg
-                      class="w-4 h-4 ml-2"
+                      class="w-12 h-12 text-accent2-wine"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24">
@@ -739,18 +638,117 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
-                        d="M9 5l7 7-7 7"></path>
+                        d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+                      ></path>
                     </svg>
-                  </a>
+                  </div>
+                  <h2 class="w-4/5 text-3xl font-bold text-text mb-6">
+                    Reisegruppen & Reisebusse
+                  </h2>
+                </div>
+                <p
+                  class="text-sm sm:text-base text-text/60 mb-8 px-8 leading-relaxed">
+                  Kürzere thematische Führungen (1-2h) zu Wein, Weinlagen oder
+                  Mandelblüte für private Gruppen, Reisegruppen oder Reisebusse
+                  oder auch als After-Work Event für Firmen. Genießen Sie auf
+                  der Durchfahrt oder im Rahmen eines Workshops, eines Festes
+                  oder Ihres Urlaubes eine kleine Auszeit, je nach individuellem
+                  Zeitplan auch mit 1-3 Weinen und Snacks.
+                </p>
+                <div class="space-y-4 mb-8">
+                  <div class="flex items-start space-x-3">
+                    <svg
+                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <h4 class="font-semibold text-gray-900">
+                        Thematische Führungen
+                      </h4>
+                      <p class="text-gray-600">
+                        Mandelblüte, Weinberglagen, Dorfführung, Mussbachführung
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <svg
+                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <h4 class="font-semibold text-gray-900">
+                        Individuelle Planung
+                      </h4>
+                      <p class="text-gray-600">
+                        Anpassung an Ihre Zeitpläne und Interessen
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <svg
+                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <h4 class="font-semibold text-gray-900">
+                        Optimierte Dauer
+                      </h4>
+                      <p class="text-gray-600">
+                        1-2 Stunden für perfekte Integration an ihren Zeitplan
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="block lg:hidden">
                   <p
-                    class="w-[80%] absolute bottom-4 left-12 text-[0.55rem] leading-none text-justify text-text/30">
-                    *Weinführungen sind kürzere individuelle Touren (90min - 2h)
-                    zu einem, von mehreren wählbaren Themen - da
-                    Weinerlebnistouren nur bis zu ~30 Personen möglich sind.
+                    class="text-text/40 font-bold mt-12 text-base tracking-widest uppercase">
+                    Geeignet Für
+                  </p>
+                  <p class="text-accent1/80 text-6xl -mt-1">30-50</p>
+                  <p
+                    class="text-accent1 -mt-4 text-3xl tracking-wide uppercase font-playfair">
+                    Personen
                   </p>
                 </div>
+                <a
+                  href="/kontakt"
+                  class="inline-flex items-center px-6 py-3 bg-accent2-plum mb-4 bg-gradient-to-r from-accent2-wine to-accent2-wine/80 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors">
+                  Anfrage senden
+                  <svg
+                    class="w-4 h-4 ml-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+                <p
+                  class="w-[80%] absolute bottom-4 left-12 text-[0.55rem] leading-none text-justify text-text/30">
+                  *Weinführungen sind kürzere individuelle Touren (90min - 2h)
+                  zu einem, von mehreren wählbaren Themen - da
+                  Weinerlebnistouren nur bis zu ~30 Personen möglich sind.
+                </p>
               </div>
-            </section>
+            </div>
           </section>
 
           <!-- CTA Section -->
