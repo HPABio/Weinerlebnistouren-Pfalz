@@ -46,15 +46,25 @@ const selectedImages = allImages;
       ))
     }
   </div>
-  
+
   <!-- Refresh Button -->
   <div class="flex justify-end mt-6">
     <button
       id="refresh-gallery-btn"
       class="refresh-gallery-btn group relative w-12 h-12 bg-gradient-to-br from-stone-50/85 to-stone-100/50 shadow-md border border-stone-200/50 rounded-full transition-all duration-300 hover:shadow-lg hover:from-stone-100/90 hover:to-stone-50/60 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-40 disabled:cursor-not-allowed"
       aria-label="Neue Bilder laden">
-      <svg class="refresh-icon w-5 h-5 mx-auto text-stone-600/70 transition-transform duration-500 group-hover:rotate-180 group-hover:text-accent1/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+      <svg
+        class="refresh-icon w-5 h-5 mx-auto text-stone-600/70 transition-transform duration-500 group-hover:rotate-180 group-hover:text-accent1/80"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+        ></path>
       </svg>
     </button>
   </div>
@@ -67,7 +77,9 @@ const selectedImages = allImages;
     if (!container) return;
 
     const galleryItems = container.querySelectorAll(".gallery-item");
-    const numberOfImages = parseInt(container.getAttribute("data-num-images") || "12");
+    const numberOfImages = parseInt(
+      container.getAttribute("data-num-images") || "12"
+    );
 
     // If refreshing, first fade out current images
     if (isRefresh) {
@@ -77,51 +89,54 @@ const selectedImages = allImages;
     }
 
     // Small delay to allow fade out animation
-    setTimeout(() => {
-      // Convert to array and shuffle for true randomization on each page load
-      const itemsArray = Array.from(galleryItems);
-      const shuffled = itemsArray.sort(() => Math.random() - 0.5);
+    setTimeout(
+      () => {
+        // Convert to array and shuffle for true randomization on each page load
+        const itemsArray = Array.from(galleryItems);
+        const shuffled = itemsArray.sort(() => Math.random() - 0.5);
 
-      // Select only the first numberOfImages items
-      const selectedItems = shuffled.slice(0, numberOfImages);
-      const unselectedItems = shuffled.slice(numberOfImages);
+        // Select only the first numberOfImages items
+        const selectedItems = shuffled.slice(0, numberOfImages);
+        const unselectedItems = shuffled.slice(numberOfImages);
 
-      // Hide unselected items
-      unselectedItems.forEach((item) => {
-        (item as HTMLElement).style.display = "none";
-      });
+        // Hide unselected items
+        unselectedItems.forEach((item) => {
+          (item as HTMLElement).style.display = "none";
+        });
 
-      // Re-append selected items in random order
-      selectedItems.forEach((item, newIndex) => {
-        container.appendChild(item);
-        (item as HTMLElement).style.display = "block"; // Ensure it's visible
-        // Update animation delay for new order
-        (item as HTMLElement).style.animationDelay = `${newIndex * 0.05}s`;
-        (item as HTMLElement).setAttribute("data-index", newIndex.toString());
-      });
+        // Re-append selected items in random order
+        selectedItems.forEach((item, newIndex) => {
+          container.appendChild(item);
+          (item as HTMLElement).style.display = "block"; // Ensure it's visible
+          // Update animation delay for new order
+          (item as HTMLElement).style.animationDelay = `${newIndex * 0.05}s`;
+          (item as HTMLElement).setAttribute("data-index", newIndex.toString());
+        });
 
-      // Handle image loading for selected items only
-      selectedItems.forEach((item) => {
-        const img = item.querySelector("img");
+        // Handle image loading for selected items only
+        selectedItems.forEach((item) => {
+          const img = item.querySelector("img");
 
-        if (img) {
-          // If image is already loaded (cached), show immediately
-          if (img.complete) {
-            item.classList.add("loaded");
-          } else {
-            // Wait for image to load
-            img.addEventListener("load", () => {
+          if (img) {
+            // If image is already loaded (cached), show immediately
+            if (img.complete) {
               item.classList.add("loaded");
-            });
+            } else {
+              // Wait for image to load
+              img.addEventListener("load", () => {
+                item.classList.add("loaded");
+              });
 
-            // Fallback in case of error
-            img.addEventListener("error", () => {
-              item.classList.add("loaded");
-            });
+              // Fallback in case of error
+              img.addEventListener("error", () => {
+                item.classList.add("loaded");
+              });
+            }
           }
-        }
-      });
-    }, isRefresh ? 300 : 0);
+        });
+      },
+      isRefresh ? 300 : 0
+    );
   }
 
   function initGallery() {
@@ -133,7 +148,7 @@ const selectedImages = allImages;
       refreshBtn.addEventListener("click", () => {
         // Disable button temporarily
         refreshBtn.setAttribute("disabled", "true");
-        
+
         // Add spinning animation to icon
         const icon = refreshBtn.querySelector(".refresh-icon");
         if (icon) {
