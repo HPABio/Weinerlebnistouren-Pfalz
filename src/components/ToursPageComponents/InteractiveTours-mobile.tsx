@@ -17,8 +17,8 @@ interface Props {
   className: string;
 }
 
-const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
-  const tours = [
+const InteractiveToursMobile = ({ images, backgroundImage, className }: Props) => {
+  const mobileTours = [
     {
       id: "welcome",
       info: "⋅ vier Touren ⋅ vier Jahreszeiten ⋅ vier Geschichten ⋅",
@@ -151,20 +151,20 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
   ];
 
 
-  const [selectedTour, setSelectedTour] = useState(tours[0]);
+  const [selectedMobileTour, setSelectedMobileTour] = useState(mobileTours[0]);
 
   return (
     <section className={`min-h-screen  text-text ${className} `}>
       <div className="relative w-full h-full ">
         <AnimatePresence>
           <motion.img
-            key={selectedTour.id + "-bg"}
-            src={`${selectedTour.images.background}`}
-            alt={`${selectedTour.title} background`}
+            key={selectedMobileTour.id + "-bg"}
+            src={`${selectedMobileTour.images.background}`}
+            alt={`${selectedMobileTour.title} background`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.75, transition: { duration: 0.8 } }}
             exit={{ opacity: 0 }}
-            className={`absolute -top-52 left-0 w-full h-[95vh] -mt-[70px] ${selectedTour.images.bgObjectPosition} object-cover object-[0%_100%] saturate-[1]`}
+            className={`absolute -top-52 left-0 w-full h-[95vh] -mt-[70px] ${selectedMobileTour.images.bgObjectPosition} object-cover object-[0%_100%] saturate-[1]`}
           />
         </AnimatePresence>
 
@@ -178,19 +178,19 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
               {/* Title and Description */}
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={selectedTour.id}
+                  key={selectedMobileTour.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
                   exit={{ opacity: 0, y: -20, transition: { duration: 0.3 } }}
                   className="text-center sm:pt-[1vh] ">
 
             <h2 className="relative z-10 text-[0.6rem]  font-semibold text-accent1 uppercase tracking-wider font-body mb-1">
-              {selectedTour.info}
+              {selectedMobileTour.info}
             </h2>
             <h1 className="relative z-10 drop-shadow-lg font-bonanova font-bold bg-stone-900/90 text-transparent bg-clip-text
             text-lg -mt-2 leading-none
             sm:text-4xl">
-              {selectedTour.title}
+              {selectedMobileTour.title}
             </h1>
             
                 </motion.div>
@@ -205,7 +205,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                 
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={selectedTour.id + "-desc"}
+                    key={selectedMobileTour.id + "-desc"}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{
                       opacity: 1,
@@ -218,7 +218,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                     <div
                       className="mt-2 pb-48 text-xs sm:text-sm md:text-lg text-gray-800 font-body leading-relaxed px-2"
                       dangerouslySetInnerHTML={{
-                        __html: selectedTour.longDescription,
+                        __html: selectedMobileTour.longDescription,
                       }}
                     />
                   </motion.div>
@@ -234,13 +234,13 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                 className="flex flex-row items-center justify-center mb-6 mt-6
                   mx-auto max-w-[85%] absolute bottom-0 left-0 right-0 ">
                     
-                {tours.slice(1, 6).map((tour) => (
+                {mobileTours.slice(1, 6).map((mobileTour) => (
                   <motion.div
-                    key={tour.id}
-                    onClick={() => setSelectedTour(tour)}
+                    key={mobileTour.id}
+                    onClick={() => setSelectedMobileTour(mobileTour)}
                     className={`cursor-pointer group relative overflow-hidden aspect-[4/5] w-full
                                   rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${
-                                    selectedTour.id === tour.id
+                                    selectedMobileTour.id === mobileTour.id
                                       ? "outline-offset-[4px] scale-105 flex-grow ring-offset-0 ring-2 ring-soft-beige outline-[2px] outline-stone-50/70 outline-none border-[2.5px] border-stone-100 z-30"
                                       : "border-[2.5px] border-soft-beige/20 brightness-[0.6] saturate-[0.7] scale-95 flex-shrink"
                                   }`}
@@ -249,18 +249,18 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                     <div className="relative w-full h-full overflow-hidden rounded-2xl">
                     <div className="absolute w-full -bottom-8 left-0 bg-stone-200/80 backdrop-blur-sm text-amber-900/90 font-semibold 
                                 text-xl sm:text-[0.5rem] md:text-xs py-1 px-3 rounded-full shadow-sm hidden sm:block">
-                        {tour.season}
+                        {mobileTour.season}
                     </div>
                       <img
-                        src={`${tour.images.card}`}
-                        alt={tour.title}
-                        className={`w-full h-full ${tour.images.objectPosition} object-cover group-hover:scale-105 transition-transform duration-300 rounded-2xl overflow-hidden`}
+                        src={`${mobileTour.images.card}`}
+                        alt={mobileTour.title}
+                        className={`w-full h-full ${mobileTour.images.objectPosition} object-cover group-hover:scale-105 transition-transform duration-300 rounded-2xl overflow-hidden`}
                       />
                       
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-amber-900/40 to-transparent"></div>
                       <h3
                         className="absolute bottom-3 left-[50%] translate-x-[-50%] text-[0.5rem] sm:text-[0.65rem] sm:leading-tight md:text-sm font-semibold font-bonanova text-soft-sand">
-                        {tour.season}
+                        {mobileTour.season}
                       </h3>
                     </div>
                   </motion.div>
@@ -341,4 +341,4 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
   );
 };
 
-export default InteractiveTours;
+export default InteractiveToursMobile;
