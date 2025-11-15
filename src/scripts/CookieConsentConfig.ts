@@ -8,7 +8,7 @@ const getHostname = (): string => {
   return "";
 };
 
-export const cookieConsentConfig: CookieConsent.ConfigOptions = {
+export const cookieConsentConfig: CookieConsent.CookieConsentConfig = {
   // Set the cookie name and expiration
   cookie: {
     name: "cc_cookie",
@@ -146,7 +146,8 @@ export const cookieConsentConfig: CookieConsent.ConfigOptions = {
                 "Wir verwenden Cookies, um sicherzustellen, dass unsere Website ordnungsgemäß funktioniert, die Nutzung zu analysieren und personalisierte Inhalte anzuzeigen.",
             },
             {
-              title: "Notwendige Cookies <span class='pm__badge'>Immer aktiv</span>",
+              title:
+                "Notwendige Cookies <span class='pm__badge'>Immer aktiv</span>",
               description:
                 "Diese Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden.",
               linkedCategory: "necessary",
@@ -194,8 +195,31 @@ export const cookieConsentConfig: CookieConsent.ConfigOptions = {
     },
   },
 
-  // Callback when consent changes
-  onConsent: ({ changedCategories }) => {
+  // Callback when consent changes (fired on first consent and on each page load)
+  onConsent: ({ cookie }) => {
+    // Update GA4 consent based on current cookie state
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      const analyticsEnabled = CookieConsent.acceptedCategory("analytics");
+      const marketingEnabled = CookieConsent.acceptedCategory("marketing");
+
+      (window as any).gtag("consent", "update", {
+        analytics_storage: analyticsEnabled ? "granted" : "denied",
+        ad_storage: marketingEnabled ? "granted" : "denied",
+        ad_user_data: marketingEnabled ? "granted" : "denied",
+        ad_personalization: marketingEnabled ? "granted" : "denied",
+      });
+    }
+  },
+
+  // Callback when consent modal is shown for the first time
+  onFirstConsent: ({ cookie }) => {
+    console.log("onFirstConsent fired", cookie);
+  },
+
+  // Callback when categories or services are changed
+  onChange: ({ changedCategories, changedServices }) => {
+    console.log("onChange fired", changedCategories, changedServices);
+
     // Handle changes to analytics category
     if (changedCategories.includes("analytics")) {
       const analyticsEnabled = CookieConsent.acceptedCategory("analytics");
@@ -218,15 +242,4 @@ export const cookieConsentConfig: CookieConsent.ConfigOptions = {
       }
     }
   },
-
-  // Callback when consent modal is shown for the first time
-  onFirstConsent: ({ cookie }) => {
-    console.log("onFirstConsent fired", cookie);
-  },
-
-  // Callback when consent changes
-  onConsentChange: ({ changedCategories, changedServices }) => {
-    console.log("onConsentChange fired", changedCategories, changedServices);
-  },
 };
-
