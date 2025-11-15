@@ -9,18 +9,61 @@ interface Props {
 
 const { numberOfImages = 12, className = "" } = Astro.props;
 
-// Import all images from the onSitePhotos folder
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/images/compressed/onSitePhotos/**/*.{png,jpg,jpeg,webp}",
+// Import all images from tour folders organized by tour ID
+const tourImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/tours/**/*.{png,jpg,jpeg,webp}",
   { eager: true }
 );
 
-// Get all image paths and their corresponding image objects
-const imagePaths = Object.keys(images);
-const allImages = imagePaths.map((path) => images[path].default);
+// Organize images by tour ID based on folder structure
+const imagesByTour: Record<string, ImageMetadata[]> = {
+  mandelbluete: [],
+  mussbach: [],
+  bacchus: [],
+  gluehwein: [],
+  welcome: [], // Welcome tour - will show all images or a default set
+};
 
-// Include ALL images - the client-side script will randomly select which to show
-const selectedImages = allImages;
+// Process all tour images and organize by tour ID
+Object.entries(tourImages).forEach(([path, imageModule]) => {
+  const image = imageModule.default;
+  // Extract tour ID from path: ../assets/images/tours/{tourId}/...
+  const pathParts = path.split("/");
+  const tourIndex = pathParts.findIndex((part) => part === "tours");
+  
+  if (tourIndex !== -1 && pathParts[tourIndex + 1]) {
+    const tourId = pathParts[tourIndex + 1];
+    if (imagesByTour[tourId]) {
+      imagesByTour[tourId].push(image);
+    }
+  }
+});
+
+// For welcome tour, combine all tour images
+imagesByTour.welcome = [
+  ...imagesByTour.mandelbluete,
+  ...imagesByTour.mussbach,
+  ...imagesByTour.bacchus,
+  ...imagesByTour.gluehwein,
+];
+
+// Flatten all images for initial render (will be filtered client-side)
+// Use a Map to avoid duplicates by image src (welcome contains all images)
+const allImagesMap = new Map<string, ImageMetadata>();
+Object.values(imagesByTour).forEach((images) => {
+  images.forEach((img) => {
+    if (!allImagesMap.has(img.src)) {
+      allImagesMap.set(img.src, img);
+    }
+  });
+});
+const allImages = Array.from(allImagesMap.values());
+
+// Create a mapping of tour IDs to image URLs for client-side access
+const tourImagesMap: Record<string, string[]> = {};
+Object.entries(imagesByTour).forEach(([tourId, images]) => {
+  tourImagesMap[tourId] = images.map((img) => img.src);
+});
 ---
 
 <div class={`w-full px-4 py-8 ${className}`}>
@@ -28,24 +71,38 @@ const selectedImages = allImages;
     class="gallery-container grid grid-cols-3 grid-rows-4 gap-4 sm:gap-5 md:gap-6 xl:gap-7 mx-auto max-w-[1400px]"
     data-num-images={numberOfImages}>
     {
-      selectedImages.map((imageSrc, index) => (
-        <div
-          class="gallery-item group relative overflow-hidden rounded-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,0,0,0.15)]"
-          data-index={index}
-          style={`animation-delay: ${index * 0.05}s`}>
-          <Image
-            src={imageSrc}
-            alt={`Tour photo ${index + 1}`}
-            class="gallery-image w-full h-full aspect-[3/4] object-cover object-center block rounded-lg transition-transform duration-300 ease-in-out group-hover:scale-105"
-            loading={index < 6 ? "eager" : "lazy"}
-            decoding="async"
-            quality={70}
-            format="webp"
-          />
-        </div>
-      ))
+      allImages.map((imageSrc, index) => {
+        // Determine which tour this image belongs to
+        const tourId = Object.entries(imagesByTour).find(([_, images]) =>
+          images.includes(imageSrc)
+        )?.[0] || "welcome";
+        
+        return (
+          <div
+            class="gallery-item group relative overflow-hidden rounded-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,0,0,0.15)]"
+            data-index={index}
+            data-tour-id={tourId}
+            data-image-src={imageSrc.src}
+            style={`animation-delay: ${index * 0.05}s`}>
+            <Image
+              src={imageSrc}
+              alt={`Tour photo ${index + 1}`}
+              class="gallery-image w-full h-full aspect-[3/4] object-cover object-center block rounded-lg transition-transform duration-300 ease-in-out group-hover:scale-105"
+              loading={index < 6 ? "eager" : "lazy"}
+              decoding="async"
+              quality={70}
+              format="webp"
+            />
+          </div>
+        );
+      })
     }
   </div>
+  
+  <!-- Store tour images mapping for client-side access -->
+  <script define:vars={{ tourImagesMap }}>
+    window.tourImagesMap = tourImagesMap;
+  </script>
 
   <!-- Refresh Button -->
   <div class="flex justify-end mt-6">
@@ -72,7 +129,7 @@ const selectedImages = allImages;
 
 <script>
   // Client-side randomization and image loading handler
-  function selectAndDisplayImages(isRefresh = false) {
+  function selectAndDisplayImages(currentTourId = null, isRefresh = false) {
     const container = document.querySelector(".gallery-container");
     if (!container) return;
 
@@ -80,6 +137,14 @@ const selectedImages = allImages;
     const numberOfImages = parseInt(
       container.getAttribute("data-num-images") || "12"
     );
+
+    // Get current tour ID from store if not provided
+    if (!currentTourId && window.tourStore) {
+      const currentTour = window.tourStore.getCurrentTour();
+      currentTourId = currentTour?.id || "welcome";
+    } else if (!currentTourId) {
+      currentTourId = "welcome";
+    }
 
     // If refreshing, first fade out current images
     if (isRefresh) {
@@ -91,20 +156,34 @@ const selectedImages = allImages;
     // Small delay to allow fade out animation
     setTimeout(
       () => {
-        // Convert to array and shuffle for true randomization on each page load
-        const itemsArray = Array.from(galleryItems);
-        const shuffled = itemsArray.sort(() => Math.random() - 0.5);
+        // Filter items by current tour ID
+        const tourItems = Array.from(galleryItems).filter((item) => {
+          const itemTourId = item.getAttribute("data-tour-id");
+          return itemTourId === currentTourId;
+        });
+
+        // If no items found for this tour, fall back to welcome (all images)
+        const itemsToUse =
+          tourItems.length > 0 ? tourItems : Array.from(galleryItems);
+
+        // Shuffle for true randomization
+        const shuffled = itemsToUse.sort(() => Math.random() - 0.5);
 
         // Select only the first numberOfImages items
         const selectedItems = shuffled.slice(0, numberOfImages);
         const unselectedItems = shuffled.slice(numberOfImages);
 
-        // Hide unselected items
+        // Hide all items first
+        galleryItems.forEach((item) => {
+          (item as HTMLElement).style.display = "none";
+        });
+
+        // Hide unselected items from current tour
         unselectedItems.forEach((item) => {
           (item as HTMLElement).style.display = "none";
         });
 
-        // Re-append selected items in random order
+        // Show and re-append selected items in random order
         selectedItems.forEach((item, newIndex) => {
           container.appendChild(item);
           (item as HTMLElement).style.display = "block"; // Ensure it's visible
@@ -139,8 +218,40 @@ const selectedImages = allImages;
     );
   }
 
-  function initGallery() {
-    selectAndDisplayImages(false);
+  function waitForTourStore(maxAttempts = 50, interval = 100) {
+    return new Promise((resolve) => {
+      let attempts = 0;
+      const checkStore = () => {
+        if (window.tourStore || attempts >= maxAttempts) {
+          resolve(window.tourStore || null);
+        } else {
+          attempts++;
+          setTimeout(checkStore, interval);
+        }
+      };
+      checkStore();
+    });
+  }
+
+  async function initGallery() {
+    // Wait for tour store to be available (React component loads asynchronously)
+    await waitForTourStore();
+
+    // Get initial tour from store
+    let currentTourId = "welcome";
+    if (window.tourStore) {
+      const currentTour = window.tourStore.getCurrentTour();
+      currentTourId = currentTour?.id || "welcome";
+    }
+
+    selectAndDisplayImages(currentTourId, false);
+
+    // Subscribe to tour store changes
+    if (window.tourStore) {
+      window.tourStore.subscribe((tour) => {
+        selectAndDisplayImages(tour.id, true);
+      });
+    }
 
     // Add click handler for refresh button
     const refreshBtn = document.getElementById("refresh-gallery-btn");
@@ -155,8 +266,15 @@ const selectedImages = allImages;
           icon.classList.add("rotating");
         }
 
+        // Get current tour for refresh
+        let currentTourId = "welcome";
+        if (window.tourStore) {
+          const currentTour = window.tourStore.getCurrentTour();
+          currentTourId = currentTour?.id || "welcome";
+        }
+
         // Refresh the gallery
-        selectAndDisplayImages(true);
+        selectAndDisplayImages(currentTourId, true);
 
         // Re-enable button after animation completes
         setTimeout(() => {
