@@ -147,7 +147,7 @@ const reviews = [
     <div class="h-[320px] md:h-[1000px] lg:h-[900px]  absolute md:bottom-0 md:left-0 w-screen mx-auto
     bg-gradient-to-t from-white via-white/95 to-transparent"/>
     
-    <script define:vars={{ reviews }}>
+    <script is:inline define:vars={{ reviews }}>
       let currentQuoteIndex = 0;
       const totalQuotes = reviews.length;
       let autoPlayInterval;

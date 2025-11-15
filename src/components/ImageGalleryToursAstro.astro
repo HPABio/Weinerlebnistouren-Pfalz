@@ -30,7 +30,7 @@ Object.entries(tourImages).forEach(([path, imageModule]) => {
   // Extract tour ID from path: ../assets/images/tours/{tourId}/...
   const pathParts = path.split("/");
   const tourIndex = pathParts.findIndex((part) => part === "tours");
-  
+
   if (tourIndex !== -1 && pathParts[tourIndex + 1]) {
     const tourId = pathParts[tourIndex + 1];
     if (imagesByTour[tourId]) {
@@ -73,10 +73,11 @@ Object.entries(imagesByTour).forEach(([tourId, images]) => {
     {
       allImages.map((imageSrc, index) => {
         // Determine which tour this image belongs to
-        const tourId = Object.entries(imagesByTour).find(([_, images]) =>
-          images.includes(imageSrc)
-        )?.[0] || "welcome";
-        
+        const tourId =
+          Object.entries(imagesByTour).find(([_, images]) =>
+            images.includes(imageSrc)
+          )?.[0] || "welcome";
+
         return (
           <div
             class="gallery-item group relative overflow-hidden rounded-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,0,0,0.15)]"
@@ -98,9 +99,9 @@ Object.entries(imagesByTour).forEach(([tourId, images]) => {
       })
     }
   </div>
-  
+
   <!-- Store tour images mapping for client-side access -->
-  <script define:vars={{ tourImagesMap }}>
+  <script is:inline define:vars={{ tourImagesMap }}>
     window.tourImagesMap = tourImagesMap;
   </script>
 
@@ -128,6 +129,9 @@ Object.entries(imagesByTour).forEach(([tourId, images]) => {
 </div>
 
 <script>
+  // TypeScript declarations for window.tourStore
+  // Using type assertions since inline scripts in Astro don't support full TypeScript syntax
+
   // Client-side randomization and image loading handler
   function selectAndDisplayImages(currentTourId = null, isRefresh = false) {
     const container = document.querySelector(".gallery-container");
@@ -139,8 +143,8 @@ Object.entries(imagesByTour).forEach(([tourId, images]) => {
     );
 
     // Get current tour ID from store if not provided
-    if (!currentTourId && window.tourStore) {
-      const currentTour = window.tourStore.getCurrentTour();
+    if (!currentTourId && (window as any).tourStore) {
+      const currentTour = (window as any).tourStore.getCurrentTour();
       currentTourId = currentTour?.id || "welcome";
     } else if (!currentTourId) {
       currentTourId = "welcome";
@@ -222,8 +226,8 @@ Object.entries(imagesByTour).forEach(([tourId, images]) => {
     return new Promise((resolve) => {
       let attempts = 0;
       const checkStore = () => {
-        if (window.tourStore || attempts >= maxAttempts) {
-          resolve(window.tourStore || null);
+        if ((window as any).tourStore || attempts >= maxAttempts) {
+          resolve((window as any).tourStore || null);
         } else {
           attempts++;
           setTimeout(checkStore, interval);
@@ -239,16 +243,16 @@ Object.entries(imagesByTour).forEach(([tourId, images]) => {
 
     // Get initial tour from store
     let currentTourId = "welcome";
-    if (window.tourStore) {
-      const currentTour = window.tourStore.getCurrentTour();
+    if ((window as any).tourStore) {
+      const currentTour = (window as any).tourStore.getCurrentTour();
       currentTourId = currentTour?.id || "welcome";
     }
 
     selectAndDisplayImages(currentTourId, false);
 
     // Subscribe to tour store changes
-    if (window.tourStore) {
-      window.tourStore.subscribe((tour) => {
+    if ((window as any).tourStore) {
+      (window as any).tourStore.subscribe((tour: any) => {
         selectAndDisplayImages(tour.id, true);
       });
     }
@@ -268,8 +272,8 @@ Object.entries(imagesByTour).forEach(([tourId, images]) => {
 
         // Get current tour for refresh
         let currentTourId = "welcome";
-        if (window.tourStore) {
-          const currentTour = window.tourStore.getCurrentTour();
+        if ((window as any).tourStore) {
+          const currentTour = (window as any).tourStore.getCurrentTour();
           currentTourId = currentTour?.id || "welcome";
         }
 
