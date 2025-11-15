@@ -27,7 +27,7 @@ pnpm-debug.log*
 src/assets/images/onSitePhotos/Brigitta/
 
 #Archive folders
-src/Archive
+src/Archive/
 
 #ignore images folder
 images/raw_images/
