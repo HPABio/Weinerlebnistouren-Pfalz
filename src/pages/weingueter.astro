@@ -15,6 +15,8 @@ import BuchertImage from "@/assets/Info_PartnerWeingüter/Buchert/buchert-bild_c
 import EdgarKlohrImage from "@/assets/Info_PartnerWeingüter/Edgar_Klohr/Weingut_Edgar_Klohr_1.jpeg";
 import AltesSteigelmannImage from "@/assets/Info_PartnerWeingüter/Altes_Weingut_Steigelmann/20240824_152239.jpg";
 import BaehrImage from "@/assets/Info_PartnerWeingüter/Baehr/Seccoparty.jpg";
+import ThomasSteigelmannImage from "@/assets/Info_PartnerWeingüter/Steigelmann/551-dm-241017_563_3zu2.jpg";
+import StolleisImage from "@/assets/Info_PartnerWeingüter/Stolleis/image001.jpg";
 
 const partnerWeingüter = partnerWeingüterData.partnerWeingüter;
 const ferckel = partnerWeingüter.find((w) => w.id === "ferckel");
@@ -25,6 +27,27 @@ const altesSteigelmann = partnerWeingüter.find(
   (w) => w.id === "altes-weingut-steigelmann"
 );
 const baehr = partnerWeingüter.find((w) => w.id === "baehr");
+const estelmann = partnerWeingüter.find((w) => w.id === "estelmann");
+const ohler = partnerWeingüter.find((w) => w.id === "ohler");
+const thomasSteigelmann = partnerWeingüter.find(
+  (w) => w.id === "thomas-steigelmann"
+);
+const stolleis = partnerWeingüter.find((w) => w.id === "stolleis");
+const hammerSommer = partnerWeingüter.find((w) => w.id === "hammer-sommer");
+const staatsweingut = partnerWeingüter.find((w) => w.id === "staatsweingut");
+const weinbiet = partnerWeingüter.find((w) => w.id === "weinbiet");
+const bergdoltReifNett = partnerWeingüter.find(
+  (w) => w.id === "bergdolt-reif-nett"
+);
+
+// Process mottos for display
+const ferckelMotto =
+  ferckel?.motto?.replace(/\n/g, " ") || "Familientradition seit Generationen";
+const thomasSteigelmannMotto = thomasSteigelmann?.motto
+  ? thomasSteigelmann.motto.length > 120
+    ? thomasSteigelmann.motto.substring(0, 120) + "..."
+    : thomasSteigelmann.motto
+  : "Innovation in der Weinherstellung";
 ---
 
 <Layout
@@ -154,15 +177,21 @@ const baehr = partnerWeingüter.find((w) => w.id === "baehr");
                 />
               </div>
               <h3 class="text-xl font-headline text-text mb-3">
-                Weingut Estelmann
+                {estelmann?.name || "Weingut Estelmann"}
               </h3>
-              <p class="text-text/70 mb-2 font-body">Kurpfalzstr. 76</p>
-              <p class="text-text/70 mb-4 font-body">Tel. 06321 6173</p>
+              <p class="text-text/70 mb-2 font-body">
+                {estelmann?.address?.street || "Kurpfalzstr. 76"}
+              </p>
+              <p class="text-text/70 mb-4 font-body">
+                Tel. {estelmann?.contact?.phone || "06321 6173"}
+              </p>
               <p class="text-sm text-accent2-plum mb-4 italic font-body">
-                "Tradition trifft auf moderne Weinkultur"
+                "{
+                  estelmann?.motto || "Tradition trifft auf moderne Weinkultur"
+                }"
               </p>
               <a
-                href="http://www.weingut-estelmann.de"
+                href={`http://${estelmann?.contact?.website || "www.weingut-estelmann.de"}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-gradient-to-r from-accent1 to-accent2-brick text-white px-6 py-3 rounded-lg hover:from-accent2-brick hover:to-accent1 transition-all duration-300 font-semibold group-hover:scale-105">
@@ -186,15 +215,19 @@ const baehr = partnerWeingüter.find((w) => w.id === "baehr");
                 />
               </div>
               <h3 class="text-xl font-headline text-text mb-3">
-                Weingut Ferckel
+                {ferckel?.name || "Weingut Ferckel"}
               </h3>
-              <p class="text-text/70 mb-2 font-body">Loblocher Str. 41</p>
-              <p class="text-text/70 mb-4 font-body">Tel. 06321 66413</p>
+              <p class="text-text/70 mb-2 font-body">
+                {ferckel?.address?.street || "Loblocher Str. 41"}
+              </p>
+              <p class="text-text/70 mb-4 font-body">
+                Tel. {ferckel?.contact?.phone || "06321 66413"}
+              </p>
               <p class="text-sm text-accent2-plum mb-4 italic font-body">
-                "{ferckel?.motto || "Familientradition seit Generationen"}"
+                "{ferckelMotto}"
               </p>
               <a
-                href="http://www.ferckel.de"
+                href={`http://${ferckel?.contact?.website || "www.ferckel.de"}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-gradient-to-r from-accent1 to-accent2-brick text-white px-6 py-3 rounded-lg hover:from-accent2-brick hover:to-accent1 transition-all duration-300 font-semibold group-hover:scale-105">
@@ -250,15 +283,19 @@ const baehr = partnerWeingüter.find((w) => w.id === "baehr");
                 />
               </div>
               <h3 class="text-xl font-headline text-text mb-3">
-                Weingut Johann F. Ohler
+                {ohler?.name || "Weingut Johann F. Ohler"}
               </h3>
-              <p class="text-text/70 mb-2 font-body">Meerspinnstr. 33</p>
-              <p class="text-text/70 mb-4 font-body">Tel. 06321 6116</p>
+              <p class="text-text/70 mb-2 font-body">
+                {ohler?.address?.street || "Meerspinnstr. 33"}
+              </p>
+              <p class="text-text/70 mb-4 font-body">
+                Tel. {ohler?.contact?.phone || "06321 6116"}
+              </p>
               <p class="text-sm text-accent2-plum mb-4 italic font-body">
-                "Weine mit Charakter und Geschichte"
+                "{ohler?.motto || "Weine mit Charakter und Geschichte"}"
               </p>
               <a
-                href="http://www.weingut-ohler.de"
+                href={`http://${ohler?.contact?.website || "www.weingut-ohler.de"}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-gradient-to-r from-accent1 to-accent2-brick text-white px-6 py-3 rounded-lg hover:from-accent2-brick hover:to-accent1 transition-all duration-300 font-semibold group-hover:scale-105">
@@ -276,21 +313,25 @@ const baehr = partnerWeingüter.find((w) => w.id === "baehr");
               </div>
               <div class="mb-4">
                 <Image
-                  src={CompressedMjVineYardV1}
-                  alt="Weingut Image"
+                  src={ThomasSteigelmannImage}
+                  alt={thomasSteigelmann?.name || "Weingut Thomas Steigelmann"}
                   class="w-full h-48 object-cover rounded-lg mb-4"
                 />
               </div>
               <h3 class="text-xl font-headline text-text mb-3">
-                Weingut Thomas Steigelmann
+                {thomasSteigelmann?.name || "Weingut Thomas Steigelmann"}
               </h3>
-              <p class="text-text/70 mb-2 font-body">Kurpfalzstr. 193</p>
-              <p class="text-text/70 mb-4 font-body">Tel. 06321 66081</p>
+              <p class="text-text/70 mb-2 font-body">
+                {thomasSteigelmann?.address?.street || "Kurpfalzstr. 193"}
+              </p>
+              <p class="text-text/70 mb-4 font-body">
+                Tel. {thomasSteigelmann?.contact?.phone || "06321 66081"}
+              </p>
               <p class="text-sm text-accent2-plum mb-4 italic font-body">
-                "Innovation in der Weinherstellung"
+                "{thomasSteigelmannMotto}"
               </p>
               <a
-                href="http://www.steigelmann.de"
+                href={`http://${thomasSteigelmann?.contact?.website || "www.steigelmann.de"}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-gradient-to-r from-accent1 to-accent2-brick text-white px-6 py-3 rounded-lg hover:from-accent2-brick hover:to-accent1 transition-all duration-300 font-semibold group-hover:scale-105">
@@ -308,21 +349,28 @@ const baehr = partnerWeingüter.find((w) => w.id === "baehr");
               </div>
               <div class="mb-4">
                 <Image
-                  src={CompressedMjVineYardV1}
-                  alt="Weingut Peter Stolleis"
+                  src={StolleisImage}
+                  alt={stolleis?.name || "Weingut Peter Stolleis"}
                   class="w-full h-48 object-cover rounded-lg mb-4"
                 />
               </div>
               <h3 class="text-xl font-headline text-text mb-3">
-                Weingut Peter Stolleis
+                {stolleis?.name || "Weingut Peter Stolleis"}
               </h3>
-              <p class="text-text/70 mb-2 font-body">Kurpfalzstr. 99</p>
-              <p class="text-text/70 mb-4 font-body">Tel. 06321 66071</p>
+              <p class="text-text/70 mb-2 font-body">
+                {stolleis?.address?.street || "Kurpfalzstr. 99"}
+              </p>
+              <p class="text-text/70 mb-4 font-body">
+                Tel. {stolleis?.contact?.phone || "06321 66071"}
+              </p>
               <p class="text-sm text-accent2-plum mb-4 italic font-body">
-                "Traditionelle Handwerkskunst"
+                "{
+                  stolleis?.motto ||
+                    "Tradition erfordert Qualität - Weinbau in der Familie seit 1668"
+                }"
               </p>
               <a
-                href="http://www.stolleis.com"
+                href={`http://${stolleis?.contact?.website || "www.stolleis.com"}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-gradient-to-r from-accent1 to-accent2-brick text-white px-6 py-3 rounded-lg hover:from-accent2-brick hover:to-accent1 transition-all duration-300 font-semibold group-hover:scale-105">
@@ -351,15 +399,19 @@ const baehr = partnerWeingüter.find((w) => w.id === "baehr");
                 />
               </div>
               <h3 class="text-xl font-headline text-text mb-3">
-                Weingut Hammer-Sommer
+                {hammerSommer?.name || "Weingut Hammer-Sommer"}
               </h3>
-              <p class="text-text/70 mb-2 font-body">Franz-Kugler-Straße 21</p>
-              <p class="text-text/70 mb-4 font-body">Tel. 06321 6561</p>
+              <p class="text-text/70 mb-2 font-body">
+                {hammerSommer?.address?.street || "Franz-Kugler-Straße 21"}
+              </p>
+              <p class="text-text/70 mb-4 font-body">
+                Tel. {hammerSommer?.contact?.phone || "06321 6561"}
+              </p>
               <p class="text-sm text-accent2-plum mb-4 italic font-body">
-                "Weine mit Königsbacher Charakter"
+                "{hammerSommer?.motto || "Weine mit Königsbacher Charakter"}"
               </p>
               <a
-                href="https://www.hammer-sommer.de/"
+                href={`https://${hammerSommer?.contact?.website || "www.hammer-sommer.de"}/`}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-gradient-to-r from-accent1 to-accent2-brick text-white px-6 py-3 rounded-lg hover:from-accent2-brick hover:to-accent1 transition-all duration-300 font-semibold group-hover:scale-105">
@@ -452,15 +504,19 @@ const baehr = partnerWeingüter.find((w) => w.id === "baehr");
                 />
               </div>
               <h3 class="text-xl font-headline text-text mb-3">
-                Staatsweingut mit Johannitergut
+                {staatsweingut?.name || "Staatsweingut mit Johannitergut"}
               </h3>
-              <p class="text-text/70 mb-2 font-body">Breitenweg 71</p>
-              <p class="text-text/70 mb-4 font-body">Tel. 06321 671-319</p>
+              <p class="text-text/70 mb-2 font-body">
+                {staatsweingut?.address?.street || "Breitenweg 71"}
+              </p>
+              <p class="text-text/70 mb-4 font-body">
+                Tel. {staatsweingut?.contact?.phone || "06321 671-319"}
+              </p>
               <p class="text-sm text-accent2-plum mb-4 italic font-body">
-                "Staatliche Weinbautradition"
+                "{staatsweingut?.motto || "Staatliche Weinbautradition"}"
               </p>
               <a
-                href="https://www.staatsweingut-neustadt.de/"
+                href={`https://${staatsweingut?.contact?.website || "www.staatsweingut-neustadt.de"}/`}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-gradient-to-r from-accent1 to-accent2-brick text-white px-6 py-3 rounded-lg hover:from-accent2-brick hover:to-accent1 transition-all duration-300 font-semibold group-hover:scale-105">
@@ -516,15 +572,19 @@ const baehr = partnerWeingüter.find((w) => w.id === "baehr");
                 />
               </div>
               <h3 class="text-xl font-headline text-text mb-3">
-                Weinbiet Manufaktur
+                {weinbiet?.name || "Weinbiet Manufaktur"}
               </h3>
-              <p class="text-text/70 mb-2 font-body">An der Eselshaut 57</p>
-              <p class="text-text/70 mb-4 font-body">Tel. 06321 67970</p>
+              <p class="text-text/70 mb-2 font-body">
+                {weinbiet?.address?.street || "An der Eselshaut 57"}
+              </p>
+              <p class="text-text/70 mb-4 font-body">
+                Tel. {weinbiet?.contact?.phone || "06321 67970"}
+              </p>
               <p class="text-sm text-accent2-plum mb-4 italic font-body">
-                "Moderne Weinkreationen"
+                "{weinbiet?.motto || "Moderne Weinkreationen"}"
               </p>
               <a
-                href="https://www.weinbiet.de/"
+                href={`https://${weinbiet?.contact?.website || "www.weinbiet.de"}/`}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-gradient-to-r from-accent1 to-accent2-brick text-white px-6 py-3 rounded-lg hover:from-accent2-brick hover:to-accent1 transition-all duration-300 font-semibold group-hover:scale-105">
@@ -555,16 +615,25 @@ const baehr = partnerWeingüter.find((w) => w.id === "baehr");
                   />
                 </div>
                 <h4 class="text-xl font-headline text-text mb-3">
-                  Weingut Bergdolt-Reif & Nett
+                  {bergdoltReifNett?.name || "Weingut Bergdolt-Reif & Nett"}
                 </h4>
-                <p class="text-text/70 mb-2 font-body">Dudostraße 2</p>
-                <p class="text-text/70 mb-4 font-body">Tel. 06327 2803</p>
+                <p class="text-text/70 mb-2 font-body">
+                  {bergdoltReifNett?.address?.street || "Dudostraße 2"}
+                </p>
+                <p class="text-text/70 mb-4 font-body">
+                  Tel. {bergdoltReifNett?.contact?.phone || "06327 2803"}
+                </p>
                 <div
                   class="bg-green-100 text-green-800 px-3 py-2 rounded-lg mb-4">
-                  <span class="font-semibold">Große Auswahl</span>
+                  <span class="font-semibold"
+                    >{
+                      bergdoltReifNett?.alkoholfrei?.selection ||
+                        "Große Auswahl"
+                    }</span
+                  >
                 </div>
                 <a
-                  href="https://www.nett-weine.de/"
+                  href={`https://${bergdoltReifNett?.contact?.website || "www.nett-weine.de"}/`}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="inline-block bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-lg hover:from-green-700 hover:to-green-800 transition-all duration-300 font-semibold group-hover:scale-105">
@@ -670,16 +739,24 @@ const baehr = partnerWeingüter.find((w) => w.id === "baehr");
                   />
                 </div>
                 <h4 class="text-xl font-headline text-text mb-3">
-                  Staatsweingut mit Johannitergut
+                  {staatsweingut?.name || "Staatsweingut mit Johannitergut"}
                 </h4>
-                <p class="text-text/70 mb-2 font-body">Breitenweg 71</p>
-                <p class="text-text/70 mb-4 font-body">Tel. 06321 671-319</p>
+                <p class="text-text/70 mb-2 font-body">
+                  {staatsweingut?.address?.street || "Breitenweg 71"}
+                </p>
+                <p class="text-text/70 mb-4 font-body">
+                  Tel. {staatsweingut?.contact?.phone || "06321 671-319"}
+                </p>
                 <div
                   class="bg-green-100 text-green-800 px-3 py-2 rounded-lg mb-4">
-                  <span class="font-semibold">Kleine Auswahl</span>
+                  <span class="font-semibold"
+                    >{
+                      staatsweingut?.alkoholfrei?.selection || "Kleine Auswahl"
+                    }</span
+                  >
                 </div>
                 <a
-                  href="https://www.staatsweingut-neustadt.de/"
+                  href={`https://${staatsweingut?.contact?.website || "www.staatsweingut-neustadt.de"}/`}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="inline-block bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-lg hover:from-green-700 hover:to-green-800 transition-all duration-300 font-semibold group-hover:scale-105">

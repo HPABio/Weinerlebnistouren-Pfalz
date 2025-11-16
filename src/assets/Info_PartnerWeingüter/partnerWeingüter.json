@@ -94,8 +94,16 @@
       "id": "ferckel",
       "name": "Weingut Ferckel",
       "folderName": "Ferckel",
-      "motto": "HERZLICH WILLKOMMEN……. in unserem „Familien-Weingut\" FERCKEL!!",
+      "motto": "HERZLICH WILLKOMMEN...\n in unserem „Familien-Weingut\" FERCKEL!!",
       "description": "Seit Generationen betreiben wir im Herzen der Pfalz Weinbau. So sind wir, wie unsere Reben, tiefverwurzelt mit unserer Heimat und können voller Stolz sagen: FERCKEL.GIMMELDINGEN PUR!",
+      "address": {
+        "street": "Loblocher Str. 41",
+        "city": "67435 Gimmeldingen"
+      },
+      "contact": {
+        "phone": "06321 66413",
+        "website": "www.ferckel.de"
+      },
       "location": "Gimmeldingen"
     },
     {
@@ -119,6 +127,149 @@
         "website": "www.weingut-ck.de"
       },
       "note": "Bitte ohne 'Heinrich' verwenden - nur 'Weingut Klohr'"
+    },
+    {
+      "id": "estelmann",
+      "name": "Weingut Estelmann",
+      "folderName": null,
+      "motto": "Tradition trifft auf moderne Weinkultur",
+      "address": {
+        "street": "Kurpfalzstr. 76",
+        "city": "67435 Gimmeldingen"
+      },
+      "contact": {
+        "phone": "06321 6173",
+        "website": "www.weingut-estelmann.de"
+      },
+      "location": "Gimmeldingen"
+    },
+    {
+      "id": "ohler",
+      "name": "Weingut Johann F. Ohler",
+      "folderName": null,
+      "motto": "Weine mit Charakter und Geschichte",
+      "address": {
+        "street": "Meerspinnstr. 33",
+        "city": "67435 Gimmeldingen"
+      },
+      "contact": {
+        "phone": "06321 6116",
+        "website": "www.weingut-ohler.de"
+      },
+      "location": "Gimmeldingen"
+    },
+    {
+      "id": "thomas-steigelmann",
+      "name": "Weingut Thomas Steigelmann",
+      "folderName": "Steigelmann",
+      "motto": "Wir leben und arbeiten hier im Paradies, haben staatlich anerkannt die besten Rieslinge der Pfalz, sind stolz auf unseren 16. Staatsehrenpreis in Folge und streben weiterhin nur nach höchster Qualität – weil wir lieben was wir tun und wie wir es tun! Als Bio-Weingut sind wir immer in Liebe, Wertschätzung und Dankbarkeit mit der Natur verbunden und ihr verpflichtet!",
+      "legalName": "Bio-Weingut Thomas Steigelmann",
+      "contactPerson": {
+        "name": "Sabine Steigelmann"
+      },
+      "address": {
+        "street": "Kurpfalzstraße 193",
+        "city": "67435 Neustadt-Gimmeldingen"
+      },
+      "contact": {
+        "phone": "06321 66081",
+        "fax": "06321 60429",
+        "email": "weingut@steigelmann.de",
+        "website": "www.steigelmann.de",
+        "facebook": "www.facebook.com/weingut.thomas.steigelmann"
+      },
+      "location": "Gimmeldingen",
+      "isBio": true,
+      "awards": ["16. Staatsehrenpreis in Folge"]
+    },
+    {
+      "id": "stolleis",
+      "name": "Weingut Peter Stolleis",
+      "folderName": "Stolleis",
+      "motto": "Tradition erfordert Qualität - Weinbau in der Familie seit 1668",
+      "legalName": "WEINGUT PETER STOLLEIS",
+      "address": {
+        "street": "Kurpfalzstraße 99",
+        "city": "67435 Gimmeldingen-Mußbach"
+      },
+      "contact": {
+        "phone": "+49 (0) 6321-66071",
+        "fax": "+49 (0) 6321-60348",
+        "email": "weingut@stolleis.com",
+        "website": "www.stolleis.com",
+        "facebook": "www.facebook.com/weingut.stolleis",
+        "instagram": "www.instagram.com/weingut_stolleis"
+      },
+      "location": "Gimmeldingen",
+      "founded": 1668
+    },
+    {
+      "id": "hammer-sommer",
+      "name": "Weingut Hammer-Sommer",
+      "folderName": null,
+      "motto": "Weine mit Königsbacher Charakter",
+      "address": {
+        "street": "Franz-Kugler-Straße 21",
+        "city": "67435 Königsbach"
+      },
+      "contact": {
+        "phone": "06321 6561",
+        "website": "www.hammer-sommer.de"
+      },
+      "location": "Königsbach"
+    },
+    {
+      "id": "staatsweingut",
+      "name": "Staatsweingut mit Johannitergut",
+      "folderName": null,
+      "motto": "Staatliche Weinbautradition",
+      "address": {
+        "street": "Breitenweg 71",
+        "city": "67435 Mußbach"
+      },
+      "contact": {
+        "phone": "06321 671-319",
+        "website": "www.staatsweingut-neustadt.de"
+      },
+      "location": "Mussbach",
+      "alkoholfrei": {
+        "available": true,
+        "selection": "Kleine Auswahl"
+      }
+    },
+    {
+      "id": "weinbiet",
+      "name": "Weinbiet Manufaktur",
+      "folderName": null,
+      "motto": "Moderne Weinkreationen",
+      "address": {
+        "street": "An der Eselshaut 57",
+        "city": "67435 Mußbach"
+      },
+      "contact": {
+        "phone": "06321 67970",
+        "website": "www.weinbiet.de"
+      },
+      "location": "Mussbach"
+    },
+    {
+      "id": "bergdolt-reif-nett",
+      "name": "Weingut Bergdolt-Reif & Nett",
+      "folderName": null,
+      "motto": null,
+      "address": {
+        "street": "Dudostraße 2",
+        "city": "67435 Duttweiler"
+      },
+      "contact": {
+        "phone": "06327 2803",
+        "website": "www.nett-weine.de"
+      },
+      "location": "Duttweiler",
+      "alkoholfrei": {
+        "available": true,
+        "selection": "Große Auswahl"
+      }
     }
   ]
 }
