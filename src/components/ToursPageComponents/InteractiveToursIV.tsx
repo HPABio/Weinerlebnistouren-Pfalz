@@ -152,8 +152,8 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         bgObjectPosition: "object-top",
       },
       longDescription: `
-        <p class="mb-4 text-gray-900/80 text-xl">❄️ Winterzauber  •  🔥 5 Glühweine & Co+Snacks  • 🤝 Teamevent+Zeitreise • ⏱️ 4 Stunden/4 km</p>
-        <p class="mb-10">Erlebe Gimmeldingen im Lichterglanz: Diese Tour führt dich durch geheimnisvolle Gassen und Keller des malerischen Weinorts sowie entlang des plätschernden Mussbaches – begleitet von einem wärmenden 5-teiligen Foodpairing mit Secco, 3 Glühweinen und einer pfälzischen Kostbarkeit. Bei jeder Station entfalten sich die Geheimnisse von Gimmeldingen mit spannenden Anekdoten und Hintergrundwissen, lebendig erzählt von einer zertifizierten Kultur- und Weinbotschafterin.</p>
+        <p class="mb-4 text-gray-900/80 text-xl"> 🎄 Weihnachtszauber  •  🔥 5 Glühweine & Co+Snacks  • 🤝 Teamevent+Zeitreise • ⏱️ 4 Stunden/4 km</p>
+        <p class="mb-10 text-base">Erlebe Gimmeldingen im Lichterglanz: Geniesse ein 5-teiliges Foodpairing aus Secco, drei wärmenden Glühweinen und einem edlen Brand, perfekt ergänzt von weihnachtlichen Häppchen. Die interaktive Tour führt durch stimmungsvoll erleuchtete Gassen, geheimnisvolle Keller und entlang des plätschernden Mussbaches. Begleitet von allerlei mystischen Gestalten tauchen wir ein in weihnachtliche Sagen und Legenden der Pfalz, lauschen verborgenen Geschichten aus Gimmeldingen und spüren den Zauber vergangener Zeiten. Ein Erlebnis voller Genuss, Weihnachtszauber und Gemeinschaft – mitten im Herzen der winterlichen Pfalz.</p>
         <ul class="list-disc pl-5 space-y-2 mb-10">
             <li>Zum Auftakt wirst du mit einem prickelnden Secco und einem pfälzischen Snack in einem historischen Weinkeller willkommen geheißen</li>
             <li>Von dort aus führt dich ein entspannter Spaziergang über rund 4 Kilometer durch romantische Gassen und versteckte Winkel des malerischen Weinorts Gimmeldingen</li>

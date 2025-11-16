@@ -1,0 +1,124 @@
+{
+  "partnerWeingüter": [
+    {
+      "id": "altes-weingut-steigelmann",
+      "name": "Altes Weingut Steigelmann",
+      "folderName": "Altes_Weingut_Steigelmann",
+      "motto": "AWS - \"Always with Sauvignon\"",
+      "legalName": "Altes Weingut Steigelmann GbR",
+      "owners": "Stefan & Karl Steigelmann",
+      "address": {
+        "street": "Lauterbachstraße 33",
+        "city": "67435 Mußbach"
+      },
+      "contact": {
+        "phone": "+49 6321 68896",
+        "email": "info@weingut-steigelmann.de",
+        "website": "www.weingut-steigelmann.de/",
+        "instagram": "https://www.instagram.com/altesweingutsteigelmann/"
+      }
+    },
+    {
+      "id": "baehr",
+      "name": "BÄHR Pfalztraube",
+      "folderName": "Baehr",
+      "motto": "Wein alkoholfrei geniessen",
+      "legalName": "BÄHR Pfalztraube GmbH",
+      "awards": [
+        "Träger des Ehrenpreises des Bundesministeriums für Ernährung und Landwirtschaft"
+      ],
+      "contactPerson": {
+        "name": "Alexander Bähr",
+        "title": "Geschäftsführer",
+        "qualifications": ["Diplom-Kaufmann", "CFP®-Finanzfachwirt (FH)"]
+      },
+      "address": {
+        "street": "An der Eselshaut 33",
+        "city": "67435 Neustadt"
+      },
+      "contact": {
+        "phone": "06321 963990-0",
+        "fax": "06321 963990-90",
+        "email": "alexander@baehr-alkoholfrei.de",
+        "website": "www.baehr-alkoholfrei.de"
+      },
+      "imageCredit": "melhubach"
+    },
+    {
+      "id": "buchert",
+      "name": "Weingut Buchert",
+      "folderName": "Buchert",
+      "slogan": "Trinkt, was euch schmeckt!",
+      "legalName": "Weingut Buchert",
+      "owner": "Matthias Buchert",
+      "contactPerson": {
+        "name": "Stefanie Buchert"
+      },
+      "address": {
+        "street": "Zum Ordenswald 34",
+        "city": "67435 Mußbach"
+      },
+      "contact": {
+        "phone": "+49 6321 670787"
+      },
+      "openingHours": {
+        "weinshop": {
+          "tuesday": "15-18 Uhr",
+          "thursday": "15-18 Uhr",
+          "friday": "15-18 Uhr",
+          "saturday": "10-12 Uhr",
+          "note": "und nach Vereinbarung"
+        }
+      }
+    },
+    {
+      "id": "edgar-klohr",
+      "name": "Weingut Edgar Klohr",
+      "folderName": "Edgar_Klohr",
+      "motto": "die mit dem „oh\"!",
+      "legalName": "Weingut Edgar Klohr und Gästehaus „Klohrer Winzerhof\"",
+      "contactPerson": {
+        "name": "Susanne Münch"
+      },
+      "address": {
+        "street": "An der Eselshaut 67",
+        "city": "67435 Neustadt an der Weinstraße"
+      },
+      "contact": {
+        "phone": "06321-66439",
+        "email": "info@weingut-klohr.de",
+        "website": "www.weingut-klohr.de"
+      }
+    },
+    {
+      "id": "ferckel",
+      "name": "Weingut Ferckel",
+      "folderName": "Ferckel",
+      "motto": "HERZLICH WILLKOMMEN……. in unserem „Familien-Weingut\" FERCKEL!!",
+      "description": "Seit Generationen betreiben wir im Herzen der Pfalz Weinbau. So sind wir, wie unsere Reben, tiefverwurzelt mit unserer Heimat und können voller Stolz sagen: FERCKEL.GIMMELDINGEN PUR!",
+      "location": "Gimmeldingen"
+    },
+    {
+      "id": "heinrich-klohr",
+      "name": "Weingut Heinrich Klohr",
+      "folderName": "Heinrich_Klohr",
+      "motto": "Unbeschwertheit trifft auf Tradition",
+      "legalName": "WEINGUT KLOHR",
+      "description": "Wenn Vater und Tochter zusammen Wein machen, erfinden wir uns immer wieder neu und aus jahrelanger Familientradition, Leidenschaft sowie Respekt für die Natur entstehen charaktervolle Weine, die auch in der breiten Masse Zugang finden. Nicht alles Alte muss Bestand haben, aber was sich bewährt hat, darf bleiben! Der Austausch an Erfahrung und jugendlicher Unbeschwertheit macht es letztlich aus und so besonders. Wenn Jugendliche Unbeschwertheit auf Tradition und jahrelange Erfahrung trifft, dann erzählt jeder Schluck seine eigene Geschichte.",
+      "contactPerson": {
+        "name": "JULIA KLOHR",
+        "title": "Marketing & Verwaltung"
+      },
+      "address": {
+        "street": "Peter-Koch-Straße 52-54",
+        "city": "67435 Neustadt Wstr."
+      },
+      "contact": {
+        "phone": "+49 6321 6246",
+        "email": "info@weingut-ck.de",
+        "website": "www.weingut-ck.de"
+      },
+      "note": "Bitte ohne 'Heinrich' verwenden - nur 'Weingut Klohr'"
+    }
+  ]
+}
