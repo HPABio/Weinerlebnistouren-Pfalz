@@ -450,14 +450,22 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                                 </span>
                               </div> */}
 
-                        {/* Tour Title */}
+                        {/* Tour Season */}
+                        <div className="absolute bottom-4 left-4 right-4 ">
+                          <h4
+                            className="text-white/40 font-bold font-bonanova
+                                text-[0.6rem] md:text-[0.5rem] lg:text-[0.8rem] xl:text-[0.9rem] group-hover:text-white leading-tight drop-shadow-lg">
+                            {tour.season} 
+                          </h4>
+                        </div>
+                        {/* Tour Title
                         <div className="absolute bottom-4 left-4 right-4 ">
                           <h4
                             className="text-white/40 font-bold font-bonanova
                                 text-[0.6rem] md:text-[0.5rem] lg:text-[0.8rem] xl:text-[0.9rem] group-hover:text-white leading-tight drop-shadow-lg">
                             {tour.title}
                           </h4>
-                        </div>
+                        </div> */}
 
                         {/* Hover Effect Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 mix-blend-color-burn to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -476,7 +484,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
             <div className="lg:col-span-3 order-1 lg:order-2">
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-stone-100 ">
                 {/* Tour Header */}
-                <div className="relative bg-stone-100 bg-gradient-to-r from-stone-50 to-amber-50/40 p-8 lg:p-12 pt-24 lg:pt-28 2xl:pt-28">
+                <div className="hidden relative bg-stone-100 bg-gradient-to-r from-stone-50 to-amber-50/40 p-8 lg:p-12 pt-24 lg:pt-28 2xl:pt-28">
                   {/* Decorative Image */}
                   <div className="absolute top-0 right-0 w-2/5 h-full z-0 overflow-hidden">
                     <img
@@ -751,7 +759,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                 </div>
 
                 {/* Tour Description */}
-                <div className="p-8 lg:p-12 relative bg-stone-50 border-t-[1.2px] border-stone-200 ">
+                <div className="p-8 lg:p-12 relative bg-stone-50 border-t-[1.2px] border-stone-200 mt-14">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={selectedTour.id + "-details"}
