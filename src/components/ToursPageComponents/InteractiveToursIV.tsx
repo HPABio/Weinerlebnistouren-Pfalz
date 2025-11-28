@@ -350,21 +350,25 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                 dangerouslySetInnerHTML={{ __html: selectedTour.subtitle }}
               />
 
-              {/* Season Badge */}
+              {/* Booking Button */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
+                whileHover={{ scale: 1.06, filter: "brightness(1.2) saturate(2.2)" }}
                 animate={{
                   opacity: 1,
                   y: 0,
-                  transition: { duration: 0.8, delay: 1.1 },
+                  transition: { duration: 0.1 },
                 }}
-                className="flex flex-wrap justify-center gap-6 mt-4 lg:mt-8">
-                <motion.div className="inline-flex items-center gap-2 px-6 py-1 md:py-2 lg:py-3 bg-gradient-to-r from-accent1/25 to-accent1/15 backdrop-blur-md rounded-full mb-6 border border-accent1/30">
-                  {/* <div className="w-2 h-2 bg-accent1 rounded-full animate-pulse" /> */}
+                className="flex flex-wrap justify-center gap-6 mt-4 lg:mt-8"
+              >
+                <a
+                  className="inline-flex items-center gap-2 px-6 py-1 md:py-2 lg:py-3 bg-gradient-to-r from-accent1/25 to-accent1/15 backdrop-blur-md rounded-full mb-6 border border-accent1/30 transition-transform duration-200"
+                  href="https://eveeno.com/de/event-cal/34263?style=grid"
+                >
                   <span className="text-accent1 font-bold text-xs md:text-sm uppercase tracking-wider">
-                    • {selectedTour.season} •
+                    • BUCHEN •
                   </span>
-                </motion.div>
+                </a>
               </motion.div>
             </motion.div>
           </AnimatePresence>
