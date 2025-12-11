@@ -61,7 +61,7 @@ const articles = [
 ];
 ---
 
-<div class="fixed inset-0 w-screen h-screen flex items-center justify-center bg-stone-50 p-2 sm:p-4 z-50 overflow-hidden font-sans touch-none">
+<div class="fixed inset-0 w-screen h-screen flex items-center justify-center bg-stone-300 p-2 sm:p-4 z-50 overflow-hidden font-sans touch-none">
   
   <!-- Background Texture/Gradient similar to GetInTouchCard -->
   <div class="absolute inset-0 bg-[url('/noise.png')] opacity-5 pointer-events-none"></div> <!-- Assuming noise texture or just plain -->
@@ -105,10 +105,10 @@ const articles = [
       <div class="flex flex-row itmes-center justify-center gap-5 my-6">
         {links.filter(l => l.title !== 'Presse & Artikel').map((link) => (
           <a href={link.url} target={link.url.startsWith('http') ? "_blank" : "_self"} rel="noopener noreferrer"
-            class="group relative overflow-hidden w-fit flex  items-center p-2 sm:p-4 bg-white/80 hover:bg-white border border-stone-200 rounded-full shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 shrink-0">
-            <div class={`absolute inset-0 w-1 bg-gradient-to-b from-accent1 to-accent1/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+            class="group relative overflow-hidden w-fit flex  items-center p-2 sm:p-4 bg-white/80 border border-stone-200 rounded-full shadow-sm  shrink-0">
+            <div class={`absolute inset-0 w-1 bg-gradient-to-b from-accent1 to-accent1/60 opacity-0 `}></div>
         
-            <span class="flex-shrink-0 w-10 h-10 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-stone-100 text-accent1 group-hover:bg-accent1/10 transition-colors duration-300">
+            <span class="flex-shrink-0 w-10 h-10 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-stone-100 text-accent1">
                {link.icon === 'home' && (
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -142,10 +142,10 @@ const articles = [
       <!-- Standard Links -->
       {links.filter(l => l.title !== 'Presse & Artikel').map((link) => (
         <a href={link.url} target={link.url.startsWith('http') ? "_blank" : "_self"} rel="noopener noreferrer" 
-          class="hidden group relative overflow-hidden w-full flex items-center p-3 sm:p-4 bg-white/80 hover:bg-white border border-stone-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 shrink-0">
-          <div class={`absolute inset-0 w-1 bg-gradient-to-b from-accent1 to-accent1/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+          class="hidden group relative overflow-hidden w-full flex items-center p-3 sm:p-4 bg-white/80 shrink-0">
+          <div class={`absolute inset-0 w-1 bg-gradient-to-b from-accent1 to-accent1/60 opacity-0 transition-opacity duration-300`}></div>
           
-          <span class="flex-shrink-0 w-10 h-10 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-stone-100 text-accent1 group-hover:bg-accent1/10 transition-colors duration-300">
+          <span class="flex-shrink-0 w-10 h-10 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-stone-100 text-accent1 ">
              {link.icon === 'home' && (
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -172,12 +172,12 @@ const articles = [
              )}
           </span>
           
-          <span class="flex-grow text-center text-sm sm:text-base text-stone-700 font-semibold group-hover:text-accent1 transition-colors duration-300">
+          <span class="flex-grow text-center text-sm sm:text-base text-stone-700 font-semibold ">
             {link.title}
           </span>
           
           <!-- Arrow Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-5 sm:h-5 text-stone-300 group-hover:text-accent1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-5 sm:h-5 text-stone-300 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </a>
@@ -189,13 +189,13 @@ const articles = [
            <div class="flex flex-col gap-1 sm:gap-2">
            {articles.map((article) => (
               <a href={article.url} target="_blank" rel="noopener noreferrer" 
-                  class="group py-3 relative overflow-hidden w-full flex items-center p-2 sm:p-4 bg-white/60 hover:bg-white border border-stone-200/80 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
-                   <span class="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-stone-100 text-stone-500 group-hover:bg-accent1/10 group-hover:text-accent1 transition-colors duration-300">
+                  class="group py-3 relative overflow-hidden w-full flex items-center p-2 sm:p-4 bg-white/60 border border-stone-200/80 rounded-xl shadow-sm ">
+                   <span class="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-stone-100 text-stone-500 ">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-4 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                       </svg>
                    </span>
-                   <span class="flex-grow px-2 sm:px-3 text-xs sm:text-sm text-center text-stone-600 font-medium group-hover:text-accent1 transition-colors duration-300 leading-tight line-clamp-1">
+                   <span class="flex-grow px-2 sm:px-3 text-xs sm:text-sm text-center text-stone-600 font-medium -300 leading-tight line-clamp-1">
                       {article.title}
                    </span>
               </a>
@@ -206,7 +206,7 @@ const articles = [
     </div>
 
     <!-- Footer "Crafted with love" -->
-    <div class="mt-2 sm:mt-12 text-center relative z-10 shrink-0">
+    <div class="-mt-8 text-center relative z-10 shrink-0">
       <p class="text-[10px] sm:text-xs text-stone-400 font-bonanova italic">
          Erleben sie die Pfalz und ihre Weine interaktiv.
       </p>
