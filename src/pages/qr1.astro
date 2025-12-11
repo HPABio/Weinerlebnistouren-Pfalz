@@ -1,5 +1,5 @@
 ---
-import MainLayout from "@/layouts/main.astro";
+import Layout from "@/layouts/main.astro";
 import { Image } from "astro:assets";
 import HWELogoV2NoText from "@images/HWE-LogoV2-noText.svg";
 
@@ -57,7 +57,7 @@ const articles = [
 
 ---
 
-<MainLayout content={{ title: "Links | Weinerlebnistouren Pfalz", description: "Links und Kontakt zu Brigitta Heyl" }}>
+<Layout content={{ title: "Links | Weinerlebnistouren Pfalz", description: "Links und Kontakt zu Brigitta Heyl" }}>
   <div class="min-h-screen w-full flex items-center justify-center bg-stone-50 p-4 relative overflow-hidden font-sans">
     
     <!-- Background Texture/Gradient similar to GetInTouchCard -->
@@ -170,4 +170,4 @@ const articles = [
 
     </div>
   </div>
-</MainLayout>
+</Layout>
