@@ -19,6 +19,7 @@
     "@types/react-dom": "^18.3.7",
     "astro": "^5.16.4",
     "astro-seo": "^0.8.4",
+    "baseline-browser-mapping": "^2.9.6",
     "caniuse-lite": "^1.0.30001760",
     "canvas-confetti": "^1.9.4",
     "framer-motion": "^12.23.26",
