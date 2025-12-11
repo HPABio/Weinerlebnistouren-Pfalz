@@ -1,18 +1,12 @@
 ---
+import LinkTree from "@/components/LinkTree.astro";
 import Layout from "@/layouts/main.astro";
 import Header from "@/components/Header.astro";
-// Debugging: Minimal version to isolate asset errors
 ---
 
-<Layout content={{ title: "Link Debug Check"}}>
+<Layout content={{ title: "Link Debug Check" }}>
   <Header isHome={false} isGroupe={true} />
   <main>
-    <div
-      class="min-h-screen flex items-center justify-center flex-col gap-4 text-center p-4"
-    >
-      <h1 class="text-3xl font-bold text-red-500">QR Debug Page</h1>
-      <p class="text-gray-600">If you see this, the basic page load works.</p>
-      <p class="text-sm">Now we will try to enable the LinkTree component.</p>
-    </div>
+    <LinkTree />
   </main>
 </Layout>
