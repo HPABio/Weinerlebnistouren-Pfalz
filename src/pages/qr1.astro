@@ -1,10 +1,11 @@
 ---
 import Layout from "@/layouts/main.astro";
-
+import Header from "@/components/Header.astro";
 // Debugging: Minimal version to isolate asset errors
 ---
 
 <Layout content={{ title: "Link Debug Check", description: "Minimal page" }}>
+  <Header isHome={false} isGroupe={true} />
   <main>
     <div
       class="min-h-screen flex items-center justify-center flex-col gap-4 text-center p-4"
