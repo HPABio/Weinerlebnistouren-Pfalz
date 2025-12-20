@@ -1,10 +1,9 @@
 ---
 import LinkTree from "@/components/LinkTree.astro";
-import Layout from "@/layouts/main.astro";
-import Header from "@/components/Header.astro";
+import favicon from "@images/favicon.svg";
 ---
 
-<Layout content={{ title: "Link Debug Check" }}>
+<!-- <Layout content={{ title: "Link Debug Check" }}>
   <Fragment slot="head">
     <script is:inline>
       // #region agent log
@@ -50,8 +49,54 @@ import Header from "@/components/Header.astro";
       });
     </script>
   </Fragment>
-  <Header isHome={false} isGroupe={true} />
+</Layout> -->
+
+<html>
+  <head>
+    {!import.meta.env.DEV && (
+        <script
+          is:inline
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-G6LFB82PZ9"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag("js", new Date());
+
+
+          gtag("consent", "default", {
+            ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            analytics_storage: "denied",
+          });
+
+          gtag("config", "G-G6LFB82PZ9");
+        </script>
+    )}
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={favicon.src}
+      fetchpriority="high"
+    />
+      <link rel="sitemap" href="/sitemap-index.xml" />
+    <title>Link Tree - Weinerlebnistouren - Pfalz</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+      rel="stylesheet"
+    />
+</head>
+
+
+<body>
   <main>
     <LinkTree />
   </main>
-</Layout>
+</body>
+</html>
