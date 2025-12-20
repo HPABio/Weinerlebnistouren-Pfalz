@@ -64,7 +64,27 @@ const articles = [
 <section class="fixed inset-0 w-screen h-screen flex items-center justify-center bg-stone-300 p-2 sm:p-4 z-50 overflow-hidden font-sans touch-none">
   
   <!-- Background Texture/Gradient similar to GetInTouchCard -->
-  <div class="absolute inset-0 bg-[url('/noise.png')] opacity-5 pointer-events-none"></div> <!-- Assuming noise texture or just plain -->
+  <!-- Inline noise overlay (avoids external domains + avoids CSP img-src issues) -->
+  <div class="absolute inset-0 opacity-5 pointer-events-none">
+    <svg
+      class="w-full h-full"
+      viewBox="0 0 200 200"
+      preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <filter id="noiseFilterLinkTree">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.8"
+          numOctaves="4"
+          stitchTiles="stitch"
+        />
+      </filter>
+      <rect width="200" height="200" filter="url(#noiseFilterLinkTree)" />
+    </svg>
+  </div>
   <div class="absolute inset-0 bg-gradient-to-br from-stone-50 via-stone-100 to-stone-200 opacity-60"></div>
 
   <!-- Main Card -->
