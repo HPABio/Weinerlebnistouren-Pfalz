@@ -16,6 +16,25 @@ const title = content.title || "Weinerlebnistouren - Pfalz";
 
 <html lang="de">
   <head>
+    <!-- Ensure apex domain always redirects to canonical www host (fixes split deployment / broken asset refs on apex) -->
+    <script is:inline>
+      (() => {
+        if (typeof window === "undefined") return;
+        const canonicalHost = "www.weinerlebnistouren-pfalz.de";
+        const apexHost = "weinerlebnistouren-pfalz.de";
+        if (window.location.hostname === apexHost) {
+          window.location.replace(
+            `https://${canonicalHost}${window.location.pathname}${window.location.search}${window.location.hash}`
+          );
+        }
+      })();
+    </script>
+
+    <link
+      rel="canonical"
+      href={`https://www.weinerlebnistouren-pfalz.de${Astro.url.pathname}`}
+    />
+
     {!import.meta.env.DEV && (
         <script
           is:inline

@@ -3,79 +3,26 @@ import LinkTree from "@/components/LinkTree.astro";
 import favicon from "@images/favicon.svg";
 ---
 
-<!-- <Layout content={{ title: "Link Debug Check" }}>
-  <Fragment slot="head">
-    <script is:inline>
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/cf091eb0-afeb-4e86-9423-9eb59eaa3fdc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1',location:'src/pages/qr1.astro:HEAD_BOOT',message:'qr1 head script executed',data:{href:window.location.href,pathname:window.location.pathname,baseURI:document.baseURI,readyState:document.readyState,title:document.title},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion
-
-      window.addEventListener("error", (e) => {
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/cf091eb0-afeb-4e86-9423-9eb59eaa3fdc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H3',location:'src/pages/qr1.astro:WINDOW_ERROR',message:'window error event',data:{message:String(e.message||''),filename:String(e.filename||''),lineno:e.lineno,colno:e.colno},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
-      });
-
-      window.addEventListener("unhandledrejection", (e) => {
-        const reason = e?.reason;
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/cf091eb0-afeb-4e86-9423-9eb59eaa3fdc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H3',location:'src/pages/qr1.astro:UNHANDLED_REJECTION',message:'unhandledrejection',data:{reasonType:typeof reason,reason:String(reason?.message||reason||'')},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
-      });
-
-      window.addEventListener("DOMContentLoaded", async () => {
-        const section = document.querySelector("main section");
-        const card = section?.querySelector("div.max-w-md");
-        const svgNoise = document.querySelector("#noiseFilterLinkTree");
-        const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map((l) => l.getAttribute("href")).filter(Boolean);
-
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/cf091eb0-afeb-4e86-9423-9eb59eaa3fdc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H4',location:'src/pages/qr1.astro:DOM_READY_LAYOUT',message:'qr1 DOMContentLoaded layout probe',data:{hasSection:!!section,hasCard:!!card,hasNoiseFilter:!!svgNoise,styleCount:styles.length,firstStylesheet:styles[0]||null,bodyOverflow:getComputedStyle(document.body).overflow},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
-
-        const urlsToCheck = [styles[0], styles[1]].filter(Boolean).slice(0, 2);
-        for (const url of urlsToCheck) {
-          try {
-            const res = await fetch(url, { cache: "no-store" });
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/cf091eb0-afeb-4e86-9423-9eb59eaa3fdc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H2',location:'src/pages/qr1.astro:ASSET_CHECK',message:'stylesheet fetch result',data:{url,status:res.status,ok:res.ok,contentType:res.headers.get('content-type')},timestamp:Date.now()})}).catch(()=>{});
-            // #endregion
-          } catch (err) {
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/cf091eb0-afeb-4e86-9423-9eb59eaa3fdc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H2',location:'src/pages/qr1.astro:ASSET_CHECK_ERR',message:'stylesheet fetch threw',data:{url,error:String(err?.message||err||'')},timestamp:Date.now()})}).catch(()=>{});
-            // #endregion
-          }
-        }
-      });
-    </script>
-  </Fragment>
-</Layout> -->
-
 <html>
   <head>
-    <!-- {!import.meta.env.DEV && (
-        <script
-          is:inline
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-G6LFB82PZ9"></script>
-        <script is:inline>
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag("js", new Date());
+    <!-- If this page is reached on the apex domain, force redirect to canonical www host -->
+    <script is:inline>
+      (() => {
+        if (typeof window === "undefined") return;
+        const canonicalHost = "www.weinerlebnistouren-pfalz.de";
+        const apexHost = "weinerlebnistouren-pfalz.de";
+        if (window.location.hostname === apexHost) {
+          window.location.replace(
+            `https://${canonicalHost}${window.location.pathname}${window.location.search}${window.location.hash}`
+          );
+        }
+      })();
+    </script>
 
-
-          gtag("consent", "default", {
-            ad_storage: "denied",
-            ad_user_data: "denied",
-            ad_personalization: "denied",
-            analytics_storage: "denied",
-          });
-
-          gtag("config", "G-G6LFB82PZ9");
-        </script>
-    )} -->
+    <link
+      rel="canonical"
+      href={`https://www.weinerlebnistouren-pfalz.de${Astro.url.pathname}`}
+    />
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
