@@ -32,7 +32,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       info: "⋅ vier Touren ⋅ vier Jahreszeiten ⋅ vier Geschichten ⋅",
       title: "Entdecken Sie meine interaktiven Touren",
       subtitle:
-        "Lassen Sie sich von mir durch die malerischen Weinberge Gimmeldingens und durch ihre Geschichte führen.",
+        "Lassen Sie sich von mir durch die malerischen Weinberge und den historischen Ortskern Gimmeldingens und durch seine Vergangenheit führen.",
       season: "Für jede Saison die passende Tour",
       images: {
         card: images.MJAlmondFlowerMosaicGlass.src,
@@ -41,7 +41,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         bgObjectPosition: "object-contain",
       },
       longDescription: `
-       <p class="mb-4 text-gray-900/80 text-xl">🌸 Mandelblüte/Weinberge •  🍷 5 Weine/5 Mandel-Snacks  • 🤝 Teamevent/Zeitreise • ⏱️ 4-5 Stunden/4 km</p>
+       <p class="mb-4 text-gray-900/80 text-xl">🌸 Mandelblüte/Weinberge •  🍷 5 Weine/5 pfälzischen Snacks  • 🤝 Teamevent/Zeitreise • ⏱️ 4 Stunden/4 km</p>
         <p class="mb-10">Frühling genießen mit allen Sinnen: Wein, Mandelblüte & Kulturgeschichte erleben: Wenn die Mandelbäume blühen und die Weinberge erwachen, beginnt ein Erlebnis der besonderen Art. Auf unserer interaktiven Weinwanderung erwarten Sie fünf erlesene Weine, perfekt kombiniert mit feinen Mandelköstlichkeiten, dazu lebendig erlebte regionale Geschichten – und all das inmitten einer traumhaften Frühlingskulisse.</p>
         <ul class="list-disc pl-5 space-y-2 mb-10">
           <li>Prickelnder Start: Genieße einen rosa Begrüßungs-Secco mit einem Pfälzer Snack bei herrlicher Aussicht!</li>
@@ -58,7 +58,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       info: "Genuss, Geschichte und Natur",
       title: "Mandelblüte, Meerspinne und Monarchen",
       subtitle:
-        "Erleben Sie die Pfälzer Mandelblüte auf einer einzigartigen Route.",
+        "Erleben Sie den Frühling in Gimmeldingen mit Wein, Mandelblüte und lebendigen Geschichten einiger Monarchen auf einer genussvollen, interaktiven Weinwanderung.",
       season: "Frühling",
       images: {
         card: images.MJAlmondFlowerMosaicGlass.src,
@@ -69,7 +69,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       },
       // <p class="mb-4">Erlebe mit Freunden, Kollegen und Familie eine unterhaltsame Weinerlebnistour durch die rosa blühenden Weinberge von Gimmeldingen. Geführt von einer zertifizierten Kultur- und Weinbotschafterin erwartet Dich eine spannende Mischung aus Natur, Genuss und kurzweiligen historischen Episoden - perfekt für alle Sinne! Das erwartet dich:</p>
       longDescription: `
-        <p class="mb-4 text-gray-900/80 text-xl">🌸 Mandelblüte/Weinberge •  🍷 5 Weine/5 Mandel-Snacks  • 🤝 Teamevent/Zeitreise • ⏱️ 4-5 Stunden/4 km</p>
+        <p class="mb-4 text-gray-900/80 text-xl">🌸 Mandelblüte/Weinberge •  🍷 5 Weine/5 pfälzischen Snacks  • 🤝 Teamevent/Zeitreise • ⏱️ 4 Stunden/4 km</p>
         <p class="mb-10">Frühling genießen mit allen Sinnen: Wein, Mandelblüte & Kulturgeschichte erleben: Wenn die Mandelbäume blühen und die Weinberge erwachen, beginnt ein Erlebnis der besonderen Art. Auf unserer interaktiven Weinwanderung erwarten Sie fünf erlesene Weine, perfekt kombiniert mit feinen Mandelköstlichkeiten, dazu lebendig erlebte regionale Geschichten – und all das inmitten einer traumhaften Frühlingskulisse.</p>
         <ul class="list-disc pl-5 space-y-2 mb-10">
           <li>Prickelnder Start: Genieße einen rosa Begrüßungs-Secco mit einem Pfälzer Snack bei herrlicher Aussicht!</li>
@@ -86,7 +86,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       info: "Wasser, Wald und Wein - eine Weinwanderung",
       title: "Magischer Mussbach",
       subtitle:
-        "Lauschen Sie dem Mussbach - den Geschichten des Gimmeldinger Tales und seines geheimnisvollen Waldes.",
+        "Erleben Sie eine sommerlich-erfrischende Weinwanderung entlang des Mussbachs, die Genuss, Natur und lebendige Geschichten mit einem nachhaltigen Beitrag verbindet.",
       season: "Sommer",
       images: {
         card: images.WassermühleImWald.src,
@@ -113,7 +113,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       info: "Für Genießer und Entdecker",
       title: "Von Bacchus bis Christophorus",
       subtitle:
-        "Weinberge, Geschichte und Kultur - eine Tour auf den Spuren der Weinkultur und regionaler Legenden.",
+        "Auf dieser Weinwanderung durch Weinberge und malerische Gassen entdecken Sie die Pfalz sowie einige historische Weingüter und tauchen auf einer interaktiven Zeitreise in die Geschichte des regionalen Weinbaus ein.",
       season: "Frühling - Herbst",
       images: {
         card: images.MJBachusMosaicGlass.src,
@@ -132,7 +132,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
           <li>Interaktive Zeitreise durch die pfälzische Weingeschichte - jeder Teilnehmer wird dabei ein Teil der Geschichte !</li>
         </ul>
 
-        <p class="mb-2">Denn Wein erzählt Geschichten – von Landschaften, Menschen und Jahrhunderten. Auf dieser besonderen Tour entdeckt ihr, wie eng die Kultur des Weins mit der Geschichte der Pfalz verwoben ist. Während ihr die Weine verkostet, reist ihr durch die Epochen des Weinbaus, erfahrt Spannendes über die pfälzische Historie und schlüpft selbst in die Rolle einer historischen Figur. So erlebt ihr die Vergangenheit hautnah – mit allen Sinnen, einem Glas Wein in der Hand und der lebendigen Atmosphäre der Pfalz um euch herum.</p>
+        <p class="mb-2">Denn Wein erzählt Geschichten – von Landschaften, Menschen und Jahrhunderten. Auf dieser besonderen Tour entdeckt ihr, wie eng die Kultur des Weins mit der Geschichte der Pfalz verwoben ist. Während ihr die Weine verkostet, reist ihr durch die Epochen des Weinbaus, erfahrt Spannendes über die pfälzische Historie und verkörpert dabei eine historische Gestalt. So erlebt ihr die Vergangenheit hautnah – mit allen Sinnen, einem Glas Wein in der Hand und der lebendigen Atmosphäre der Pfalz um euch herum.</p>
         <p class="mb-2">Lass Dich von der einzigartigen Verbindung aus Wein, Kultur, Kulinarik und Natur inspirieren – ein wahres Fest für alle Sinne.  Ideal als genussvolles Teamevent oder als entspannter Ausflug mit Freunden, Kollegen & Familie.</p>
         <p>Die Tour startet um 11h oder 14h im Weingut JF Ohler in Gimmeldingen.</p>
       `,
@@ -142,7 +142,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       info: "Wärmende Wintertour mit Glühwein",
       title: "Geheimnisvolles Gimmeldingen",
       subtitle:
-        "Genießen Sie Natur, Geschichten und Pfälzer Herzlichkeit in der kalten Jahreszeit.",
+        "Entdecken Sie Gimmeldingen im zauberhaften Lichterglanz, genießen Sie weihnachtliche Köstlichkeiten und erleben Sie hautnah alte Maskenbräuche der Pfalz.",
       season: "Winter",
       images: {
         card: images.MJGlühweinV1.src,
@@ -159,7 +159,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
             <li>Von dort aus führt dich ein entspannter Spaziergang über rund 4 Kilometer durch romantische Gassen und versteckte Winkel des malerischen Weinorts Gimmeldingen</li>
             <li>Die winterliche Stimmung entlang des plätschernden Mußbachs verleiht der Tour dabei eine ganz besondere Atmosphäre</li>
             <li>Unterwegs erwarten dich weitere vier liebevoll gestaltete Stationen in historischen Gebäuden oder am knisternden Feuer – jede einzelne ein Genussmoment mit wärmendem Glühwein und passenden Häppchen bzw einer Pfälzer Köstlichkeit</li>
-            <li>Und das Besondere: Du wirst selbst Teil der Geschichte – schlüpfst in die Rolle des Bischofs von Speyer, des Belzenickels, Adligen und Müllern, spürst die Magie des Mußbachs, erfährst von skurrilen Begebenheiten, alten Weihnachtsbräuchen und lüftest so die Geheimnisse, die sich hinter den historischen Mauern Gimmeldingens verbergen</li>
+            <li>Und das Besondere: Du wirst selbst Teil der Geschichte – verkörperst eine historische Gestalt wie den Bischof von Speyer, den Belzenickel, Adligen und Müllern, spürst die Magie des Mußbachs, erfährst von skurrilen Begebenheiten, alten Weihnachtsbräuchen und lüftest so die Geheimnisse, die sich hinter den historischen Mauern Gimmeldingens verbergen</li>
         </ul>
         <p class="mb-4">Diese Tour verbindet Genuss, Natur und Kultur auf einzigartige Weise. Ob als weihnachtliche Team-Aktivität, Betriebsausflug oder romantischer Nachmittag mit Freunden, Familie oder Kollegen – schaffe Dir unvergessliche Erinnerungen in der Winterzeit.</p>
       `,
@@ -422,11 +422,10 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                     <motion.div
                       key={tour.id}
                       onClick={() => setSelectedTour(tour)}
-                      className={`cursor-pointer group relative overflow-hidden w-full h-full xl:rounded-3xl max-h-[180px] drop-shadow-md rounded-2xl transition-all duration-500 ${
-                        selectedTour.id === tour.id
-                          ? "outline-offset-[6px] aspect-[10/8] drop-shadow-2xl ring-offset-0 ring-2 mx-4 ring-soft-beige outline-[2px] outline-accent1 outline-none border-[2.5px] border-stone-100 z-30 "
-                          : "border-[2.5px] border-soft-beige/20 drop-shadow-lg aspect-[4/3]  brightness-[1] saturate-[0.8]"
-                      }`}
+                      className={`cursor-pointer group relative overflow-hidden w-full h-full xl:rounded-3xl max-h-[180px] drop-shadow-md rounded-2xl transition-all duration-500 ${selectedTour.id === tour.id
+                        ? "outline-offset-[6px] aspect-[10/8] drop-shadow-2xl ring-offset-0 ring-2 mx-4 ring-soft-beige outline-[2px] outline-accent1 outline-none border-[2.5px] border-stone-100 z-30 "
+                        : "border-[2.5px] border-soft-beige/20 drop-shadow-lg aspect-[4/3]  brightness-[1] saturate-[0.8]"
+                        }`}
                       whileHover={{ y: -4, transition: { duration: 0.1 } }}
                       whileTap={{ scale: 0.97 }}
                       initial={{ opacity: 0, y: 20 }}
@@ -439,11 +438,10 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                         <img
                           src={tour.images.card}
                           alt={tour.title}
-                          className={`w-full h-full object-cover object-center  ${
-                            selectedTour.id === tour.id
-                              ? "brightness-100 "
-                              : "group-hover:scale-110 group-hover:contrast-100 brightness-[1] contrast-[1]"
-                          }`}
+                          className={`w-full h-full object-cover object-center  ${selectedTour.id === tour.id
+                            ? "brightness-100 "
+                            : "group-hover:scale-110 group-hover:contrast-100 brightness-[1] contrast-[1]"
+                            }`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
 
@@ -459,7 +457,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                           <h4
                             className="text-white/40 font-bold font-bonanova
                                 text-[0.6rem] md:text-[0.5rem] lg:text-[0.8rem] xl:text-[0.9rem] group-hover:text-white leading-tight drop-shadow-lg">
-                            {tour.season} 
+                            {tour.season}
                           </h4>
                         </div>
                         {/* Tour Title

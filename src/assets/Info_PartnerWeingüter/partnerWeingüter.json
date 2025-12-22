@@ -30,7 +30,10 @@
       "contactPerson": {
         "name": "Alexander Bähr",
         "title": "Geschäftsführer",
-        "qualifications": ["Diplom-Kaufmann", "CFP®-Finanzfachwirt (FH)"]
+        "qualifications": [
+          "Diplom-Kaufmann",
+          "CFP®-Finanzfachwirt (FH)"
+        ]
       },
       "address": {
         "street": "An der Eselshaut 33",
@@ -162,7 +165,7 @@
       "id": "thomas-steigelmann",
       "name": "Weingut Thomas Steigelmann",
       "folderName": "Steigelmann",
-      "motto": "Wir leben und arbeiten hier im Paradies, haben staatlich anerkannt die besten Rieslinge der Pfalz, sind stolz auf unseren 16. Staatsehrenpreis in Folge und streben weiterhin nur nach höchster Qualität – weil wir lieben was wir tun und wie wir es tun! Als Bio-Weingut sind wir immer in Liebe, Wertschätzung und Dankbarkeit mit der Natur verbunden und ihr verpflichtet!",
+      "motto": "Aus Liebe zur Natur. Aus Leidenschaft Riesling.",
       "legalName": "Bio-Weingut Thomas Steigelmann",
       "contactPerson": {
         "name": "Sabine Steigelmann"
@@ -180,7 +183,9 @@
       },
       "location": "Gimmeldingen",
       "isBio": true,
-      "awards": ["16. Staatsehrenpreis in Folge"]
+      "awards": [
+        "16. Staatsehrenpreis in Folge"
+      ]
     },
     {
       "id": "stolleis",
