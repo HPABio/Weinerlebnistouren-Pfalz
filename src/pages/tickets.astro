@@ -2,13 +2,39 @@
 import Layout from "@/layouts/main.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import CompressedMjVineYardColorPencilSketch from "@images/compressed/webP/compressed-mj-vineYard-ColorPencilSketch.webp";
 ---
 
 <Layout content={{ title: "Tickets - Weinerlebnistouren-Pfalz" }}>
     <Header isHome={false} isGroupe={true} />
     <body>
+        <!-- Hero Section -->
+    <div
+      class="relative w-full h-[30vw] min-h-[250px] max-h-[300px]"
+      style={{
+        backgroundImage: `url("${CompressedMjVineYardColorPencilSketch.src}")`,
+        backgroundSize: "cover",
+        backgroundPosition: "100% 50%",
+      }}>
+      <div
+        class="w-full h-full flex items-center justify-center
+				bg-gradient-to-t from-black/80 via-black/60 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center flex flex-col items-center justify-center">
+            <h1
+              class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-100 mb-6">
+              Aktuelle Termine
+            </h1>
+            <p
+              class="text-sm sm:text-base md:text-xl lg:text-2xl sm:max-w-md md:max-w-xl text-accent1 max-w-4xl mx-auto leading-relaxed">
+              Finden Sie hier das ganze Jahr Ihren idealen Termin - egal ob Frühling, Sommer, Herbst oder Winter. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
         <main
-            class="max-w-4xl mx-auto py-12 px-4 w-screen min-h-screen border-2 border-red-500"
+            class="max-w-4xl mx-auto py-12 px-4 w-screen min-h-screen"
     >   
             <pretix-widget
                 event="https://pretix.weinerlebnistouren-pfalz.de/weintouren/tickets/"
