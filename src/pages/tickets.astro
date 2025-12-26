@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/main.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout content={{ title: "Tickets - Weinerlebnistouren-Pfalz" }}>
+    <Header isHome={false} isGroupe={true} />
+    <body>
+        <main
+            class="max-w-4xl mx-auto py-12 px-4 w-screen min-h-screen border-2 border-red-500"
+    >   
+            <pretix-widget
+                event="https://pretix.weinerlebnistouren-pfalz.de/weintouren/tickets/"
+            ></pretix-widget>
+            <noscript>
+                <div class="pretix-widget">
+                    <div class="pretix-widget-info-message">
+                        JavaScript is disabled in your browser. To access our
+                        ticket shop without JavaScript, please <a
+                            target="_blank"
+                            rel="noopener"
+                            href="https://pretix.weinerlebnistouren-pfalz.de/weintouren/tickets/"
+                            >click here</a
+                        >.
+                    </div>
+                </div>
+            </noscript>
+        </main>
+    </body>
+    <Footer loading="lazy" fetchpriority="low" />
+</Layout>

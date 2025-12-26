@@ -16,8 +16,10 @@ const title = content.title || "Weinerlebnistouren - Pfalz";
 
 <html lang="de">
   <head>
+    <link rel="stylesheet" type="text/css" href="https://pretix.weinerlebnistouren-pfalz.de/weintouren/tickets/widget/v2.css" crossorigin="anonymous">
+<script is:inline type="text/javascript" src="https://pretix.weinerlebnistouren-pfalz.de/widget/v2.de.js" async crossorigin="anonymous"></script>
     <!-- Ensure apex domain always redirects to canonical www host (fixes split deployment / broken asset refs on apex) -->
-    <script is:inline>
+    <!-- <script is:inline>
       (() => {
         if (typeof window === "undefined") return;
         const canonicalHost = "www.weinerlebnistouren-pfalz.de";
@@ -33,7 +35,7 @@ const title = content.title || "Weinerlebnistouren - Pfalz";
     <link
       rel="canonical"
       href={`https://www.weinerlebnistouren-pfalz.de${Astro.url.pathname}`}
-    />
+    /> -->
 
     {!import.meta.env.DEV && (
         <script
@@ -58,6 +60,7 @@ const title = content.title || "Weinerlebnistouren - Pfalz";
           gtag("config", "G-G6LFB82PZ9");
         </script>
     )}
+
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
