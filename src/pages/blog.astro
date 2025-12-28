@@ -1,0 +1,296 @@
+---
+import Layout from "@/layouts/main.astro";
+---
+
+<Layout content={{ title: "Blog - Weinerlebnistouren Pfalz" }}>
+    <main class="blog-content-wrapper">
+        <header class="blog-hero">
+            <span class="category">Weinwissen</span>
+            <h1>Die Kunst der Pfälzer Weinverkostung</h1>
+            <figure class="hero-image">
+                <img
+                    src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&q=80&w=2070"
+                    alt="Weinherstellung in der Pfalz"
+                />
+            </figure>
+        </header>
+
+        <div class="dynamic-entry-content">
+            <p>
+                Willkommen zu unserer Reise durch die malerischen Weinberge der
+                Pfalz. Hier, wo die Sonne großzügig scheint und der Boden
+                Geschichten von Generationen von Winzern erzählt, finden wir
+                einige der besten Weine Deutschlands. In diesem Beitrag erfahren
+                Sie alles über die Geheimnisse einer perfekten Verkostung.
+            </p>
+
+            <h2>Der erste Schluck: Ein Fest für die Sinne</h2>
+            <p>
+                Eine Weinverkostung beginnt lange bevor der Wein die Lippen
+                berührt. Es ist ein ritueller Prozess, der alle Sinne
+                einbezieht. Zuerst beobachten wir die Farbe im Glas. Ist es ein
+                klares, helles Strohgelb bei einem Riesling oder ein tiefes,
+                samtiges Rubinrot bei einem Spätburgunder?
+            </p>
+
+            <figure>
+                <img
+                    src="https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&q=80&w=2070"
+                    alt="Weinprobe im Weinberg"
+                />
+                <figcaption>
+                    Eine authentische Weinprobe inmitten der Pfälzer Reben.
+                </figcaption>
+            </figure>
+
+            <p>
+                Nach dem Sehen kommt das Schwenken. Durch die Bewegung wird der
+                Wein belüftet, und die Aromen können sich entfalten. Schließen
+                Sie die Augen und atmen Sie tief ein. Was riechen Sie? Pfirsich?
+                Schiefer? Vielleicht eine Note von frisch gemähtem Gras?
+            </p>
+
+            <div class="wide-blog quote-container">
+                <blockquote>
+                    "Wein ist Poesie in Flaschen. In jeder Flasche steckt die
+                    Leidenschaft eines ganzen Jahres, die Geduld der Natur und
+                    das Herzblut des Winzers."
+                </blockquote>
+            </div>
+
+            <p>
+                Jetzt ist es Zeit für den Geschmack. Lassen Sie den Wein über
+                die Zunge rollen. Spüren Sie die Säure, den Körper und den
+                Abgang. Ein guter Pfälzer Wein ist harmonisch und hinterlässt
+                einen bleibenden Eindruck, der zum nächsten Schluck einlädt.
+            </p>
+
+            <h2>Die Rolle des Terroirs</h2>
+            <p>
+                In der Pfalz spielt das Terroir eine entscheidende Rolle. Die
+                Vielfalt der Böden – von Kalkstein über Buntsandstein bis hin zu
+                Löss-Lehm – verleiht jedem Wein seinen einzigartigen Charakter.
+                Unsere Weinerlebnistouren führen Sie direkt zu diesen Quellen
+                des Geschmacks.
+            </p>
+
+            <figure>
+                <video
+                    controls
+                    poster="https://images.unsplash.com/photo-1504275107627-0c2ba7a43dba?auto=format&fit=crop&q=80&w=2070"
+                >
+                    <source
+                        src="https://www.w3schools.com/html/mov_bbb.mp4"
+                        type="video/mp4"
+                    />
+                    Ihr Browser unterstützt keine Video-Tags.
+                </video>
+                <figcaption>
+                    Ein Einblick in unsere geführten Touren durch die Südliche
+                    Weinstraße.
+                </figcaption>
+            </figure>
+
+            <p>
+                Abschließend lässt sich sagen: Weinverkostung ist kein
+                Hexenwerk, sondern eine Form der Achtsamkeit. Es geht darum, den
+                Moment zu genießen und die Arbeit zu schätzen, die in jedem Glas
+                steckt. Wir freuen uns darauf, dieses Erlebnis bald mit Ihnen
+                persönlich teilen zu dürfen.
+            </p>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    :root {
+        --primary-wine: #722f37;
+        --dark-wine: #4a1f24;
+        --text-main: #2d3436;
+        --text-muted: #4a4a4a;
+        --bg-main: #ffffff;
+        --font-heading: "Bona Nova SC", serif;
+        --font-body: "Newsreader", serif;
+    }
+
+    body {
+        font-family: var(--font-body);
+        line-height: 1.8;
+        color: var(--text-main);
+        background-color: var(--bg-main);
+        margin: 0;
+        padding: 0;
+    }
+
+    .blog-content-wrapper {
+        max-width: 1200px; /* Wider wrapper to allow breakout space */
+        margin: 4rem auto;
+        padding: 0 1.5rem;
+    }
+
+    .blog-hero {
+        text-align: center;
+        margin-bottom: 5rem;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .category {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--primary-wine);
+        letter-spacing: 0.15em;
+        display: block;
+        margin-bottom: 1.5rem;
+        font-family: var(--font-heading);
+    }
+
+    h1 {
+        font-family: var(--font-heading);
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        line-height: 1.1;
+        margin-bottom: 3rem;
+        font-weight: 700;
+        color: #1a1a1a;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    /* CSS Grid Layout Logic */
+    .dynamic-entry-content {
+        display: grid;
+        /* 
+       Grid with 3 columns:
+       1fr: Flexible left space
+       minmax(0, 70ch): Central text column, capped for readability
+       1fr: Flexible right space
+    */
+        grid-template-columns: 1fr minmax(0, 70ch) 1fr;
+        row-gap: 2.5rem;
+    }
+
+    /* Target all direct children - place in central column (2) */
+    .dynamic-entry-content > * {
+        grid-column: 2 / 3;
+    }
+
+    /* Targeting specific tags (figures) and a custom class (.wide-blog) to breakout */
+    .dynamic-entry-content > figure,
+    .dynamic-entry-content > .wide-blog {
+        grid-column: 1 / -1;
+    }
+
+    /* Typography Polish */
+    p {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+    }
+
+    h2 {
+        font-family: var(--font-heading);
+        font-size: 2.25rem;
+        margin-top: 4rem;
+        margin-bottom: 1rem;
+        color: #1a1a1a;
+    }
+
+    /* Figure and Breakout Styling */
+    figure {
+        margin: 3rem 0;
+    }
+
+    figure img,
+    figure video {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        display: block;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    figcaption {
+        text-align: center;
+        font-size: 1rem;
+        color: #888;
+        margin-top: 1rem;
+        font-style: italic;
+    }
+
+    /* Quote Container (Custom Breakout Class) */
+    .quote-container {
+        background: linear-gradient(135deg, #722f37 0%, #4a1f24 100%);
+        padding: 6rem 3rem;
+        border-radius: 20px;
+        text-align: center;
+        margin: 4rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .quote-container::before {
+        content: '"';
+        position: absolute;
+        top: -2rem;
+        left: 2rem;
+        font-size: 15rem;
+        color: rgba(255, 255, 255, 0.05);
+        font-family: serif;
+        line-height: 1;
+    }
+
+    blockquote {
+        font-size: 2.5rem;
+        font-weight: 300;
+        font-style: italic;
+        color: #ffffff;
+        margin: 0;
+        max-width: 45ch;
+        margin: 0 auto;
+        line-height: 1.3;
+        font-family: var(--font-body);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1024px) {
+        .blog-content-wrapper {
+            padding: 0 2rem;
+        }
+
+        blockquote {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .dynamic-entry-content {
+            grid-template-columns: 1fr; /* Fallback to single column */
+        }
+
+        .dynamic-entry-content > * {
+            grid-column: 1 / -1;
+        }
+
+        h1 {
+            font-size: 2.75rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+        }
+
+        p {
+            font-size: 1.15rem;
+        }
+
+        blockquote {
+            font-size: 1.5rem;
+        }
+    }
+</style>
