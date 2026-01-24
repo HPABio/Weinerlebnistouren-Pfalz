@@ -149,8 +149,8 @@
     {
       "id": "ohler",
       "name": "Weingut Johann F. Ohler",
-      "folderName": null,
-      "motto": "Weine mit Charakter und Geschichte",
+      "folderName": "Ohler",
+      "motto": "Passion trifft Tradition",
       "address": {
         "street": "Meerspinnstr. 33",
         "city": "67435 Gimmeldingen"
@@ -260,8 +260,8 @@
     {
       "id": "bergdolt-reif-nett",
       "name": "Weingut Bergdolt-Reif & Nett",
-      "folderName": null,
-      "motto": null,
+      "folderName": "Bergdolt_Reif_Nett",
+      "motto": "weil 08/15 jeder kann",
       "address": {
         "street": "Dudostraße 2",
         "city": "67435 Duttweiler"
@@ -275,6 +275,22 @@
         "available": true,
         "selection": "Große Auswahl"
       }
+    },
+    {
+      "id": "locker",
+      "name": "Wein-Shop Locker",
+      "folderName": "Locker",
+      "motto": "Selbst hergestellte Spezialitäten aus eigenem Hause",
+      "address": {
+        "street": "Haberackerstr. 19",
+        "city": "67435 NW - Gimmeldingen"
+      },
+      "contact": {
+        "phone": "06321 6277",
+        "email": "info@weinlocker.de",
+        "website": "www.weinlocker.de"
+      },
+      "location": "Gimmeldingen"
     }
   ]
 }

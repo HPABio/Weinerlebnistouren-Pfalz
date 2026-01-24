@@ -17,6 +17,8 @@ import AltesSteigelmannImage from "@/assets/Info_PartnerWeingüter/Altes_Weingut
 import BaehrImage from "@/assets/Info_PartnerWeingüter/Baehr/Seccoparty.jpg";
 import ThomasSteigelmannImage from "@/assets/Info_PartnerWeingüter/Steigelmann/551-dm-241017_563_3zu2.jpg";
 import StolleisImage from "@/assets/Info_PartnerWeingüter/Stolleis/image001.jpg";
+import OhlerImage from "@/assets/Info_PartnerWeingüter/Ohler/ohler_image.jpg";
+import LockerImage from "@/assets/Info_PartnerWeingüter/Locker/locker_photo.jpg";
 
 const partnerWeingüter = partnerWeingüterData.partnerWeingüter;
 const ferckel = partnerWeingüter.find((w) => w.id === "ferckel");
@@ -39,6 +41,7 @@ const weinbiet = partnerWeingüter.find((w) => w.id === "weinbiet");
 const bergdoltReifNett = partnerWeingüter.find(
   (w) => w.id === "bergdolt-reif-nett",
 );
+const locker = partnerWeingüter.find((w) => w.id === "locker");
 
 // Process mottos for display
 const ferckelMotto =
@@ -292,8 +295,8 @@ const thomasSteigelmannMotto = thomasSteigelmann?.motto
               </div>
               <div class="mb-4">
                 <Image
-                  src={CompressedMjVineYardV1}
-                  alt="Weingut Image"
+                  src={OhlerImage}
+                  alt={ohler?.name || "Weingut Johann F. Ohler"}
                   class="w-full h-48 object-cover rounded-lg mb-4"
                 />
               </div>
@@ -307,10 +310,12 @@ const thomasSteigelmannMotto = thomasSteigelmann?.motto
                 Tel. {ohler?.contact?.phone || "06321 6116"}
               </p>
               <p class="text-sm text-accent2-plum mb-4 italic font-body">
-                "{ohler?.motto || "Weine mit Charakter und Geschichte"}"
+                "{ohler?.motto || "Passion trifft Tradition"}"
               </p>
               <a
-                href={`http://${ohler?.contact?.website || "www.weingut-ohler.de"}`}
+                href={ohler?.contact?.website
+                  ? `https://${ohler.contact.website}`
+                  : "https://www.weingut-ohler.de"}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-gradient-to-r from-accent1 to-accent2-brick text-white px-6 py-3 rounded-lg hover:from-accent2-brick hover:to-accent1 transition-all duration-300 font-semibold group-hover:scale-105"
@@ -392,6 +397,50 @@ const thomasSteigelmannMotto = thomasSteigelmann?.motto
               </p>
               <a
                 href={`http://${stolleis?.contact?.website || "www.stolleis.com"}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block bg-gradient-to-r from-accent1 to-accent2-brick text-white px-6 py-3 rounded-lg hover:from-accent2-brick hover:to-accent1 transition-all duration-300 font-semibold group-hover:scale-105"
+              >
+                Website besuchen
+              </a>
+            </div>
+
+            <div
+              class="group bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative"
+            >
+              <div class="absolute bottom-4 right-4 z-10">
+                <span
+                  class="inline-block bg-accent1/20 text-accent2-plum px-3 py-1 rounded-full text-xs font-semibold border border-accent1/30"
+                >
+                  Gimmeldingen
+                </span>
+              </div>
+              <div class="mb-4">
+                <Image
+                  src={LockerImage}
+                  alt={locker?.name || "Wein-Shop Locker"}
+                  class="w-full h-48 object-cover rounded-lg mb-4"
+                />
+              </div>
+              <h3 class="text-xl font-headline text-text mb-3">
+                {locker?.name || "Wein-Shop Locker"}
+              </h3>
+              <p class="text-text/70 mb-2 font-body">
+                {locker?.address?.street || "Haberackerstr. 19"}
+              </p>
+              <p class="text-text/70 mb-4 font-body">
+                Tel. {locker?.contact?.phone || "06321 6277"}
+              </p>
+              <p class="text-sm text-accent2-plum mb-4 italic font-body">
+                "{
+                  locker?.motto ||
+                    "Selbst hergestellte Spezialitäten aus eigenem Hause"
+                }"
+              </p>
+              <a
+                href={locker?.contact?.website
+                  ? `https://${locker.contact.website}`
+                  : "https://www.weinlocker.de"}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-gradient-to-r from-accent1 to-accent2-brick text-white px-6 py-3 rounded-lg hover:from-accent2-brick hover:to-accent1 transition-all duration-300 font-semibold group-hover:scale-105"
@@ -651,7 +700,7 @@ const thomasSteigelmannMotto = thomasSteigelmann?.motto
               <div class="mb-4">
                 <Image
                   src={CompressedMjVineYardV1}
-                  alt="Weingut Image"
+                  alt={bergdoltReifNett?.name || "Weingut Bergdolt-Reif & Nett"}
                   class="w-full h-48 object-cover rounded-lg mb-4"
                 />
               </div>
@@ -661,8 +710,11 @@ const thomasSteigelmannMotto = thomasSteigelmann?.motto
               <p class="text-text/70 mb-2 font-body">
                 {bergdoltReifNett?.address?.street || "Dudostraße 2"}
               </p>
-              <p class="text-text/70 mb-4 font-body">
+              <p class="text-text/70 mb-2 font-body">
                 Tel. {bergdoltReifNett?.contact?.phone || "06327 2803"}
+              </p>
+              <p class="text-sm text-accent2-plum mb-4 italic font-body">
+                "{bergdoltReifNett?.motto || "weil 08/15 jeder kann"}"
               </p>
               <div
                 class="bg-green-100 text-green-800 px-3 py-2 rounded-lg mb-4"
@@ -674,7 +726,9 @@ const thomasSteigelmannMotto = thomasSteigelmann?.motto
                 >
               </div>
               <a
-                href={`https://${bergdoltReifNett?.contact?.website || "www.nett-weine.de"}/`}
+                href={bergdoltReifNett?.contact?.website
+                  ? `https://${bergdoltReifNett.contact.website}`
+                  : "https://www.nett-weine.de"}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-block bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-lg hover:from-green-700 hover:to-green-800 transition-all duration-300 font-semibold group-hover:scale-105"
