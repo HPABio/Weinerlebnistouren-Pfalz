@@ -215,6 +215,7 @@ const InteractiveToursMobile = ({ images, backgroundImage, className }: Props) =
 
 
   const [selectedMobileTour, setSelectedMobileTour] = useState(mobileTours[0]);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   return (
     <section className={`fixed inset-0 w-full h-full bg-stone-100 ${className} font-sans z-40 mt-[70px] pb-[70px]`}>
@@ -345,33 +346,58 @@ const InteractiveToursMobile = ({ images, backgroundImage, className }: Props) =
         </div>
 
         {/* Horizontal Tour Selector (App-like Dock) */}
-        <div className="w-full overflow-x-auto no-scrollbar px-6 pt-2">
+        <div className="w-full overflow-x-auto no-scrollbar px-6 pt-12">
           <div className="flex gap-4 justify-center w-full px-2">
-            {mobileTours.slice(1).map((tour) => (
-              <button
-                key={tour.id}
-                onClick={() => setSelectedMobileTour(tour)}
-                className={`relative flex-shrink-0 flex flex-col items-center gap-2 group transition-all duration-300 transform ${selectedMobileTour.id === tour.id
+            {mobileTours.slice(1).map((tour) => {
+              const isTarget = tour.id === "mandelbluete" && !hasInteracted;
+              return (
+                <button
+                  key={tour.id}
+                  onClick={() => {
+                    setSelectedMobileTour(tour);
+                    setHasInteracted(true);
+                  }}
+                  className={`relative flex-shrink-0 flex flex-col items-center gap-2 group transition-all duration-300 transform ${selectedMobileTour.id === tour.id
                     ? "scale-100 opacity-100"
                     : "scale-90 opacity-60"
-                  }`}
-              >
-                <div className={`w-16 h-16 rounded-2xl overflow-hidden shadow-md transition-all duration-300 ${selectedMobileTour.id === tour.id
+                    }`}
+                >
+                  {/* Sonar Helper - Refined: Ring only, slower, thicker */}
+                  {isTarget && (
+                    <div className="absolute inset-0 z-0 flex items-center justify-center -translate-y-3 pointer-events-none">
+                      <span className="absolute w-[80%] h-[60%] rounded-2xl border-2 border-stone-800 opacity-1 animate-[ping_2.5s_cubic-bezier(0,0,0.2,1)_infinite]" />
+                    </div>
+                  )}
+
+                  {/* Click Me Helper - To the right, high z-index */}
+                  {isTarget && (
+                    <div className="absolute -top-8 -right-28 z-[60] flex items-center animate-bounce pointer-events-none drop-shadow-md">
+                      <svg className="w-6 h-6 text-stone-800 -rotate-90 mr-1 filter drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                      </svg>
+                      <span className="bg-stone-800 text-stone-100 text-[11px] font-bold px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap border border-stone-600">
+                        Klick mich!
+                      </span>
+                    </div>
+                  )}
+
+                  <div className={`w-16 h-16 rounded-2xl overflow-hidden shadow-md transition-all duration-300 relative z-10 ${selectedMobileTour.id === tour.id
                     ? "ring-2 ring-accent1 ring-offset-2 ring-offset-stone-100"
                     : ""
-                  }`}>
-                  <img
-                    src={tour.images.card}
-                    alt={tour.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <span className={`text-[10px] uppercase font-bold tracking-wider transition-colors duration-300 ${selectedMobileTour.id === tour.id ? "text-accent1" : "text-stone-400"
-                  }`}>
-                  {tour.season}
-                </span>
-              </button>
-            ))}
+                    }`}>
+                    <img
+                      src={tour.images.card}
+                      alt={tour.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <span className={`text-[10px] uppercase font-bold tracking-wider transition-colors duration-300 ${selectedMobileTour.id === tour.id ? "text-accent1" : "text-stone-400"
+                    }`}>
+                    {tour.season}
+                  </span>
+                </button>
+              )
+            })}
           </div>
         </div>
       </div>
