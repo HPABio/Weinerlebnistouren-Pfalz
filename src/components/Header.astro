@@ -226,10 +226,10 @@ const { isStart = false } = Astro.props;
   const handleAnchorClick = (e) => {
     const href = e.target.getAttribute("href");
     if (href && href.includes("#")) {
-      e.preventDefault();
       const targetId = href.split("#")[1];
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
+        e.preventDefault();
         const headerHeight = 70; // Height of the fixed header
         const targetPosition = targetElement.offsetTop - headerHeight;
         window.scrollTo({

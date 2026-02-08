@@ -114,7 +114,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       title: "Von Bacchus bis Christophorus",
       subtitle:
         "Auf dieser Weinwanderung durch Weinberge und malerische Gassen entdecken Sie die Pfalz sowie einige historische Weingüter und tauchen auf einer interaktiven Zeitreise in die Geschichte des regionalen Weinbaus ein.",
-      season: "Frühling - Herbst",
+      season: "Herbst",
       images: {
         card: images.MJBachusMosaicGlass.src,
         background: images.MJBachusMosaicGlass.src,

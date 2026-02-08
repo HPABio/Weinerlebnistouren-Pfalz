@@ -1,222 +1,278 @@
 ---
 const { className } = Astro.props;
 
-
 // Reviews data
 const reviews = [
   {
     text: "Frau Heyl hat mit ihrer freundlichen Art und ihrem fundiertem Wissen, die ganze Gruppe begeistert. Vielen Dank !! Wir kommen wieder !!",
-    date: "8.11.2024"
+    date: "8.11.2024",
   },
   {
     text: "Selbst unsere eingefleischten Pfälzer, die aus der Region kommen und diese Region eigentlich gut kennen, haben viel Interessantes und Neues gehört und gelernt. Die Tour kam megagut in unserer Gruppe an.",
-    date: "13.5.2025"
+    date: "13.5.2025",
   },
   {
     text: "Die Tour war kurzweilig und lustig mit vielen Anekdoten.",
-    date: "9.11.2024"
+    date: "9.11.2024",
   },
   {
-    text: "Die Tour war mit sehr viel Liebe zum Detail vorbereitet – man hat gespürt, wie viel Herzblut in der Gestaltung steckt.", 
-    date: "13.5.2025"
+    text: "Die Tour war mit sehr viel Liebe zum Detail vorbereitet – man hat gespürt, wie viel Herzblut in der Gestaltung steckt.",
+    date: "13.5.2025",
   },
   {
     text: "Die Snacks waren sehr kreativ und haben super zum Thema und zu den Weinen gepasst. Es war sehr schön, dass es auch alkoholfreien Wein gab.",
-    date: "12.11.2024"
+    date: "12.11.2024",
   },
   {
     text: "Frau Heyl, hat es geschafft Geschichte lebendig werden zu lassen. Sie bindet gekonnt Ihr Gäste in die Führung mit ein. Es hat uns sehr viel Spaß gemacht.",
-    date: "29.10.24"
+    date: "29.10.24",
   },
   {
-    text:"Besonders beeindruckt hat mich der Ausblick – die Naturkulisse war traumhaft und hat für einige unvergessliche Momente gesorgt.",
-    date: "13.5.2025"
+    text: "Besonders beeindruckt hat mich der Ausblick – die Naturkulisse war traumhaft und hat für einige unvergessliche Momente gesorgt.",
+    date: "13.5.2025",
   },
   {
     text: "Ein sehr schönes Konzept die Historie durch verteilte Rollen bei den Teilnehmern näher zu bringen. Leckere selbstgemachte Häppchen. Tolle Engagierte Tour-Führerin mit Esprit und Humor!",
-    date: "7.10.2024"
-  }
-  ,
+    date: "7.10.2024",
+  },
   {
-    text:"Die Auswahl der Weine war wirklich hervorragend, jeder Tropfen ein Genuss! Auch die kleinen Snacks waren köstlich und schön angerichtet.",
-    date: "13.5.2025"
-  }
+    text: "Die Auswahl der Weine war wirklich hervorragend, jeder Tropfen ein Genuss! Auch die kleinen Snacks waren köstlich und schön angerichtet.",
+    date: "13.5.2025",
+  },
 ];
-
 ---
 
-<section id="quotes-element" class={`w-full flex justify-center items-center ${className} `}>
-  
-    <!-- Quotes Section -->
-    <div class="px-0 max-w-6xl z-10 w-full relative md:mb-12 md:mt-24 h-[300px] md:h-[450px]">
-      <!-- Desktop Quotes -->
-      <div class="hidden text-center mb-12 md:block">
-        <h2 class="md:mt-0 text-4xl font-extrabold font-bonanova  sm:text-4xl md:text-5xl
-    bg-gray-900/90 text-transparent bg-clip-text py-1 ">
-    ✒︎
-  </h2>
-        <h2 class="text-5xl xl:text-6xl font-bold font-bonanova tracking-tight">
-          <span class="text-accent1">Was unsere Gäste sagen</span>
-        </h2>
-        <p class="text-xl xl:text-xl text-stone-600/80 font-medium">
-          Authentische Erfahrungen von unseren Weinliebhabern
-        </p>
-      </div>
+<section
+  id="quotes-element"
+  class={`w-full flex justify-center items-center ${className} `}
+>
+  <!-- Quotes Section -->
+  <div
+    class="px-0 max-w-6xl z-10 w-full relative md:mb-12 md:mt-24 h-[300px] md:h-[450px]"
+  >
+    <!-- Desktop Quotes -->
+    <div class="hidden text-center mb-12 md:block">
+      <h2
+        class="md:mt-0 text-4xl font-extrabold font-bonanova sm:text-4xl md:text-5xl
+    bg-gray-900/90 text-transparent bg-clip-text py-1"
+      >
+        ✒︎
+      </h2>
+      <h2 class="text-5xl xl:text-6xl font-bold font-bonanova tracking-tight">
+        <span class="text-accent1">Was unsere Gäste sagen</span>
+      </h2>
+      <p class="text-xl xl:text-xl text-stone-600/80 font-medium">
+        Authentische Erfahrungen von unseren Weinliebhabern
+      </p>
+    </div>
 
-      <!-- Mobile Quotes -->
-      <div class="text-center md:hidden flex flex-col items-center justify-center mb-14 sm:mb-0">
-        <h2 class="text-2xl sm:text-3xl font-bold font-bonanova tracking-tight text-nowrap">
-          <span class="text-accent1">Was unsere Gäste sagen</span>
-        </h2>
-        <p class="max-w-60 sm:max-w-72 mx-auto text-sm sm:text-base text-stone-600/80 font-medium leading-tight mt-2">
-          Authentische Erfahrungen unserer Weinliebhaber
-        </p>
-      </div>
-      
-      <div class="relative h-[250px] flex items-center justify-center max-w-xs sm:max-w-xl mx-auto ">
-        <!-- Left Arrow -->
-        <button 
-          id="prev-quote"
-          class="absolute hidden md:block left-4 sm:-left-[5%]  z-20 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-all duration-300 hover:scale-110 group"
-          onclick="previousQuote()"
+    <!-- Mobile Quotes -->
+    <div
+      class="text-center md:hidden flex flex-col items-center justify-center mb-14 sm:mb-0"
+    >
+      <h2
+        class="text-2xl sm:text-3xl font-bold font-bonanova tracking-tight text-nowrap"
+      >
+        <span class="text-accent1">Was unsere Gäste sagen</span>
+      </h2>
+      <p
+        class="max-w-60 sm:max-w-72 mx-auto text-sm sm:text-base text-stone-600/80 font-medium leading-tight mt-2"
+      >
+        Authentische Erfahrungen unserer Weinliebhaber
+      </p>
+    </div>
+
+    <div
+      class="relative h-[250px] flex items-center justify-center max-w-xs sm:max-w-xl mx-auto"
+    >
+      <!-- Left Arrow -->
+      <button
+        id="prev-quote"
+        class="absolute hidden md:block left-4 sm:-left-[5%] z-20 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-all duration-300 hover:scale-110 group"
+        onclick="previousQuote()"
+      >
+        <svg
+          class="w-5 h-5 text-stone-600 group-hover:text-accent1 transition-colors duration-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          <svg class="w-5 h-5 text-stone-600 group-hover:text-accent1 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-          </svg>
-        </button>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
 
-        <!-- Right Arrow -->
-        <button 
-          id="next-quote"
-          class="absolute hidden md:block right-4 sm:-right-[5%] z-20 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-all duration-300 hover:scale-110 group"
-          onclick="nextQuote()"
+      <!-- Right Arrow -->
+      <button
+        id="next-quote"
+        class="absolute hidden md:block right-4 sm:-right-[5%] z-20 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-all duration-300 hover:scale-110 group"
+        onclick="nextQuote()"
+      >
+        <svg
+          class="w-5 h-5 text-stone-600 group-hover:text-accent1 transition-colors duration-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          <svg class="w-5 h-5 text-stone-600 group-hover:text-accent1 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </button>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
 
-        <div id="quotes-container" class="relative w-full max-w-4xl mx-auto px-8">
-          {reviews.map((review, index) => (
-            <div 
+      <div id="quotes-container" class="relative w-full max-w-4xl mx-auto px-8">
+        {
+          reviews.map((review, index) => (
+            <div
               id={`quote-${index}`}
               class={`absolute inset-0 flex flex-col items-center justify-center text-center transition-all duration-1000 ease-in-out ${
-                index === 0 ? 'opacity-100' : 'opacity-0'
+                index === 0 ? "opacity-100" : "opacity-0"
               }`}
             >
               <div class="relative">
-                <svg class="absolute -top-8 -left-8 w-12 h-12 text-accent1/30 transform -rotate-[192deg]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                <svg
+                  class="absolute -top-8 -left-8 w-12 h-12 text-accent1/30 transform -rotate-[192deg]"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
                 <blockquote class="text-lg md:text-xl xl:text-2xl text-text/75 leading-normal sm:leading-relaxed font-medium italic px-8 py-4">
                   "{review.text}"
                 </blockquote>
-                <svg class="absolute -bottom-8 -right-8 w-12 h-12 text-accent1/30 transform rotate-12" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                <svg
+                  class="absolute -bottom-8 -right-8 w-12 h-12 text-accent1/30 transform rotate-12"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
               <p class="text-sm md:text-base text-stone-500 mt-6 font-medium">
                 — {review.date}
               </p>
             </div>
-          ))}
-        </div>
-        
-        <!-- Quote indicators -->
-        <div class="absolute hidden md:block -top-8 left-1/2 transform -translate-x-1/2 space-x-2">
-          {reviews.map((_, index) => (
-            <button 
-              id={`indicator-${index}`}
-              class={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === 0 ? 'bg-accent1/70 scale-110' : 'bg-stone-300 hover:bg-stone-400'
-              }`}
-              onclick={`showQuote(${index})`}
-            ></button>
-          ))}
-          <svg class="w-44 aspect-square text-accent1/10 z-0 mt-2"  fill="currentColor" viewBox="0 0 24 24">
-            <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
-          </svg>
-        </div>
+          ))
+        }
       </div>
 
-      
+      <!-- Quote indicators -->
+      <div
+        class="absolute hidden md:block -top-8 left-1/2 transform -translate-x-1/2 space-x-2"
+      >
+        {
+          reviews.map((_, index) => (
+            <button
+              id={`indicator-${index}`}
+              class={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === 0
+                  ? "bg-accent1/70 scale-110"
+                  : "bg-stone-300 hover:bg-stone-400"
+              }`}
+              onclick={`showQuote(${index})`}
+            />
+          ))
+        }
+        <svg
+          class="w-44 aspect-square text-accent1/10 z-0 mt-2"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"
+          ></path>
+        </svg>
+      </div>
     </div>
-  
+  </div>
 
+  <div
+    class="h-[320px] md:h-[1000px] lg:h-[900px] absolute md:bottom-0 md:left-0 w-screen mx-auto
+    bg-gradient-to-t from-white via-white/95 to-transparent"
+  >
+  </div>
 
-    <div class="h-[320px] md:h-[1000px] lg:h-[900px]  absolute md:bottom-0 md:left-0 w-screen mx-auto
-    bg-gradient-to-t from-white via-white/95 to-transparent"/>
-    
-    <script is:inline define:vars={{ reviews }}>
-      let currentQuoteIndex = 0;
-      const totalQuotes = reviews.length;
-      let autoPlayInterval;
+  <script is:inline define:vars={{ reviews }}>
+    let currentQuoteIndex = 0;
+    const totalQuotes = reviews.length;
+    let autoPlayInterval;
 
-      function showQuote(index) {
-        // Hide current quote
-        const currentQuote = document.getElementById(`quote-${currentQuoteIndex}`);
-        const currentIndicator = document.getElementById(`indicator-${currentQuoteIndex}`);
-        
-        if (currentQuote) {
-          currentQuote.style.opacity = '0';
-          currentQuote.style.transform = 'translateY(20px)';
-        }
-        if (currentIndicator) {
-          currentIndicator.classList.remove('bg-accent1/70', 'scale-110');
-          currentIndicator.classList.add('bg-stone-300');
-        }
+    function showQuote(index) {
+      // Hide current quote
+      const currentQuote = document.getElementById(
+        `quote-${currentQuoteIndex}`,
+      );
+      const currentIndicator = document.getElementById(
+        `indicator-${currentQuoteIndex}`,
+      );
 
-        // Show new quote
-        const newQuote = document.getElementById(`quote-${index}`);
-        const newIndicator = document.getElementById(`indicator-${index}`);
-        
-        if (newQuote) {
-          newQuote.style.opacity = '1';
-          newQuote.style.transform = 'translateY(0)';
-        }
-        if (newIndicator) {
-          newIndicator.classList.add('bg-accent1/70', 'scale-110');
-          newIndicator.classList.remove('bg-stone-300');
-        }
-
-        currentQuoteIndex = index;
+      if (currentQuote) {
+        currentQuote.style.opacity = "0";
+        currentQuote.style.transform = "translateY(20px)";
+      }
+      if (currentIndicator) {
+        currentIndicator.classList.remove("bg-accent1/70", "scale-110");
+        currentIndicator.classList.add("bg-stone-300");
       }
 
-      function nextQuote() {
-        const nextIndex = (currentQuoteIndex + 1) % totalQuotes;
-        showQuote(nextIndex);
+      // Show new quote
+      const newQuote = document.getElementById(`quote-${index}`);
+      const newIndicator = document.getElementById(`indicator-${index}`);
+
+      if (newQuote) {
+        newQuote.style.opacity = "1";
+        newQuote.style.transform = "translateY(0)";
+      }
+      if (newIndicator) {
+        newIndicator.classList.add("bg-accent1/70", "scale-110");
+        newIndicator.classList.remove("bg-stone-300");
       }
 
-      function previousQuote() {
-        const prevIndex = currentQuoteIndex === 0 ? totalQuotes - 1 : currentQuoteIndex - 1;
-        showQuote(prevIndex);
+      currentQuoteIndex = index;
+    }
+
+    function nextQuote() {
+      const nextIndex = (currentQuoteIndex + 1) % totalQuotes;
+      showQuote(nextIndex);
+    }
+
+    function previousQuote() {
+      const prevIndex =
+        currentQuoteIndex === 0 ? totalQuotes - 1 : currentQuoteIndex - 1;
+      showQuote(prevIndex);
+    }
+
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(nextQuote, 5000); // Change quote every 5 seconds
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
       }
+    }
 
-      function startAutoPlay() {
-        autoPlayInterval = setInterval(nextQuote, 5000); // Change quote every 5 seconds
+    // Make functions globally accessible
+    window.showQuote = showQuote;
+    window.nextQuote = nextQuote;
+    window.previousQuote = previousQuote;
+
+    // Initialize
+    document.addEventListener("DOMContentLoaded", function () {
+      startAutoPlay();
+
+      // Pause auto-play when hovering over quotes
+      const quotesContainer = document.getElementById("quotes-container");
+      if (quotesContainer) {
+        quotesContainer.addEventListener("mouseenter", stopAutoPlay);
+        quotesContainer.addEventListener("mouseleave", startAutoPlay);
       }
+    });
+  </script>
+</section>
 
-      function stopAutoPlay() {
-        if (autoPlayInterval) {
-          clearInterval(autoPlayInterval);
-        }
-      }
-
-      // Make functions globally accessible
-      window.showQuote = showQuote;
-      window.nextQuote = nextQuote;
-      window.previousQuote = previousQuote;
-
-      // Initialize
-      document.addEventListener('DOMContentLoaded', function() {
-        startAutoPlay();
-        
-        // Pause auto-play when hovering over quotes
-        const quotesContainer = document.getElementById('quotes-container');
-        if (quotesContainer) {
-          quotesContainer.addEventListener('mouseenter', stopAutoPlay);
-          quotesContainer.addEventListener('mouseleave', startAutoPlay);
-        }
-      });
-    </script>
-</section> 
