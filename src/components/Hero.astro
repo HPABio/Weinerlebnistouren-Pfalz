@@ -1,76 +1,122 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import HWELogoV2NoText from "@images/HWE-LogoV2-noText.svg";
-import CompressedMjVineYardPencilSketch from '@images/compressed/webP/compressed-mj-vineYard-pencilSketch-1.webp';
-
-
+import CompressedMjVineYardPencilSketch from "@images/compressed/webP/compressed-mj-vineYard-pencilSketch-1.webp";
 ---
-<section id="hero" class="w-full h-[100vh] min-h-[650px] md:min-h-[700px] xl:min-h-[800px] relative mt-[-70px] 
-max-h-[800px] md:max-h-none">
-  <div class="w-full h-full  relative
+
+<section
+  id="hero"
+  class="w-full h-[100vh] min-h-[650px] md:min-h-[700px] xl:min-h-[800px] relative mt-[-70px]
+max-h-[800px] md:max-h-none"
+>
+  <div class="w-full h-full relative
   border-b-4 border-blue-500/0">
-        <Image src={CompressedMjVineYardPencilSketch} loading='eager' fetchpriority='high' decoding='async' alt="vineyard washed out colors" class="w-full h-full absolute inset-0 object-cover object-bottom" />
-        <div class="absolute opacity-[100%] top-0 left-0 w-full h-full"
-        style={{
-          backgroundImage: `radial-gradient(ellipse at 50% -250%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,0) 80%)`,
-        }}
-        />
-        <!-- Navbar Background -->
-         <div class="absolute top-0 left-0 w-full h-[70px] bg-stone-50 z-20"/>
-         
-         <!-- Hero Content -->
-          <div class="w-full h-full bg-soft-beige/10 relative
+    <Image
+      src={CompressedMjVineYardPencilSketch}
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      alt="vineyard washed out colors"
+      class="w-full h-full absolute inset-0 object-cover object-bottom"
+    />
+    <div
+      class="absolute opacity-[100%] top-0 left-0 w-full h-full"
+      style={{
+        backgroundImage: `radial-gradient(ellipse at 50% -250%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,0) 80%)`,
+      }}
+    >
+    </div>
+    <!-- Navbar Background -->
+    <div class="absolute top-0 left-0 w-full h-[70px] bg-stone-50 z-20"></div>
+
+    <!-- Hero Content -->
+    <div
+      class="w-full h-full bg-soft-beige/10 relative
           text-4xl font-headline text-white font-bold
-          flex flex-col items-center justify-center">
-             <div class="w-fit h-fit flex flex-col items-center justify-center relative">
-              <div class="w-fit h-fit relative">
-                <div class="hidden w-full h-full absolute top-0 left-0 opacity-30
+          flex flex-col items-center justify-center"
+    >
+      <div
+        class="w-fit h-fit flex flex-col items-center justify-center relative"
+      >
+        <div class="w-fit h-fit relative">
+          <div
+            class="hidden w-full h-full absolute top-0 left-0 opacity-30
                 bg-gradient-to-b from-soft-beige/20 via-soft-beige/10 to-soft-beige/0 rounded-3xl
-                scale-y-[1.4] scale-x-[1.2] translate-y-[10%]"/>
-                <div class="hidden w-[20%] h-[20%] absolute top-0 right-0
+                scale-y-[1.4] scale-x-[1.2] translate-y-[10%]"
+          >
+          </div>
+          <div
+            class="hidden w-[20%] h-[20%] absolute top-0 right-0
                 translate-x-[50%] translate-y-[-50%]
-                border-t-4 border-r-4 border-yellow-800/5  rounded-tr-3xl"/>
-                <div class="w-[20%] h-[30%] absolute bottom-0 left-0
-                translate-x-[-50%] translate-y-[0%]"/>
-                <Image src={HWELogoV2NoText} fetchpriority="high" loading="eager" decoding="async" alt="Logo" class="w-[min(25vw,40vh)] relative min-w-[230px] md:min-w-[260px] max-w-[400px] object-cover"/> 
-              </div>
-              <h1 class="text-[clamp(2rem,6vw,4.5rem)] bg-clip-text text-transparent
+                border-t-4 border-r-4 border-yellow-800/5 rounded-tr-3xl"
+          >
+          </div>
+          <div
+            class="w-[20%] h-[30%] absolute bottom-0 left-0
+                translate-x-[-50%] translate-y-[0%]"
+          >
+          </div>
+          <a
+            href="/tours"
+            class="w-[min(25vw,40vh)] relative min-w-[230px] md:min-w-[260px] max-w-[400px] block cursor-pointer z-50"
+          >
+            <Image
+              src={HWELogoV2NoText}
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+              alt="Logo"
+              class="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
+            />
+          </a>
+        </div>
+        <h1
+          class="text-[clamp(2rem,6vw,4.5rem)] bg-clip-text text-transparent
               bg-gradient-to-r from-red-950/90 via-red-900/90 to-red-950/70
-              font-doulaise font-light px-4 py-1 text-center w-fit mx-auto 
-               drop-shadow-[1px_2px_2px_rgba(255,255,255,0.3)]
-              ">
-              interaktive
-            </h1>
-              <h1 class="w-fit h-fit relative text-[clamp(2rem,6vw,4rem)] md:py-1 lg:py-2
+              font-doulaise font-light px-4 py-1 text-center w-fit mx-auto
+               drop-shadow-[1px_2px_2px_rgba(255,255,255,0.3)]"
+        >
+          interaktive
+        </h1>
+        <h1
+          class="w-fit h-fit relative text-[clamp(2rem,6vw,4rem)] md:py-1 lg:py-2
               -mt-3 sm:-mt-2 md:-mt-0 2xl:-mt-1 text-transparent
-              font-bonanova text-center font-extrabold tracking-tighter uppercase drop-shadow-[2px_3px_4px_rgba(255,255,255,0.6)]
-              ">
-              WeinErlebnistouren
-              <span class="text-gradient-gold absolute top-0 left-0 md:py-1 lg:py-2">WeinErlebnistouren</span>
-              <span class="text-black/70 absolute top-0 left-0 opacity-35 md:py-1 lg:py-2">WeinErlebnistouren</span>
+              font-bonanova text-center font-extrabold tracking-tighter uppercase drop-shadow-[2px_3px_4px_rgba(255,255,255,0.6)]"
+        >
+          WeinErlebnistouren
+          <span class="text-gradient-gold absolute top-0 left-0 md:py-1 lg:py-2"
+            >WeinErlebnistouren</span
+          >
+          <span
+            class="text-black/70 absolute top-0 left-0 opacity-35 md:py-1 lg:py-2"
+            >WeinErlebnistouren</span
+          >
+        </h1>
+      </div>
+    </div>
 
-            </h1>
-             </div>
-            </div>
-
-            <div class="absolute top-0 right-0 px-6 pt-[80px] h-screen w-screen z-10 min-h-[800px]">
-              <a href="http://www.gimmeldingen.de/unser-ort/portrait.html" class="w-fit h-fit text-stone-700 lg:bottom-8 lg:right-10 absolute 
+    <div
+      class="absolute top-0 right-0 px-6 pt-[80px] h-screen w-screen z-10 min-h-[800px]"
+    >
+      <a
+        href="http://www.gimmeldingen.de/unser-ort/portrait.html"
+        class="w-fit h-fit text-stone-700 lg:bottom-8 lg:right-10 absolute
               backdrop-blur-sm bg-gradient-to-r from-stone-100/45 via-stone-200/30 to-stone-100/30
               text-sm md:text-[clamp(0.85rem,1.5vw,1.2rem)] font-bonanova font-light
-              border-[1.5px] border-soft-beige/20 rounded-3xl px-2 block">
-              <span class="text-transparent bg-clip-text bg-stone-300 ">📍</span>
-              Gimmeldingen,
-                <span class="text-stone-800/70 text-xs md:text-[clamp(0.56rem,0.7vw,0.8rem)] pr-2 2xl:pr-4 font-bold">Neustadt an der Weinstraße</span>
-                </a>
-            </div>
-
-
-            
-          </div>
-          <div class="
-          w-full h-[250px] lg:h-[200px] xl:h-[250px] relative bg-gradient-to-t from-white via-white/30 to-white/0 
-          -mt-[250px] lg:-mt-[200px] xl:-mt-[250px]
-          ">
-        </div>
-</section> 
-
+              border-[1.5px] border-soft-beige/20 rounded-3xl px-2 block"
+      >
+        <span class="text-transparent bg-clip-text bg-stone-300">📍</span>
+        Gimmeldingen,
+        <span
+          class="text-stone-800/70 text-xs md:text-[clamp(0.56rem,0.7vw,0.8rem)] pr-2 2xl:pr-4 font-bold"
+          >Neustadt an der Weinstraße</span
+        >
+      </a>
+    </div>
+  </div>
+  <div
+    class="w-full h-[250px] lg:h-[200px] xl:h-[250px] relative bg-gradient-to-t from-white via-white/30 to-white/0
+          -mt-[250px] lg:-mt-[200px] xl:-mt-[250px]"
+  >
+  </div>
+</section>

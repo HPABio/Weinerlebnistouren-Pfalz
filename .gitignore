@@ -23,6 +23,13 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# skill folders
+# .agent/skills/
+# .agents/skills/
+.claude/skills/
+.cursor/skills/
+
+
 # Brigitta's on-site photos
 src/assets/images/onSitePhotos/Brigitta/
 

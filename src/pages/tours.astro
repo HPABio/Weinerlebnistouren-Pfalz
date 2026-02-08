@@ -48,7 +48,8 @@ const images = {
 
   <!-- mobile only -->
   <h1
-    class="text-center text-2xl font-bold sm:hidden h-[20vh] mt-20 items-center justify-center hidden">
+    class="text-center text-2xl font-bold sm:hidden h-[20vh] mt-20 items-center justify-center hidden"
+  >
     🚧 ATTENTION 🚧 <br /> The mobile version of this page is not available at this
     moment
   </h1>
@@ -77,8 +78,10 @@ const images = {
   />
 
   <!-- <GetInTouch className="hidden md:block -mt-[600px]  bg-gradient-to-t from-stone-100 to-transparent" /> -->
-  <GetInTouch
-    className="hidden md:block bg-gradient-to-t from-stone-100 to-transparent mt-10 pb-12"
-  />
+  <div class="hidden md:block">
+    <GetInTouch
+      className="bg-gradient-to-t from-stone-100 to-transparent mt-10 pb-12"
+    />
+  </div>
   <Footer />
 </Layout>
