@@ -12,6 +12,12 @@ interface Props {
 
 const { content = {} } = Astro.props;
 const title = content.title || "Weinerlebnistouren - Pfalz";
+const description = content.description || "Weinerlebnistouren Pfalz - Entdecken Sie die Pfalz von ihrer schönsten Seite.";
+
+// Absolute URLs are important for OpenGraph/Twitter cards.
+import OgImage from "@images/HWE-LogoV2.png";
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
+const ogImageUrl = Astro.site ? new URL(OgImage.src, Astro.site).href : OgImage.src;
 ---
 
 <html lang="de">
@@ -72,11 +78,19 @@ const title = content.title || "Weinerlebnistouren - Pfalz";
     />
       <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
-    {
-      content.description && (
-        <meta name="description" content={content.description} />
-      )
-    }
+    <meta name="description" content={description} />
+
+    <!-- OpenGraph -->
+    <meta property="og:site_name" content="Weinerlebnistouren Pfalz" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content="Weinerlebnistouren Pfalz Logo" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content={OgImage.width.toString()} />
+    <meta property="og:image:height" content={OgImage.height.toString()} />
     <link
       href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Gloock&family=Indie+Flower&family=Lusitana:wght@400;700&family=Monsieur+La+Doulaise&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
       rel="stylesheet"
