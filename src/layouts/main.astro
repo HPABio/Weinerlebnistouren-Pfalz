@@ -15,7 +15,7 @@ const title = content.title || "Weinerlebnistouren - Pfalz";
 const description = content.description || "Weinerlebnistouren Pfalz - Entdecken Sie die Pfalz von ihrer schönsten Seite.";
 
 // Absolute URLs are important for OpenGraph/Twitter cards.
-import OgImage from "@images/HWE-LogoV2.png";
+import OgImage from "@images/OpenGraph_Image_WEP.png";
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
 const ogImageUrl = Astro.site ? new URL(OgImage.src, Astro.site).href : OgImage.src;
 ---
@@ -87,7 +87,7 @@ const ogImageUrl = Astro.site ? new URL(OgImage.src, Astro.site).href : OgImage.
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:image:alt" content="Weinerlebnistouren Pfalz Logo" />
+    <meta property="og:image:alt" content="Weinerlebnistouren Pfalz" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content={OgImage.width.toString()} />
     <meta property="og:image:height" content={OgImage.height.toString()} />
