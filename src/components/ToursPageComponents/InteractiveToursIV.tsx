@@ -41,16 +41,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         bgObjectPosition: "object-contain",
       },
       longDescription: `
-       <p class="mb-4 text-gray-900/80 text-xl">🌸 Mandelblüte/Weinberge •  🍷 5 Weine/5 pfälzischen Snacks  • 🤝 Teamevent/Zeitreise • ⏱️ 4 Stunden/4 km</p>
-        <p class="mb-10">Frühling genießen mit allen Sinnen: Wein, Mandelblüte & Kulturgeschichte erleben: Wenn die Mandelbäume blühen und die Weinberge erwachen, beginnt ein Erlebnis der besonderen Art. Auf unserer interaktiven Weinwanderung erwarten Sie fünf erlesene Weine, perfekt kombiniert mit feinen Mandelköstlichkeiten, dazu lebendig erlebte regionale Geschichten – und all das inmitten einer traumhaften Frühlingskulisse.</p>
-        <ul class="list-disc pl-5 space-y-2 mb-10">
-          <li>Prickelnder Start: Genieße einen rosa Begrüßungs-Secco mit einem Pfälzer Snack bei herrlicher Aussicht!</li>
-          <li>Rosa Wanderlust: Erkunde zartrosa blühende Mandelbäume und die besten Aussichten inmitten malerischer Weinberge</li>
-          <li>Weingenuss der Extraklasse: Lass Dich unterwegs von exzellenten Weinen lokaler Weingüter mit abgestimmten Mandel-Snacks verwöhnen, u.a. einen besonderen Riesling aus der originalen Meerspinn-Lage</li>
-          <li>Geschichten, die begeistern: Erfahre, warum das Mandelblütenfest in Gimmeldingen stattfindet, was Mandeln und Meerspinne gemeinsam haben und warum die Bayern das Oktoberfest den Pfälzern verdanken. Durchlebe dabei interaktiv 700 Jahre Wittelsbacher Monarchie mit ihren Irrungen und Wirrungen – und Du mittendrin!</li>
-          <li>Zum Abschluss wartet eine süße, mandelige Überraschung auf Dich</li>
-        </ul>
-        <p>Ob als Teamerlebnis oder entspannter Ausflug mit Familie, Freunden oder Kollegen – diese Tour vereint Genuss und Natur, macht Geschichte lebendig, stärkt das Miteinander und zeigt Dir Gimmeldingen von seiner schönsten Seite.</p>
+        <p class="mb-10">Geführte Touren durch die Weinberge rund um Gimmeldingen verbinden schöne Ausblicke, spannende Einblicke in die Pfälzer Weinkultur und entspannte Genussmomente. Ideal für alle, die die Landschaft, den Ort und seine Geschichten in angenehmer Begleitung entdecken möchten.</p>
       `,
     },
     {

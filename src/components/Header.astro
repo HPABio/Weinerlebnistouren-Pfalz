@@ -13,16 +13,16 @@ const { isStart = false } = Astro.props;
 <header
   class="w-screen h-[70px] flex items-center justify-center sticky top-0 z-50 backdrop-blur-[5px] shadow-md shadow-stone-400/30 bg-stone-50/40"
 >
-  <nav class="h-full w-screen flex items-center justify-between py-2 px-6">
-    <a href="/#hero" class="text-2xl font-bold text-accent1 z-50">
+  <nav class="flex justify-between items-center px-6 py-2 w-screen h-full">
+    <a href="/#hero" class="z-50 text-2xl font-bold text-accent1">
       <Image
         src={HeylWeintourenLogoNoBottleDark}
         alt="Logo"
-        class="flex h-12 w-auto object-contain my-auto"
+        class="flex object-contain my-auto w-auto h-12"
       />
     </a>
     <ul
-      class="hidden sm:flex space-x-6 font-inter tracking-wider text-xs sm:text-lg font-light my-auto h-full items-center"
+      class="hidden items-center my-auto space-x-6 h-full text-xs font-light tracking-wider sm:flex font-inter sm:text-lg"
     >
       <li>
         <a
@@ -32,6 +32,7 @@ const { isStart = false } = Astro.props;
           {isHome ? "START" : "Start"}
         </a>
       </li>
+      
       <li>
         <a
           href={isTours
@@ -44,9 +45,10 @@ const { isStart = false } = Astro.props;
               ? "hidden group-hover:inline-block absolute top-1 left-3 text-lg font-extrabold font-bonanova bg-stone-50 text-transparent bg-clip-text pt-1"
               : "hidden"}>👉🏼</span
           >
-          {isTours ? "Buchen" : "Touren"}
+          {isTours ? "BUCHEN" : "Buchen"}
         </a>
       </li>
+      
       <li>
         <a
           href="/gruppen"
@@ -60,7 +62,7 @@ const { isStart = false } = Astro.props;
       <li>
         <a
           href={isHome ? "/#about-me" : "/#about-me"}
-          class="hover:text-accent2-wine hover:font-bold transition"
+          class="transition hover:text-accent2-wine hover:font-bold"
           >Über mich</a
         >
       </li>
@@ -75,8 +77,8 @@ const { isStart = false } = Astro.props;
         </a>
       </li>
     </ul>
-    <div class="sm:hidden flex items-center">
-      <button id="menu-btn" class="hamburger z-50 focus:outline-none">
+    <div class="flex items-center sm:hidden">
+      <button id="menu-btn" class="z-50 hamburger focus:outline-none">
         <span class="hamburger-top"></span>
         <span class="hamburger-middle"></span>
         <span class="hamburger-bottom"></span>
@@ -87,9 +89,7 @@ const { isStart = false } = Astro.props;
   <!-- Mobile Menu -->
   <div
     id="menu"
-    class="fixed h-fit w-full inset-0 z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none
-    transition-all duration-300 ease-in-out transform -translate-y-full bg-gradient-to-t from-transparent via-stone-50 to-stone-50
-    pt-12 pb-96"
+    class="flex fixed inset-0 z-40 flex-col justify-center items-center pt-12 pb-96 w-full bg-gradient-to-t from-transparent opacity-0 transition-all duration-300 ease-in-out transform -translate-y-full pointer-events-none h-fit via-stone-50 to-stone-50"
   >
     <ul class="flex flex-col items-center space-y-8">
       <li>
@@ -101,7 +101,7 @@ const { isStart = false } = Astro.props;
         >
       </li>
       <li>
-        <a href="/tours" class="mobile-nav-link text-3xl font-bonanova"
+        <a href="/tours" class="text-3xl mobile-nav-link font-bonanova"
           >TOUREN</a
         >
       </li>
@@ -116,18 +116,15 @@ const { isStart = false } = Astro.props;
       <li>
         <a
           href={isHome ? "/#about-me" : "/#about-me"}
-          class="mobile-nav-link text-3xl font-bonanova">Über mich</a
+          class="text-3xl mobile-nav-link font-bonanova">Über mich</a
         >
       </li>
       <li>
         <a
           href={isHome ? "#get-in-touch-mobile" : "/kontakt"}
-          class={isKontakt
-            ? "inline-flex items-center px-8 py-3 font-semibold text-xl rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50/90 hover:text-amber-950 hover:from-amber-700 hover:to-orange-700 transform hover:scale-105 transition-all duration-200"
-            : "mobile-nav-link text-3xl font-bonanova"}>Kontakt</a
-        >
+          class={isKontakt? "inline-flex items-center px-8 py-3 font-semibold text-xl rounded-full shadow-lg font-bonanova bg-accent2-plum bg-gradient-to-r from-accent2-wine to-accent2-wine/70 text-stone-50/90 hover:text-amber-950 hover:from-amber-700 hover:to-orange-700 transform hover:scale-105 transition-all duration-200":"mobile-nav-link text-3xl font-bonanova"}>
+            Kontakt</a>
       </li>
-      >
     </ul>
   </div>
 </header>
