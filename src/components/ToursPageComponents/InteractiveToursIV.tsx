@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BrigittaHeylPortrait from "@images/BrigittaHeylPortrait.png";
 import HWELogoV2NoText from "@images/HWE-LogoV2-noText.svg";
@@ -9,6 +9,7 @@ import {
   BookingButtonV2toRight,
   BookingButtonV2toLeft,
 } from "../BookingButtons/BookingButtonV2";
+import { TicketTailorTourDatesWidget } from "../TicketTailor/TicketTailorWidgets";
 import { tourStore, type Tour } from "../../store/tourStore";
 
 interface Props {
@@ -24,59 +25,6 @@ interface Props {
   backgroundImage: ImageMetadata;
   className: string;
 }
-
-const TICKET_TAILOR_WIDGET_URL =
-  "https://www.tickettailor.com/events/weinerlebnistourenbrigittaheyl/2209664/select-date?ref=website_widget&show_search_filter=true&show_date_filter=true&show_sort=true";
-
-const TicketTailorWidget = () => {
-  const widgetRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const widget = widgetRef.current;
-
-    if (!widget) {
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://cdn.tickettailor.com/js/widgets/min/widget.js";
-    script.dataset.url = TICKET_TAILOR_WIDGET_URL;
-    script.dataset.type = "inline";
-    script.dataset.inlineMinimal = "true";
-    script.dataset.inlineShowLogo = "false";
-    script.dataset.inlineBgFill = "false";
-    script.dataset.inlineInheritRefFromUrlParam = "";
-    script.dataset.inlineRef = "website_widget";
-
-    widget.appendChild(script);
-
-    return () => {
-      script.remove();
-    };
-  }, []);
-
-  return (
-    <div className="mb-10">
-      <div className="tt-widget" ref={widgetRef}>
-        <div className="tt-widget-fallback">
-          <p>
-            <a href={TICKET_TAILOR_WIDGET_URL} target="_blank">
-              Click here to buy tickets
-            </a>
-            <br />
-            <small>
-              <a
-                href="https://www.tickettailor.com?rf=wdg_311202"
-                className="tt-widget-powered">
-                Sell tickets online with Ticket Tailor
-              </a>
-            </small>
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
   const tours = [
@@ -806,7 +754,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
 
                 {/* Tour Description */}
                 <div className="p-8 lg:p-12 relative bg-stone-50 border-t-[1.2px] border-stone-200 mt-14">
-                  <TicketTailorWidget />
+                  <TicketTailorTourDatesWidget className="mb-10" />
 
                   <AnimatePresence mode="wait">
                     <motion.div
