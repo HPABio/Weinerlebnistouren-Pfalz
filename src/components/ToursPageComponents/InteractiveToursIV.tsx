@@ -11,6 +11,8 @@ import {
 } from "../BookingButtons/BookingButtonV2";
 import { TicketTailorTourDatesWidget } from "../TicketTailor/TicketTailorWidgets";
 import { tourStore, type Tour } from "../../store/tourStore";
+import TicketTailorBigWidget from "../TicketTailor/TicketTaylorBigWidget";
+import TicketTailorSmallWidget from "../TicketTailor/TicketTaylorSmallWidget";
 
 interface Props {
   images: {
@@ -61,9 +63,9 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       },
       // <p class="mb-4">Erlebe mit Freunden, Kollegen und Familie eine unterhaltsame Weinerlebnistour durch die rosa blühenden Weinberge von Gimmeldingen. Geführt von einer zertifizierten Kultur- und Weinbotschafterin erwartet Dich eine spannende Mischung aus Natur, Genuss und kurzweiligen historischen Episoden - perfekt für alle Sinne! Das erwartet dich:</p>
       longDescription: `
-        <p class="mb-4 text-gray-900/80 text-xl">🌸 Mandelblüte/Weinberge •  🍷 5 Weine/5 pfälzischen Snacks  • 🤝 Teamevent/Zeitreise • ⏱️ 4 Stunden/4 km</p>
+        <p class="mb-4 text-xl text-gray-900/80">🌸 Mandelblüte/Weinberge •  🍷 5 Weine/5 pfälzischen Snacks  • 🤝 Teamevent/Zeitreise • ⏱️ 4 Stunden/4 km</p>
         <p class="mb-10">Frühling genießen mit allen Sinnen: Wein, Mandelblüte & Kulturgeschichte erleben: Wenn die Mandelbäume blühen und die Weinberge erwachen, beginnt ein Erlebnis der besonderen Art. Auf unserer interaktiven Weinwanderung erwarten Sie fünf erlesene Weine, perfekt kombiniert mit feinen Mandelköstlichkeiten, dazu lebendig erlebte regionale Geschichten – und all das inmitten einer traumhaften Frühlingskulisse.</p>
-        <ul class="list-disc pl-5 space-y-2 mb-10">
+        <ul class="pl-5 mb-10 space-y-2 list-disc">
           <li>Prickelnder Start: Genieße einen rosa Begrüßungs-Secco mit einem Pfälzer Snack bei herrlicher Aussicht!</li>
           <li>Rosa Wanderlust: Erkunde zartrosa blühende Mandelbäume und die besten Aussichten inmitten malerischer Weinberge</li>
           <li>Weingenuss der Extraklasse: Lass Dich unterwegs von exzellenten Weinen lokaler Weingüter mit abgestimmten Mandel-Snacks verwöhnen, u.a. einen besonderen Riesling aus der originalen Meerspinn-Lage</li>
@@ -88,9 +90,9 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         bgObjectPosition: "object-[50%_36%]",
       },
       longDescription: `
-        <p class="mb-4 text-gray-900/80 text-xl">🌊 Wasser & Wald • 🍷 5 Weine/ regionale Snacks • 🌱 Nachhaltigkeit & Baumpflanzung • ⏱️ 6 Stunden/4, 8 oder 12 km</p>
+        <p class="mb-4 text-xl text-gray-900/80">🌊 Wasser & Wald • 🍷 5 Weine/ regionale Snacks • 🌱 Nachhaltigkeit & Baumpflanzung • ⏱️ 6 Stunden/4, 8 oder 12 km</p>
         <p class="mb-10">Wenn die Sonne hoch steht und das Gimmeldinger Tal in sommerlicher Kühle erstrahlt, beginnt ein nachhaltiges Erlebnis der besonderen Art. Auf unserer interaktiven Weinwanderung entdecken wir die Magie des Mussbachs, erfahren spannende Geschichten über Mühlen, Wasser und Holz und genießen fünf erlesene Weine mit passenden Snacks – inmitten eines grünen, erfrischenden Naturparadieses. Ideal für Teams oder Genießer, die Natur, Nachhaltigkeit und Geschichte verbinden möchten.</p>
-        <ul class="list-disc pl-5 space-y-2 mb-10">
+        <ul class="pl-5 mb-10 space-y-2 list-disc">
           <li>Erfrischender Auftakt: Genieße einen prickelnden Begrüßungswein an einem schattigen Platz  in einem Mussbacher Weingut</li>
           <li>Sommerliche Wanderlust: Entdecke den Mussbach über Lobloch entlang des erfrischenden Bachlaufes bis ins Gimmeldinger Tal auf schattigen Pfaden, durch Wälder und zu historischen Mühlen</li>
           <li>Weingenuss der Extraklasse: Lass Dich unterwegs von fünf regionalen Weinen mit saisonalen Snacks verwöhnen – jedes Glas erzählt von nachhaltiger Weinbaukunst in der Pfalz.</li>
@@ -115,9 +117,9 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         bgObjectPosition: "object-top",
       },
       longDescription: `
-      <p class="mb-4 text-gray-900/80 text-xl">🌿 Weinberge/historischer Ortskern •  🍷 5 Weine/5 Häppchen  • 🤝 Teamevent/Zeitreise • ⏱️ 4 Stunden/4 km</p>
+      <p class="mb-4 text-xl text-gray-900/80">🌿 Weinberge/historischer Ortskern •  🍷 5 Weine/5 Häppchen  • 🤝 Teamevent/Zeitreise • ⏱️ 4 Stunden/4 km</p>
         <p class="mb-10">Ein kulinarisches Gruppenerlebnis, das Gimmeldingen und die Pfalz lebendig macht – interaktiv, spannend und unterhaltsam.</p>
-        <ul class="list-disc pl-5 space-y-2 mb-10">          
+        <ul class="pl-5 mb-10 space-y-2 list-disc">          
           <li>Weinbergwanderung mit großartigen Ausblicken und faszinierenden Einblicken in den Weinbau</li>
           <li>5 ausgewählte Weine von lokalen Winzern und perfekt dazu abgestimmte Leckerbissen</li>
           <li>Spaziergang durch die charmanten Gassen von Gimmeldingen zu 3 historischen Weingütern mit Weinverkostungen</li>
@@ -144,9 +146,9 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         bgObjectPosition: "object-top",
       },
       longDescription: `
-        <p class="mb-4 text-gray-900/80 text-xl"> 🎄 Weihnachtszauber  •  🔥 5 Glühweine & Co+Snacks  • 🤝 Teamevent+Zeitreise • ⏱️ 4 Stunden/4 km</p>
+        <p class="mb-4 text-xl text-gray-900/80"> 🎄 Weihnachtszauber  •  🔥 5 Glühweine & Co+Snacks  • 🤝 Teamevent+Zeitreise • ⏱️ 4 Stunden/4 km</p>
         <p class="mb-10 text-base">Erlebe Gimmeldingen im Lichterglanz: Geniesse ein 5-teiliges Foodpairing aus Secco, drei wärmenden Glühweinen und einem edlen Brand, perfekt ergänzt von weihnachtlichen Häppchen. Die interaktive Tour führt durch stimmungsvoll erleuchtete Gassen, geheimnisvolle Keller und entlang des plätschernden Mussbaches. Begleitet von allerlei mystischen Gestalten tauchen wir ein in weihnachtliche Sagen und Legenden der Pfalz, lauschen verborgenen Geschichten aus Gimmeldingen und spüren den Zauber vergangener Zeiten. Ein Erlebnis voller Genuss, Weihnachtszauber und Gemeinschaft – mitten im Herzen der winterlichen Pfalz.</p>
-        <ul class="list-disc pl-5 space-y-2 mb-10">
+        <ul class="pl-5 mb-10 space-y-2 list-disc">
             <li>Zum Auftakt wirst du mit einem prickelnden Secco und einem pfälzischen Snack in einem historischen Weinkeller willkommen geheißen</li>
             <li>Von dort aus führt dich ein entspannter Spaziergang über rund 4 Kilometer durch romantische Gassen und versteckte Winkel des malerischen Weinorts Gimmeldingen</li>
             <li>Die winterliche Stimmung entlang des plätschernden Mußbachs verleiht der Tour dabei eine ganz besondere Atmosphäre</li>
@@ -181,11 +183,11 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
   }, []);
 
   return (
-    <section className={`min-h-screen text-text relative ${className}`}>
+    <section className={`relative min-h-screen text-text ${className}`}>
       <img
         src={GimmeldingenMap.src}
         alt="Tour Background"
-        className="w-full h-full absolute top-0 left-0 object-cover object-center"
+        className="object-cover object-center absolute top-0 left-0 w-full h-full"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-gray-300 via-transparent to-gray-300/80" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-300 to-transparent" />
@@ -211,14 +213,14 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
             className={`w-full h-full object-cover scale-[2] md:scale-[1.5] lg:scale-[1] ${selectedTour.images.bgObjectPosition}`}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/85" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-r via-transparent from-black/20 to-black/35" />
           <div className="hidden sm:block absolute top-0 left-0 w-full h-[60%] bg-gradient-to-b from-gray-50 via-gray-50/60 to-black/0 z-10" />
           <div className="hidden sm:block absolute top-0 left-0 w-full h-[20%] bg-gradient-to-b from-gray-50 via-gray-50/60 to-black/0 z-10" />
         </motion.div>
 
         {/* Navigation Buttons */}
         {/* Previous Button */}
-        <div className="absolute inset-y-0 left-0 z-20 flex items-center">
+        <div className="flex absolute inset-y-0 left-0 z-20 items-center">
           <motion.button
             onClick={() => {
               const currentIndex = tours.findIndex(
@@ -228,13 +230,13 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                 currentIndex === 1 ? tours.length - 1 : currentIndex - 1;
               setSelectedTour(tours[prevIndex]);
             }}
-            className="ml-6 p-3 lg:p-4 bg-white/20 backdrop-blur-md rounded-full border border-white/30 hover:bg-white/30 hover:scale-110 transition-all duration-300 group"
+            className="p-3 ml-6 rounded-full border backdrop-blur-md transition-all duration-300 lg:p-4 bg-white/20 border-white/30 hover:bg-white/30 hover:scale-110 group"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0, transition: { delay: 1.2 } }}>
             <svg
-              className="w-3 md:w-4 lg:w-6 aspect-square text-white group-hover:text-accent1 transition-colors duration-300"
+              className="w-3 text-white transition-colors duration-300 md:w-4 lg:w-6 aspect-square group-hover:text-accent1"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24">
@@ -249,7 +251,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         </div>
 
         {/* Next Button */}
-        <div className="absolute inset-y-0 right-0 z-20 flex items-center ">
+        <div className="flex absolute inset-y-0 right-0 z-20 items-center">
           <motion.button
             onClick={() => {
               const currentIndex = tours.findIndex(
@@ -259,13 +261,13 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                 currentIndex === tours.length - 1 ? 1 : currentIndex + 1;
               setSelectedTour(tours[nextIndex]);
             }}
-            className="mr-6 p-3 lg:p-4 bg-white/20 backdrop-blur-md rounded-full border border-white/30 hover:bg-white/30 hover:scale-110 transition-all duration-300 group"
+            className="p-3 mr-6 rounded-full border backdrop-blur-md transition-all duration-300 lg:p-4 bg-white/20 border-white/30 hover:bg-white/30 hover:scale-110 group"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0, transition: { delay: 1.2 } }}>
             <svg
-              className="w-3 md:w-4 lg:w-6 aspect-square text-white group-hover:text-accent1 transition-colors duration-300"
+              className="w-3 text-white transition-colors duration-300 md:w-4 lg:w-6 aspect-square group-hover:text-accent1"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24">
@@ -280,11 +282,11 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 h-full w-full flex flex-col justify-center items-center text-center mt-8 px-6 lg:px-12 border-0 border-red-500">
+        <div className="flex relative z-10 flex-col justify-center items-center px-6 mt-8 w-full h-full text-center border-0 border-red-500 lg:px-12">
           {/* Seasonal Badge */}
-          <div className="absolute w-full top-0 bg-white/0 text-text/40 items-center justify-center mx-auto px-10 py-3 backdrop-blur-sm rounded-full">
-            <h4 className="text-text/40 font-semibold text-center">
-              <span className="text-text/40 font-semibold text-center">
+          <div className="absolute top-0 justify-center items-center px-10 py-3 mx-auto w-full rounded-full backdrop-blur-sm bg-white/0 text-text/40">
+            <h4 className="font-semibold text-center text-text/40">
+              <span className="font-semibold text-center text-text/40">
                 {selectedTour.info}
               </span>
             </h4>
@@ -307,11 +309,11 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                 scale: 0.95,
                 transition: { duration: 0.4 },
               }}
-              className="max-w-5xl mx-auto">
+              className="mx-auto max-w-5xl">
               <div
                 className="w-full relative mb-8 leading-[0.9] drop-shadow-2xl border-0 border-amber-500 
               text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-bold font-bonanova text-white">
-                <h1 className="hidden xl:block opacity-0">
+                <h1 className="hidden opacity-0 xl:block">
                   Hidden <br />
                   Title
                 </h1>
@@ -337,8 +339,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                   y: 0,
                   transition: { duration: 0.8, delay: 0.9 },
                 }}
-                className="max-w-lg md:max-w-xl xl:max-w-3xl mx-auto drop-shadow-lg
-                text-sm md:text-lg lg:text-2xl xl:text-3xl text-stone-100 font-playfair leading-relaxed  "
+                className="mx-auto max-w-lg text-sm leading-relaxed drop-shadow-lg md:max-w-xl xl:max-w-3xl md:text-lg lg:text-2xl xl:text-3xl text-stone-100 font-playfair"
                 dangerouslySetInnerHTML={{ __html: selectedTour.subtitle }}
               />
 
@@ -351,13 +352,13 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                   y: 0,
                   transition: { duration: 0.1 },
                 }}
-                className="flex flex-wrap justify-center gap-6 mt-4 lg:mt-8"
+                className="flex flex-wrap gap-6 justify-center mt-4 lg:mt-8"
               >
                 <a
-                  className="inline-flex items-center gap-2 px-6 py-1 md:py-2 lg:py-3 bg-gradient-to-r from-accent1/25 to-accent1/15 backdrop-blur-md rounded-full mb-6 border border-accent1/30 transition-transform duration-200"
+                  className="inline-flex gap-2 items-center px-6 py-1 mb-6 bg-gradient-to-r rounded-full border backdrop-blur-md transition-transform duration-200 md:py-2 lg:py-3 from-accent1/25 to-accent1/15 border-accent1/30"
                   href="https://eveeno.com/de/event-cal/34263?style=grid"
                 >
-                  <span className="text-accent1 font-bold text-xs md:text-sm uppercase tracking-wider">
+                  <span className="text-xs font-bold tracking-wider uppercase text-accent1 md:text-sm">
                     • BUCHEN •
                   </span>
                 </a>
@@ -368,10 +369,10 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       </div>
 
       {/* Main Content Section */}
-      <div className="w-full h-full relative border-0 border-green-500 ">
+      <div className="relative w-full h-full border-0 border-green-500">
         <div className="w-full h-[300px] absolute top-0 left-0 bg-gradient-to-b from-stone-300 via-transparent to-transparent z-0 " />
 
-        <div className="w-full h-full relative flex flex-row items-center justify-center z-10  border-0 border-yellow-500 ">
+        <div className="flex relative z-10 flex-row justify-center items-center w-full h-full border-0 border-yellow-500">
           {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -383,13 +384,13 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
             className="absolute -top-[65px] xl:top-[10%] -translate-y-4 right-3 lg:right-6 z-20 flex flex-col lg:flex-row items-center  gap-2
                   text-gray-400 2xl:hidden">
             {/* <p className="block lg:hidden">scroll down</p> */}
-            <p className="hidden lg:block leading-tight lg:pt-1">
+            <p className="hidden leading-tight lg:block lg:pt-1">
               scroll <br /> down
             </p>
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-4 lg:w-6 h-8 lg:h-10 border-2 border-stone-50/50 xl:border-black/50 rounded-full flex justify-center">
+              className="flex justify-center w-4 h-8 rounded-full border-2 lg:w-6 lg:h-10 border-stone-50/50 xl:border-black/50">
               <motion.div
                 animate={{ y: [0, 12, 0] }}
                 transition={{
@@ -397,14 +398,14 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="w-1 h-2 lg:h-3 bg-stone-50/70 xl:bg-black/70 rounded-full mt-2"
+                className="mt-2 w-1 h-2 rounded-full lg:h-3 bg-stone-50/70 xl:bg-black/70"
               />
             </motion.div>
             <p className="text-[0.5rem] block lg:hidden">scroll down</p>
           </motion.div>
 
           {/* Enhanced Tour Selection Navbar */}
-          <div className="mt-4 xl:mt-9 2xl:mt-10  border-0 border-red-500">
+          <div className="mt-4 border-0 border-red-500 xl:mt-9 2xl:mt-10">
             <div className="sticky top-8">
               <div
                 className="flex flex-row items-center justify-center w-[75vw] lg:w-[65vw] 
@@ -426,7 +427,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                         y: 0,
                         transition: { delay: index * 0.05 },
                       }}>
-                      <div className="w-full h-full relative group transition-all duration-500 ">
+                      <div className="relative w-full h-full transition-all duration-500 group">
                         <img
                           src={tour.images.card}
                           alt={tour.title}
@@ -435,17 +436,17 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                             : "group-hover:scale-110 group-hover:contrast-100 brightness-[1] contrast-[1]"
                             }`}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent pointer-events-none via-black/30" />
 
                         {/* season Badge */}
                         {/* <div className="hidden absolute top-4 right-4">
-                                <span className="px-3 py-1 bg-white/95 backdrop-blur-sm text-gray-800 text-xs font-bold rounded-full shadow-sm border border-white/20">
+                                <span className="px-3 py-1 text-xs font-bold text-gray-800 rounded-full border shadow-sm backdrop-blur-sm bg-white/95 border-white/20">
                                   {tour.season}
                                 </span>
                               </div> */}
 
                         {/* Tour Season */}
-                        <div className="absolute bottom-4 left-4 right-4 ">
+                        <div className="absolute right-4 bottom-4 left-4">
                           <h4
                             className="text-white/40 font-bold font-bonanova
                                 text-[0.6rem] md:text-[0.5rem] lg:text-[0.8rem] xl:text-[0.9rem] group-hover:text-white leading-tight drop-shadow-lg">
@@ -453,7 +454,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                           </h4>
                         </div>
                         {/* Tour Title
-                        <div className="absolute bottom-4 left-4 right-4 ">
+                        <div className="absolute right-4 bottom-4 left-4">
                           <h4
                             className="text-white/40 font-bold font-bonanova
                                 text-[0.6rem] md:text-[0.5rem] lg:text-[0.8rem] xl:text-[0.9rem] group-hover:text-white leading-tight drop-shadow-lg">
@@ -462,7 +463,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                         </div> */}
 
                         {/* Hover Effect Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 mix-blend-color-burn to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute inset-0 bg-gradient-to-t to-transparent opacity-0 mix-blend-color-burn transition-opacity duration-300 from-black/70 group-hover:opacity-100" />
                       </div>
                     </motion.div>
                   );
@@ -473,32 +474,32 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
         </div>
 
         {/* Enhanced Tour Details Section */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-12 z-20 -mt-16 border-0 border-blue-500">
+        <div className="z-20 px-6 pb-12 mx-auto -mt-16 max-w-7xl border-0 border-blue-500 lg:px-12">
           <div className="grid grid-cols-1">
-            <div className="lg:col-span-3 order-1 lg:order-2">
-              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-stone-100 ">
+            <div className="order-1 lg:col-span-3 lg:order-2">
+              <div className="overflow-hidden bg-white rounded-3xl border shadow-2xl border-stone-100">
                 {/* Tour Header */}
-                <div className="hidden relative bg-stone-100 bg-gradient-to-r from-stone-50 to-amber-50/40 p-8 lg:p-12 pt-24 lg:pt-28 2xl:pt-28">
+                <div className="hidden relative p-8 pt-24 bg-gradient-to-r bg-stone-100 from-stone-50 to-amber-50/40 lg:p-12 lg:pt-28 2xl:pt-28">
                   {/* Decorative Image */}
-                  <div className="absolute top-0 right-0 w-2/5 h-full z-0 overflow-hidden">
+                  <div className="overflow-hidden absolute top-0 right-0 z-0 w-2/5 h-full">
                     <img
                       src={selectedTour.images.card}
                       alt={selectedTour.title}
-                      className="w-full h-full object-cover object-top grayscale contrast-150 opacity-20"
+                      className="object-cover object-top w-full h-full opacity-20 contrast-150 grayscale"
                     />
                     {/* Tour Information Display - Auto Cycling - Background */}
-                    <div className="w-full h-full absolute top-0 left-0 flex flex-col justify-center items-center py-8 pr-4 ">
+                    <div className="flex absolute top-0 left-0 flex-col justify-center items-center py-8 pr-4 w-full h-full">
                       <AnimatePresence mode="wait">
                         {/* Distance Block */}
                         {currentInfoIndex === 0 && (
                           <motion.div
                             key="distance"
-                            className="w-full flex flex-col items-center justify-center relative h-full"
+                            className="flex relative flex-col justify-center items-center w-full h-full"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 1.2 }}>
-                            <div className="relative flex flex-col items-center pt-8 pl-6 ">
+                            <div className="flex relative flex-col items-center pt-8 pl-6">
                               <h2 className="text-[28rem] leading-none text-text/40 lg:text-text/50 xl:text-text/70 font-bold">
                                 4
                                 <span className="text-[6rem] font-sourcesans">
@@ -513,12 +514,12 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                         {currentInfoIndex === 1 && (
                           <motion.div
                             key="duration"
-                            className="w-full flex flex-col items-center justify-center relative h-full"
+                            className="flex relative flex-col justify-center items-center w-full h-full"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 1.2 }}>
-                            <div className="relative flex flex-col items-center pt-8 pl-6 ">
+                            <div className="flex relative flex-col items-center pt-8 pl-6">
                               <h2 className="text-[28rem] leading-none text-text/40 lg:text-text/50 xl:text-text/70 font-bold">
                                 4
                                 <span className="text-[10rem] font-sourcesans">
@@ -533,12 +534,12 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                         {currentInfoIndex === 2 && (
                           <motion.div
                             key="wines"
-                            className="w-full flex flex-col items-center justify-center relative h-full"
+                            className="flex relative flex-col justify-center items-center w-full h-full"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 1.2 }}>
-                            <div className="relative flex flex-col items-center pt-2 ">
+                            <div className="flex relative flex-col items-center pt-2">
                               <h2 className="text-[30rem] leading-none text-text/30 font-bold">
                                 5
                               </h2>
@@ -550,12 +551,12 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                         {currentInfoIndex === 3 && (
                           <motion.div
                             key="people"
-                            className="w-full flex flex-col items-center justify-center relative h-full"
+                            className="flex relative flex-col justify-center items-center w-full h-full"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 1.2 }}>
-                            <div className="relative flex flex-col items-center">
+                            <div className="flex relative flex-col items-center">
                               <h2 className="text-[18rem] lg:text-[20rem] xl:text-[24rem] leading-none text-text/40 lg:text-text/50 xl:text-text/70 font-bold">
                                 28
                               </h2>
@@ -565,25 +566,24 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                       </AnimatePresence>
                     </div>
 
-                    <div className="w-full h-full absolute top-0 right-0 bg-gradient-to-r from-stone-100 to-amber-50/40" />
+                    <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-r from-stone-100 to-amber-50/40" />
                     <div
-                      className="w-full h-full flex flex-col justify-center items-center
-                      absolute top-0 right-0 bg-gradient-to-r from-amber-50/40 to-transparent">
+                      className="flex absolute top-0 right-0 flex-col justify-center items-center w-full h-full bg-gradient-to-r to-transparent from-amber-50/40">
                       {/* Tour Information Display - Auto Cycling */}
-                      <div className="w-full h-full flex flex-col justify-center items-center py-8 pr-4 ">
+                      <div className="flex flex-col justify-center items-center py-8 pr-4 w-full h-full">
                         <AnimatePresence mode="wait">
                           {/* Distance Block */}
                           {currentInfoIndex === 0 && (
                             <motion.div
                               key="distance"
-                              className="w-full flex flex-col items-center justify-center relative h-full"
+                              className="flex relative flex-col justify-center items-center w-full h-full"
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -20 }}
                               transition={{ duration: 1.2 }}>
                               <div className="relative flex flex-col items-center justify-center pt-32 h-[90%]">
                                 <svg
-                                  className="w-20 lg:w-35 aspect-square text-accent1 z-10"
+                                  className="z-10 w-20 lg:w-35 aspect-square text-accent1"
                                   fill="currentColor"
                                   stroke="none"
                                   viewBox="0 0 480.1 501.91">
@@ -595,10 +595,10 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                                   />
                                 </svg>
                               </div>
-                              <p className="text-lg font-sourcesans text-center text-text/40">
+                              <p className="text-lg text-center font-sourcesans text-text/40">
                                 ungefähre
                               </p>
-                              <p className="text-3xl lg:text-5xl text-stone-600 font-medium -mt-1 text-center">
+                              <p className="-mt-1 text-3xl font-medium text-center lg:text-5xl text-stone-600">
                                 Strecke
                               </p>
                             </motion.div>
@@ -608,14 +608,14 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                           {currentInfoIndex === 1 && (
                             <motion.div
                               key="duration"
-                              className="w-full flex flex-col items-center justify-center relative h-full"
+                              className="flex relative flex-col justify-center items-center w-full h-full"
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -20 }}
                               transition={{ duration: 1.2 }}>
                               <div className="relative flex flex-col items-center justify-center pt-32 h-[90%]">
                                 <svg
-                                  className="w-14 lg:w-20 aspect-square text-accent1 z-10"
+                                  className="z-10 w-14 lg:w-20 aspect-square text-accent1"
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 24 24">
@@ -627,10 +627,10 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                                   />
                                 </svg>
                               </div>
-                              <p className="text-lg font-sourcesans text-center text-text/40">
+                              <p className="text-lg text-center font-sourcesans text-text/40">
                                 ungefähre
                               </p>
-                              <p className="text-3xl lg:text-5xl text-stone-600 font-medium -mt-1 text-center">
+                              <p className="-mt-1 text-3xl font-medium text-center lg:text-5xl text-stone-600">
                                 Dauer
                               </p>
                             </motion.div>
@@ -640,14 +640,14 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                           {currentInfoIndex === 2 && (
                             <motion.div
                               key="wines"
-                              className="w-full flex flex-col items-center justify-center relative h-full"
+                              className="flex relative flex-col justify-center items-center w-full h-full"
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -20 }}
                               transition={{ duration: 1.2 }}>
                               <div className="relative flex flex-col items-center justify-center pt-32 h-[90%]">
                                 <svg
-                                  className="w-14 lg:w-24 aspect-square text-accent1 z-10"
+                                  className="z-10 w-14 lg:w-24 aspect-square text-accent1"
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 32 32">
@@ -661,10 +661,10 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                                   <path d="M14.5 26H12a.5.5 0 0 1 0-1h2v-7h-2a.5.5 0 0 1 0-1h2.5c.276 0 .5.474.5.75v8c0 .276-.224.25-.5.25z" />
                                 </svg>
                               </div>
-                              <p className="text-lg font-sourcesans text-center text-text/40">
+                              <p className="text-lg text-center font-sourcesans text-text/40">
                                 ausgewählte
                               </p>
-                              <p className="text-3xl lg:text-5xl text-stone-600 font-medium -mt-1 text-center">
+                              <p className="-mt-1 text-3xl font-medium text-center lg:text-5xl text-stone-600">
                                 Weine
                               </p>
                             </motion.div>
@@ -674,14 +674,14 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                           {currentInfoIndex === 3 && (
                             <motion.div
                               key="people"
-                              className="w-full flex flex-col items-center justify-center relative h-full"
+                              className="flex relative flex-col justify-center items-center w-full h-full"
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -20 }}
                               transition={{ duration: 1.2 }}>
                               <div className="relative flex flex-col items-center justify-center pt-32 h-[90%]">
                                 <svg
-                                  className="w-14 lg:w-24 aspect-square text-accent1 z-10"
+                                  className="z-10 w-14 lg:w-24 aspect-square text-accent1"
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 24 24">
@@ -696,7 +696,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                               <p className="text-lg font-sourcesans text-text/40">
                                 bis zu
                               </p>
-                              <p className="text-3xl lg:text-5xl text-stone-600 font-medium -mt-1 text-center">
+                              <p className="-mt-1 text-3xl font-medium text-center lg:text-5xl text-stone-600">
                                 Personen
                               </p>
                             </motion.div>
@@ -721,11 +721,11 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                         y: -20,
                         transition: { duration: 0.3 },
                       }}>
-                      <div className="flex flex-row lg:items-center lg:justify-between gap-6 z-20 relative">
+                      <div className="flex relative z-20 flex-row gap-6 lg:items-center lg:justify-between">
                         <div>
-                          <div className="flex items-center gap-3 mb-4 ">
+                          <div className="flex gap-3 items-center mb-4">
                             <div>
-                              <p className="text-accent1 font-semibold text-sm uppercase tracking-wider z-20 ">
+                              <p className="z-20 text-sm font-semibold tracking-wider uppercase text-accent1">
                                 •{" "}
                                 {selectedTour.id === "welcome"
                                   ? tours[1].info
@@ -739,8 +739,8 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                               </h2>
                             </div>
                           </div>
-                          <div className="w-24 h-1 bg-gradient-to-r from-accent1 to-accent1/60 rounded-full" />
-                          <div className="w-full flex justify-between items-start border-0 border-green-500">
+                          <div className="w-24 h-1 bg-gradient-to-r rounded-full from-accent1 to-accent1/60" />
+                          <div className="flex justify-between items-start w-full border-0 border-green-500">
                             {/* Booking Button HERE */}
                             {/* <BookingButtonV1 /> */}
                             <BookingButtonV2toRight classNames="w-[450px] h-full -ml-3 mt-4 justify-start border-0 border-blue-500" />
@@ -754,7 +754,11 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
 
                 {/* Tour Description */}
                 <div className="p-8 lg:p-12 relative bg-stone-50 border-t-[1.2px] border-stone-200 mt-14">
-                  <TicketTailorTourDatesWidget className="mb-10" />
+                  {/* <TicketTailorTourDatesWidget className="mb-10" /> */}
+                  {selectedTour.season === "Herbst" && <TicketTailorBigWidget />}
+                  {selectedTour.season === "Sommer" && <TicketTailorSmallWidget />}
+                  
+
 
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -771,18 +775,14 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                         transition: { duration: 0.3 },
                       }}>
                       <div className="mb-8">
-                        <h3 className="text-2xl font-bold font-bonanova text-gray-800 mb-6 flex items-center gap-3">
+                        <h3 className="flex gap-3 items-center mb-6 text-2xl font-bold text-gray-800 font-bonanova">
                           Was Sie erwartet
                         </h3>
                       </div>
 
                       <div className="relative pb-12">
                         <div
-                          className="prose prose-lg max-w-none text-gray-900/70 font-body leading-relaxed
-                                    prose-headings:font-bonanova prose-headings:text-gray-800
-                                    prose-strong:text-gray-800 prose-strong:font-semibold
-                                    prose-ul:space-y-3 prose-li:text-gray-700
-                                    prose-p:text-gray-700 prose-p:leading-relaxed"
+                          className="max-w-none leading-relaxed prose prose-lg text-gray-900/70 font-body prose-headings:font-bonanova prose-headings:text-gray-800 prose-strong:text-gray-800 prose-strong:font-semibold prose-ul:space-y-3 prose-li:text-gray-700 prose-p:text-gray-700 prose-p:leading-relaxed"
                           dangerouslySetInnerHTML={{
                             __html: selectedTour.longDescription,
                           }}
@@ -815,11 +815,11 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
       </div>
 
       {/* Enhanced Get In Touch Section */}
-      <div className="relative bg-gradient-to-br from-stone-50 to-white border-t border-stone-200 overflow-hidden">
+      <div className="overflow-hidden relative bg-gradient-to-br to-white border-t from-stone-50 border-stone-200">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 right-20 w-32 h-32 bg-accent1 rounded-full" />
-          <div className="absolute bottom-20 left-20 w-24 h-24 bg-accent1 rounded-full" />
+          <div className="absolute top-20 right-20 w-32 h-32 rounded-full bg-accent1" />
+          <div className="absolute bottom-20 left-20 w-24 h-24 rounded-full bg-accent1" />
         </div>
         <div className="relative z-10">{/* <GetInTouch className="" /> */}</div>
       </div>
