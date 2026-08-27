@@ -19,6 +19,7 @@ const InteractiveToursMobile = ({ images, backgroundImage, className }: Props) =
   const mobileTours = [
     {
       id: "welcome",
+      bookingUrl: "https://eveeno.com/de/event-cal/34263?style=grid",
       info: "Touren & Events",
       title: "Entdecken Sie meine interaktiven Touren",
       subtitle:
@@ -49,6 +50,7 @@ const InteractiveToursMobile = ({ images, backgroundImage, className }: Props) =
     },
     {
       id: "mandelbluete",
+      bookingUrl: "https://eveeno.com/Mandelbluete",
       info: "Frühling",
       title: "Mandelblüte, Meerspinne und Monarchen",
       subtitle:
@@ -90,6 +92,7 @@ const InteractiveToursMobile = ({ images, backgroundImage, className }: Props) =
     },
     {
       id: "mussbach",
+      bookingUrl: "https://eveeno.com/mussbach",
       info: "Sommer",
       title: "Magischer Mussbach",
       subtitle:
@@ -131,6 +134,7 @@ const InteractiveToursMobile = ({ images, backgroundImage, className }: Props) =
     },
     {
       id: "bacchus",
+      bookingUrl: "https://eveeno.com/bacchus",
       info: "Herbst",
       title: "Von Bacchus bis Christophorus",
       subtitle:
@@ -172,6 +176,7 @@ const InteractiveToursMobile = ({ images, backgroundImage, className }: Props) =
     },
     {
       id: "gluehwein",
+      bookingUrl: "https://eveeno.com/gluehwein",
       info: "Winter",
       title: "Geheimnisvolles Gimmeldingen",
       subtitle:
@@ -329,13 +334,15 @@ const InteractiveToursMobile = ({ images, backgroundImage, className }: Props) =
         {/* Booking Button - Floating above nav */}
         <div className="w-full flex justify-center -mt-10 mb-6 px-6 relative z-40">
           <a
-            href="https://eveeno.com/de/event-cal/34263?style=grid"
+            href={selectedMobileTour.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full max-w-[280px] shadow-2xl shadow-accent1/20 group"
           >
             <div className="relative bg-gradient-to-r from-accent1 to-accent1/90 rounded-full py-3 px-6 flex items-center justify-between transition-all group-hover:scale-105 group-hover:brightness-110 ring-4 ring-stone-100 ring-offset-0">
-              <span className="text-white font-bold tracking-wider uppercase text-xs pl-2">Jetzt Buchen</span>
+              <span className="text-white font-bold tracking-wider uppercase text-xs pl-2">
+                {selectedMobileTour.id === "welcome" ? "Jetzt Buchen" : "Tour buchen"}
+              </span>
               <div className="bg-white/20 rounded-full p-1.5 backdrop-blur-sm">
                 <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

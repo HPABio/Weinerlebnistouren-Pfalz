@@ -14,3 +14,26 @@ GMAIL_APP_PASSWORD=your-app-password-here
 
 # Optional: Change the recipient email address
 # RECIPIENT_EMAIL=hendrikcooper@gmx.de
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Google Business Profile API (Google-Rezensionen)
+#
+# Nur nötig, wenn die Rezensionen automatisch geholt werden sollen
+# (bun run reviews:fetch). Ohne diese Werte greift die manuelle Pflege
+# in src/data/socialProof.ts.
+#
+# ACHTUNG: Die Business Profile APIs müssen für das Cloud-Projekt erst
+# freigeschaltet werden — die Standardquote ist 0.
+# https://developers.google.com/my-business/content/prereqs
+# ─────────────────────────────────────────────────────────────────────────────
+
+# OAuth-Client (Typ "Webanwendung"), Redirect-URI: http://localhost:5789/oauth2callback
+GOOGLE_CLIENT_ID=xxxxxxxx.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=your-client-secret
+
+# Einmalig erzeugen mit: bun run reviews:auth
+GOOGLE_REFRESH_TOKEN=your-refresh-token
+
+# IDs anzeigen mit: bun run reviews:fetch --list
+GOOGLE_ACCOUNT_ID=1234567890
+GOOGLE_LOCATION_ID=9876543210

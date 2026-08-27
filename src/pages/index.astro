@@ -7,16 +7,24 @@ import BubbleSection from "@/components/BubbleSection.astro";
 import OpenerSection from "@/components/OpenerSection.astro";
 import AboutMe from "@/components/AboutMe.astro";
 import ScreenSizeDEVTOOL from "@/components/ScreenSizeDEVTOOL.astro";
+import StickyBookingButton from "@/components/BookingButtons/StickyBookingButton.astro";
+import GoogleReviews from "@/components/SocialProof/GoogleReviews.astro";
+import TripAdvisorReviews from "@/components/SocialProof/TripAdvisorReviews.astro";
+import LinkedInArticles from "@/components/SocialProof/LinkedInArticles.astro";
 ---
 
 <Layout content={{ title: "Weinerlebnistouren - Pfalz" }}>
   <!-- <ScreenSizeDEVTOOL /> -->
   <Header isHome={true} />
+  <StickyBookingButton watch="#hero-location-badge" label="Tour buchen" />
   <main>
     <Hero />
     <OpenerSection />
     <BubbleSection loading="lazy" />
     <AboutMe loading="lazy" fetchpriority="low" />
+    <GoogleReviews />
+    <TripAdvisorReviews />
+    <LinkedInArticles />
   </main>
   <Footer loading="lazy" fetchpriority="low" />
 </Layout>

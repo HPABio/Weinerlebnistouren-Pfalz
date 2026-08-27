@@ -1,0 +1,235 @@
+---
+/**
+ * LinkedIn-Artikel-Widget.
+ *
+ * Zeigt LinkedIn-Beiträge/Artikel als Karten. Ist zu einem Artikel eine
+ * `embedUrn` hinterlegt, kann der Beitrag direkt auf der Seite geladen werden —
+ * allerdings erst nach einem ausdrücklichen Klick ("Zwei-Klick-Lösung").
+ *
+ * Warum Zwei-Klick: Das LinkedIn-iframe baut eine Verbindung zu LinkedIn auf und
+ * setzt Cookies. Ohne vorherige Einwilligung wäre das nach DSGVO/TDDDG nicht
+ * zulässig. Vor dem Klick verlässt kein einziges Byte die eigene Domain.
+ */
+import {
+  linkedInArticles,
+  linkedInProfileUrl,
+  type LinkedInArticle,
+} from "@/data/socialProof";
+
+interface Props {
+  articles?: LinkedInArticle[];
+  profileUrl?: string;
+  eyebrow?: string;
+  title?: string;
+  class?: string;
+}
+
+const {
+  articles = linkedInArticles,
+  profileUrl = linkedInProfileUrl,
+  eyebrow = "Aus dem Weinberg geschrieben",
+  title = "Artikel auf LinkedIn",
+  class: className = "",
+} = Astro.props;
+
+const hasArticles = articles.length > 0;
+const LI_BLUE = "#0A66C2";
+---
+
+<section
+  class={`relative w-full overflow-hidden bg-stone-50 ${hasArticles ? "py-20 sm:py-24" : "py-14 sm:py-16"} ${className}`}
+  aria-labelledby="linkedin-articles-title"
+>
+  <div
+    class="absolute inset-0 bg-gradient-to-b to-transparent pointer-events-none from-white via-stone-50"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative z-10 px-6 mx-auto max-w-6xl">
+    <header class={`mx-auto max-w-2xl text-center ${hasArticles ? "mb-14" : "mb-6"}`}>
+      <p
+        class="text-xs font-semibold tracking-[0.22em] uppercase text-accent1 font-body sm:text-sm"
+      >
+        {eyebrow}
+      </p>
+
+      <h2
+        id="linkedin-articles-title"
+        class="flex flex-wrap gap-x-3 gap-y-1 justify-center items-center mt-2 text-4xl font-extrabold tracking-tight text-gray-900 font-bonanova sm:text-5xl"
+      >
+        <svg
+          class="w-8 h-8 rounded-md shrink-0 sm:h-9 sm:w-9"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <rect width="24" height="24" rx="4" fill={LI_BLUE}></rect>
+          <path
+            fill="#fff"
+            d="M7.2 9.6H4.8v9.6h2.4V9.6ZM6 4.8a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8Zm7.6 4.6c-1.2 0-2 .64-2.36 1.26h-.04V9.6H8.9v9.6h2.4v-4.75c0-1.25.24-2.46 1.79-2.46 1.53 0 1.55 1.43 1.55 2.54v4.67h2.4v-5.15c0-2.63-.57-4.65-3.44-4.65Z"
+          ></path>
+        </svg>
+        <span>{title}</span>
+      </h2>
+    </header>
+
+    {
+      hasArticles ? (
+        <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" role="list">
+          {articles.map((article, index) => (
+            <li class="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-stone-200/80 bg-white shadow-[0_18px_40px_-28px_rgba(75,58,43,0.55)] transition-all duration-300 hover:-translate-y-1 hover:border-[#0A66C2]/35 hover:shadow-[0_26px_52px_-28px_rgba(75,58,43,0.6)]">
+              {/* Farbige Kante als Akzent */}
+              <span
+                class="block h-1 w-full bg-gradient-to-r from-[#0A66C2] via-[#0A66C2]/60 to-accent1/50"
+                aria-hidden="true"
+              />
+
+              <div class="flex flex-col flex-1 p-6 sm:p-7">
+                {article.publishedAt && (
+                  <p class="mb-3 text-xs font-semibold tracking-[0.16em] uppercase text-text/45 font-body">
+                    {article.publishedAt}
+                  </p>
+                )}
+
+                <h3 class="text-xl font-bold leading-snug text-gray-900 font-bonanova">
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="decoration-2 underline-offset-4 transition-colors hover:text-[#0A66C2] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent1 focus-visible:ring-offset-2 rounded-sm"
+                  >
+                    {article.title}
+                  </a>
+                </h3>
+
+                {article.description && (
+                  <p class="mt-3 text-[0.95rem] leading-relaxed text-text/70 font-body">
+                    {article.description}
+                  </p>
+                )}
+
+                {article.embedUrn && (
+                  <div
+                    class="li-embed mt-5"
+                    data-urn={article.embedUrn}
+                    data-index={String(index)}
+                  >
+                    <button
+                      type="button"
+                      class="li-embed-btn inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-dashed border-[#0A66C2]/40 bg-[#0A66C2]/5 px-4 py-3 font-body text-sm font-semibold text-[#0A66C2] transition-colors hover:bg-[#0A66C2]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66C2] focus-visible:ring-offset-2"
+                    >
+                      <svg
+                        class="w-4 h-4"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 5v14" />
+                        <path d="m19 12-7 7-7-7" />
+                      </svg>
+                      Beitrag von LinkedIn laden
+                    </button>
+                    <p class="mt-2 text-[0.7rem] leading-snug text-text/45 font-body">
+                      Beim Laden wird eine Verbindung zu LinkedIn hergestellt.
+                      Es gelten die{" "}
+                      <a
+                        href="https://www.linkedin.com/legal/privacy-policy"
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                        class="underline underline-offset-2 hover:text-[#0A66C2]"
+                      >
+                        Datenschutzhinweise von LinkedIn
+                      </a>
+                      .
+                    </p>
+                  </div>
+                )}
+
+                <a
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-auto inline-flex items-center gap-1.5 pt-6 font-body text-sm font-semibold text-text/60 transition-colors hover:text-[#0A66C2]"
+                >
+                  Auf LinkedIn lesen
+                  <svg
+                    class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 17 17 7" />
+                    <path d="M8 7h9v9" />
+                  </svg>
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="mx-auto max-w-xl text-center text-base leading-relaxed text-text/65 font-body">
+          Hintergründe zu Wein, Region und Geschichte — regelmäßig auf LinkedIn.
+        </p>
+      )
+    }
+
+    <div class={`text-center ${hasArticles ? "mt-12" : "mt-8"}`}>
+      <a
+        href={profileUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex gap-2.5 items-center px-6 py-3 font-bold tracking-[0.1em] text-sm uppercase bg-white rounded-full border shadow-sm transition-all duration-300 group font-bonanova border-stone-300 text-text/80 hover:-translate-y-0.5 hover:border-[#0A66C2]/60 hover:text-[#0A66C2] hover:shadow-md"
+      >
+        LinkedIn-Profil ansehen
+        <svg
+          class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M7 17 17 7"></path>
+          <path d="M8 7h9v9"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Zwei-Klick-Lösung: Das LinkedIn-iframe wird erst nach ausdrücklichem
+  // Klick eingehängt — vorher geht keine Anfrage an linkedin.com raus.
+  document.querySelectorAll<HTMLElement>(".li-embed").forEach((holder) => {
+    const button = holder.querySelector<HTMLButtonElement>(".li-embed-btn");
+    const urn = holder.dataset.urn;
+    if (!button || !urn) return;
+
+    button.addEventListener(
+      "click",
+      () => {
+        const frame = document.createElement("iframe");
+        frame.src = `https://www.linkedin.com/embed/feed/update/${encodeURIComponent(urn)}`;
+        frame.title = "LinkedIn-Beitrag";
+        frame.loading = "lazy";
+        frame.setAttribute("frameborder", "0");
+        frame.setAttribute("allowfullscreen", "");
+        frame.className = "w-full rounded-2xl border border-stone-200";
+        frame.height = "560";
+
+        holder.replaceChildren(frame);
+      },
+      { once: true },
+    );
+  });
+</script>

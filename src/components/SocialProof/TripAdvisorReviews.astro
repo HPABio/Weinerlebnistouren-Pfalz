@@ -1,0 +1,213 @@
+---
+/**
+ * Tripadvisor-Bewertungen.
+ *
+ * Inhalte kommen aus `src/data/socialProof.ts`. Ohne hinterlegte Bewertungen
+ * rendert die Komponente eine schlanke Variante, die auf das Profil verlinkt.
+ *
+ * Die Bewertungsskala wird bewusst in Tripadvisor-Grün (#00AA6C) dargestellt —
+ * die "Bubbles" sind das Erkennungszeichen der Plattform. Alles andere folgt
+ * dem Farbklang der Website.
+ */
+import { tripadvisorReviews, type ReviewSource } from "@/data/socialProof";
+
+interface Props {
+  source?: ReviewSource;
+  eyebrow?: string;
+  title?: string;
+  class?: string;
+}
+
+const {
+  source = tripadvisorReviews,
+  eyebrow = "Empfohlen von Reisenden",
+  title = "Bewertungen auf Tripadvisor",
+  class: className = "",
+} = Astro.props;
+
+const { profileUrl, rating, reviewCount, reviews } = source;
+const hasReviews = reviews.length > 0;
+
+const TA_GREEN = "#00AA6C";
+
+/** Bubble-Zustände: "full" | "half" | "empty" */
+const bubbleStates = (value: number) =>
+  Array.from({ length: 5 }, (_, i) => {
+    const diff = value - i;
+    return diff >= 1 ? "full" : diff >= 0.5 ? "half" : "empty";
+  });
+---
+
+<section
+  class={`relative w-full overflow-hidden bg-white ${hasReviews ? "py-20 sm:py-24" : "py-14 sm:py-16"} ${className}`}
+  aria-labelledby="tripadvisor-reviews-title"
+>
+  <!-- Halbe Bubble: einmalig definierter Verlauf -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="wep-bubble-half" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="50%" stop-color={TA_GREEN}></stop>
+        <stop offset="50%" stop-color="transparent"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div class="relative z-10 px-6 mx-auto max-w-6xl">
+    <header class={`mx-auto max-w-2xl text-center ${hasReviews ? "mb-14" : "mb-6"}`}>
+      <p
+        class="text-xs font-semibold tracking-[0.22em] uppercase text-accent1 font-body sm:text-sm"
+      >
+        {eyebrow}
+      </p>
+
+      <h2
+        id="tripadvisor-reviews-title"
+        class="flex flex-wrap gap-x-3 gap-y-1 justify-center items-center mt-2 text-4xl font-extrabold tracking-tight text-gray-900 font-bonanova sm:text-5xl"
+      >
+        <span
+          class="inline-flex justify-center items-center w-9 h-9 rounded-full shrink-0 sm:h-10 sm:w-10"
+          style={`background:${TA_GREEN}`}
+          aria-hidden="true"
+        >
+          <span class="flex gap-1 items-center">
+            <span class="block w-2 h-2 bg-white rounded-full"></span>
+            <span class="block w-2 h-2 bg-white rounded-full"></span>
+          </span>
+        </span>
+        <span>{title}</span>
+      </h2>
+
+      {
+        rating != null && (
+          <div class="flex flex-col gap-2 items-center mt-6">
+            <div class="flex gap-3 items-center">
+              <span class="text-5xl font-extrabold leading-none font-bonanova text-accent1">
+                {rating.toFixed(1).replace(".", ",")}
+              </span>
+              <span
+                class="flex gap-1 items-center"
+                role="img"
+                aria-label={`${rating.toFixed(1).replace(".", ",")} von 5 Bubbles`}
+              >
+                {bubbleStates(rating).map((state) => (
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="9"
+                      fill={
+                        state === "full"
+                          ? TA_GREEN
+                          : state === "half"
+                            ? "url(#wep-bubble-half)"
+                            : "none"
+                      }
+                      stroke={TA_GREEN}
+                      stroke-width="2"
+                    />
+                  </svg>
+                ))}
+              </span>
+            </div>
+            {reviewCount != null && (
+              <p class="text-sm text-text/60 font-body">
+                aus {reviewCount} Tripadvisor-Bewertungen
+              </p>
+            )}
+          </div>
+        )
+      }
+    </header>
+
+    {
+      hasReviews ? (
+        <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" role="list">
+          {reviews.map((review) => (
+            <li class="group relative flex h-full flex-col rounded-3xl border border-stone-200/80 bg-stone-50/70 p-6 shadow-[0_18px_40px_-28px_rgba(75,58,43,0.5)] transition-all duration-300 hover:-translate-y-1 hover:border-[#00AA6C]/35 hover:bg-white hover:shadow-[0_26px_52px_-28px_rgba(75,58,43,0.55)] sm:p-7">
+              <span
+                class="flex gap-1 items-center mb-4"
+                role="img"
+                aria-label={`${review.rating} von 5 Bubbles`}
+              >
+                {bubbleStates(review.rating).map((state) => (
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="9"
+                      fill={
+                        state === "full"
+                          ? TA_GREEN
+                          : state === "half"
+                            ? "url(#wep-bubble-half)"
+                            : "none"
+                      }
+                      stroke={TA_GREEN}
+                      stroke-width="2"
+                    />
+                  </svg>
+                ))}
+              </span>
+
+              <blockquote class="flex-1">
+                <p class="text-[0.98rem] leading-relaxed text-text/80 font-body">
+                  {review.text}
+                </p>
+              </blockquote>
+
+              <footer class="flex gap-3 items-center pt-5 mt-6 border-t border-stone-200/70">
+                <span class="min-w-0">
+                  <cite class="block text-sm font-bold not-italic truncate font-bonanova text-text/85">
+                    {review.author}
+                  </cite>
+                  {review.date && (
+                    <span class="block text-xs text-text/50 font-body">{review.date}</span>
+                  )}
+                </span>
+                {review.url && (
+                  <a
+                    href={review.url}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    class="ml-auto text-xs font-semibold underline-offset-4 transition-colors text-text/50 font-body hover:text-[#00AA6C] hover:underline"
+                  >
+                    ansehen
+                  </a>
+                )}
+              </footer>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="mx-auto max-w-xl text-center text-base leading-relaxed text-text/65 font-body">
+          Reisende aus ganz Deutschland und dem Ausland teilen ihre Eindrücke von
+          den Weinerlebnistouren auf Tripadvisor.
+        </p>
+      )
+    }
+
+    <div class={`text-center ${hasReviews ? "mt-12" : "mt-8"}`}>
+      <a
+        href={profileUrl}
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        class="inline-flex gap-2.5 items-center px-6 py-3 font-bold tracking-[0.1em] text-sm uppercase bg-white rounded-full border shadow-sm transition-all duration-300 group font-bonanova border-stone-300 text-text/80 hover:-translate-y-0.5 hover:border-[#00AA6C]/60 hover:text-[#00AA6C] hover:shadow-md"
+      >
+        Auf Tripadvisor ansehen
+        <svg
+          class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M7 17 17 7"></path>
+          <path d="M8 7h9v9"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

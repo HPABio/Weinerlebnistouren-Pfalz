@@ -1,0 +1,213 @@
+---
+/**
+ * Sticky booking CTA.
+ *
+ * Docks underneath the sticky header and travels down the page with the user.
+ * It slides into view as soon as the watched element (by default the
+ * "📍 Gimmeldingen, Neustadt an der Weinstraße" badge in the hero) has scrolled
+ * past the header, and retracts upwards out of sight when the user scrolls back.
+ */
+interface Props {
+  /** Selector of the element that has to be scrolled past before the CTA appears. */
+  watch?: string;
+  href?: string;
+  label?: string;
+  /** Distance from the top of the viewport in px — matches the sticky header height. */
+  topOffset?: number;
+}
+
+const {
+  watch = "#hero-location-badge",
+  href = "https://eveeno.com/de/event-cal/34263?style=grid",
+  label = "Tour buchen",
+  topOffset = 70,
+} = Astro.props;
+---
+
+<div
+  id="sticky-booking-cta"
+  class="sticky-booking-cta fixed inset-x-0 z-40 flex justify-center px-4 pointer-events-none sm:justify-end sm:px-6 lg:px-10"
+  style={`--cta-top:${topOffset}px; top:${topOffset}px;`}
+  data-watch={watch}
+  data-visible="false"
+  aria-hidden="true"
+>
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    tabindex="-1"
+    class="cta-pill group inline-flex relative gap-3 items-center px-5 py-2.5 mt-3 font-bold tracking-[0.16em] text-sm uppercase rounded-full border pointer-events-auto text-stone-50 font-bonanova border-accent1/45 sm:gap-4 sm:px-7 sm:py-3 sm:text-base"
+  >
+    <!-- Ornamental wine glass -->
+    <svg
+      class="w-4 h-4 transition-transform duration-500 shrink-0 text-accent1 group-hover:rotate-[-8deg] sm:h-[1.15rem] sm:w-[1.15rem]"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M6 3h12l-1 6a5 5 0 0 1-10 0L6 3Z"></path>
+      <path d="M6.6 6.6h10.8"></path>
+      <path d="M12 14v6"></path>
+      <path d="M8.5 20.5h7"></path>
+    </svg>
+
+    <span class="cta-label">{label}</span>
+
+    <span
+      class="flex justify-center items-center w-6 h-6 rounded-full border transition-all duration-300 shrink-0 border-accent1/35 bg-white/10 group-hover:border-accent1/70 group-hover:bg-accent1/25"
+      aria-hidden="true"
+    >
+      <svg
+        class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M5 12h13"></path>
+        <path d="m12 6 6 6-6 6"></path>
+      </svg>
+    </span>
+  </a>
+</div>
+
+<style>
+  .sticky-booking-cta {
+    /* Parks the whole bar above the viewport edge so it hides behind the header. */
+    transform: translate3d(0, calc(-100% - var(--cta-top, 70px)), 0);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.28s ease,
+      visibility 0s linear 0.45s;
+    will-change: transform;
+  }
+
+  .sticky-booking-cta[data-visible="true"] {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    visibility: visible;
+    transition:
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.35s ease,
+      visibility 0s linear 0s;
+  }
+
+  .cta-pill {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.14) 0%,
+        rgba(255, 255, 255, 0) 42%
+      ),
+      linear-gradient(100deg, #8a2d52 0%, #7a2748 52%, #5f1e39 100%);
+    box-shadow:
+      0 12px 30px -12px rgba(95, 30, 57, 0.7),
+      0 2px 6px -2px rgba(75, 58, 43, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s ease,
+      filter 0.3s ease;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .cta-pill:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow:
+      0 18px 38px -14px rgba(95, 30, 57, 0.8),
+      0 3px 8px -2px rgba(75, 58, 43, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  }
+
+  .cta-pill:active {
+    transform: translateY(0);
+  }
+
+  .cta-pill:focus-visible {
+    outline: 2px solid #c8a974;
+    outline-offset: 3px;
+  }
+
+  /* Gold shimmer sweeping across on hover */
+  .cta-pill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      100deg,
+      transparent 20%,
+      rgba(200, 169, 116, 0.45) 48%,
+      transparent 76%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cta-pill:hover::after {
+    transform: translateX(120%);
+  }
+
+  .cta-label {
+    text-shadow: 0 1px 2px rgba(53, 17, 32, 0.45);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sticky-booking-cta,
+    .cta-pill,
+    .cta-pill::after,
+    .cta-pill svg,
+    .cta-pill span {
+      transition-duration: 0.01ms !important;
+    }
+    .cta-pill:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  const bar = document.getElementById("sticky-booking-cta");
+
+  if (bar) {
+    const link = bar.querySelector("a");
+    const offset = parseInt(bar.style.top, 10) || 0;
+    const target = bar.dataset.watch
+      ? document.querySelector(bar.dataset.watch)
+      : null;
+
+    const setVisible = (visible: boolean) => {
+      if (bar.dataset.visible === String(visible)) return;
+      bar.dataset.visible = String(visible);
+      bar.setAttribute("aria-hidden", String(!visible));
+      if (link) link.tabIndex = visible ? 0 : -1;
+    };
+
+    if (!target) {
+      // No anchor element on this page — keep the CTA available right away.
+      setVisible(true);
+    } else {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          // Visible once the watched element sits above the header line.
+          setVisible(
+            !entry.isIntersecting && entry.boundingClientRect.top < offset,
+          );
+        },
+        { threshold: 0, rootMargin: `-${offset}px 0px 0px 0px` },
+      );
+      observer.observe(target);
+    }
+  }
+</script>

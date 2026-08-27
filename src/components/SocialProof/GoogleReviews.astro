@@ -1,0 +1,230 @@
+---
+/**
+ * Google-Bewertungen.
+ *
+ * Inhalte kommen aus `src/data/socialProof.ts`. Sind dort noch keine
+ * Bewertungen hinterlegt, rendert die Komponente automatisch eine schlanke
+ * Variante, die nur auf das Google-Profil verlinkt.
+ */
+import { googleReviews, type ReviewSource } from "@/data/socialProof";
+
+interface Props {
+  source?: ReviewSource;
+  eyebrow?: string;
+  title?: string;
+  class?: string;
+}
+
+const {
+  source = googleReviews,
+  eyebrow = "Was unsere Gäste sagen",
+  title = "Bewertungen auf Google",
+  class: className = "",
+} = Astro.props;
+
+const { profileUrl, rating, reviewCount, reviews } = source;
+const hasReviews = reviews.length > 0;
+
+const GOLD = "#C8A974";
+const EMPTY = "rgba(216,199,181,0.5)";
+
+/** Füllzustand je Stern: "full" | "half" | "empty" */
+const starStates = (value: number) =>
+  Array.from({ length: 5 }, (_, i) => {
+    const diff = value - i;
+    return diff >= 1 ? "full" : diff >= 0.5 ? "half" : "empty";
+  });
+
+const starFill = (state: string) =>
+  state === "full" ? GOLD : state === "half" ? "url(#wep-star-half)" : EMPTY;
+
+const STAR_PATH =
+  "m12 2.6 2.9 5.88 6.5.95-4.7 4.58 1.11 6.47L12 17.42l-5.81 3.06 1.11-6.47-4.7-4.58 6.5-.95L12 2.6Z";
+
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+---
+
+<section
+  class={`relative w-full overflow-hidden bg-stone-50 ${hasReviews ? "py-20 sm:py-24" : "py-14 sm:py-16"} ${className}`}
+  aria-labelledby="google-reviews-title"
+>
+  <!-- Halbe Sterne teilen sich einen Verlauf, der genau einmal definiert wird. -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="wep-star-half" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="50%" stop-color={GOLD}></stop>
+        <stop offset="50%" stop-color={EMPTY}></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div
+    class="absolute inset-0 bg-gradient-to-b to-transparent pointer-events-none from-white via-stone-50"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative z-10 px-6 mx-auto max-w-6xl">
+    <header class={`mx-auto max-w-2xl text-center ${hasReviews ? "mb-14" : "mb-6"}`}>
+      <p
+        class="text-xs font-semibold tracking-[0.22em] uppercase text-accent1 font-body sm:text-sm"
+      >
+        {eyebrow}
+      </p>
+
+      <h2
+        id="google-reviews-title"
+        class="flex gap-3 justify-center items-center mt-2 text-4xl font-extrabold tracking-tight text-gray-900 font-bonanova sm:text-5xl"
+      >
+        <svg
+          class="w-7 h-7 shrink-0 sm:h-9 sm:w-9"
+          viewBox="0 0 48 48"
+          aria-hidden="true"
+        >
+          <path
+            fill="#4285F4"
+            d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17Z"
+          ></path>
+          <path
+            fill="#34A853"
+            d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7A21.99 21.99 0 0 0 24 46Z"
+          ></path>
+          <path
+            fill="#FBBC05"
+            d="M11.69 28.18A13.2 13.2 0 0 1 11 24c0-1.45.25-2.86.69-4.18v-5.7H4.34A21.99 21.99 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7Z"
+          ></path>
+          <path
+            fill="#EA4335"
+            d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07Z"
+          ></path>
+        </svg>
+        <span>{title}</span>
+      </h2>
+
+      {
+        rating != null && (
+          <div class="flex flex-col gap-2 items-center mt-6">
+            <div class="flex gap-3 items-center">
+              <span class="text-5xl font-extrabold leading-none font-bonanova text-accent1">
+                {rating.toFixed(1).replace(".", ",")}
+              </span>
+              <span
+                class="flex gap-1 items-center"
+                role="img"
+                aria-label={`${rating.toFixed(1).replace(".", ",")} von 5 Sternen`}
+              >
+                {starStates(rating).map((state) => (
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={STAR_PATH} fill={starFill(state)} />
+                  </svg>
+                ))}
+              </span>
+            </div>
+            {reviewCount != null && (
+              <p class="text-sm text-text/60 font-body">
+                aus {reviewCount} Google-Bewertungen
+              </p>
+            )}
+          </div>
+        )
+      }
+    </header>
+
+    {
+      hasReviews ? (
+        <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" role="list">
+          {reviews.map((review) => (
+            <li class="group relative flex h-full flex-col rounded-3xl border border-stone-200/80 bg-white p-6 shadow-[0_18px_40px_-28px_rgba(75,58,43,0.55)] transition-all duration-300 hover:-translate-y-1 hover:border-accent1/40 hover:shadow-[0_26px_52px_-28px_rgba(75,58,43,0.6)] sm:p-7">
+              <span
+                class="absolute right-6 top-4 select-none font-bonanova text-6xl leading-none text-accent1/10"
+                aria-hidden="true"
+              >
+                &rdquo;
+              </span>
+
+              <span
+                class="flex gap-0.5 items-center mb-4"
+                role="img"
+                aria-label={`${review.rating} von 5 Sternen`}
+              >
+                {starStates(review.rating).map((state) => (
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={STAR_PATH} fill={starFill(state)} />
+                  </svg>
+                ))}
+              </span>
+
+              <blockquote class="flex-1">
+                <p class="relative z-10 text-[0.98rem] leading-relaxed text-text/80 font-body">
+                  {review.text}
+                </p>
+              </blockquote>
+
+              <footer class="flex gap-3 items-center pt-5 mt-6 border-t border-stone-200/70">
+                <span
+                  class="flex justify-center items-center w-10 h-10 text-sm font-bold rounded-full shrink-0 bg-accent1/15 text-accent1 font-bonanova"
+                  aria-hidden="true"
+                >
+                  {initials(review.author)}
+                </span>
+                <span class="min-w-0">
+                  <cite class="block text-sm font-bold not-italic truncate font-bonanova text-text/85">
+                    {review.author}
+                  </cite>
+                  {review.date && (
+                    <span class="block text-xs text-text/50 font-body">{review.date}</span>
+                  )}
+                </span>
+                {review.url && (
+                  <a
+                    href={review.url}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    class="ml-auto text-xs font-semibold underline-offset-4 transition-colors text-accent1/80 font-body hover:text-accent1 hover:underline"
+                  >
+                    ansehen
+                  </a>
+                )}
+              </footer>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="mx-auto max-w-xl text-center text-base leading-relaxed text-text/65 font-body">
+          Lesen Sie, was Gäste über die Weinerlebnistouren schreiben — und
+          hinterlassen Sie nach Ihrer Tour gerne selbst eine Bewertung.
+        </p>
+      )
+    }
+
+    <div class={`text-center ${hasReviews ? "mt-12" : "mt-8"}`}>
+      <a
+        href={profileUrl}
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        class="inline-flex gap-2.5 items-center px-6 py-3 font-bold tracking-[0.1em] text-sm uppercase bg-white rounded-full border shadow-sm transition-all duration-300 group font-bonanova border-stone-300 text-text/80 hover:-translate-y-0.5 hover:border-accent1/60 hover:text-accent1 hover:shadow-md"
+      >
+        Alle Bewertungen auf Google
+        <svg
+          class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M7 17 17 7"></path>
+          <path d="M8 7h9v9"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

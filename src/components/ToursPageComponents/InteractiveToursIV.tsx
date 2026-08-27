@@ -1,15 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import BrigittaHeylPortrait from "@images/BrigittaHeylPortrait.png";
-import HWELogoV2NoText from "@images/HWE-LogoV2-noText.svg";
 import GimmeldingenMap from "@images/GimmeldingenMap.jpg";
 import GetInTouch from "../InfoCards/GetInTouchCard";
-import BookingButtonV1 from "../BookingButtons/BookingButtonV1";
-import {
-  BookingButtonV2toRight,
-  BookingButtonV2toLeft,
-} from "../BookingButtons/BookingButtonV2";
-import { TicketTailorTourDatesWidget } from "../TicketTailor/TicketTailorWidgets";
 import { tourStore, type Tour } from "../../store/tourStore";
 import TicketTailorBigWidget from "../TicketTailor/TicketTaylorBigWidget";
 import TicketTailorSmallWidget from "../TicketTailor/TicketTaylorSmallWidget";
@@ -32,6 +24,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
   const tours = [
     {
       id: "welcome",
+      bookingUrl: "https://eveeno.com/de/event-cal/34263?style=grid",
       info: "⋅ vier Touren ⋅ vier Jahreszeiten ⋅ vier Geschichten ⋅",
       title: "Entdecken Sie meine interaktiven Touren",
       subtitle:
@@ -49,6 +42,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
     },
     {
       id: "mandelbluete",
+      bookingUrl: "https://eveeno.com/Mandelbluete",
       info: "Genuss, Geschichte und Natur",
       title: "Mandelblüte, Meerspinne und Monarchen",
       subtitle:
@@ -77,6 +71,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
     },
     {
       id: "mussbach",
+      bookingUrl: "https://eveeno.com/mussbach",
       info: "Wasser, Wald und Wein - eine Weinwanderung",
       title: "Magischer Mussbach",
       subtitle:
@@ -104,6 +99,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
     },
     {
       id: "bacchus",
+      bookingUrl: "https://eveeno.com/bacchus",
       info: "Für Genießer und Entdecker",
       title: "Von Bacchus bis Christophorus",
       subtitle:
@@ -133,6 +129,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
     },
     {
       id: "gluehwein",
+      bookingUrl: "https://eveeno.com/gluehwein",
       info: "Wärmende Wintertour mit Glühwein",
       title: "Geheimnisvolles Gimmeldingen",
       subtitle:
@@ -161,7 +158,6 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
   ];
 
   const [selectedTour, setSelectedTour] = useState(tours[0]);
-  const [currentInfoIndex, setCurrentInfoIndex] = useState(0);
 
   // Initialize global store with the initial tour
   useEffect(() => {
@@ -172,15 +168,6 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
   useEffect(() => {
     tourStore.setCurrentTour(selectedTour);
   }, [selectedTour]);
-
-  // Auto-cycling info blocks every 10 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentInfoIndex((prevIndex) => (prevIndex + 1) % 4);
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section className={`relative min-h-screen text-text ${className}`}>
@@ -412,10 +399,15 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                 md:max-w-[650px] lg:max-w-[700px] xl:max-w-[800px] mx-auto max-h-[180px] md:gap-1 2xl:gap-2">
                 {tours.slice(1).map((tour, index) => {
                   return (
-                    <motion.div
+                    <motion.a
                       key={tour.id}
-                      onClick={() => setSelectedTour(tour)}
-                      className={`cursor-pointer group relative overflow-hidden w-full h-full xl:rounded-3xl max-h-[180px] drop-shadow-md rounded-2xl transition-all duration-500 ${selectedTour.id === tour.id
+                      href={tour.bookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${tour.title} – Tour buchen`}
+                      onMouseEnter={() => setSelectedTour(tour)}
+                      onFocus={() => setSelectedTour(tour)}
+                      className={`block cursor-pointer group relative overflow-hidden w-full h-full xl:rounded-3xl max-h-[180px] drop-shadow-md rounded-2xl transition-all duration-500 ${selectedTour.id === tour.id
                         ? "outline-offset-[6px] aspect-[10/8] drop-shadow-2xl ring-offset-0 ring-2 mx-4 ring-soft-beige outline-[2px] outline-accent1 outline-none border-[2.5px] border-stone-100 z-30 "
                         : "border-[2.5px] border-soft-beige/20 drop-shadow-lg aspect-[4/3]  brightness-[1] saturate-[0.8]"
                         }`}
@@ -464,8 +456,26 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
 
                         {/* Hover Effect Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t to-transparent opacity-0 mix-blend-color-burn transition-opacity duration-300 from-black/70 group-hover:opacity-100" />
+
+                        {/* Booking affordance — makes it obvious the tile leads to eveeno */}
+                        <div className="flex absolute top-2 right-2 gap-1 items-center px-2 py-1 rounded-full border opacity-0 backdrop-blur-sm transition-all duration-300 translate-y-1 pointer-events-none border-accent1/50 bg-accent2-wine/90 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100">
+                          <span className="text-[0.5rem] lg:text-[0.6rem] font-bold uppercase tracking-[0.12em] text-stone-50 font-bonanova">
+                            Buchen
+                          </span>
+                          <svg
+                            className="w-2.5 h-2.5 lg:w-3 lg:h-3 text-accent1"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={2.6}
+                            strokeLinecap="round"
+                            strokeLinejoin="round">
+                            <path d="M7 17 17 7" />
+                            <path d="M8 7h9v9" />
+                          </svg>
+                        </div>
                       </div>
-                    </motion.div>
+                    </motion.a>
                   );
                 })}
               </div>
@@ -473,345 +483,19 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
           </div>
         </div>
 
-        {/* Enhanced Tour Details Section */}
-        <div className="z-20 px-6 pb-12 mx-auto -mt-16 max-w-7xl border-0 border-blue-500 lg:px-12">
-          <div className="grid grid-cols-1">
-            <div className="order-1 lg:col-span-3 lg:order-2">
-              <div className="overflow-hidden bg-white rounded-3xl border shadow-2xl border-stone-100">
-                {/* Tour Header */}
-                <div className="hidden relative p-8 pt-24 bg-gradient-to-r bg-stone-100 from-stone-50 to-amber-50/40 lg:p-12 lg:pt-28 2xl:pt-28">
-                  {/* Decorative Image */}
-                  <div className="overflow-hidden absolute top-0 right-0 z-0 w-2/5 h-full">
-                    <img
-                      src={selectedTour.images.card}
-                      alt={selectedTour.title}
-                      className="object-cover object-top w-full h-full opacity-20 contrast-150 grayscale"
-                    />
-                    {/* Tour Information Display - Auto Cycling - Background */}
-                    <div className="flex absolute top-0 left-0 flex-col justify-center items-center py-8 pr-4 w-full h-full">
-                      <AnimatePresence mode="wait">
-                        {/* Distance Block */}
-                        {currentInfoIndex === 0 && (
-                          <motion.div
-                            key="distance"
-                            className="flex relative flex-col justify-center items-center w-full h-full"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 1.2 }}>
-                            <div className="flex relative flex-col items-center pt-8 pl-6">
-                              <h2 className="text-[28rem] leading-none text-text/40 lg:text-text/50 xl:text-text/70 font-bold">
-                                4
-                                <span className="text-[6rem] font-sourcesans">
-                                  km
-                                </span>
-                              </h2>
-                            </div>
-                          </motion.div>
-                        )}
-
-                        {/* Duration Block */}
-                        {currentInfoIndex === 1 && (
-                          <motion.div
-                            key="duration"
-                            className="flex relative flex-col justify-center items-center w-full h-full"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 1.2 }}>
-                            <div className="flex relative flex-col items-center pt-8 pl-6">
-                              <h2 className="text-[28rem] leading-none text-text/40 lg:text-text/50 xl:text-text/70 font-bold">
-                                4
-                                <span className="text-[10rem] font-sourcesans">
-                                  h
-                                </span>
-                              </h2>
-                            </div>
-                          </motion.div>
-                        )}
-
-                        {/* Wines Block */}
-                        {currentInfoIndex === 2 && (
-                          <motion.div
-                            key="wines"
-                            className="flex relative flex-col justify-center items-center w-full h-full"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 1.2 }}>
-                            <div className="flex relative flex-col items-center pt-2">
-                              <h2 className="text-[30rem] leading-none text-text/30 font-bold">
-                                5
-                              </h2>
-                            </div>
-                          </motion.div>
-                        )}
-
-                        {/* People Block */}
-                        {currentInfoIndex === 3 && (
-                          <motion.div
-                            key="people"
-                            className="flex relative flex-col justify-center items-center w-full h-full"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 1.2 }}>
-                            <div className="flex relative flex-col items-center">
-                              <h2 className="text-[18rem] lg:text-[20rem] xl:text-[24rem] leading-none text-text/40 lg:text-text/50 xl:text-text/70 font-bold">
-                                28
-                              </h2>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-
-                    <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-r from-stone-100 to-amber-50/40" />
-                    <div
-                      className="flex absolute top-0 right-0 flex-col justify-center items-center w-full h-full bg-gradient-to-r to-transparent from-amber-50/40">
-                      {/* Tour Information Display - Auto Cycling */}
-                      <div className="flex flex-col justify-center items-center py-8 pr-4 w-full h-full">
-                        <AnimatePresence mode="wait">
-                          {/* Distance Block */}
-                          {currentInfoIndex === 0 && (
-                            <motion.div
-                              key="distance"
-                              className="flex relative flex-col justify-center items-center w-full h-full"
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -20 }}
-                              transition={{ duration: 1.2 }}>
-                              <div className="relative flex flex-col items-center justify-center pt-32 h-[90%]">
-                                <svg
-                                  className="z-10 w-20 lg:w-35 aspect-square text-accent1"
-                                  fill="currentColor"
-                                  stroke="none"
-                                  viewBox="0 0 480.1 501.91">
-                                  <path
-                                    d="M71.17 23.58c27.73-.29 50.44 21.96 50.72 49.68a50.229 50.229 0 0 1-15.01 36.33c-19.44 19.78-51.22 20.05-71 .62a50.178 50.178 0 0 1-15.01-36.23c-.11-27.73 22.29-50.29 50.01-50.4h.29Zm21.12 29.27c-11.52-11.72-30.37-11.87-42.08-.35a29.756 29.756 0 0 0-8.89 21.47c-.19 16.43 12.97 29.91 29.41 30.11 8.15.1 15.98-3.15 21.66-8.99 11.66-11.58 11.73-30.42.15-42.08l-.15-.15h-.1ZM13.57 27.9A73.933 73.933 0 0 1 76.16.15a73.423 73.423 0 0 1 55.1 27.65c16.99 21.12 16.51 54.05 7.3 87.36-11.52 41.85-36.86 85.44-57.31 106.07-3.49 4-9.23 5.18-14.02 2.88-.83-.41-1.61-.92-2.3-1.54-.53-.46-1.01-.98-1.44-1.54C42.95 200.49 17.8 157 6.28 115.34c-9.12-33.3-9.6-66.23 7.29-87.35v-.1Zm33.79-1.73a53.63 53.63 0 0 0-17.86 14.5c-12.19 15.36-11.14 41.66-3.55 69.21 9.6 34.56 29.18 70.36 46.46 90.81 17.28-20.45 36.96-56.16 46.46-90.81 7.68-27.55 8.74-53.95-3.46-69.12A53.668 53.668 0 0 0 69.52 20.6c-7.68.23-15.21 2.13-22.08 5.57h-.1Zm25.73 187.67-.48.1.48-.1Zm0 0 7.2-2.69-7.2 2.69Zm314.29 31.77c34.35-.11 62.29 27.66 62.4 62.01v.38c.11 34.35-27.66 62.29-62.01 62.4h-.38c-34.35.11-62.29-27.66-62.4-62.01v-.38c-.11-34.35 27.66-62.29 62.01-62.4h.38Zm29.66 32.83c-16.25-16.44-42.75-16.58-59.19-.33a41.81 41.81 0 0 0-12.42 29.99c-.13 23.11 18.51 41.96 41.62 42.09 11.26.06 22.07-4.42 29.99-12.42 16.38-16.31 16.44-42.81.13-59.19-.04-.05-.09-.09-.13-.13ZM314.9 250.03a93.118 93.118 0 0 1 78.72-34.75c27.12.83 52.5 13.53 69.4 34.75 21.41 26.78 20.64 68.44 8.93 110.87-14.78 53.76-47.33 109.91-73.53 136.51-3.61 4.4-9.76 5.75-14.88 3.26-.76-.39-1.47-.87-2.11-1.44-.71-.56-1.36-1.21-1.92-1.92-26.21-26.59-58.75-82.56-73.53-136.31-11.71-42.53-12.48-84.19 8.93-110.97Zm40.13-6.72a72.807 72.807 0 0 0-24.29 19.58c-16.61 20.73-15.26 55.97-5.09 92.73 12.86 46.94 40.03 95.52 63.36 121.91 23.23-26.4 50.4-74.97 63.36-121.91 10.08-36.77 11.42-72-5.18-92.73a72.749 72.749 0 0 0-62.11-27.17 72.017 72.017 0 0 0-30.05 7.49v.1Zm34.65 246.42-.48.19.48-.19Zm0 0 6.72-2.4-6.72 2.4ZM73.09 205.01c-5.62.13-10.07 4.8-9.94 10.42.13 5.62 4.8 10.07 10.42 9.94 8.35-.19 18.62-1.15 29.76-2.21 34.65-3.26 79.1-7.49 84.48 8.83 3.84 11.71-23.52 21.89-47.61 31.01-24.96 9.31-47.52 17.76-46.37 34.75 1.34 19.39 31.49 20.16 67.39 21.21 34.46.96 75.26 2.11 89.28 16.13 4.22 4.32 3.94 7.68.96 10.56-6.53 6.53-20.35 13.25-35.23 20.45-35.71 17.28-77.08 37.34-69.79 76.8 3.46 19.01 35.04 31.49 81.79 40.03 43.01 7.87 99.74 13.44 158.39 17.95 5.67-.22 10.08-5 9.86-10.66-.19-4.77-3.64-8.79-8.33-9.69-58.27-4.61-114.43-10.08-156.28-17.66-38.3-7.1-63.74-14.78-65.37-23.71-4.42-24.09 29.37-40.51 58.56-54.72 16.7-7.97 32.06-15.36 40.99-24.38 11.81-11.71 13.92-24.38-1.15-39.45-19.68-19.68-64.89-20.93-103.1-22.08-15.86.05-31.72-.66-47.52-2.11-.19-1.92 15.55-7.78 33.02-14.4 32.83-12.19 69.88-26.11 59.9-56.35-10.46-31.87-63.93-26.78-105.79-22.75-10.85.96-20.73 1.92-28.32 2.11Z"
-                                    style={{
-                                      fill: "#d3ba91",
-                                    }}
-                                  />
-                                </svg>
-                              </div>
-                              <p className="text-lg text-center font-sourcesans text-text/40">
-                                ungefähre
-                              </p>
-                              <p className="-mt-1 text-3xl font-medium text-center lg:text-5xl text-stone-600">
-                                Strecke
-                              </p>
-                            </motion.div>
-                          )}
-
-                          {/* Duration Block */}
-                          {currentInfoIndex === 1 && (
-                            <motion.div
-                              key="duration"
-                              className="flex relative flex-col justify-center items-center w-full h-full"
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -20 }}
-                              transition={{ duration: 1.2 }}>
-                              <div className="relative flex flex-col items-center justify-center pt-32 h-[90%]">
-                                <svg
-                                  className="z-10 w-14 lg:w-20 aspect-square text-accent1"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24">
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                  />
-                                </svg>
-                              </div>
-                              <p className="text-lg text-center font-sourcesans text-text/40">
-                                ungefähre
-                              </p>
-                              <p className="-mt-1 text-3xl font-medium text-center lg:text-5xl text-stone-600">
-                                Dauer
-                              </p>
-                            </motion.div>
-                          )}
-
-                          {/* Wines Block */}
-                          {currentInfoIndex === 2 && (
-                            <motion.div
-                              key="wines"
-                              className="flex relative flex-col justify-center items-center w-full h-full"
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -20 }}
-                              transition={{ duration: 1.2 }}>
-                              <div className="relative flex flex-col items-center justify-center pt-32 h-[90%]">
-                                <svg
-                                  className="z-10 w-14 lg:w-24 aspect-square text-accent1"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 32 32">
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M15 11.381V3h2v8.381c.356.089.689.229 1 .408V2.75c0-.276-.224-.75-.5-.75h-3c-.276 0-.5.474-.5.75v9.038a3.928 3.928 0 0 1 1-.407z"
-                                  />
-                                  <path d="M18.667 29.75h-5.333a1.835 1.835 0 0 1-1.833-1.833V15.21c0-2.459 2-4.46 4.46-4.46 2.54 0 4.54 2 4.54 4.46v12.707a1.836 1.836 0 0 1-1.834 1.833zm-2.627-18c-1.988 0-3.54 1.552-3.54 3.46v12.707c0 .459.374.833.833.833h5.333a.834.834 0 0 0 .833-.833V15.21a3.462 3.462 0 0 0-3.459-3.46zM14 4h3v1h-3z" />
-                                  <path d="M14.5 26H12a.5.5 0 0 1 0-1h2v-7h-2a.5.5 0 0 1 0-1h2.5c.276 0 .5.474.5.75v8c0 .276-.224.25-.5.25z" />
-                                </svg>
-                              </div>
-                              <p className="text-lg text-center font-sourcesans text-text/40">
-                                ausgewählte
-                              </p>
-                              <p className="-mt-1 text-3xl font-medium text-center lg:text-5xl text-stone-600">
-                                Weine
-                              </p>
-                            </motion.div>
-                          )}
-
-                          {/* People Block */}
-                          {currentInfoIndex === 3 && (
-                            <motion.div
-                              key="people"
-                              className="flex relative flex-col justify-center items-center w-full h-full"
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -20 }}
-                              transition={{ duration: 1.2 }}>
-                              <div className="relative flex flex-col items-center justify-center pt-32 h-[90%]">
-                                <svg
-                                  className="z-10 w-14 lg:w-24 aspect-square text-accent1"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24">
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                                  />
-                                </svg>
-                              </div>
-                              <p className="text-lg font-sourcesans text-text/40">
-                                bis zu
-                              </p>
-                              <p className="-mt-1 text-3xl font-medium text-center lg:text-5xl text-stone-600">
-                                Personen
-                              </p>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Tour Header Content */}
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={selectedTour.id + "-header"}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                        transition: { duration: 0.6 },
-                      }}
-                      exit={{
-                        opacity: 0,
-                        y: -20,
-                        transition: { duration: 0.3 },
-                      }}>
-                      <div className="flex relative z-20 flex-row gap-6 lg:items-center lg:justify-between">
-                        <div>
-                          <div className="flex gap-3 items-center mb-4">
-                            <div>
-                              <p className="z-20 text-sm font-semibold tracking-wider uppercase text-accent1">
-                                •{" "}
-                                {selectedTour.id === "welcome"
-                                  ? tours[1].info
-                                  : selectedTour.info}{" "}
-                                •
-                              </p>
-                              <h2 className="text-3xl lg:text-[40px] font-bold font-bonanova text-gray-800 xl:pr-32 ">
-                                {selectedTour.id === "welcome"
-                                  ? tours[1].title
-                                  : selectedTour.title}
-                              </h2>
-                            </div>
-                          </div>
-                          <div className="w-24 h-1 bg-gradient-to-r rounded-full from-accent1 to-accent1/60" />
-                          <div className="flex justify-between items-start w-full border-0 border-green-500">
-                            {/* Booking Button HERE */}
-                            {/* <BookingButtonV1 /> */}
-                            <BookingButtonV2toRight classNames="w-[450px] h-full -ml-3 mt-4 justify-start border-0 border-blue-500" />
-                            {/* <BookingButtonV2toLeft classNames="w-[450px] h-full ml-8 mt-10 justify-end border-0 border-blue-500" /> */}
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                {/* Tour Description */}
-                <div className="p-8 lg:p-12 relative bg-stone-50 border-t-[1.2px] border-stone-200 mt-14">
-                  {/* <TicketTailorTourDatesWidget className="mb-10" /> */}
-                  {selectedTour.season === "Herbst" && <TicketTailorBigWidget />}
-                  {selectedTour.season === "Sommer" && <TicketTailorSmallWidget />}
-                  
-
-
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={selectedTour.id + "-details"}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                        transition: { duration: 0.6, delay: 0.2 },
-                      }}
-                      exit={{
-                        opacity: 0,
-                        y: -20,
-                        transition: { duration: 0.3 },
-                      }}>
-                      <div className="mb-8">
-                        <h3 className="flex gap-3 items-center mb-6 text-2xl font-bold text-gray-800 font-bonanova">
-                          Was Sie erwartet
-                        </h3>
-                      </div>
-
-                      <div className="relative pb-12">
-                        <div
-                          className="max-w-none leading-relaxed prose prose-lg text-gray-900/70 font-body prose-headings:font-bonanova prose-headings:text-gray-800 prose-strong:text-gray-800 prose-strong:font-semibold prose-ul:space-y-3 prose-li:text-gray-700 prose-p:text-gray-700 prose-p:leading-relaxed"
-                          dangerouslySetInnerHTML={{
-                            __html: selectedTour.longDescription,
-                          }}
-                        />
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                {/* Image Gallery */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={selectedTour.id + "-gallery"}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.6, delay: 0.4 },
-                    }}
-                    exit={{
-                      opacity: 0,
-                      y: -20,
-                      transition: { duration: 0.3 },
-                    }}></motion.div>
-                </AnimatePresence>
+        {/* Ticket-Tailor-Termine — nur wenn für die gewählte Tour ein Widget hinterlegt ist.
+            Die frühere dynamische Tourbeschreibung unter den Kacheln entfällt: die
+            Kacheln führen jetzt direkt zur jeweiligen eveeno-Buchungsseite. */}
+        {(selectedTour.season === "Herbst" || selectedTour.season === "Sommer") && (
+          <div className="relative z-20 px-6 pt-10 pb-12 mx-auto max-w-7xl lg:px-12">
+            <div className="overflow-hidden rounded-3xl border shadow-2xl bg-stone-50 border-stone-100">
+              <div className="p-6 sm:p-8 lg:p-12">
+                {selectedTour.season === "Herbst" && <TicketTailorBigWidget />}
+                {selectedTour.season === "Sommer" && <TicketTailorSmallWidget />}
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Enhanced Get In Touch Section */}
