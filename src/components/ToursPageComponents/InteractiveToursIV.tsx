@@ -302,7 +302,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
               text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-bold font-bonanova text-white">
                 <h1 className="hidden opacity-0 xl:block">
                   Hidden <br />
-                  Title
+                  Tit le
                 </h1>
                 <div
                   className="w-full xl:w-[84vw] 2xl:max-w-[1300px] relative xl:absolute top-0 xl:top-1/2 xl:left-[50%] xl:-translate-x-[50%] xl:translate-y-[-50%]
