@@ -85,7 +85,9 @@ export function LazyImage({
 					onError={handleError}
 					onLoad={handleLoad}
 					ref={imgRef}
-					role="presentation" // Changed from "img" to "presentation" since it's decorative
+					// Nur ohne Alt-Text dekorativ — sonst würde role="presentation"
+					// den Alt-Text aus dem Accessibility-Tree entfernen.
+					role={alt ? undefined : "presentation"}
 					src={imgSrc}
 				/>
 			)}

@@ -1,0 +1,874 @@
+---
+import MainLayout from "@/layouts/main.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+const fontCatalog = [
+  {
+    id: "headline",
+    name: "Bona Nova SC",
+    tailwindClass: "font-headline",
+    usage: "Primary Headline & Title Font",
+    category: "Serif",
+    badgeColor: "bg-amber-900/10 text-amber-900 border-amber-800/20",
+    largeText: "Weinerlebnistouren Pfalz",
+    mediumText: "Geführte Weinbergswanderungen & Planwagenfahrten in Gimmeldingen",
+    smallText: "Entdecken Sie die malerische Pfalz mit zertifizierten Kultur- und Weinbotschaftern. Erleben Sie den Ausblick auf das Rebenmeer und genießen Sie exklusive Pfälzer Weine.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "body",
+    name: "Newsreader",
+    tailwindClass: "font-body",
+    usage: "Primary Body & Editorial Content Font",
+    category: "Serif",
+    badgeColor: "bg-stone-900/10 text-stone-900 border-stone-800/20",
+    largeText: "Pfalz Wein & Genuss Kultur",
+    mediumText: "Authentische Einblicke in Tradition, Terroir und erstklassige Rieslinge",
+    smallText: "Newsreader verleiht langen Lesetexten eine elegante, klassische Note. Ideal für Geschichten über Winzer, Sortenvielfalt und historische Anekdoten der Mittelhaardt.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "accent",
+    name: "Monsieur La Doulaise (Accent)",
+    tailwindClass: "font-accent",
+    usage: "Signature Script Accent & Decorative Calligraphy",
+    category: "Cursive",
+    badgeColor: "bg-rose-900/10 text-rose-900 border-rose-800/20",
+    largeText: "Herzlich Willkommen in der Pfalz",
+    mediumText: "Mit Liebe zum Detail & echter Pfälzer Gastfreundschaft",
+    smallText: "Monsieur La Doulaise setzt prunkvolle, schwungvolle Akzente in Überschriften, Zitaten und Highlights für ein edles, handgeschriebenes Flair.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "doulaise",
+    name: "Monsieur La Doulaise",
+    tailwindClass: "font-doulaise",
+    usage: "Expressive Calligraphic Script",
+    category: "Cursive",
+    badgeColor: "bg-rose-900/10 text-rose-900 border-rose-800/20",
+    largeText: "Edle Tropfen & Sonnenschein",
+    mediumText: "Historische Führung mit Weinprobe & Vesper",
+    smallText: "Perfekt für zeremonielle Überschriften, Auszeichnungen und romantische Hervorhebungen auf Tourkarten und Bannern.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "meie",
+    name: "Meie Script",
+    tailwindClass: "font-meie",
+    usage: "Vintage Cursive Script",
+    category: "Cursive",
+    badgeColor: "bg-pink-900/10 text-pink-900 border-pink-800/20",
+    largeText: "Kultur & Weinbotschafterin",
+    mediumText: "Besondere Momente in den Weinbergslagen von Neustadt",
+    smallText: "Eine charmante Vintage-Handschrift mit traditioneller Eleganz und sanfter Handschrift-Ästhetik.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "playfair",
+    name: "Playfair Display",
+    tailwindClass: "font-playfair",
+    usage: "High-Contrast Luxury Serif",
+    category: "Serif",
+    badgeColor: "bg-purple-900/10 text-purple-900 border-purple-800/20",
+    largeText: "Exklusive Weinproben 2026",
+    mediumText: "Riesling, Spätburgunder & Sauvignon Blanc im Vergleich",
+    smallText: "Playfair Display bringt hohes Kontrastverhältnis und zeitlose Eleganz in Magazin-Layouts, Hero-Header und Premium-Banner.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "cormorant",
+    name: "Cormorant Garamond",
+    tailwindClass: "font-cormorant",
+    usage: "Classic Garamond Editorial Serif",
+    category: "Serif",
+    badgeColor: "bg-emerald-900/10 text-emerald-900 border-emerald-800/20",
+    largeText: "Tradition seit Generationen",
+    mediumText: "Die Weinbautradition der Mittelhaardt im Porträt",
+    smallText: "Feine Strichstärken und harmonische Proportionen machen Cormorant Garamond zur idealen Wahl für gehobene Leseerlebnisse.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "inter",
+    name: "Inter",
+    tailwindClass: "font-inter",
+    usage: "Modern UI & Navigation Sans-Serif",
+    category: "Sans-Serif",
+    badgeColor: "bg-sky-900/10 text-sky-900 border-sky-800/20",
+    largeText: "Moderne Benutzeroberfläche",
+    mediumText: "Optimale Lesbarkeit auf Mobilgeräten & Displays",
+    smallText: "Inter bietet herausragende Lesbarkeit für Menüs, Buttons, Formulare und technische Angaben wie Daten, Preise und Uhrzeiten.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "sourcesans",
+    name: "Source Sans 3 / Pro",
+    tailwindClass: "font-sourcesans",
+    usage: "Clean Technical Sans-Serif",
+    category: "Sans-Serif",
+    badgeColor: "bg-blue-900/10 text-blue-900 border-blue-800/20",
+    largeText: "Information & Klarheit",
+    mediumText: "Barrierefreie Gestaltung für alle Altersgruppen",
+    smallText: "Entwickelt für maximale Klarheit in Benutzeroberflächen, Infoboxen, Tabellen und Buchungsformularen.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "ballet",
+    name: "Ballet",
+    tailwindClass: "font-ballet",
+    usage: "Delicate & Flowing Calligraphy",
+    category: "Cursive",
+    badgeColor: "bg-fuchsia-900/10 text-fuchsia-900 border-fuchsia-800/20",
+    largeText: "Romantische Sommernächte",
+    mediumText: "Genussvolle Abendtouren mit Blick auf das Hambacher Schloss",
+    smallText: "Ein zauberhafter, fließender Kurrentschrift-Stil für Einladungen, Gutscheine und verträumte Überschriften.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "bodoni",
+    name: "Bodoni Moda",
+    tailwindClass: "font-bodoni",
+    usage: "High-Fashion Didone Serif",
+    category: "Serif",
+    badgeColor: "bg-amber-950/10 text-amber-950 border-amber-900/20",
+    largeText: "Premium Vintage Selection",
+    mediumText: "Der Pfälzer Mandelblütenstrauß im Frühling",
+    smallText: "Starke vertikale Betonung und scharfe Serifen geben Bodoni Moda eine ausdrucksstarke, luxuriöse Ausstrahlung.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "bonanova",
+    name: "Bona Nova SC",
+    tailwindClass: "font-bonanova",
+    usage: "Small-Caps Serif Headline",
+    category: "Serif",
+    badgeColor: "bg-yellow-900/10 text-yellow-900 border-yellow-800/20",
+    largeText: "GIMMELDINGER MEERSPINNE",
+    mediumText: "WANDERUNG DURCH DIE RENOMMIERTESTEN EINZELLAGEN",
+    smallText: "Bona Nova SC (Small Caps) verleiht Überschriften eine kraftvolle, monumentale Struktur mit antiker Ästhetik.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nABCDEFGHIJKLMNOPQRSTUVWXYZ\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "dmserifdisplay",
+    name: "DM Serif Display",
+    tailwindClass: "font-dmserifdisplay",
+    usage: "Heavy Display Serif Title",
+    category: "Display",
+    badgeColor: "bg-orange-900/10 text-orange-900 border-orange-800/20",
+    largeText: "Wein & Planwagen Faszination",
+    mediumText: "Gesellige Gruppentouren durch Pfälzer Rebenmeere",
+    smallText: "DM Serif Display ist kräftig, selbstbewusst und zieht sofort den Blick auf Hauptüberschriften und Hero-Sections.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "dmseriftext",
+    name: "DM Serif Text",
+    tailwindClass: "font-dmseriftext",
+    usage: "Robust Editorial Text Serif",
+    category: "Serif",
+    badgeColor: "bg-amber-800/10 text-amber-800 border-amber-700/20",
+    largeText: "Geschichte der Mittelhaardt",
+    mediumText: "Von römischen Kelteranlagen bis zum modernen Weinbau",
+    smallText: "Kompakt und extrem gut lesbar in mittleren und kleinen Textgrößen mit warmem Buchdruck-Charakter.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "gloock",
+    name: "Gloock",
+    tailwindClass: "font-gloock",
+    usage: "Ultra-High Contrast Modern Serif",
+    category: "Display",
+    badgeColor: "bg-red-950/10 text-red-950 border-red-900/20",
+    largeText: "Dornfelder & Riesling",
+    mediumText: "Geschmackserlebnisse der Extraklasse",
+    smallText: "Extrem markante Strichkontraste für plakative Headlines, Poster-Visuals und künstlerische Akzente.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "caveat",
+    name: "Caveat",
+    tailwindClass: "font-caveat",
+    usage: "Handwritten Casual Script",
+    category: "Cursive",
+    badgeColor: "bg-teal-900/10 text-teal-900 border-teal-800/20",
+    largeText: "Persönliche Notizen & Tipps",
+    mediumText: "Mein Geheimtipp: Der Sonnenuntergang an der Mandelmeile",
+    smallText: "Caveat wirkt nahbar, natürlich und freundlich wie eine handgeschriebene Notiz auf einer Postkarte.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "indie",
+    name: "Indie Flower",
+    tailwindClass: "font-indie",
+    usage: "Whimsical & Casual Handwriting",
+    category: "Cursive",
+    badgeColor: "bg-indigo-900/10 text-indigo-900 border-indigo-800/20",
+    largeText: "Abenteuer im Weinland",
+    mediumText: "Picknick in den Reben mit frischen Pfälzer Häppchen",
+    smallText: "Eine verspielte, unbeschwerte Handschrift für lockere Events, Kinder-Tipps und freundliche Notizen.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  },
+  {
+    id: "lusitana",
+    name: "Lusitana",
+    tailwindClass: "font-lusitana",
+    usage: "Traditional Book Serif",
+    category: "Serif",
+    badgeColor: "bg-slate-900/10 text-slate-900 border-slate-800/20",
+    largeText: "Pfälzer Kulturlandschaft",
+    mediumText: "Ein Spaziergang durch die Jahrhunderte des Weinbaus",
+    smallText: "Zeitlose Serifen-Typografie mit gleichmäßigem Lesefluss für Artikel, Berichte und Dokumentation.",
+    sampleChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 (!@#$%^&*)"
+  }
+];
+
+const colorTokens = [
+  { name: "Background", token: "bg-background", hex: "#F4F0E6", description: "Warmes Pfälzer Sandstein-Beige", text: "text-text" },
+  { name: "Text / Charcoal", token: "bg-text", hex: "#4B3A2B", description: "Dunkle Walnuss & Erdfarbe", text: "text-background" },
+  { name: "Accent 1 (Gold)", token: "bg-accent1", hex: "#C8A974", description: "Edles Pfälzer Sonnengold", text: "text-text" },
+  { name: "Accent 2 (Brick)", token: "bg-accent2-brick", hex: "#B46B54", description: "Warmer Terrakotta-Ziegel", text: "text-white" },
+  { name: "Accent 2 (Plum)", token: "bg-accent2-plum", hex: "#55354E", description: "Dunkle Pflaume & Rebenholz", text: "text-white" },
+  { name: "Accent 2 (Wine)", token: "bg-accent2-wine", hex: "#8A2D52", description: "Tiefer Dornfelder Rotwein", text: "text-white" },
+  { name: "Soft Beige", token: "bg-soft-beige", hex: "#D8C7B5", description: "Weicher Hafer-Ton", text: "text-text" },
+  { name: "Soft Sand", token: "bg-soft-sand", hex: "#EAE3D5", description: "Heller Dünensand", text: "text-text" },
+];
+---
+
+<MainLayout content={{ title: "Design System & Visual Language - Weinerlebnistouren Pfalz", description: "Offizielle Design-Richtlinien, Typografie-Katalog, Farbtokens und UI-Komponenten von Weinerlebnistouren Pfalz." }}>
+  <Header isHome={false} />
+
+  <main class="min-h-screen bg-[#F4F0E6] text-[#4B3A2B] pb-24 selection:bg-[#C8A974] selection:text-white">
+    <!-- Hero / Cover Banner -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-[#55354E] via-[#8A2D52] to-[#4B3A2B] text-stone-50 py-20 px-4 sm:px-8 md:px-16 shadow-2xl">
+      <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#C8A974_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+      
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-medium tracking-widest uppercase text-[#C8A974] mb-4">
+              <span class="w-2 h-2 rounded-full bg-[#C8A974] animate-pulse"></span>
+              Corporate Design & Brand Architecture
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold font-headline tracking-tight leading-tight">
+              Design Language
+            </h1>
+            <p class="mt-3 text-[#C8A974] font-accent text-3xl sm:text-4xl md:text-5xl">
+              Weinerlebnistouren Pfalz
+            </p>
+            <p class="mt-4 max-w-2xl text-stone-200 font-body text-lg sm:text-xl leading-relaxed">
+              Ein umfassendes Visuelles System & Typografie-Katalog. Alle Design-Tokens, Farbwerte, Form-Radien und verfügbaren Schriftarten im Überblick.
+            </p>
+          </div>
+
+          <!-- Quick Stats Badges -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15">
+            <div class="text-center p-2">
+              <div class="text-3xl font-bold font-bonanova text-[#C8A974]">18</div>
+              <div class="text-[11px] uppercase tracking-wider text-stone-300">Schriftarten</div>
+            </div>
+            <div class="text-center p-2 border-l border-white/10">
+              <div class="text-3xl font-bold font-bonanova text-[#C8A974]">8</div>
+              <div class="text-[11px] uppercase tracking-wider text-stone-300">Brand Farbtöne</div>
+            </div>
+            <div class="text-center p-2 border-l border-white/10">
+              <div class="text-3xl font-bold font-bonanova text-[#C8A974]">8</div>
+              <div class="text-[11px] uppercase tracking-wider text-stone-300">Form-Radien</div>
+            </div>
+            <div class="text-center p-2 border-l border-white/10">
+              <div class="text-3xl font-bold font-bonanova text-[#C8A974]">100%</div>
+              <div class="text-[11px] uppercase tracking-wider text-stone-300">Responsive</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sticky Navigation Bar -->
+    <nav class="sticky top-[70px] z-40 bg-[#F4F0E6]/90 backdrop-blur-md border-b border-[#4B3A2B]/10 shadow-sm py-3 px-4 sm:px-8">
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 overflow-x-auto no-scrollbar text-xs font-semibold uppercase tracking-wider">
+        <a href="#typography" class="px-4 py-2 rounded-full bg-[#4B3A2B] text-white hover:bg-[#8A2D52] transition shrink-0">
+          Typografie ({fontCatalog.length} Fonts)
+        </a>
+        <a href="#interactive-sandbox" class="px-4 py-2 rounded-full bg-white border border-[#4B3A2B]/15 hover:border-[#C8A974] text-[#4B3A2B] transition shrink-0">
+          Font Playground
+        </a>
+        <a href="#colors" class="px-4 py-2 rounded-full bg-white border border-[#4B3A2B]/15 hover:border-[#C8A974] text-[#4B3A2B] transition shrink-0">
+          Farbsystem
+        </a>
+        <a href="#shapes" class="px-4 py-2 rounded-full bg-white border border-[#4B3A2B]/15 hover:border-[#C8A974] text-[#4B3A2B] transition shrink-0">
+          Radien & Form
+        </a>
+        <a href="#elevation" class="px-4 py-2 rounded-full bg-white border border-[#4B3A2B]/15 hover:border-[#C8A974] text-[#4B3A2B] transition shrink-0">
+          Schatten & Tiefe
+        </a>
+        <a href="#components" class="px-4 py-2 rounded-full bg-white border border-[#4B3A2B]/15 hover:border-[#C8A974] text-[#4B3A2B] transition shrink-0">
+          UI Komponenten
+        </a>
+      </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 mt-12 space-y-24">
+
+      <!-- SECTION 1: TYPOGRAPHY SYSTEM & FONT SPECIMEN CATALOG -->
+      <section id="typography" class="scroll-mt-32">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-[#4B3A2B]/15 pb-6">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-[#C8A974]">Katalog & Specimen</span>
+            <h2 class="text-3xl sm:text-5xl font-headline font-bold text-[#4B3A2B] mt-1">
+              Typografie & Schriftarten
+            </h2>
+            <p class="text-stone-600 font-body text-lg mt-2 max-w-3xl">
+              Visualisierung aller im System verfügbaren Schriftarten in kleinen, mittleren und großen Konfigurationen – inklusive Alphabete, Schnitte und Tailwind-Klassen.
+            </p>
+          </div>
+
+          <!-- Category Filter Bar -->
+          <div class="flex items-center gap-2 overflow-x-auto py-1">
+            <button id="filter-all" class="font-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#4B3A2B] text-white">Alle ({fontCatalog.length})</button>
+            <button id="filter-serif" class="font-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-[#4B3A2B]/15 text-[#4B3A2B] hover:bg-stone-100">Serif</button>
+            <button id="filter-cursive" class="font-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-[#4B3A2B]/15 text-[#4B3A2B] hover:bg-stone-100">Cursive</button>
+            <button id="filter-sans" class="font-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-[#4B3A2B]/15 text-[#4B3A2B] hover:bg-stone-100">Sans-Serif</button>
+          </div>
+        </div>
+
+        <!-- Font Specimen Grid -->
+        <div class="grid grid-cols-1 gap-10">
+          {fontCatalog.map((font, idx) => (
+            <article 
+              data-category={font.category}
+              class="font-card bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-[#4B3A2B]/10 hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+            >
+              <!-- Top Header Row -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-stone-100 gap-3">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-full bg-[#55354E] text-[#C8A974] flex items-center justify-center font-bold text-xs">
+                    {idx + 1}
+                  </span>
+                  <div>
+                    <h3 class="text-2xl font-bold font-bonanova text-[#4B3A2B] group-hover:text-[#8A2D52] transition">
+                      {font.name}
+                    </h3>
+                    <p class="text-xs text-stone-500 font-sans mt-0.5">{font.usage}</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2 shrink-0">
+                  <span class={`px-2.5 py-1 rounded-md text-xs font-semibold border ${font.badgeColor}`}>
+                    {font.category}
+                  </span>
+                  <code class="px-3 py-1 bg-stone-100 text-stone-700 font-mono text-xs rounded-md border border-stone-200 select-all">
+                    {font.tailwindClass}
+                  </code>
+                </div>
+              </div>
+
+              <!-- Main Font Display Section (Large, Medium, Small) -->
+              <div class="py-6 space-y-6">
+                <!-- Large Display Specimen -->
+                <div class="bg-stone-50/60 p-4 sm:p-6 rounded-xl border border-stone-100">
+                  <div class="flex items-center justify-between text-[11px] font-mono uppercase text-stone-400 mb-2 tracking-wider">
+                    <span>Große Konfiguration (Display / Hero Headline • ~48px–60px)</span>
+                    <span>text-4xl md:text-6xl</span>
+                  </div>
+                  <div class={`${font.tailwindClass} text-3xl sm:text-5xl lg:text-6xl text-[#4B3A2B] leading-tight tracking-tight break-words`}>
+                    {font.largeText}
+                  </div>
+                </div>
+
+                <!-- Medium Subheading Specimen -->
+                <div class="bg-stone-50/60 p-4 sm:p-6 rounded-xl border border-stone-100">
+                  <div class="flex items-center justify-between text-[11px] font-mono uppercase text-stone-400 mb-2 tracking-wider">
+                    <span>Mittlere Konfiguration (Subheading / Section Title • ~24px–32px)</span>
+                    <span>text-xl md:text-3xl</span>
+                  </div>
+                  <div class={`${font.tailwindClass} text-xl sm:text-2xl md:text-3xl text-[#55354E] leading-snug font-medium`}>
+                    {font.mediumText}
+                  </div>
+                </div>
+
+                <!-- Small Body & Paragraph Specimen -->
+                <div class="bg-stone-50/60 p-4 sm:p-6 rounded-xl border border-stone-100">
+                  <div class="flex items-center justify-between text-[11px] font-mono uppercase text-stone-400 mb-2 tracking-wider">
+                    <span>Kleine Konfiguration (Fließtext / Body / Beschreibung • ~14px–16px)</span>
+                    <span>text-sm md:text-base</span>
+                  </div>
+                  <div class={`${font.tailwindClass} text-sm sm:text-base text-[#4B3A2B]/85 leading-relaxed`}>
+                    {font.smallText}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Full Character Set & Quick Copy Footer -->
+              <div class="pt-4 border-t border-stone-100 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs">
+                <div class="bg-stone-100/80 p-3 rounded-lg border border-stone-200/60 font-mono text-[11px] text-stone-600 leading-relaxed overflow-x-auto">
+                  <span class="text-stone-400 select-none">Zeichensatz: </span>
+                  <span class={`${font.tailwindClass} text-stone-800 text-sm`}>{font.sampleChars.replace(/\n/g, '  ')}</span>
+                </div>
+
+                <button 
+                  data-copy={font.tailwindClass}
+                  class="copy-btn shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-stone-50 hover:bg-[#C8A974] hover:text-white border border-stone-200 rounded-lg text-xs font-semibold text-stone-700 transition"
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                  </svg>
+                  Klasse Kopieren
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- SECTION 2: INTERACTIVE FONT PLAYGROUND / SANDBOX -->
+      <section id="interactive-sandbox" class="scroll-mt-32">
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-[#4B3A2B]/15 relative overflow-hidden">
+          <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-stone-200 gap-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-widest text-[#C8A974]">Live Testbench</span>
+              <h2 class="text-3xl font-headline font-bold text-[#4B3A2B]">Interactive Font Playground</h2>
+              <p class="text-stone-600 text-sm mt-1">Geben Sie eigenen Text ein und testen Sie Schriftarten, Größeneinstellungen und Hintergründe in Echtzeit.</p>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-stone-100 rounded-full text-xs font-medium text-stone-600">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Live Interactive Engine
+            </div>
+          </div>
+
+          <!-- Controls Bar -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6 p-4 bg-stone-50 rounded-2xl border border-stone-200">
+            <!-- Select Font Family -->
+            <div>
+              <label for="font-select" class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Schriftart</label>
+              <select id="font-select" class="w-full px-3 py-2 bg-white border border-stone-300 rounded-lg text-sm font-medium focus:ring-2 focus:ring-[#C8A974] focus:outline-none">
+                {fontCatalog.map(f => (
+                  <option value={f.tailwindClass}>{f.name} ({f.category})</option>
+                ))}
+              </select>
+            </div>
+
+            <!-- Size Slider -->
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label for="size-slider" class="text-xs font-semibold text-stone-700 uppercase tracking-wider">Schriftgröße</label>
+                <span id="size-value" class="text-xs font-mono font-bold text-[#8A2D52]">36px</span>
+              </div>
+              <input type="range" id="size-slider" min="14" max="80" value="36" class="w-full accent-[#8A2D52] cursor-pointer mt-1" />
+            </div>
+
+            <!-- Weight & Line Height -->
+            <div>
+              <label for="weight-select" class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Schriftgewicht</label>
+              <select id="weight-select" class="w-full px-3 py-2 bg-white border border-stone-300 rounded-lg text-sm font-medium focus:ring-2 focus:ring-[#C8A974] focus:outline-none">
+                <option value="font-light">Light (300)</option>
+                <option value="font-normal" selected>Normal (400)</option>
+                <option value="font-semibold">Semibold (600)</option>
+                <option value="font-bold">Bold (700)</option>
+              </select>
+            </div>
+
+            <!-- Theme Toggle -->
+            <div>
+              <label class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Hintergrund-Modus</label>
+              <div class="flex rounded-lg overflow-hidden border border-stone-300 bg-white">
+                <button id="bg-light-btn" class="flex-1 py-1.5 text-xs font-semibold bg-[#4B3A2B] text-white">Hell (Sand)</button>
+                <button id="bg-dark-btn" class="flex-1 py-1.5 text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200">Dunkel (Plum)</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Text Input -->
+          <div class="mb-6">
+            <label for="custom-text-input" class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Eigener Mustertext</label>
+            <input 
+              type="text" 
+              id="custom-text-input" 
+              value="Weinerlebnistouren Pfalz – Wandern, Genießen & Entdecken" 
+              class="w-full px-4 py-3 bg-stone-50 border border-stone-300 rounded-xl text-stone-800 font-medium focus:ring-2 focus:ring-[#C8A974] focus:bg-white focus:outline-none transition"
+            />
+          </div>
+
+          <!-- Live Playground Display Box -->
+          <div 
+            id="playground-output" 
+            class="min-h-[220px] p-8 rounded-2xl bg-[#F4F0E6] text-[#4B3A2B] border border-stone-300 flex items-center justify-center text-center transition-all duration-300 overflow-hidden shadow-inner"
+          >
+            <div id="playground-text" class="font-headline text-36px font-normal leading-normal transition-all">
+              Weinerlebnistouren Pfalz – Wandern, Genießen & Entdecken
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: COLOR SYSTEM & DESIGN TOKENS -->
+      <section id="colors" class="scroll-mt-32">
+        <div class="mb-8 border-b border-[#4B3A2B]/15 pb-6">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#C8A974]">Farbpalette & Tokens</span>
+          <h2 class="text-3xl sm:text-5xl font-headline font-bold text-[#4B3A2B] mt-1">
+            Farbsystem & Hex-Tokens
+          </h2>
+          <p class="text-stone-600 font-body text-lg mt-2 max-w-3xl">
+            Die Farbarchitektur von Weinerlebnistouren Pfalz basiert auf den natürlichen Nuancen der Pfälzer Weinlandschaft: Sandstein, Rebenholz, Sonnengold und tiefe Rotweintöne.
+          </p>
+        </div>
+
+        <!-- Color Swatch Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {colorTokens.map(c => (
+            <div class="bg-white rounded-2xl p-4 shadow-md border border-[#4B3A2B]/10 hover:shadow-lg transition">
+              <div class={`h-32 w-full rounded-xl ${c.token} ${c.text} p-4 flex flex-col justify-between shadow-inner border border-black/5`}>
+                <span class="font-mono text-xs font-bold tracking-wider opacity-90">{c.hex}</span>
+                <span class="font-bonanova font-semibold text-lg">{c.name}</span>
+              </div>
+              <div class="mt-4 space-y-1">
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-bold text-stone-800">{c.name}</span>
+                  <code class="text-[11px] font-mono text-stone-500">{c.token}</code>
+                </div>
+                <p class="text-xs text-stone-500">{c.description}</p>
+                <button 
+                  data-copy={c.hex}
+                  class="copy-btn w-full mt-3 py-1.5 px-3 bg-stone-100 hover:bg-[#C8A974] hover:text-white rounded-lg text-xs font-semibold text-stone-700 transition flex items-center justify-center gap-1"
+                >
+                  Hex {c.hex} kopieren
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Gradient Presets Sub-section -->
+        <div class="mt-12 bg-white rounded-3xl p-8 border border-[#4B3A2B]/15 shadow-md">
+          <h3 class="text-2xl font-bold font-bonanova text-[#4B3A2B] mb-6">Verlaufsfarben & Gradient Utilities</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Gold Text Gradient -->
+            <div class="p-6 rounded-2xl bg-stone-900 text-white space-y-3">
+              <span class="text-xs font-mono text-stone-400 uppercase">.text-gradient-gold</span>
+              <div class="text-3xl font-headline font-bold text-gradient-gold">
+                Pfälzer Goldsonne
+              </div>
+              <code class="block text-[11px] font-mono bg-white/10 p-2 rounded text-amber-200">
+                from-accent1 to-text bg-clip-text text-transparent
+              </code>
+            </div>
+
+            <!-- Plum Text Gradient -->
+            <div class="p-6 rounded-2xl bg-stone-900 text-white space-y-3">
+              <span class="text-xs font-mono text-stone-400 uppercase">.text-gradient-plum</span>
+              <div class="text-3xl font-headline font-bold text-gradient-plum">
+                Weinberg Eleganz
+              </div>
+              <code class="block text-[11px] font-mono bg-white/10 p-2 rounded text-purple-200">
+                from-soft-beige to-accent2-plum bg-clip-text
+              </code>
+            </div>
+
+            <!-- Wine Hero Gradient -->
+            <div class="p-6 rounded-2xl bg-gradient-to-r from-[#55354E] via-[#8A2D52] to-[#B46B54] text-white space-y-3 shadow-lg">
+              <span class="text-xs font-mono text-stone-200 uppercase">Vineyard Sunset Gradient</span>
+              <div class="text-2xl font-bonanova font-bold">
+                Erlebnis & Wein
+              </div>
+              <code class="block text-[11px] font-mono bg-black/20 p-2 rounded text-stone-100">
+                from-accent2-plum via-accent2-wine to-accent2-brick
+              </code>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: SHAPES, RADII & GEOMETRY -->
+      <section id="shapes" class="scroll-mt-32">
+        <div class="mb-8 border-b border-[#4B3A2B]/15 pb-6">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#C8A974]">Geometrie & Abrundungen</span>
+          <h2 class="text-3xl sm:text-5xl font-headline font-bold text-[#4B3A2B] mt-1">
+            Formen & Border Radii
+          </h2>
+          <p class="text-stone-600 font-body text-lg mt-2 max-w-3xl">
+            Sanfte Abrundungen verleihen der Website einen organischen, hochwertigen Touch im Einklang mit Pfälzer Weinlandschaften.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div class="bg-white p-6 rounded-none border border-stone-300 shadow-sm text-center">
+            <span class="block text-xs font-mono text-stone-500 mb-2">rounded-none</span>
+            <span class="font-bold text-sm text-[#4B3A2B]">0px (Scharf)</span>
+          </div>
+          <div class="bg-white p-6 rounded-sm border border-stone-300 shadow-sm text-center">
+            <span class="block text-xs font-mono text-stone-500 mb-2">rounded-sm</span>
+            <span class="font-bold text-sm text-[#4B3A2B]">2px - 4px</span>
+          </div>
+          <div class="bg-white p-6 rounded-md border border-stone-300 shadow-sm text-center">
+            <span class="block text-xs font-mono text-stone-500 mb-2">rounded-md</span>
+            <span class="font-bold text-sm text-[#4B3A2B]">6px (Standard)</span>
+          </div>
+          <div class="bg-white p-6 rounded-lg border border-stone-300 shadow-sm text-center">
+            <span class="block text-xs font-mono text-stone-500 mb-2">rounded-lg (var(--radius))</span>
+            <span class="font-bold text-sm text-[#4B3A2B]">10px (Card UI)</span>
+          </div>
+          <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-sm text-center">
+            <span class="block text-xs font-mono text-stone-500 mb-2">rounded-xl</span>
+            <span class="font-bold text-sm text-[#4B3A2B]">12px (Tour Cards)</span>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-stone-300 shadow-sm text-center">
+            <span class="block text-xs font-mono text-stone-500 mb-2">rounded-2xl</span>
+            <span class="font-bold text-sm text-[#4B3A2B]">16px (Modals)</span>
+          </div>
+          <div class="bg-white p-6 rounded-3xl border border-stone-300 shadow-sm text-center">
+            <span class="block text-xs font-mono text-stone-500 mb-2">rounded-3xl</span>
+            <span class="font-bold text-sm text-[#4B3A2B]">24px (Sections)</span>
+          </div>
+          <div class="bg-white p-6 rounded-full border border-stone-300 shadow-sm text-center">
+            <span class="block text-xs font-mono text-stone-500 mb-2">rounded-full</span>
+            <span class="font-bold text-sm text-[#4B3A2B]">Pills & Buttons</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: ELEVATION & SHADOWS -->
+      <section id="elevation" class="scroll-mt-32">
+        <div class="mb-8 border-b border-[#4B3A2B]/15 pb-6">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#C8A974]">Tiefe & Raum</span>
+          <h2 class="text-3xl sm:text-5xl font-headline font-bold text-[#4B3A2B] mt-1">
+            Schatten & Elevation System
+          </h2>
+          <p class="text-stone-600 font-body text-lg mt-2 max-w-3xl">
+            Schatten erzeugen Raumtiefe und strukturieren Inhalte für eine klare visueller Hierarchie.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 text-center">
+            <span class="text-xs font-mono text-stone-400 block mb-2">shadow-sm</span>
+            <span class="font-bold font-bonanova text-stone-800 text-lg">Subtile Anhebung</span>
+            <p class="text-xs text-stone-500 mt-2">Für Formularelemente & Inset-Boxen</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-stone-200 text-center">
+            <span class="text-xs font-mono text-stone-400 block mb-2">shadow-md</span>
+            <span class="font-bold font-bonanova text-stone-800 text-lg">Standard Kachel</span>
+            <p class="text-xs text-stone-500 mt-2">Karten, Menüs & Vorschauen</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200 text-center">
+            <span class="text-xs font-mono text-stone-400 block mb-2">shadow-lg</span>
+            <span class="font-bold font-bonanova text-stone-800 text-lg">Hover Elevation</span>
+            <p class="text-xs text-stone-500 mt-2">Aktive Interaktion & Hover-Zustand</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-2xl border border-stone-200 text-center">
+            <span class="text-xs font-mono text-stone-400 block mb-2">shadow-2xl</span>
+            <span class="font-bold font-bonanova text-stone-800 text-lg">Popups & Modals</span>
+            <p class="text-xs text-stone-500 mt-2">Prominente Overlays & Hero-Karten</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: UI COMPONENTS & BUTTONS -->
+      <section id="components" class="scroll-mt-32">
+        <div class="mb-8 border-b border-[#4B3A2B]/15 pb-6">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#C8A974]">Bausteine</span>
+          <h2 class="text-3xl sm:text-5xl font-headline font-bold text-[#4B3A2B] mt-1">
+            UI Komponenten & Interaktion
+          </h2>
+          <p class="text-stone-600 font-body text-lg mt-2 max-w-3xl">
+            Vorgefertigte Buttons, Badges, Tags und Formularelemente im konsistenten Brand-Look.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 border border-[#4B3A2B]/15 shadow-lg space-y-10">
+          <!-- Buttons Showcase -->
+          <div>
+            <h3 class="text-xl font-bold font-bonanova text-[#4B3A2B] mb-4">Button Varianten</h3>
+            <div class="flex flex-wrap items-center gap-4">
+              <button class="btn-primary">.btn-primary</button>
+              <button class="btn-secondary">.btn-secondary</button>
+              
+              <!-- Gradient Pill Button -->
+              <button class="px-6 py-2.5 font-semibold text-sm rounded-full shadow-lg font-bonanova bg-gradient-to-r from-[#8A2D52] to-[#55354E] text-white hover:scale-105 transform transition duration-200">
+                Gradient Pill Button
+              </button>
+
+              <!-- Gold Outline Pill -->
+              <button class="px-6 py-2.5 font-semibold text-sm rounded-full border-2 border-[#C8A974] text-[#4B3A2B] hover:bg-[#C8A974] hover:text-white transition duration-200">
+                Gold Outline Pill
+              </button>
+            </div>
+          </div>
+
+          <!-- Badges & Tags -->
+          <div>
+            <h3 class="text-xl font-bold font-bonanova text-[#4B3A2B] mb-4">Badges & Kategorien</h3>
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="px-3 py-1 bg-[#55354E] text-[#C8A974] font-semibold text-xs rounded-full uppercase tracking-wider">
+                Exklusive Tour
+              </span>
+              <span class="px-3 py-1 bg-[#C8A974]/20 text-[#4B3A2B] font-semibold text-xs rounded-full border border-[#C8A974]/40">
+                Planwagenfahrt
+              </span>
+              <span class="px-3 py-1 bg-emerald-100 text-emerald-800 font-semibold text-xs rounded-full">
+                ✓ Buchbar
+              </span>
+              <span class="px-3 py-1 bg-amber-100 text-amber-900 font-semibold text-xs rounded-full">
+                Beliebt bei Gruppen
+              </span>
+            </div>
+          </div>
+
+          <!-- Form Inputs -->
+          <div>
+            <h3 class="text-xl font-bold font-bonanova text-[#4B3A2B] mb-4">Formularelemente</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
+              <div>
+                <label class="block text-xs font-semibold text-stone-700 uppercase mb-1">Name</label>
+                <input type="text" placeholder="Max Mustermann" class="w-full px-4 py-2.5 rounded-lg border border-stone-300 focus:ring-2 focus:ring-[#C8A974] focus:outline-none text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-stone-700 uppercase mb-1">E-Mail Adresse</label>
+                <input type="email" placeholder="beispiel@domain.de" class="w-full px-4 py-2.5 rounded-lg border border-stone-300 focus:ring-2 focus:ring-[#C8A974] focus:outline-none text-sm" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: SAMPLE TOUR CARD (COMPONENT HARMONY SHOWCASE) -->
+      <section class="scroll-mt-32">
+        <div class="mb-8 border-b border-[#4B3A2B]/15 pb-6">
+          <span class="text-xs font-bold uppercase tracking-widest text-[#C8A974]">Harmonie</span>
+          <h2 class="text-3xl sm:text-5xl font-headline font-bold text-[#4B3A2B] mt-1">
+            Praxisbeispiel: Tour-Kachel
+          </h2>
+          <p class="text-stone-600 font-body text-lg mt-2 max-w-3xl">
+            Das Zusammenspiel aller Design-Elemente in einer fertigen UI-Komponente.
+          </p>
+        </div>
+
+        <div class="max-w-md mx-auto tour-card border border-stone-200">
+          <div class="h-52 bg-stone-300 relative overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80');">
+            <div class="absolute top-4 right-4 px-3 py-1 bg-[#55354E] text-[#C8A974] text-xs font-bold rounded-full shadow-md">
+              Ab 49 € p.P.
+            </div>
+          </div>
+          <div class="p-6 space-y-4">
+            <span class="text-xs font-bold text-[#C8A974] uppercase tracking-widest">Gimmeldingen • Haardt</span>
+            <h3 class="text-2xl font-headline font-bold text-[#4B3A2B]">
+              Gimmeldinger Meerspinne & Mandelblüte
+            </h3>
+            <p class="text-sm font-body text-stone-600 leading-relaxed">
+              Geführte Erlebnistour durch die renommiertesten Einzellagen Neustadts mit 4 exklusiven Weinverkostungen & Pfälzer Vesper.
+            </p>
+            <div class="pt-2 flex items-center justify-between border-t border-stone-100">
+              <span class="text-xs font-accent text-xl text-[#8A2D52]">Mit Kultur- & Weinbotschafterin</span>
+              <button class="btn-primary py-2 px-4 text-xs font-semibold">Jetzt Buchen</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</MainLayout>
+
+<!-- Client-side Interactive Script -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Font Category Filtering
+    const filterBtns = document.querySelectorAll('.font-filter-btn');
+    const fontCards = document.querySelectorAll('.font-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Active state update
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-[#4B3A2B]', 'text-white');
+          b.classList.add('bg-white', 'text-[#4B3A2B]');
+        });
+        btn.classList.remove('bg-white', 'text-[#4B3A2B]');
+        btn.classList.add('bg-[#4B3A2B]', 'text-white');
+
+        const category = btn.id.replace('filter-', '');
+        fontCards.forEach(card => {
+          const cardCat = card.getAttribute('data-category').toLowerCase();
+          if (category === 'all' || cardCat.includes(category)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 2. Interactive Font Playground Controls
+    const fontSelect = document.getElementById('font-select');
+    const sizeSlider = document.getElementById('size-slider');
+    const sizeValue = document.getElementById('size-value');
+    const weightSelect = document.getElementById('weight-select');
+    const customTextInput = document.getElementById('custom-text-input');
+    const playgroundText = document.getElementById('playground-text');
+    const playgroundOutput = document.getElementById('playground-output');
+    const bgLightBtn = document.getElementById('bg-light-btn');
+    const bgDarkBtn = document.getElementById('bg-dark-btn');
+
+    let currentFontClass = fontSelect ? fontSelect.value : 'font-headline';
+
+    function updatePlayground() {
+      if (!playgroundText) return;
+      
+      // Update text content
+      playgroundText.textContent = customTextInput.value || 'Weinerlebnistouren Pfalz';
+
+      // Remove existing font family classes
+      playgroundText.className = playgroundText.className
+        .split(' ')
+        .filter(c => !c.startsWith('font-'))
+        .join(' ');
+
+      // Add selected font family and weight
+      playgroundText.classList.add(fontSelect.value, weightSelect.value);
+
+      // Update font size
+      const size = sizeSlider.value + 'px';
+      playgroundText.style.fontSize = size;
+      if (sizeValue) sizeValue.textContent = size;
+    }
+
+    if (fontSelect) fontSelect.addEventListener('change', updatePlayground);
+    if (sizeSlider) sizeSlider.addEventListener('input', updatePlayground);
+    if (weightSelect) weightSelect.addEventListener('change', updatePlayground);
+    if (customTextInput) customTextInput.addEventListener('input', updatePlayground);
+
+    // Theme toggle in playground
+    if (bgLightBtn && bgDarkBtn && playgroundOutput) {
+      bgLightBtn.addEventListener('click', () => {
+        playgroundOutput.className = "min-h-[220px] p-8 rounded-2xl bg-[#F4F0E6] text-[#4B3A2B] border border-stone-300 flex items-center justify-center text-center transition-all duration-300 overflow-hidden shadow-inner";
+        bgLightBtn.className = "flex-1 py-1.5 text-xs font-semibold bg-[#4B3A2B] text-white";
+        bgDarkBtn.className = "flex-1 py-1.5 text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200";
+      });
+
+      bgDarkBtn.addEventListener('click', () => {
+        playgroundOutput.className = "min-h-[220px] p-8 rounded-2xl bg-[#55354E] text-[#F4F0E6] border border-[#8A2D52] flex items-center justify-center text-center transition-all duration-300 overflow-hidden shadow-inner";
+        bgDarkBtn.className = "flex-1 py-1.5 text-xs font-semibold bg-[#8A2D52] text-white";
+        bgLightBtn.className = "flex-1 py-1.5 text-xs font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200";
+      });
+    }
+
+    // 3. Copy to Clipboard
+    const copyBtns = document.querySelectorAll('.copy-btn');
+    copyBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const textToCopy = btn.getAttribute('data-copy');
+        if (textToCopy) {
+          navigator.clipboard.writeText(textToCopy);
+          const originalHTML = btn.innerHTML;
+          btn.innerHTML = '✓ Kopiert!';
+          btn.classList.add('bg-emerald-600', 'text-white');
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('bg-emerald-600', 'text-white');
+          }, 2000);
+        }
+      });
+    });
+  });
+</script>

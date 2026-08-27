@@ -1,0 +1,890 @@
+---
+// src/pages/firmen-events.astro
+//
+// B2B-Seite: Betriebsausflüge, Teambuilding, Weihnachtsfeiern & After-Work.
+// Baut auf der Design-Sprache der /touren-Seite auf (editorialer Stil,
+// Torbogen-Motiv, Masonry-Galerien). Fast vollständig statisch — nur die
+// beiden Galerien hydratisieren als React-Inseln (client:visible).
+//
+// Die Foto-Auswahl stammt aus einer visuellen Sichtung aller Tour-Fotos:
+// bevorzugt Gruppenszenen mit Erwachsenen (Anstoßen, Wandern, Führung),
+// keine Kinder im Fokus.
+import Layout from "@/layouts/main.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import GetInTouch from "@/components/InfoCards/GetInTouchCard.astro";
+import { linkedInProfileUrl } from "@/data/socialProof";
+import { getImage } from "astro:assets";
+import TourGallery, {
+  type TourGalleryImage,
+} from "@/components/TourenPageComponents/TourGallery";
+
+import GruppenfotoSteigelmanns from "@images/onSitePhotos/Gruppenfoto_bei_Steigelmanns.jpeg";
+import YoungGroupWineTour from "@images/compressed/webP/young-group-wine-tour.webp";
+import BrigittaPortrait from "@images/BrigittaHeylPortrait2.png";
+import Image from "astro/components/Image.astro";
+
+import HWELogoV2NoText from "@images/HWE-LogoV2-noText.svg";
+
+// Tour-Fotos über den Glob ansprechen (Dateinamen enthalten teils Leerzeichen,
+// Umlaute oder Großbuchstaben-Endungen — der Glob-Lookup umgeht sperrige
+// Import-Statements und TS-Modul-Deklarationen).
+const tourImageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/tours/**/*.{png,jpg,jpeg,webp}",
+  { eager: true }
+);
+const onSiteImageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/onSitePhotos/*.{JPG,jpg,jpeg,webp}",
+  { eager: true }
+);
+
+function tourPhoto(relPath: string): ImageMetadata {
+  const key = `../assets/images/tours/${relPath}`;
+  const mod = tourImageModules[key];
+  if (!mod) throw new Error(`Tour-Foto nicht gefunden: ${relPath}`);
+  return mod.default;
+}
+
+function onSitePhoto(fileName: string): ImageMetadata {
+  const key = `../assets/images/onSitePhotos/${fileName}`;
+  const mod = onSiteImageModules[key];
+  if (!mod) throw new Error(`Foto nicht gefunden: ${fileName}`);
+  return mod.default;
+}
+
+const TastingBreak = onSitePhoto("DSC_2846.JPG");
+
+async function buildGallery(
+  entries: { meta: ImageMetadata; alt: string }[]
+): Promise<TourGalleryImage[]> {
+  return Promise.all(
+    entries.map(async ({ meta, alt }) => {
+      const optimized = await getImage({
+        src: meta,
+        // 640px deckt die gerenderte Spaltenbreite der Masonry auch bei 2x-DPR
+        width: 640,
+        format: "webp",
+        quality: 72,
+      });
+      return { src: optimized.src, ratio: meta.width / meta.height, alt };
+    })
+  );
+}
+
+// ── Galerie „Das Teamevent" — große Gruppenszenen
+const teameventEntries = [
+  {
+    meta: tourPhoto("bacchus/DSC_2771_bacchus.webp"),
+    alt: "Firmengruppe bei der Begrüßung im historischen Weingutshof",
+  },
+  {
+    meta: tourPhoto("bacchus/ANETTE_IMG_4666_bacchus.webp"),
+    alt: "Große Gruppe lauscht der Gästeführerin an Picknickbänken in den Weinbergen",
+  },
+  {
+    meta: tourPhoto("mandelbluete/IMG_8617_mandelbluete.webp"),
+    alt: "Betriebsausflug: Gruppe mit Namensschildern auf dem Weinbergsweg",
+  },
+  {
+    meta: tourPhoto("bacchus/DSC_2828_bacchus.webp"),
+    alt: "Team wandert durch die Weinberge bei Gimmeldingen",
+  },
+  {
+    meta: tourPhoto("mandelbluete/Brigitta lacht_mandelbluete.webp"),
+    alt: "Gästegruppe lacht gemeinsam mit Gästeführerin Brigitta Heyl",
+  },
+  {
+    meta: tourPhoto("bacchus/IMG_4770_bacchus.webp"),
+    alt: "Gruppe mit Weingläsern auf der Terrasse über den Weinbergen",
+  },
+  {
+    meta: tourPhoto("bacchus/ANETTE_IMG_4448_bacchus.webp"),
+    alt: "Tourgruppe am Aussichtspunkt mit Regenbogen über dem Tal",
+  },
+  {
+    meta: tourPhoto("bacchus/Gruppe 6 Jüngere_bacchus.webp"),
+    alt: "Junges Team stößt mit Weingläsern vor dem Weingut an",
+  },
+];
+
+// ── Galerie „Kompakt & After-Work" — Verkostung, kurze Formate
+const kompaktEntries = [
+  {
+    meta: YoungGroupWineTour,
+    alt: "Kollegen stoßen nach Feierabend mit Weingläsern an",
+  },
+  {
+    meta: tourPhoto("bacchus/DSC_2761_bacchus.webp"),
+    alt: "Kleine Gruppe im Gespräch im historischen Hof",
+  },
+  {
+    meta: tourPhoto("bacchus/ANETTE_IMG_4635_bacchus.webp"),
+    alt: "Regionale Häppchen zur Weinprobe am Weinbergstisch",
+  },
+  {
+    meta: tourPhoto("mandelbluete/IMG_8643_mandelbluete.webp"),
+    alt: "Gedeckter Verkostungstisch mit Panoramablick über die Pfalz",
+  },
+  {
+    meta: tourPhoto("bacchus/DSC_2790_bacchus.webp"),
+    alt: "Spaziergang unter dem Rosenbogen am Mandel-Lehrpfad",
+  },
+  {
+    meta: tourPhoto("gluehwein/IMG_2380_gluehwein.webp"),
+    alt: "Winterliche Weinwanderung der Gruppe entlang des Mussbachs",
+  },
+];
+
+// Beide Galerien parallel optimieren (kein Wasserfall)
+const [teameventGallery, kompaktGallery] = await Promise.all([
+  buildGallery(teameventEntries),
+  buildGallery(kompaktEntries),
+]);
+
+// ── Anlässe (Torbogen-Karten). Akzentklassen ausgeschrieben, damit Tailwind
+// sie beim Build nicht wegpurged.
+const occasions = [
+  {
+    label: "Betriebsausflug",
+    description: "Raus aus dem Büro, rein in die Weinberge",
+    href: "#teamevent",
+    image: tourPhoto("bacchus/ANETTE_IMG_4648_bacchus.webp"),
+    accentBorder: "border-accent1/40",
+  },
+  {
+    label: "Teambuilding",
+    description: "Interaktive Zeitreise — Ihr Team spielt mit",
+    href: "#teamevent",
+    image: tourPhoto("bacchus/ANETTE_IMG_4359_bacchus.webp"),
+    accentBorder: "border-accent2-brick/30",
+  },
+  {
+    label: "Weihnachtsfeier",
+    description: "Glühwein & Lichterglanz statt Kantinen-Buffet",
+    href: "#jahreszeiten",
+    image: tourPhoto("gluehwein/IMG_1837_gluehwein.webp"),
+    accentBorder: "border-accent2-plum/30",
+  },
+  {
+    label: "After-Work",
+    description: "Kompakte Weinführung für Tagung, Feierabend & Firmenreise",
+    href: "#kompakt",
+    image: TastingBreak,
+    accentBorder: "border-accent2-wine/30",
+  },
+];
+
+// ── Jahreszeiten-Band: Anlass → passende Tour
+const seasons = [
+  {
+    season: "Frühling",
+    tour: "Mandelblüte, Meerspinne und Monarchen",
+    hook: "Kick-off zwischen blühenden Mandelbäumen",
+    href: "/touren#mandelbluete",
+    accentText: "text-accent2-wine",
+    accentBorder: "border-accent2-wine/30",
+  },
+  {
+    season: "Sommer",
+    tour: "Magischer Mussbach",
+    hook: "Betriebsausflug mit Baumpflanzung — Teamgeist trifft Nachhaltigkeit",
+    href: "/touren#mussbach",
+    accentText: "text-accent1",
+    accentBorder: "border-accent1/40",
+  },
+  {
+    season: "Herbst",
+    tour: "Von Bacchus bis Christophorus",
+    hook: "Der Klassiker zur Weinlese",
+    href: "/touren#bacchus",
+    accentText: "text-accent2-brick",
+    accentBorder: "border-accent2-brick/30",
+  },
+  {
+    season: "Winter",
+    tour: "Geheimnisvolles Gimmeldingen",
+    hook: "Ihre Weihnachtsfeier im Lichterglanz",
+    href: "/touren#gluehwein",
+    accentText: "text-accent2-plum",
+    accentBorder: "border-accent2-plum/30",
+  },
+];
+
+const stats = [
+  { value: "10–28", label: "Personen pro Erlebnistour" },
+  { value: "4–8", label: "Stunden — flexibel nach Konzept" },
+  { value: "4", label: "Jahreszeiten, ganzjährig buchbar" },
+  { value: "5", label: "Genuss-Stationen pro Tour" },
+];
+
+const benefits = [
+  {
+    index: "01",
+    title: "Teambuilding, das nicht nach Seminarraum schmeckt",
+    text: "Bei der interaktiven Zeitreise übernimmt jeder Gast eine Rolle — je nach Jahreszeit vom Monarchen bis zum Belzenickel. Gemeinsames Lachen verbindet schneller als jedes Flipchart, und die Geschichten bleiben noch lange Gesprächsstoff im Büro.",
+  },
+  {
+    index: "02",
+    title: "Genuss, der im Gedächtnis bleibt",
+    text: "Fünf erlesene Weine lokaler Weingüter, dazu perfekt abgestimmte regionale Häppchen — verkostet dort, wo der Wein wächst: zwischen Reben, in historischen Höfen und mit Ausblicken über die Pfalz.",
+  },
+  {
+    index: "03",
+    title: "Planung aus einer Hand",
+    text: "Wunschtermin, maßgeschneidertes Konzept, gern auch inklusive Organisation eines gemeinsamen Essens. Sie bringen Ihr Team mit — um den Rest kümmere ich mich persönlich.",
+  },
+];
+
+const faqs = [
+  {
+    // Kein „ß" in Fragen: Bona Nova SC (Small Caps) hat keine saubere ß-Glyphe
+    question: "Wie viele Personen können teilnehmen?",
+    answer:
+      "Die Weinerlebnistouren sind für 10 bis 28 Personen ausgelegt. Für größere Gruppen bis ca. 50 Personen eignen sich die kürzeren Weinführungen — sprechen Sie mich einfach an, wir finden das passende Format.",
+  },
+  {
+    question: "Wie lange dauert ein Firmen-Event?",
+    answer:
+      "Je nach Konzept 4 bis 8 Stunden — von der klassischen Erlebnistour bis zum ganzen Eventtag mit gemeinsamem Essen. Die kompakten Weinführungen dauern 1 bis 2 Stunden.",
+  },
+  {
+    question: "Können Sie auch ein gemeinsames Essen organisieren?",
+    answer:
+      "Ja, gerne — ich übernehme dann die Organisation eines gemeinsamen Essens als Abschluss oder Höhepunkt Ihres Events.",
+  },
+  {
+    question: "Wann können Firmen-Events stattfinden?",
+    answer:
+      "Das ganze Jahr über an Ihrem Wunschtermin. Jede Jahreszeit hat ihre eigene Tour — von der Mandelblüte im Frühjahr bis zur Glühweintour in der Adventszeit.",
+  },
+  {
+    question: "Wo finden die Touren statt?",
+    answer:
+      "In und um Gimmeldingen bei Neustadt an der Weinstraße. Die Touren führen durch die Weinberge und den historischen Ortskern — mit Stationen bei lokalen Weingütern.",
+  },
+];
+---
+
+<Layout
+  content={{
+    title: "Firmen-Events & Betriebsausflüge – Weinerlebnistouren-Pfalz",
+    description:
+      "Betriebsausflug, Teambuilding oder Weihnachtsfeier in der Pfalz: interaktive Weinerlebnistouren für Firmen in Gimmeldingen bei Neustadt an der Weinstraße — maßgeschneidert, ganzjährig, mit Weinen lokaler Weingüter.",
+  }}
+>
+  <Header isDarkMode={false} isGroupe={true} />
+
+  <main class="overflow-x-clip bg-background text-text">
+    <!-- ================= Hero ================= -->
+    <section class="relative pt-14 pb-12 container-padding sm:pt-20 sm:pb-16">
+      <!-- zarte Farbnebel im Hintergrund -->
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-20 left-[4%] h-72 w-72 rounded-full bg-accent1/15 blur-3xl"
+      >
+      </div>
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute top-24 right-[8%] h-80 w-80 rounded-full bg-accent2-wine/10 blur-3xl"
+      >
+      </div>
+
+      <div
+        class="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16"
+      >
+        <div class="text-center lg:text-left">
+          <p class="text-2xl font-doulaise text-accent1 sm:text-4xl">
+            Gemeinsam mehr erleben
+          </p>
+          <h1
+            class="mt-4 font-bonanova text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl"
+          >
+            Firmen-Events im Weinberg
+          </h1>
+          <p
+            class="mx-auto mt-6 max-w-xl text-base leading-relaxed font-body text-text/75 sm:text-lg lg:mx-0"
+          >
+            Betriebsausflug, Teambuilding oder Weihnachtsfeier: Schenken Sie
+            Ihrem Team ein Erlebnis, das bleibt — eine interaktive
+            Weinerlebnistour durch die Weinberge und den historischen Ortskern
+            von Gimmeldingen, maßgeschneidert für Ihr Unternehmen.
+          </p>
+          <div
+            class="flex flex-wrap gap-4 justify-center items-center mt-8 lg:justify-start"
+          >
+            <a
+              class="px-8 py-3 text-sm font-bold tracking-wider uppercase bg-gradient-to-r rounded-full shadow-md transition-all duration-300 from-accent2-wine to-accent2-wine/80 font-bonanova text-stone-50 hover:-translate-y-0.5 hover:shadow-lg"
+              href="/kontakt"
+            >
+              Unverbindlich anfragen
+            </a>
+            <a
+              class="px-8 py-3 text-sm font-bold tracking-wider uppercase rounded-full border-2 transition-all duration-300 border-accent1 font-bonanova text-text hover:-translate-y-0.5 hover:bg-soft-beige/60"
+              href="tel:+491707110535"
+            >
+              +49 170 7110535
+            </a>
+          </div>
+          <p
+            class="mt-6 text-[0.62rem] uppercase tracking-[0.14em] text-text/50 sm:text-sm sm:tracking-[0.25em]"
+          >
+            <span class="block sm:inline">
+              Zertifizierte Kultur- und Weinbotschafterin
+            </span>
+            <span class="hidden sm:inline" aria-hidden="true">·</span>
+            <span class="block sm:inline">
+              Gimmeldingen bei Neustadt an der Weinstraße
+            </span>
+          </p>
+        </div>
+
+        <!-- Torbogen-Heldenbild -->
+        <div class="mx-auto w-2/3 max-w-xs sm:max-w-sm lg:w-full lg:max-w-none">
+          <div
+            class="relative aspect-[3/4] overflow-hidden rounded-t-full rounded-b-2xl border-2 border-accent1/40 shadow-xl"
+          >
+            <Image
+              alt="Firmengruppe stößt mit Weingläsern im sonnigen Weingutshof an"
+              class="object-cover w-full h-full"
+              decoding="async"
+              fetchpriority="high"
+              format="webp"
+              loading="eager"
+              quality={72}
+              src={GruppenfotoSteigelmanns}
+              width={760}
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t via-transparent to-transparent from-text/30"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Fakten-Strip ================= -->
+    <section
+      aria-label="Eckdaten"
+      class="py-8 mx-auto max-w-5xl container-padding border-y border-accent1/20 sm:py-10"
+    >
+      <dl class="grid grid-cols-2 gap-6 text-center lg:grid-cols-4">
+        {
+          stats.map((stat) => (
+            <div>
+              <dt class="sr-only">{stat.label}</dt>
+              <dd class="text-4xl font-bold font-bonanova text-accent1 sm:text-5xl">
+                {stat.value}
+              </dd>
+              {/* aria-hidden: das sichtbare Label würde sonst doppelt vorgelesen (dt ist sr-only) */}
+              <dd
+                aria-hidden="true"
+                class="mt-1 text-[0.65rem] uppercase tracking-[0.14em] text-text/55 sm:text-xs"
+              >
+                {stat.label}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <!-- ================= Anlässe ================= -->
+    <section
+      aria-label="Anlässe im Überblick"
+      class="pt-14 mx-auto max-w-6xl container-padding sm:pt-20"
+    >
+      <p class="text-2xl text-center font-doulaise text-accent1 sm:text-3xl">
+        Ihr Anlass, mein Konzept
+      </p>
+      <h2
+        class="mx-auto mt-3 max-w-2xl text-2xl font-bold text-center font-bonanova sm:text-4xl"
+      >
+        Vier gute Gründe, das Büro zu verlassen
+      </h2>
+
+      <div
+        class="grid grid-cols-2 gap-x-4 gap-y-8 mt-10 sm:gap-6 lg:grid-cols-4 lg:gap-8"
+      >
+        {
+          occasions.map((occasion) => (
+            <a
+              class="block text-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent1 focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+              href={occasion.href}
+            >
+              <div
+                class={`relative mx-auto aspect-[3/4] w-2/3 overflow-hidden rounded-t-full rounded-b-2xl border-2 sm:w-full ${occasion.accentBorder} shadow-md transition-all duration-500 group-hover:-translate-y-1.5 group-hover:shadow-xl`}
+              >
+                {/* alt="" — der Link ist über Label + Beschreibung benannt */}
+                <Image
+                  alt=""
+                  class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                  decoding="async"
+                  format="webp"
+                  loading="lazy"
+                  quality={70}
+                  src={occasion.image}
+                  width={520}
+                />
+                {/* kräftigerer Verlauf, damit das Script-Label auf den Fotos lesbar bleibt */}
+                <div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t to-transparent from-black/60 via-black/25" />
+                <span class="absolute inset-x-0 bottom-2.5 px-2 text-xl drop-shadow-md font-doulaise text-stone-50 md:text-2xl lg:bottom-3">
+                  {occasion.label}
+                </span>
+              </div>
+              <p class="mx-auto mt-3 max-w-[16rem] px-1 text-xs leading-snug text-text/60 sm:text-sm">
+                {occasion.description}
+              </p>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ================= Warum Wein verbindet ================= -->
+    <section
+      aria-label="Warum Wein verbindet"
+      class="py-16 mx-auto max-w-6xl container-padding sm:py-24"
+    >
+      <p class="text-2xl text-center font-doulaise text-accent1 sm:text-3xl">
+        Warum Wein verbindet
+      </p>
+      <h2
+        class="mx-auto mt-3 max-w-2xl text-2xl font-bold text-center font-bonanova sm:text-4xl"
+      >
+        Was meine Events besonders macht
+      </h2>
+
+      <div class="grid gap-10 mt-12 md:grid-cols-3 md:gap-8 lg:gap-12">
+        {
+          benefits.map((benefit) => (
+            <div>
+              <p class="text-4xl font-bold font-bonanova text-accent1/40 sm:text-5xl">
+                {benefit.index}
+              </p>
+              <div aria-hidden="true" class="mt-3 w-12 h-px bg-accent1/40" />
+              <h3 class="mt-4 text-lg font-bold leading-snug font-bonanova sm:text-xl">
+                {benefit.title}
+              </h3>
+              <p class="mt-3 text-sm leading-relaxed font-body text-text/70 sm:text-base">
+                {benefit.text}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ================= Format 1: Das Teamevent ================= -->
+    <section
+      aria-label="Das Teamevent"
+      class="relative py-16 scroll-mt-24 bg-soft-sand/40 sm:py-24"
+      id="teamevent"
+    >
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute top-6 right-4 select-none font-bonanova text-[9rem] font-bold leading-none opacity-[0.05] sm:right-10 sm:text-[13rem]"
+      >
+        01
+      </span>
+
+      <div
+        class="container-padding relative mx-auto grid max-w-7xl items-start gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16"
+      >
+        <div class="lg:sticky lg:top-28">
+          <p class="text-4xl font-doulaise text-accent2-wine sm:text-5xl">
+            Das Teamevent
+          </p>
+          <p class="mt-2 text-xs uppercase tracking-[0.25em] text-text/50">
+            4–8 Stunden · 10–28 Personen · ganzjährig
+          </p>
+          <div aria-hidden="true" class="mt-5 w-16 h-px bg-accent2-wine/40">
+          </div>
+          <h2
+            class="mt-5 text-3xl font-bold leading-tight font-bonanova sm:text-4xl xl:text-5xl"
+          >
+            Die Weinerlebnistour als Betriebsausflug
+          </h2>
+          <p
+            class="mt-5 max-w-prose leading-relaxed font-body text-text/75 sm:text-lg"
+          >
+            Ein exklusives Event auf Basis meiner Weinerlebnistouren — speziell
+            für Ihr Unternehmen. Ihr Team wandert durch Weinberge und
+            historische Gassen, genießt an fünf Stationen Weine lokaler
+            Weingüter — im Winter wärmenden Glühwein — mit abgestimmten
+            Häppchen und erlebt eine interaktive Zeitreise durch die pfälzische
+            Weingeschichte. Auf Wunsch organisiere ich zum Abschluss ein
+            gemeinsames Essen.
+          </p>
+          <ul class="flex flex-wrap gap-2 mt-6">
+            <li
+              class="px-3 py-1 text-xs rounded-full border border-accent2-wine/30 bg-white/60 text-text/70 sm:text-sm"
+            >
+              Maßgeschneidertes Konzept
+            </li>
+            <li
+              class="px-3 py-1 text-xs rounded-full border border-accent2-wine/30 bg-white/60 text-text/70 sm:text-sm"
+            >
+              5 Genuss-Stationen
+            </li>
+            <li
+              class="px-3 py-1 text-xs rounded-full border border-accent2-wine/30 bg-white/60 text-text/70 sm:text-sm"
+            >
+              Interaktive Zeitreise
+            </li>
+            <li
+              class="px-3 py-1 text-xs rounded-full border border-accent2-wine/30 bg-white/60 text-text/70 sm:text-sm"
+            >
+              Essen auf Wunsch organisiert
+            </li>
+          </ul>
+          <div class="flex flex-wrap gap-4 items-center mt-8">
+            <a
+              class="px-6 py-2.5 text-sm font-bold tracking-wider uppercase rounded-full shadow-md transition-all duration-300 bg-accent2-wine font-bonanova text-stone-50 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg"
+              href="/kontakt"
+            >
+              Event anfragen
+            </a>
+            <a
+              class="text-sm transition text-text/60 underline-offset-4 hover:text-text hover:underline"
+              href="/touren"
+            >
+              Die vier Touren entdecken
+            </a>
+          </div>
+        </div>
+
+        <div>
+          {/* Auf Mobile nur die ersten 4 Fotos — sonst wird die Seite zu lang */}
+          <TourGallery
+            className="max-md:[&>div:nth-child(n+5)]:hidden"
+            client:visible
+            images={teameventGallery}
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Format 2: Kompakt & After-Work ================= -->
+    <section
+      aria-label="Kompakt und After-Work"
+      class="relative py-16 scroll-mt-24 sm:py-24"
+      id="kompakt"
+    >
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute top-6 left-4 select-none font-bonanova text-[9rem] font-bold leading-none opacity-[0.05] sm:left-10 sm:text-[13rem]"
+      >
+        02
+      </span>
+
+      <div
+        class="container-padding relative mx-auto grid max-w-7xl items-start gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16"
+      >
+        <div class="lg:sticky lg:top-28 lg:order-2">
+          <p class="text-4xl font-doulaise text-accent1 sm:text-5xl">
+            Kompakt & After-Work
+          </p>
+          <p class="mt-2 text-xs uppercase tracking-[0.25em] text-text/50">
+            1–2 Stunden · bis ca. 50 Personen
+          </p>
+          <div aria-hidden="true" class="mt-5 w-16 h-px bg-accent1/50"></div>
+          <h2
+            class="mt-5 text-3xl font-bold leading-tight font-bonanova sm:text-4xl xl:text-5xl"
+          >
+            Weinführungen für Tagung, After-Work und Firmenreise
+          </h2>
+          <p
+            class="mt-5 max-w-prose leading-relaxed font-body text-text/75 sm:text-lg"
+          >
+            Wenig Zeit im Programm? Die kürzeren thematischen Weinführungen —
+            zu Mandelblüte, Weinlagen, Ortskern oder Mussbach — fügen sich
+            nahtlos in jeden Zeitplan ein: als erfrischende Pause am
+            Workshop-Tag, als After-Work-Ausklang oder als Programmpunkt Ihrer
+            Firmenreise durch die Pfalz. Je nach Zeitfenster auch mit 1–3
+            Weinen und Snacks.
+          </p>
+          <ul class="flex flex-wrap gap-2 mt-6">
+            <li
+              class="px-3 py-1 text-xs rounded-full border border-accent1/40 bg-white/60 text-text/70 sm:text-sm"
+            >
+              Wählbare Themen
+            </li>
+            <li
+              class="px-3 py-1 text-xs rounded-full border border-accent1/40 bg-white/60 text-text/70 sm:text-sm"
+            >
+              1–3 Weine & Snacks möglich
+            </li>
+            <li
+              class="px-3 py-1 text-xs rounded-full border border-accent1/40 bg-white/60 text-text/70 sm:text-sm"
+            >
+              Passt in jeden Zeitplan
+            </li>
+            <li
+              class="px-3 py-1 text-xs rounded-full border border-accent1/40 bg-white/60 text-text/70 sm:text-sm"
+            >
+              Auch für Reisegruppen
+            </li>
+          </ul>
+          <div class="flex flex-wrap gap-4 items-center mt-8">
+            <a
+              class="px-6 py-2.5 text-sm font-bold tracking-wider uppercase rounded-full shadow-md transition-all duration-300 bg-accent1 font-bonanova text-stone-50 hover:-translate-y-0.5 hover:bg-accent1/90 hover:shadow-lg"
+              href="/kontakt"
+            >
+              Anfrage senden
+            </a>
+            <a
+              class="text-sm transition text-text/60 underline-offset-4 hover:text-text hover:underline"
+              href="/gruppen"
+            >
+              Mehr zu Gruppenangeboten
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:order-1">
+          <TourGallery
+            className="max-md:[&>div:nth-child(n+5)]:hidden"
+            client:visible
+            images={kompaktGallery}
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Jahreszeiten-Band ================= -->
+    <section
+      aria-label="Das passende Event zu jeder Jahreszeit"
+      class="py-16 scroll-mt-24 bg-soft-sand/40 sm:py-20"
+      id="jahreszeiten"
+    >
+      <div class="mx-auto max-w-6xl container-padding">
+        <p class="text-2xl text-center font-doulaise text-accent1 sm:text-3xl">
+          Das ganze Jahr Saison
+        </p>
+        <h2
+          class="mx-auto mt-3 max-w-2xl text-2xl font-bold text-center font-bonanova sm:text-4xl"
+        >
+          Zu jedem Termin die passende Tour
+        </h2>
+
+        <div class="grid gap-4 mt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {
+            seasons.map((entry) => (
+              <a
+                class={`group flex h-full flex-col rounded-2xl border ${entry.accentBorder} bg-white/60 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent1`}
+                href={entry.href}
+              >
+                <p class={`font-doulaise text-3xl ${entry.accentText}`}>
+                  {entry.season}
+                </p>
+                <h3 class="mt-3 text-base font-bold leading-snug font-bonanova">
+                  {entry.tour}
+                </h3>
+                <p class="mt-2 text-sm leading-relaxed text-text/65">
+                  {entry.hook}
+                </p>
+                {/* mt-auto: die vier „Zur Tour"-Zeilen schließen bündig unten ab */}
+                <p class="mt-auto pt-4 text-xs uppercase tracking-[0.18em] text-text/50 transition group-hover:text-text/80">
+                  Zur Tour →
+                </p>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Ihre Gastgeberin ================= -->
+    <section
+      aria-label="Ihre Gastgeberin"
+      class="py-16 mx-auto max-w-5xl container-padding sm:py-24"
+    >
+      <div
+        class="grid items-center gap-10 sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] sm:gap-12"
+      >
+        <div class="mx-auto w-1/2 sm:w-full sm:max-w-[16rem]">
+          <div
+            class="relative aspect-[3/4] overflow-hidden rounded-t-full rounded-b-2xl border-2 border-accent1/40 shadow-lg"
+          >
+            <Image
+              alt="Portrait von Brigitta Heyl, zertifizierte Kultur- und Weinbotschafterin"
+              class="object-cover w-full h-full"
+              decoding="async"
+              format="webp"
+              loading="lazy"
+              quality={72}
+              src={BrigittaPortrait}
+              width={480}
+            />
+          </div>
+        </div>
+        <div class="text-center sm:text-left">
+          <p class="text-2xl font-doulaise text-accent1 sm:text-3xl">
+            Ihre Gastgeberin
+          </p>
+          <h2 class="mt-3 text-2xl font-bold font-bonanova sm:text-3xl">
+            Persönlich geplant, persönlich geführt
+            <span class="relative inline-block group align-middle">
+              <svg
+                aria-label="Zertifizierte Kultur- und Weinbotschafterin"
+                class="inline-block ml-1.5 w-6 h-6 shrink-0 text-accent1 hover:text-accent2-wine transition-colors duration-200 cursor-pointer"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"
+                ></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+              {/* Tooltip */}
+              <span
+                class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-xs rounded-lg bg-text text-stone-50 text-xs font-sans font-normal py-1.5 px-3 shadow-lg opacity-0 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 z-30"
+              >
+                Zertifizierte Kultur- und Weinbotschafterin
+                <span
+                  class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-text"
+                ></span>
+              </span>
+            </span>
+          </h2>
+
+          <!-- Zertifikats-Badge (Icon: Lucide „badge-check") -->
+          <!-- <p
+            class="inline-flex gap-2 items-center px-4 py-1.5 mt-4 rounded-full border shadow-sm border-accent1/40 bg-white/60"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-4 h-4 shrink-0 text-accent1"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"
+              ></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span
+              class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-text/70 sm:text-xs sm:tracking-[0.14em]"
+            >
+              Zertifizierte Kultur- und Weinbotschafterin
+            </span>
+          </p> -->
+
+          <p
+            class="mt-4 leading-relaxed font-body text-text/75 sm:text-lg"
+          >
+            Ich bin Brigitta Heyl, begeisterte Wahlpfälzerin. Jedes
+            Firmen-Event plane ich gemeinsam mit Ihnen — vom ersten Gespräch
+            bis zum letzten Glas. Ihr Team erlebt keine Führung von der
+            Stange, sondern eine Geschichte, in der es selbst mitspielt.
+          </p>
+          <div
+            class="flex flex-wrap gap-4 justify-center items-center mt-6 sm:justify-start"
+          >
+            <a
+              class="px-6 py-2.5 text-sm font-bold tracking-wider uppercase rounded-full border-2 transition-all duration-300 border-accent1 font-bonanova text-text hover:-translate-y-0.5 hover:bg-soft-beige/60"
+              href={linkedInProfileUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Auf LinkedIn vernetzen
+            </a>
+            <a
+              class="text-sm transition text-text/60 underline-offset-4 hover:text-text hover:underline"
+              href="/#about-me"
+            >
+              Mehr über mich
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section
+      aria-label="Häufige Fragen"
+      class="py-16 mx-auto max-w-3xl container-padding sm:py-24"
+    >
+      <p class="text-2xl text-center font-doulaise text-accent1 sm:text-3xl">
+        Gut zu wissen
+      </p>
+      <h2
+        class="mt-3 text-2xl font-bold text-center font-bonanova sm:text-4xl"
+      >
+        Häufige Fragen zu Firmen-Events
+      </h2>
+
+      <div class="mt-10 space-y-3">
+        {
+          faqs.map((faq) => (
+            <details class="px-5 py-4 rounded-2xl border transition-shadow group border-soft-beige/80 bg-white/60 open:shadow-sm">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bonanova text-base font-bold sm:text-lg [&::-webkit-details-marker]:hidden">
+                {faq.question}
+                <span
+                  aria-hidden="true"
+                  class="text-xl leading-none transition-transform duration-300 shrink-0 text-accent1 group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <p class="mt-3 max-w-prose text-sm leading-relaxed font-body text-text/70 sm:text-base">
+                {faq.answer}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ================= Abschluss-CTA ================= -->
+    <section class="relative pb-8 text-center container-padding sm:pb-12">
+      <div class="flex justify-center mb-10" aria-hidden="true">
+        <div
+          class="w-px h-14 bg-gradient-to-b from-transparent to-transparent via-accent1/60"
+        >
+            <div class="w-fit h-fit absolute top-0 right-[50%] sm:translate-x-[50%] sm:translate-y-[6%]">
+      <Image src={HWELogoV2NoText} loading="lazy" fetchpriority="auto" alt="Vineyard background" class="relative w-[100px] object-cover opacity-85" />
+            </div>
+        </div>
+      </div>
+      <p class="text-3xl font-doulaise text-accent1 sm:text-4xl">
+        Lassen Sie uns anstoßen
+      </p>
+      <h2
+        class="mx-auto mt-4 max-w-3xl text-3xl font-bold font-bonanova sm:text-5xl"
+      >
+        Planen wir Ihr Firmen-Event
+      </h2>
+      <p class="mx-auto mt-5 max-w-xl font-body text-text/75 sm:text-lg">
+        Erzählen Sie mir von Ihrem Team, Ihrem Anlass und Ihrem Wunschtermin —
+        ich melde mich mit einem Konzeptvorschlag für Ihr Event in den
+        Weinbergen.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center items-center mt-8">
+        <a
+          class="px-8 py-3 text-sm font-bold tracking-wider uppercase bg-gradient-to-r rounded-full shadow-md transition-all duration-300 from-accent2-wine to-accent2-wine/80 font-bonanova text-stone-50 hover:-translate-y-0.5 hover:shadow-lg"
+          href="/kontakt"
+        >
+          Unverbindlich anfragen
+        </a>
+        <a
+          class="px-8 py-3 text-sm font-bold tracking-wider uppercase rounded-full border-2 transition-all duration-300 border-accent1 font-bonanova text-text hover:-translate-y-0.5 hover:bg-soft-beige/60"
+          href="mailto:weinerlebnistouren.pfalz@gmail.com"
+        >
+          E-Mail schreiben
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

@@ -322,7 +322,10 @@ const tours = tourDefinitions.map((tour, index) => ({
       </div>
     </section>
 
-    <GetInTouch className="bg-gradient-to-t from-stone-100 to-transparent pb-12" />
+    <!-- Nur Desktop: der Footer rendert auf Mobile bereits eine eigene Kontakt-Karte -->
+    <div class="hidden md:block">
+      <GetInTouch className="bg-gradient-to-t from-stone-100 to-transparent pb-12" />
+    </div>
   </main>
 
   <Footer />
