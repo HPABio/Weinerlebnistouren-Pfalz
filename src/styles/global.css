@@ -12,7 +12,7 @@
   }
 
   body {
-    @apply font-body bg-background text-foreground;
+    @apply font-body bg-stone-50 text-text;
   }
 
   h1,
@@ -94,8 +94,11 @@
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
   }
+  /* Tailwind v3 kann keine Alpha-Modifier auf var()-Farben anwenden
+     (outline-ring/50), daher als normales CSS statt @apply. */
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
+    outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
   }
 }
 

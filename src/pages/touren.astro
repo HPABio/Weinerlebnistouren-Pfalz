@@ -1,0 +1,329 @@
+---
+// src/pages/touren.astro
+//
+// „Ein Weinjahr in vier Touren" — schneller Jahresüberblick über alle vier
+// Touren mit echten Foto-Galerien pro Tour. Die Seite ist bewusst fast
+// vollständig statisch; nur die Galerien hydratisieren als React-Inseln
+// (client:visible), sobald sie in den Viewport kommen.
+import Layout from "@/layouts/main.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import GetInTouch from "@/components/InfoCards/GetInTouchCard.astro";
+import { Image, getImage } from "astro:assets";
+import TourGallery, {
+  type TourGalleryImage,
+} from "@/components/TourenPageComponents/TourGallery";
+
+import MJAlmondFlowerMosaicGlass from "@images/compressed/webP/compressed-mj-almondFlower-mosaicGlass.webp";
+import WassermuehleImWald from "@images/compressed/webP/compressed-Wassermühle-im-Wald.png";
+import MJBachusMosaicGlass from "@images/compressed/webP/compressed-mj-Bachus-mosaicGlass.webp";
+import MJGluehweinV1 from "@images/compressed/webP/compressed-mj-GlühweinV1.webp";
+
+// Alle Tour-Fotos einsammeln (gleiche Quelle wie ImageGalleryToursAstro)
+const tourImageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/tours/**/*.{png,jpg,jpeg,webp}",
+  { eager: true }
+);
+
+const GALLERY_SIZE = 8;
+
+// Deterministische, gleichmäßig über den (sortierten) Bestand verteilte
+// Auswahl — kein Math.random, damit SSR-Ausgabe und Build stabil bleiben.
+function pickSpread<T>(items: T[], count: number): T[] {
+  if (items.length <= count) return items;
+  const step = items.length / count;
+  return Array.from({ length: count }, (_, i) => items[Math.floor(i * step)]);
+}
+
+async function buildGallery(
+  tourId: string,
+  tourName: string
+): Promise<TourGalleryImage[]> {
+  const paths = Object.keys(tourImageModules)
+    .filter((path) => path.includes(`/tours/${tourId}/`))
+    .sort();
+
+  return Promise.all(
+    pickSpread(paths, GALLERY_SIZE).map(async (path, index) => {
+      const meta = tourImageModules[path].default;
+      const optimized = await getImage({
+        src: meta,
+        width: 900,
+        format: "webp",
+        quality: 72,
+      });
+      return {
+        src: optimized.src,
+        ratio: meta.width / meta.height,
+        alt: `${tourName} – Impression ${index + 1}`,
+      };
+    })
+  );
+}
+
+// Saisonale Akzentfarben als vollständige Klassennamen (kein dynamisches
+// Zusammensetzen, damit Tailwind sie beim Build nicht wegpurged).
+const tourDefinitions = [
+  {
+    id: "mandelbluete",
+    season: "Frühling",
+    months: "März – April",
+    title: "Mandelblüte, Meerspinne und Monarchen",
+    teaser:
+      "Wenn die Mandelbäume rosa blühen, beginnt das Weinjahr in Gimmeldingen: fünf erlesene Weine, feine Mandelköstlichkeiten und 700 Jahre Wittelsbacher Geschichte — mitten in einer traumhaften Frühlingskulisse.",
+    facts: ["ca. 4 Stunden", "ca. 4 km", "5 Weine & Mandel-Snacks"],
+    bookingUrl: "https://eveeno.com/Mandelbluete",
+    cardImage: MJAlmondFlowerMosaicGlass,
+    accentText: "text-accent2-wine",
+    accentBg: "bg-accent2-wine hover:bg-accent2-wine/90",
+    accentBorder: "border-accent2-wine/30",
+    accentLine: "bg-accent2-wine/40",
+  },
+  {
+    id: "mussbach",
+    season: "Sommer",
+    months: "Mai – August",
+    title: "Magischer Mussbach",
+    teaser:
+      "Eine sommerlich-erfrischende Weinwanderung entlang des Mussbachs: schattige Pfade, historische Mühlen, fünf regionale Weine — und zum Abschluss pflanzt jeder Gast einen eigenen Baum.",
+    facts: ["ca. 6 Stunden", "4, 8 oder 12 km", "5 Weine & Baumpflanzung"],
+    bookingUrl: "https://eveeno.com/mussbach",
+    cardImage: WassermuehleImWald,
+    accentText: "text-accent1",
+    accentBg: "bg-accent1 hover:bg-accent1/90",
+    accentBorder: "border-accent1/40",
+    accentLine: "bg-accent1/50",
+  },
+  {
+    id: "bacchus",
+    season: "Herbst",
+    months: "September – Oktober",
+    title: "Von Bacchus bis Christophorus",
+    teaser:
+      "Durch Weinberge und malerische Gassen zu drei historischen Weingütern: eine interaktive Zeitreise durch die pfälzische Weingeschichte, bei der jeder Gast selbst Teil der Geschichte wird.",
+    facts: ["ca. 4 Stunden", "ca. 4 km", "5 Weine & 5 Häppchen"],
+    bookingUrl: "https://eveeno.com/bacchus",
+    cardImage: MJBachusMosaicGlass,
+    accentText: "text-accent2-brick",
+    accentBg: "bg-accent2-brick hover:bg-accent2-brick/90",
+    accentBorder: "border-accent2-brick/30",
+    accentLine: "bg-accent2-brick/40",
+  },
+  {
+    id: "gluehwein",
+    season: "Winter",
+    months: "November – Dezember",
+    title: "Geheimnisvolles Gimmeldingen",
+    teaser:
+      "Gimmeldingen im zauberhaften Lichterglanz: wärmende Glühweine, weihnachtliche Köstlichkeiten, geheimnisvolle Keller und alte Maskenbräuche der Pfalz — ein Wintermärchen zum Mitspielen.",
+    facts: ["ca. 4 Stunden", "ca. 4 km", "5 Glühweine & Co."],
+    bookingUrl: "https://eveeno.com/gluehwein",
+    cardImage: MJGluehweinV1,
+    accentText: "text-accent2-plum",
+    accentBg: "bg-accent2-plum hover:bg-accent2-plum/90",
+    accentBorder: "border-accent2-plum/30",
+    accentLine: "bg-accent2-plum/40",
+  },
+];
+
+// Alle vier Galerien parallel aufbauen (kein Wasserfall)
+const galleries = await Promise.all(
+  tourDefinitions.map((tour) => buildGallery(tour.id, tour.title))
+);
+const tours = tourDefinitions.map((tour, index) => ({
+  ...tour,
+  gallery: galleries[index],
+}));
+---
+
+<Layout
+  content={{
+    title: "Touren im Jahreslauf – Weinerlebnistouren-Pfalz",
+    description:
+      "Vier Touren, vier Jahreszeiten: von der Mandelblüte über den Mussbach und die Weinlese bis zum Glühwein im Lichterglanz. Der Jahresüberblick über alle Weinerlebnistouren in Gimmeldingen.",
+  }}
+>
+  <Header isDarkMode={false} isTours={true} />
+
+  <main class="overflow-x-clip bg-background text-text">
+    <!-- ================= Hero ================= -->
+    <section class="relative pt-16 pb-10 text-center container-padding sm:pt-24 sm:pb-14">
+      <!-- zarte saisonale Farbnebel im Hintergrund -->
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-24 left-[8%] h-72 w-72 rounded-full bg-accent2-wine/10 blur-3xl"
+      >
+      </div>
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute top-10 right-[6%] h-80 w-80 rounded-full bg-accent1/15 blur-3xl"
+      >
+      </div>
+
+      <p class="relative text-2xl font-doulaise text-accent1 sm:text-4xl">
+        vier Jahreszeiten · vier Geschichten
+      </p>
+      <h1
+        class="relative mx-auto mt-4 max-w-4xl font-bonanova text-3xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl"
+      >
+        Ein Weinjahr in vier Touren
+      </h1>
+      <p
+        class="relative mx-auto mt-6 max-w-2xl text-base leading-relaxed font-body text-text/75 sm:text-lg"
+      >
+        Von der ersten Mandelblüte bis zum Glühwein im Lichterglanz: Das ganze
+        Jahr über führe ich Sie durch die Weinberge und den historischen
+        Ortskern von Gimmeldingen — mit erlesenen Weinen, regionalen
+        Köstlichkeiten und Geschichten zum Mitspielen.
+      </p>
+
+      <div class="flex justify-center mt-10" aria-hidden="true">
+        <div class="w-px h-14 bg-gradient-to-b from-transparent to-transparent via-accent1/60"></div>
+      </div>
+    </section>
+
+    <!-- ================= Jahreskreis: Überblick ================= -->
+    <section class="mx-auto max-w-6xl container-padding" aria-label="Touren im Überblick">
+      <div class="grid grid-cols-2 gap-0 sm:grid-cols-4 sm:gap-4 md:gap-6 lg:gap-8 px-[15vw] sm:px-0 ">
+        {
+          tours.map((tour, index) => (
+            <a
+              class="block text-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent1 focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+              href={`#${tour.id}`}
+            >
+              {/* Torbogen-Form: Anklang an Pfälzer Kellertüren */}
+              <div
+                class={`w-2/3 mx-auto sm:w-full relative aspect-[3/4] overflow-hidden rounded-t-full rounded-b-2xl border-2 ${tour.accentBorder} shadow-md transition-all duration-500 group-hover:-translate-y-1.5 group-hover:shadow-xl`}
+              >
+                <Image
+                  alt={`${tour.season}stour: ${tour.title}`}
+                  class="object-cover w-full h-full transition-transform duration-700 full w- sm:w-full group-hover:scale-105"
+                  decoding="async"
+                  format="webp"
+                  loading={index < 2 ? "eager" : "lazy"}
+                  quality={70}
+                  src={tour.cardImage}
+                  width={520}
+                />
+                <div class="absolute inset-0 bg-gradient-to-t via-transparent to-transparent from-text/50"></div>
+                <span class="absolute inset-x-0 bottom-2 text-xl drop-shadow-md font-doulaise text-stone-50 sm:bottom-2.5 sm:text-xl md:bottom-3 md:text-2xl lg:text-3xl">
+                  {tour.season}
+                </span>
+              </div>
+              <h3 class="px-14 mt-2.5 text-xs font-bold leading-tight sm:x-4 sm:mt-3 md:mt-4 font-bonanova sm:text-xs md:text-sm lg:text-base sm:leading-snug sm:px-0">
+                {tour.title}
+              </h3>
+              <p class="mt-1 text-[0.5rem] uppercase tracking-[0.1em] text-text/50 sm:text-[0.525rem] sm:tracking-[0.08em] md:text-[0.7rem] md:tracking-[0.14em] lg:text-xs lg:tracking-[0.18em]">
+                {tour.months}
+              </p>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ================= Die vier Touren ================= -->
+    {
+      tours.map((tour, index) => (
+        <section
+          aria-label={`${tour.season}: ${tour.title}`}
+          class={`relative scroll-mt-24 py-16 sm:py-24 ${index % 2 === 1 ? "bg-soft-sand/40" : ""}`}
+          id={tour.id}
+        >
+          {/* übergroße Jahreszeiten-Ziffer als stilles Wasserzeichen */}
+          <span
+            aria-hidden="true"
+            class={`pointer-events-none absolute top-6 select-none font-bonanova text-[9rem] font-bold leading-none opacity-[0.05] sm:text-[13rem] ${index % 2 === 1 ? "left-4 sm:left-10" : "right-4 sm:right-10"}`}
+          >
+            0{index + 1}
+          </span>
+
+          <div class="container-padding relative mx-auto grid max-w-7xl items-start gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+            <div class={`lg:sticky lg:top-28 ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+              <p class={`font-doulaise text-4xl sm:text-5xl ${tour.accentText}`}>
+                {tour.season}
+              </p>
+              <p class="mt-2 text-xs uppercase tracking-[0.25em] text-text/50">
+                {tour.months}
+              </p>
+              <div aria-hidden="true" class={`mt-5 h-px w-16 ${tour.accentLine}`} />
+              <h2 class="mt-5 text-3xl font-bold leading-tight font-bonanova sm:text-4xl xl:text-5xl">
+                {tour.title}
+              </h2>
+              <p class="mt-5 max-w-prose leading-relaxed font-body text-text/75 sm:text-lg">
+                {tour.teaser}
+              </p>
+              <ul class="flex flex-wrap gap-2 mt-6">
+                {tour.facts.map((fact) => (
+                  <li
+                    class={`rounded-full border ${tour.accentBorder} bg-white/60 px-3 py-1 text-xs text-text/70 sm:text-sm`}
+                  >
+                    {fact}
+                  </li>
+                ))}
+              </ul>
+              <div class="flex flex-wrap gap-4 items-center mt-8">
+                <a
+                  class={`${tour.accentBg} rounded-full px-6 py-2.5 font-bonanova text-sm font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg`}
+                  href={tour.bookingUrl}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Termine & Buchung
+                </a>
+                <a
+                  class="text-sm transition text-text/60 underline-offset-4 hover:text-text hover:underline"
+                  href={`/tours?tour=${tour.id}`}
+                >
+                  Mehr erfahren
+                </a>
+              </div>
+            </div>
+
+            <div class={index % 2 === 1 ? "lg:order-1" : ""}>
+              <TourGallery client:visible images={tour.gallery} />
+            </div>
+          </div>
+        </section>
+      ))
+    }
+
+    <!-- ================= Abschluss / Alle Termine ================= -->
+    <section class="relative py-16 text-center container-padding sm:py-24">
+      <div class="flex justify-center mb-10" aria-hidden="true">
+        <div class="w-px h-14 bg-gradient-to-b from-transparent to-transparent via-accent1/60"></div>
+      </div>
+      <p class="text-3xl font-doulaise text-accent1 sm:text-4xl">
+        Wann darf ich Sie begrüßen?
+      </p>
+      <h2 class="mx-auto mt-4 max-w-3xl text-3xl font-bold font-bonanova sm:text-5xl">
+        Alle Termine im Überblick
+      </h2>
+      <p class="mx-auto mt-5 max-w-xl font-body text-text/75 sm:text-lg">
+        Alle aktuellen Termine für jede Jahreszeit finden Sie gesammelt im
+        Buchungskalender — oder Sie schreiben mir für eine individuelle
+        Gruppentour.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center items-center mt-8">
+        <a
+          class="px-8 py-3 text-sm font-bold tracking-wider uppercase bg-gradient-to-r rounded-full shadow-md transition-all duration-300 from-accent2-wine to-accent2-wine/80 font-bonanova text-stone-50 hover:-translate-y-0.5 hover:shadow-lg"
+          href="https://eveeno.com/de/event-cal/34263?style=grid"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Zum Buchungskalender
+        </a>
+        <a
+          class="px-8 py-3 text-sm font-bold tracking-wider uppercase rounded-full border-2 transition-all duration-300 border-accent1 font-bonanova text-text hover:-translate-y-0.5 hover:bg-soft-beige/60"
+          href="/gruppen"
+        >
+          Gruppen & Events
+        </a>
+      </div>
+    </section>
+
+    <GetInTouch className="bg-gradient-to-t from-stone-100 to-transparent pb-12" />
+  </main>
+
+  <Footer />
+</Layout>

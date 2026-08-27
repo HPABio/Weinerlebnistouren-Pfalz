@@ -15,6 +15,44 @@ module.exports = {
           beige: "#D8C7B5",
           sand: "#EAE3D5",
         },
+        // shadcn/ui-Token: CSS-Variablen aus src/styles/global.css.
+        // Nötig, weil die von shadcn generierten Styles (v4-Konvention)
+        // unter Tailwind v3 sonst keine passenden Utility-Klassen finden.
+        foreground: "var(--foreground)",
+        border: "var(--border)",
+        input: "var(--input)",
+        ring: "var(--ring)",
+        card: {
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
+        popover: {
+          DEFAULT: "var(--popover)",
+          foreground: "var(--popover-foreground)",
+        },
+        primary: {
+          DEFAULT: "var(--primary)",
+          foreground: "var(--primary-foreground)",
+        },
+        secondary: {
+          DEFAULT: "var(--secondary)",
+          foreground: "var(--secondary-foreground)",
+        },
+        muted: {
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
+        },
+        accent: {
+          DEFAULT: "var(--accent)",
+          foreground: "var(--accent-foreground)",
+        },
+        destructive: "var(--destructive)",
+      },
+      borderRadius: {
+        // shadcn/ui-Radius-Token
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
         headline: ["Bona Nova SC", "serif"],

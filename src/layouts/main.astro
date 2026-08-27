@@ -16,6 +16,7 @@ const description = content.description || "Weinerlebnistouren Pfalz - Entdecken
 
 // Absolute URLs are important for OpenGraph/Twitter cards.
 import OgImage from "@/assets/images/OpenGraph_Image_WEP.png";
+import ScreenSizeDEVTOOL from "@/components/ScreenSizeDEVTOOL.astro";
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
 const ogImageUrl = Astro.site ? new URL(OgImage.src, Astro.site).href : OgImage.src;
 ---
@@ -98,6 +99,7 @@ const ogImageUrl = Astro.site ? new URL(OgImage.src, Astro.site).href : OgImage.
     <slot name="head" />
   </head>
   <body>
+    {import.meta.env.DEV ? <ScreenSizeDEVTOOL /> : null}
     <slot />
     <CookieConsent />
   </body>
