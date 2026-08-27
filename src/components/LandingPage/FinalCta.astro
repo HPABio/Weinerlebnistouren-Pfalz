@@ -1,0 +1,71 @@
+---
+/**
+ * Abschluss-CTA der Startseite: buchen, verschenken oder als Gruppe anfragen.
+ * Bewusst die letzte Station vor dem Footer — wer bis hierher gescrollt hat,
+ * bekommt alle drei Wege noch einmal gebündelt.
+ */
+---
+
+<section
+  aria-labelledby="final-cta-title"
+  class="container-padding relative w-full overflow-hidden bg-white py-16 text-center sm:py-24"
+>
+  <!-- zarte Farbnebel, wie auf den Unterseiten -->
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -top-10 left-[10%] h-64 w-64 rounded-full bg-accent1/15 blur-3xl"
+  >
+  </div>
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute bottom-0 right-[8%] h-72 w-72 rounded-full bg-accent2-wine/10 blur-3xl"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-3xl">
+    <div class="mb-8 flex justify-center" aria-hidden="true">
+      <div
+        class="h-14 w-px bg-gradient-to-b from-transparent via-accent1/60 to-transparent"
+      >
+      </div>
+    </div>
+    <p class="font-doulaise text-3xl text-accent1 sm:text-4xl">
+      Auf bald in Gimmeldingen!
+    </p>
+    <h2
+      id="final-cta-title"
+      class="mx-auto mt-4 font-bonanova text-3xl font-bold sm:text-5xl"
+    >
+      Sichern Sie sich Ihren Platz
+    </h2>
+    <p class="mx-auto mt-5 max-w-xl font-body leading-relaxed text-text/75 sm:text-lg">
+      Alle Termine für jede Jahreszeit finden Sie im Buchungskalender — oder
+      Sie verschenken eine Weinerlebnistour an Ihre Liebsten.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <a
+        class="rounded-full bg-gradient-to-r from-accent2-wine to-accent2-wine/80 px-8 py-3 font-bonanova text-sm font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+        href="https://eveeno.com/de/event-cal/34263?style=grid"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Zum Buchungskalender
+      </a>
+      <a
+        class="rounded-full border-2 border-accent1 px-8 py-3 font-bonanova text-sm font-bold uppercase tracking-wider text-text transition-all duration-300 hover:-translate-y-0.5 hover:bg-soft-beige/60"
+        href="/kontakt"
+      >
+        Tour verschenken
+      </a>
+    </div>
+    <p class="mt-6 text-sm text-text/60">
+      Sie planen mit Team, Verein oder Familie? <a
+        class="underline decoration-accent1/50 underline-offset-4 transition hover:text-accent2-wine"
+        href="/gruppen">Gruppen & private Touren</a
+      > · <a
+        class="underline decoration-accent1/50 underline-offset-4 transition hover:text-accent2-wine"
+        href="/firmen-events">Firmen-Events</a
+      >
+    </p>
+  </div>
+</section>

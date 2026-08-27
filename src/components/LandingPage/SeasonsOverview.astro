@@ -1,0 +1,122 @@
+---
+/**
+ * „Vier Jahreszeiten · vier Geschichten" — kompakter Produkt-Überblick.
+ *
+ * Übernimmt die Torbogen-Kacheln der /touren-Übersicht und verlinkt direkt
+ * auf die jeweiligen Tour-Abschnitte. Die gerade buchbare Saison bekommt
+ * einen „Jetzt buchbar"-Hinweis.
+ *
+ * Inhalte: src/data/landingPage.ts
+ */
+import { Image } from "astro:assets";
+import { seasonTours, getFeaturedTour, type TourId } from "@/data/landingPage";
+
+import MJAlmondFlowerMosaicGlass from "@images/compressed/webP/compressed-mj-almondFlower-mosaicGlass.webp";
+import WassermuehleImWald from "@images/compressed/webP/compressed-Wassermühle-im-Wald.png";
+import MJBachusMosaicGlass from "@images/compressed/webP/compressed-mj-Bachus-mosaicGlass.webp";
+import MJGluehweinV1 from "@images/compressed/webP/compressed-mj-GlühweinV1.webp";
+
+// Dieselben Kachel-Motive wie auf /touren — die Tour-Kacheln bleiben so
+// über die gesamte Website hinweg wiedererkennbar.
+const cardImages: Record<TourId, ImageMetadata> = {
+  mandelbluete: MJAlmondFlowerMosaicGlass,
+  mussbach: WassermuehleImWald,
+  bacchus: MJBachusMosaicGlass,
+  gluehwein: MJGluehweinV1,
+};
+
+const featuredId = getFeaturedTour().id;
+---
+
+<section
+  id="jahreszeiten"
+  aria-labelledby="seasons-title"
+  class="relative w-full bg-white py-16 scroll-mt-24 sm:py-24"
+>
+  <div class="container-padding relative mx-auto max-w-6xl">
+  <p class="text-center font-doulaise text-2xl text-accent1 sm:text-4xl">
+    vier Jahreszeiten · vier Geschichten
+  </p>
+  <h2
+    id="seasons-title"
+    class="mx-auto mt-3 max-w-2xl text-center font-bonanova text-3xl font-bold sm:text-4xl lg:text-5xl"
+  >
+    Für jede Saison die passende Tour
+  </h2>
+  <p
+    class="mx-auto mt-4 max-w-2xl text-center font-body leading-relaxed text-text/70 sm:text-lg"
+  >
+    Dieselbe Idee, vier ganz unterschiedliche Erlebnisse: Jede Jahreszeit
+    erzählt in Gimmeldingen ihre eigene Geschichte — mit eigenen Weinen,
+    eigenen Snacks und eigenen Rollen zum Mitspielen.
+  </p>
+
+  <div
+    class="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 px-[6vw] sm:grid-cols-4 sm:gap-6 sm:px-0 lg:gap-8"
+  >
+    {
+      seasonTours.map((tour) => (
+        <a
+          class="group block text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent1 focus-visible:ring-offset-4 focus-visible:ring-offset-white"
+          href={tour.tourenHref}
+        >
+          {/* Torbogen-Form: Anklang an Pfälzer Kellertüren */}
+          <div
+            class={`relative mx-auto aspect-[3/4] w-full overflow-hidden rounded-t-full rounded-b-2xl border-2 ${tour.accentBorder} shadow-md transition-all duration-500 group-hover:-translate-y-1.5 group-hover:shadow-xl`}
+          >
+            <Image
+              alt={`${tour.season}stour: ${tour.title}`}
+              class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              decoding="async"
+              format="webp"
+              loading="lazy"
+              quality={70}
+              src={cardImages[tour.id]}
+              width={520}
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-text/50 via-transparent to-transparent" />
+            {tour.id === featuredId && (
+              <span
+                class={`absolute left-1/2 top-4 -translate-x-1/2 whitespace-nowrap rounded-full bg-white/85 px-3 py-1 text-[0.55rem] font-bold uppercase tracking-[0.14em] backdrop-blur-sm sm:text-[0.62rem] ${tour.accentText}`}
+              >
+                Jetzt buchbar
+              </span>
+            )}
+            <span class="absolute inset-x-0 bottom-2 font-doulaise text-xl text-stone-50 drop-shadow-md sm:bottom-2.5 md:bottom-3 md:text-2xl lg:text-3xl">
+              {tour.season}
+            </span>
+          </div>
+          <h3 class="mt-2.5 px-2 font-bonanova text-xs font-bold leading-tight sm:mt-3 sm:leading-snug md:mt-4 md:text-sm lg:text-base">
+            {tour.title}
+          </h3>
+          <p class="mt-1 text-[0.55rem] uppercase tracking-[0.1em] text-text/50 md:text-[0.7rem] md:tracking-[0.14em] lg:text-xs">
+            {tour.months}
+          </p>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="mt-10 text-center">
+    <a
+      class="group inline-flex items-center gap-2.5 rounded-full border border-stone-300 bg-white px-6 py-3 font-bonanova text-sm font-bold uppercase tracking-[0.1em] text-text/80 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent1/60 hover:text-accent1 hover:shadow-md"
+      href="/touren"
+    >
+      Alle Touren im Detail
+      <svg
+        aria-hidden="true"
+        class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2.6"
+        viewBox="0 0 24 24"
+      >
+        <path d="M5 12h13"></path>
+        <path d="m12 6 6 6-6 6"></path>
+      </svg>
+    </a>
+  </div>
+  </div>
+</section>

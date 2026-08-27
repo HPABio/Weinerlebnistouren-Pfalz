@@ -1,4 +1,16 @@
 ---
+// Startseite — Aufbau folgt der Conversion-Logik:
+//
+//   Hero (Was ist das? + CTA)
+//   → Markenversprechen (OpenerSection)
+//   → „Als Nächstes" (aktuelle Saison-Tour, Preis, Buchung)
+//   → Erlebnis-Konzept in der Tiefe (BubbleSection + Gästestimmen)
+//   → die vier Touren im Überblick (SeasonsOverview)
+//   → beispielhafter Ablauf (TourTimeline)
+//   → Gastgeberin (AboutMe)
+//   → Social Proof (Google / Tripadvisor / LinkedIn)
+//   → FAQ (Kaufbarrieren ausräumen)
+//   → Abschluss-CTA (buchen / verschenken / Gruppen)
 import Layout from "@/layouts/main.astro";
 import Header from "@/components/Header.astro";
 import Hero from "@/components/Hero.astro";
@@ -11,20 +23,36 @@ import StickyBookingButton from "@/components/BookingButtons/StickyBookingButton
 import GoogleReviews from "@/components/SocialProof/GoogleReviews.astro";
 import TripAdvisorReviews from "@/components/SocialProof/TripAdvisorReviews.astro";
 import LinkedInArticles from "@/components/SocialProof/LinkedInArticles.astro";
+import NextTourSpotlight from "@/components/LandingPage/NextTourSpotlight.astro";
+import SeasonsOverview from "@/components/LandingPage/SeasonsOverview.astro";
+import TourTimeline from "@/components/LandingPage/TourTimeline.astro";
+import FaqSection from "@/components/LandingPage/FaqSection.astro";
+import FinalCta from "@/components/LandingPage/FinalCta.astro";
 ---
 
-<Layout content={{ title: "Weinerlebnistouren - Pfalz" }}>
+<Layout
+  content={{
+    title: "Weinerlebnistouren - Pfalz",
+    description:
+      "Interaktive Weinerlebnistouren in Gimmeldingen bei Neustadt an der Weinstraße: geführte Weinwanderungen mit fünf Pfälzer Weinen, regionalen Snacks und Geschichten zum Mitspielen — vier Touren im Lauf der Jahreszeiten.",
+  }}
+>
   <!-- <ScreenSizeDEVTOOL /> -->
   <Header isHome={true} />
   <StickyBookingButton watch="#hero-location-badge" label="Tour buchen" />
   <main>
     <Hero />
     <OpenerSection />
+    <NextTourSpotlight />
     <BubbleSection loading="lazy" />
+    <SeasonsOverview />
+    <TourTimeline />
     <AboutMe loading="lazy" fetchpriority="low" />
     <GoogleReviews />
     <TripAdvisorReviews />
     <LinkedInArticles />
+    <FaqSection />
+    <FinalCta />
   </main>
   <Footer loading="lazy" fetchpriority="low" />
 </Layout>

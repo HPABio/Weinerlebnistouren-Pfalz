@@ -1,0 +1,173 @@
+---
+/**
+ * „Als Nächstes" — Saison-Spotlight der Startseite.
+ *
+ * Zeigt die gerade anstehende Tour mit Eckdaten, Preis und direktem
+ * Buchungs-CTA, damit Besucher WAS / WANN / WAS KOSTET beantwortet bekommen,
+ * ohne erst den externen Buchungskalender öffnen zu müssen.
+ *
+ * Inhalte & Saisonwahl: src/data/landingPage.ts (Auswahl erfolgt beim Build,
+ * aktualisiert sich also mit jedem Deploy).
+ */
+import { Image } from "astro:assets";
+import { getFeaturedTour, type TourId } from "@/data/landingPage";
+
+// Echte Tour-Fotos statt Illustrationen — pro Saison ein kuratiertes Motiv.
+// Glob-Lookup wie auf /firmen-events (Dateinamen enthalten teils Leerzeichen).
+const tourImageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/images/tours/**/*.{png,jpg,jpeg,webp}",
+  { eager: true }
+);
+
+function tourPhoto(relPath: string): ImageMetadata {
+  const key = `../../assets/images/tours/${relPath}`;
+  const mod = tourImageModules[key];
+  if (!mod) throw new Error(`Tour-Foto nicht gefunden: ${relPath}`);
+  return mod.default;
+}
+
+const photos: Record<TourId, { src: ImageMetadata; alt: string }> = {
+  mandelbluete: {
+    src: tourPhoto("mandelbluete/Brigitta lacht_mandelbluete.webp"),
+    alt: "Gästegruppe lacht gemeinsam mit Gästeführerin Brigitta Heyl zwischen blühenden Mandelbäumen",
+  },
+  mussbach: {
+    src: tourPhoto("mussbach/IMG_0968_mussbach.webp"),
+    alt: "Der schattige Mussbach fließt durch den sommerlichen Wald",
+  },
+  bacchus: {
+    src: tourPhoto("bacchus/ANETTE_IMG_4666_bacchus.webp"),
+    alt: "Große Gruppe lauscht der Gästeführerin an Picknickbänken in den Weinbergen",
+  },
+  gluehwein: {
+    src: tourPhoto("gluehwein/IMG_1837_gluehwein.webp"),
+    alt: "Winterliche Glühwein-Station im Lichterglanz von Gimmeldingen",
+  },
+};
+
+const tour = getFeaturedTour();
+const photo = photos[tour.id];
+---
+
+<section
+  id="als-naechstes"
+  aria-labelledby="next-tour-title"
+  class="overflow-hidden relative border-y border-accent1/20 bg-soft-sand/40 scroll-mt-24"
+>
+  <!-- stilles Saison-Wasserzeichen -->
+  <span
+    aria-hidden="true"
+    class="pointer-events-none absolute -top-4 right-2 select-none font-doulaise text-[7rem] leading-none text-text opacity-[0.05] sm:right-10 sm:text-[11rem]"
+  >
+    {tour.season}
+  </span>
+
+  <div
+    class="container-padding relative mx-auto grid max-w-6xl items-center gap-10 py-14 sm:py-20 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16"
+  >
+    <div>
+      <p class="text-3xl font-meie text-accent1 sm:text-4xl">
+        Als Nächstes imWeinjahr
+      </p>
+      <p class="mt-2 text-xs uppercase tracking-[0.25em] text-text/50">
+        {tour.season} · {tour.months}
+      </p>
+      <div aria-hidden="true" class={`mt-5 h-px w-16 ${tour.accentLine}`}></div>
+
+      <h2
+        id="next-tour-title"
+        class="mt-5 text-3xl font-bold leading-tight font-bonanova sm:text-4xl xl:text-5xl"
+      >
+        {tour.title}
+      </h2>
+      <p
+        class="mt-4 max-w-prose leading-relaxed font-body text-text/75 sm:text-lg"
+      >
+        {tour.claim}
+      </p>
+
+      <ul class="flex flex-wrap gap-2 mt-6">
+        {
+          tour.facts.map((fact) => (
+            <li
+              class={`rounded-full border ${tour.accentBorder} bg-white/60 px-3 py-1 text-xs text-text/70 sm:text-sm`}
+            >
+              {fact}
+            </li>
+          ))
+        }
+      </ul>
+
+      {
+        tour.priceFrom ? (
+          <p class="flex flex-wrap gap-y-1 gap-x-3 items-baseline mt-7">
+            <span
+              class={`font-bonanova text-4xl font-bold sm:text-5xl ${tour.accentText}`}
+            >
+              ab {tour.priceFrom}
+            </span>
+            <span class="max-w-[16rem] text-xs leading-snug text-text/60 sm:text-sm">
+              {tour.priceIncludes}
+            </span>
+          </p>
+        ) : (
+          <p class="mt-7 text-sm text-text/60">
+            Alle Preise finden Sie direkt beim jeweiligen Termin im
+            Buchungskalender.
+          </p>
+        )
+      }
+      {
+        tour.dateHint && (
+          <p class="mt-2 text-[0.68rem] uppercase tracking-[0.14em] text-text/50 sm:text-xs">
+            {tour.dateHint}
+          </p>
+        )
+      }
+
+      <div class="flex flex-wrap gap-4 items-center mt-8">
+        <a
+          class={`${tour.accentBg} rounded-full px-7 py-3 font-bonanova text-sm font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg`}
+          href={tour.bookingUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Jetzt Platz sichern
+        </a>
+        <a
+          class="text-sm transition text-text/60 underline-offset-4 hover:text-text hover:underline"
+          href={tour.tourenHref}
+        >
+          Mehr zur Tour erfahren
+        </a>
+      </div>
+    </div>
+
+    <!-- Torbogen-Foto: echte Tour-Impression der aktuellen Saison -->
+    <div class="mx-auto w-2/3 max-w-xs sm:max-w-sm lg:w-full lg:max-w-none">
+      <div
+        class={`relative aspect-[3/4] overflow-hidden rounded-t-full rounded-b-2xl border-2 ${tour.accentBorder} shadow-xl`}
+      >
+        <Image
+          alt={photo.alt}
+          class="object-cover w-full h-full"
+          decoding="async"
+          format="webp"
+          loading="lazy"
+          quality={72}
+          src={photo.src}
+          width={640}
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t via-transparent to-transparent from-text/40"
+        >
+        </div>
+        <span
+          class="absolute inset-x-0 bottom-3 text-2xl text-center drop-shadow-md font-doulaise text-stone-50 sm:text-3xl"
+        >
+          {tour.season}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

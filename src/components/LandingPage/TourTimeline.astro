@@ -1,0 +1,167 @@
+---
+/**
+ * „So fühlt sich eine Tour an" — beispielhafter Ablauf in sechs Stationen.
+ *
+ * Macht das Erlebnis vorstellbar, ohne die Dramaturgie einer konkreten Tour
+ * zu spoilern: bewusst ohne Uhrzeiten (die Startzeiten variieren je Tour)
+ * und generisch genug für alle vier Jahreszeiten.
+ */
+import { Image } from "astro:assets";
+
+// Glob-Lookup wie auf /firmen-events (Dateinamen enthalten teils Leerzeichen).
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  [
+    "../../assets/images/tours/**/*.{png,jpg,jpeg,webp}",
+    "../../assets/images/compressed/webP/*.{png,jpg,jpeg,webp}",
+  ],
+  { eager: true }
+);
+
+function photo(relPath: string): ImageMetadata {
+  const key = `../../assets/images/${relPath}`;
+  const mod = imageModules[key];
+  if (!mod) throw new Error(`Foto nicht gefunden: ${relPath}`);
+  return mod.default;
+}
+
+// Titel ohne „ß" — Bona Nova SC hat keine saubere ß-Glyphe.
+const steps = [
+  {
+    title: "Willkommen im Weingut",
+    text: "Ankommen, anstoßen: Begrüßung mit dem ersten Glas und einem Pfälzer Häppchen.",
+  },
+  {
+    title: "Hinaus in die Weinberge",
+    text: "Ausblicke über das Rebenmeer — und Einblicke, warum genau hier besondere Weine wachsen.",
+  },
+  {
+    title: "Die Geschichte erwacht",
+    text: "Aus „Napoleon war einmal hier“ wird: Jemand aus der Gruppe ist Napoleon. Sie spielen mit — und werden Teil der Geschichte.",
+  },
+  {
+    title: "Wein & Food-Pairing",
+    text: "Fünf Weine lokaler Winzer, jeder mit einem eigens abgestimmten, liebevoll gemachten Snack.",
+  },
+  {
+    title: "Historisches Gimmeldingen",
+    text: "Durch malerische Gassen und Höfe — weitere Kapitel der Pfälzer Weingeschichte inklusive.",
+  },
+  {
+    title: "Gemeinsamer Abschluss",
+    text: "Ein letztes Glas, viele Anekdoten und Erinnerungen, die noch lange Gesprächsstoff bleiben.",
+  },
+];
+---
+
+<section
+  id="tour-ablauf"
+  aria-labelledby="timeline-title"
+  class="relative overflow-hidden bg-soft-sand/40 py-16 scroll-mt-24 sm:py-24"
+>
+  <!-- stilles Wasserzeichen -->
+  <span
+    aria-hidden="true"
+    class="pointer-events-none absolute -top-2 right-8 hidden select-none font-doulaise text-[10rem] leading-none text-text opacity-[0.05] sm:block"
+  >
+    vier Stunden
+  </span>
+
+  <div
+    class="container-padding relative mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16"
+  >
+    <!-- Kopf + echte Tour-Momente -->
+    <div class="lg:sticky lg:top-28">
+      <p class="font-doulaise text-3xl text-accent1 sm:text-4xl">
+        So fühlt sich eine Tour an
+      </p>
+      <div aria-hidden="true" class="mt-5 h-px w-16 bg-accent1/50"></div>
+      <h2
+        id="timeline-title"
+        class="mt-5 font-bonanova text-3xl font-bold leading-tight sm:text-4xl"
+      >
+        Vier Stunden, die schneller vergehen als gedacht
+      </h2>
+      <p class="mt-4 max-w-prose font-body leading-relaxed text-text/75">
+        Keine Tour gleicht der anderen — aber so ungefähr dürfen Sie sich den
+        Nachmittag vorstellen. Den Rest verrate ich unterwegs.
+      </p>
+
+      <!-- Zwei echte Momente: Rolle & Runde -->
+      <div class="mt-10 hidden gap-5 sm:flex lg:mt-12">
+        <figure class="w-1/2 rotate-[-2deg]">
+          <div
+            class="overflow-hidden rounded-xl border-4 border-white shadow-lg"
+          >
+            <Image
+              alt="Ein Gast in der Rolle Napoleons am Napoleonsbänkel in den Weinbergen"
+              class="aspect-[4/5] h-auto w-full object-cover"
+              decoding="async"
+              format="webp"
+              loading="lazy"
+              quality={70}
+              src={photo("compressed/webP/Maja-Nett-als-Napoleon.webp")}
+              width={480}
+            />
+          </div>
+          <figcaption
+            class="mt-2 text-center font-caveat text-base text-text/60"
+          >
+            Heute mal Napoleon sein
+          </figcaption>
+        </figure>
+        <figure class="mt-8 w-1/2 rotate-[2deg]">
+          <div
+            class="overflow-hidden rounded-xl border-4 border-white shadow-lg"
+          >
+            <Image
+              alt="Gruppe stößt mit Weingläsern über den Weinbergen an"
+              class="aspect-[4/5] h-auto w-full object-cover"
+              decoding="async"
+              format="webp"
+              loading="lazy"
+              quality={70}
+              src={photo("tours/bacchus/IMG_4770_bacchus.webp")}
+              width={480}
+            />
+          </div>
+          <figcaption
+            class="mt-2 text-center font-caveat text-base text-text/60"
+          >
+            Auf die Pfalz!
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Die sechs Stationen -->
+    <ol class="relative">
+      {
+        steps.map((step, index) => (
+          <li class="relative flex gap-5 pb-9 last:pb-0 sm:gap-7">
+            {/* Verbindungslinie — beim letzten Schritt ausgeblendet */}
+            {index < steps.length - 1 && (
+              <span
+                aria-hidden="true"
+                class="absolute left-[1.15rem] top-11 bottom-0 w-px bg-gradient-to-b from-accent1/50 to-accent1/15 sm:left-[1.35rem]"
+              />
+            )}
+            <span
+              aria-hidden="true"
+              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent1/40 bg-white font-bonanova text-sm font-bold text-accent1 shadow-sm sm:h-11 sm:w-11 sm:text-base"
+            >
+              {index + 1}
+            </span>
+            <div class="pt-1 sm:pt-2">
+              <h3 class="font-bonanova text-lg font-bold leading-snug sm:text-xl">
+                {step.title}
+              </h3>
+              <p class="mt-1.5 max-w-prose font-body text-sm leading-relaxed text-text/70 sm:text-base">
+                {step.text}
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
