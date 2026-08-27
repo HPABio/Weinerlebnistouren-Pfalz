@@ -25,6 +25,7 @@ import BrigittaPortrait from "@images/BrigittaHeylPortrait2.png";
 import Image from "astro/components/Image.astro";
 
 import HWELogoV2NoText from "@images/HWE-LogoV2-noText.svg";
+import GimmeldingenMap from "@images/GimmeldingenMap.jpg";
 
 // Tour-Fotos über den Glob ansprechen (Dateinamen enthalten teils Leerzeichen,
 // Umlaute oder Großbuchstaben-Endungen — der Glob-Lookup umgeht sperrige
@@ -212,9 +213,9 @@ const seasons = [
 
 const stats = [
   { value: "10–28", label: "Personen pro Erlebnistour" },
-  { value: "4–8", label: "Stunden — flexibel nach Konzept" },
   { value: "4", label: "Jahreszeiten, ganzjährig buchbar" },
-  { value: "5", label: "Genuss-Stationen pro Tour" },
+  { value: "4–8h", label: "Flexibel nach Konzept" },
+  { value: "5", label: "Genuss-Stationen pro Tour", className: "hidden xl:block" },
 ];
 
 const benefits = [
@@ -293,14 +294,38 @@ const faqs = [
         class="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16"
       >
         <div class="text-center lg:text-left">
-          <p class="text-2xl font-doulaise text-accent1 sm:text-4xl">
-            Gemeinsam mehr erleben
-          </p>
-          <h1
-            class="mt-4 font-bonanova text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl"
-          >
-            Firmen-Events im Weinberg
-          </h1>
+          <div class="flex flex-row gap-4 justify-center items-center mb-2">
+            <div class="hidden overflow-hidden justify-center items-center mt-12 w-32 rounded-full border-2 xl:flex border-accent1 aspect-square">
+              <Image src={GimmeldingenMap} alt="Gimmeldingen Map" class="-translate-y-7 -translate-x-5 scale-[200%]" />
+            </div>
+            <div class="w-fit">
+              <p class="-ml-8 text-2xl font-doulaise text-accent1 sm:text-4xl">
+                Gemeinsam mehr erleben
+              </p>
+              <h1
+                class="font-bonanova text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl"
+              >
+                Firmen-Events im Weinberg
+                <span class="block text-[0.52rem] uppercase tracking-[0.15em] text-text/25 ml-2">
+                  <!-- certificate icon -->
+                  <svg
+                    class="inline-block mr-1 w-4 h-4 -translate-y-[0.5] text-accent1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                    Zertifizierte Kultur- und Weinbotschafterin
+                  </span>
+              </h1>
+            </div>
+          </div>
           <p
             class="mx-auto mt-6 max-w-xl text-base leading-relaxed font-body text-text/75 sm:text-lg lg:mx-0"
           >
@@ -319,23 +344,22 @@ const faqs = [
               Unverbindlich anfragen
             </a>
             <a
-              class="px-8 py-3 text-sm font-bold tracking-wider uppercase rounded-full border-2 transition-all duration-300 border-accent1 font-bonanova text-text hover:-translate-y-0.5 hover:bg-soft-beige/60"
+              class="px-6 py-2 text-xl font-bold tracking-wider uppercase rounded-full border-2 transition-all duration-300 border-accent1 font-bonanova text-text hover:-translate-y-0.5 hover:bg-soft-beige/60"
               href="tel:+491707110535"
             >
-              +49 170 7110535
+              +49 1707110535
             </a>
           </div>
           <p
-            class="mt-6 text-[0.62rem] uppercase tracking-[0.14em] text-text/50 sm:text-sm sm:tracking-[0.25em]"
+            class="mt-6 text-[0.42rem] uppercase tracking-[0.14em] text-text/50 sm:text-[0.62rem] sm:tracking-[0.15em]"
           >
-            <span class="block sm:inline">
-              Zertifizierte Kultur- und Weinbotschafterin
-            </span>
+            
             <span class="hidden sm:inline" aria-hidden="true">·</span>
-            <span class="block sm:inline">
-              Gimmeldingen bei Neustadt an der Weinstraße
+            <span class="block">
+             📍 Gimmeldingen bei Neustadt an der Weinstraße
             </span>
           </p>
+         
         </div>
 
         <!-- Torbogen-Heldenbild -->
@@ -366,20 +390,31 @@ const faqs = [
     <!-- ================= Fakten-Strip ================= -->
     <section
       aria-label="Eckdaten"
-      class="py-8 mx-auto max-w-5xl container-padding border-y border-accent1/20 sm:py-10"
+      class="py-8 mx-auto max-w-7xl container-padding border-y border-accent1/20 sm:py-10"
     >
-      <dl class="grid grid-cols-2 gap-6 text-center lg:grid-cols-4">
+      <dl class="grid grid-cols-3 gap-6 text-center xl:grid-cols-4">
         {
           stats.map((stat) => (
-            <div>
+            <div class={stat.className || ""}>
               <dt class="sr-only">{stat.label}</dt>
-              <dd class="text-4xl font-bold font-bonanova text-accent1 sm:text-5xl">
-                {stat.value}
+              <dd class="text-4xl font-bold font-body text-accent1/70 sm:text-6xl lg:text-8xl">
+                {stat.value === "10–28" ? (
+                  <>
+                    <span class="">
+                      <span class="inline-block text-xs sm:text-lg lg:text-xl font-normal lg:leading-[1] text-accent1/60 text-right uppercase tracking-wider">
+                        bis<br />zu
+                      </span>
+                      <span>28</span>
+                    </span>
+                  </>
+                ) : (
+                  stat.value
+                )}
               </dd>
               {/* aria-hidden: das sichtbare Label würde sonst doppelt vorgelesen (dt ist sr-only) */}
               <dd
                 aria-hidden="true"
-                class="mt-1 text-[0.65rem] uppercase tracking-[0.14em] text-text/55 sm:text-xs"
+                class="mt-1 text-[0.48rem] sm:text-[0.62rem] lg:text-[0.75rem] uppercase tracking-[0.14em] text-text/55 sm:text-xs px-10"
               >
                 {stat.label}
               </dd>
@@ -428,7 +463,7 @@ const faqs = [
                 />
                 {/* kräftigerer Verlauf, damit das Script-Label auf den Fotos lesbar bleibt */}
                 <div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t to-transparent from-black/60 via-black/25" />
-                <span class="absolute inset-x-0 bottom-2.5 px-2 text-xl drop-shadow-md font-doulaise text-stone-50 md:text-2xl lg:bottom-3">
+                <span class="absolute inset-x-0 bottom-2.5 px-2 text-xl drop-shadow-md font-meie text-stone-50 md:text-2xl lg:bottom-3">
                   {occasion.label}
                 </span>
               </div>
@@ -655,7 +690,7 @@ const faqs = [
     <!-- ================= Jahreszeiten-Band ================= -->
     <section
       aria-label="Das passende Event zu jeder Jahreszeit"
-      class="py-16 scroll-mt-24 bg-soft-sand/40 sm:py-20"
+      class="hidden py-16 scroll-mt-24 bg-soft-sand/40 sm:py-20"
       id="jahreszeiten"
     >
       <div class="mx-auto max-w-6xl container-padding">
@@ -725,10 +760,10 @@ const faqs = [
           </p>
           <h2 class="mt-3 text-2xl font-bold font-bonanova sm:text-3xl">
             Persönlich geplant, persönlich geführt
-            <span class="relative inline-block group align-middle">
+            <span class="inline-block relative align-middle group">
               <svg
                 aria-label="Zertifizierte Kultur- und Weinbotschafterin"
-                class="inline-block ml-1.5 w-6 h-6 shrink-0 text-accent1 hover:text-accent2-wine transition-colors duration-200 cursor-pointer"
+                class="inline-block ml-1.5 w-6 h-6 transition-colors duration-200 cursor-pointer shrink-0 text-accent1 hover:text-accent2-wine"
                 fill="none"
                 stroke="currentColor"
                 stroke-linecap="round"
@@ -743,11 +778,11 @@ const faqs = [
               </svg>
               {/* Tooltip */}
               <span
-                class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-xs rounded-lg bg-text text-stone-50 text-xs font-sans font-normal py-1.5 px-3 shadow-lg opacity-0 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100 z-30"
+                class="absolute bottom-full left-1/2 z-30 px-3 py-1.5 mb-2 w-max max-w-xs font-sans text-xs font-normal rounded-lg shadow-lg opacity-0 transition-all duration-200 ease-out scale-95 -translate-x-1/2 pointer-events-none bg-text text-stone-50 group-hover:opacity-100 group-hover:scale-100"
               >
                 Zertifizierte Kultur- und Weinbotschafterin
                 <span
-                  class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-text"
+                  class="absolute top-full left-1/2 border-4 border-transparent -translate-x-1/2 border-t-text"
                 ></span>
               </span>
             </span>
