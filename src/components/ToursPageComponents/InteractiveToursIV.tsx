@@ -398,8 +398,12 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                 className="flex flex-row items-center justify-center w-[75vw] lg:w-[65vw] 
                 md:max-w-[650px] lg:max-w-[700px] xl:max-w-[800px] mx-auto max-h-[180px] md:gap-1 2xl:gap-2">
                 {tours.slice(1).map((tour, index) => {
+                  // Bewusst ein normales <a> statt motion.a: die Kacheln sind die
+                  // Hauptnavigation dieser Seite und müssen auch dann sichtbar
+                  // sein, wenn die Hydration scheitert. Einblenden und Hover
+                  // laufen deshalb komplett über CSS.
                   return (
-                    <motion.a
+                    <a
                       key={tour.id}
                       href={tour.bookingUrl}
                       target="_blank"
@@ -407,18 +411,11 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                       aria-label={`${tour.title} – Tour buchen`}
                       onMouseEnter={() => setSelectedTour(tour)}
                       onFocus={() => setSelectedTour(tour)}
-                      className={`block cursor-pointer group relative overflow-hidden w-full h-full xl:rounded-3xl max-h-[180px] drop-shadow-md rounded-2xl transition-all duration-500 ${selectedTour.id === tour.id
+                      style={{ animationDelay: `${index * 60}ms` }}
+                      className={`animate-rise-in block cursor-pointer group relative overflow-hidden w-full h-full xl:rounded-3xl max-h-[180px] drop-shadow-md rounded-2xl transition-all duration-500 hover:duration-200 hover:-translate-y-1 active:translate-y-0 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent1 focus-visible:ring-offset-2 ${selectedTour.id === tour.id
                         ? "outline-offset-[6px] aspect-[10/8] drop-shadow-2xl ring-offset-0 ring-2 mx-4 ring-soft-beige outline-[2px] outline-accent1 outline-none border-[2.5px] border-stone-100 z-30 "
                         : "border-[2.5px] border-soft-beige/20 drop-shadow-lg aspect-[4/3]  brightness-[1] saturate-[0.8]"
-                        }`}
-                      whileHover={{ y: -4, transition: { duration: 0.1 } }}
-                      whileTap={{ scale: 0.97 }}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                        transition: { delay: index * 0.05 },
-                      }}>
+                        }`}>
                       <div className="relative w-full h-full transition-all duration-500 group">
                         <img
                           src={tour.images.card}
@@ -475,7 +472,7 @@ const InteractiveTours = ({ images, backgroundImage, className }: Props) => {
                           </svg>
                         </div>
                       </div>
-                    </motion.a>
+                    </a>
                   );
                 })}
               </div>
