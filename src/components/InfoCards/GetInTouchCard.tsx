@@ -36,7 +36,7 @@ const GetInTouch = ({ className = "" }: Props) => {
                   <a
                     href="mailto:weinerlebnistouren.pfalz@gmail.com
 "
-                    className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-accent1 to-accent1/80 text-white font-semibold text-xs md:text-sm rounded-full shadow-lg hover:from-accent1/90 hover:to-accent1/70 transform hover:scale-105 transition-all duration-300 group">
+                    className="inline-flex items-center px-6 py-2 bg-accent1 hover:bg-accent1/90 text-white font-semibold text-xs md:text-sm rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 group">
                     Schreiben Sie mir
                     <svg
                       className="w-5 aspect-square ml-2 group-hover:scale-110 transition-transform duration-300"
@@ -170,7 +170,7 @@ const GetInTouch = ({ className = "" }: Props) => {
               <div className="flex md:justify-start justify-center my-5 md:my-3">
                 <a
                   href="/kontakt"
-                  className="inline-flex items-center px-6 py-1 bg-gradient-to-r from-accent1 to-accent1/80 text-white font-semibold text-sm rounded-full shadow-lg hover:from-accent1/90 hover:to-accent1/70 transform hover:scale-105 transition-all duration-300 group">
+                  className="inline-flex items-center px-6 py-1 bg-accent1 hover:bg-accent1/90 text-white font-semibold text-sm rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 group">
                   Kontaktieren Sie mich{" "}
                   <span className="hidden sm:inline">hier</span>
                   <svg

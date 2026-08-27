@@ -11,91 +11,83 @@ import BrigittaHeylPortrait2 from "@images/BrigittaHeylPortrait2.png";
 
 
 
-  <div class="hidden lg:flex xl:hidden text-center z-10 relative flex-col items-center justify-center mb-16">
-    <h2 class="my-4 text-4xl font-extrabold font-bonanova sm:text-5xl bg-gray-900 text-transparent bg-clip-text">
+  <div class="hidden relative z-10 flex-col justify-center items-center mb-16 text-center lg:flex xl:hidden">
+    <h2 class="my-4 text-4xl font-extrabold text-transparent bg-clip-text bg-gray-900 font-bonanova sm:text-5xl">
       🍇 
     </h2>
-    <h2 class="text-base font-semibold text-accent1 uppercase tracking-wider font-body">ihre Gastgeberin stellt sich vor </h2>
-    <h2 class="text-4xl font-extrabold font-bonanova leading-none sm:text-5xl -mt-2 bg-gray-900 text-transparent bg-clip-text">
+    <h2 class="text-base font-semibold tracking-wider uppercase text-accent1 font-body">ihre Gastgeberin stellt sich vor </h2>
+    <h2 class="-mt-2 text-4xl font-extrabold leading-none text-transparent bg-clip-text bg-gray-900 font-bonanova sm:text-5xl">
       Hallo und herzlich <br/>willkommen!
     </h2>
   </div>
 
-  <div class="w-full relative z-10 max-w-2xl lg:max-w-5xl xl:max-w-6xl  mx-auto ">
+  <div class="relative z-10 mx-auto w-full max-w-2xl lg:max-w-5xl xl:max-w-6xl">
     <div class="w-full md:grid md:grid-cols-2 md:items-center md:gap-x-6">
       
       <!-- Row 1, Col 1: Image -->
-      <div class="flex justify-center items-start xl:items-end w-full h-full row-start-1 col-start-2 row-span-2">
+      <div class="flex col-start-2 row-span-2 row-start-1 justify-center items-start w-full h-full xl:items-end">
         <div class="relative rounded-2xl md:shadow-lg overflow-hidden aspect-[6/7] max-h-[500px] ">
-          <Image src={BrigittaHeylPortrait2} alt="Portrait von Brigitta Heyl" class="w-full h-full object-cover"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+          <Image src={BrigittaHeylPortrait2} alt="Portrait von Brigitta Heyl" class="object-cover w-full h-full"/>
+          <div class="absolute inset-0 bg-gradient-to-t via-transparent to-transparent from-black/40"></div>
         </div>
       </div>
       <!-- Row 1, Col 2: Intro Text -->
-      <div class="max-w-sm mx-auto md:row-start-1 md:col-start-1 md:max-w-none">
-        <div class="text-center  mt-12 md:mt-0">
-          <div class="hidden xl:block text-center">
-            <h2 class="my-4 text-4xl font-extrabold font-bonanova sm:text-5xl bg-gray-900/95 text-transparent bg-clip-text">
+      <div class="mx-auto max-w-sm md:row-start-1 md:col-start-1 md:max-w-none">
+        <div class="mt-12 text-center md:mt-0">
+          <div class="hidden text-center xl:block">
+            <h2 class="my-4 text-4xl font-extrabold text-transparent bg-clip-text font-bonanova sm:text-5xl bg-gray-900/95">
               🍇 
             </h2>
-            <h2 class="text-base font-semibold text-accent1 uppercase tracking-wider font-body">ihre Gastgeberin stellt sich vor </h2>
-            <h2 class="text-4xl font-extrabold font-bonanova leading-none sm:text-5xl -mt-2 bg-gray-900/90 text-transparent bg-clip-text">
+            <h2 class="text-base font-semibold tracking-wider uppercase text-accent1 font-body">ihre Gastgeberin stellt sich vor </h2>
+            <h2 class="-mt-2 text-4xl font-extrabold leading-none text-transparent bg-clip-text font-bonanova sm:text-5xl bg-gray-900/90">
               Hallo und herzlich willkommen!
             </h2>
           </div>
-          <div class="mt-2 xl:mt-12 space-y-4 text-lg text-gray-600 font-body mix-blend-color-burn flex flex-col justify-center">
-            <p class="text-left sm:text-center px-4">
-              Meine Name ist <span class=" font-bold text-xl">Brigitta Heyl</span> und als begeisterte Wahlpfälzerin liebe ich die Pfalz und meinen Wohnort Gimmeldingen. Seit 2023 bin ich <span class="font-bold text-gray-900/70 text-xl">zertifizierte Kultur- und Weinbotschafterin</span> und freue mich, Ihnen die Schönheit und Vielfalt unserer Region näher zu bringen.
+          <div class="flex flex-col justify-center mt-2 space-y-4 text-lg text-gray-600 mix-blend-color-burn xl:mt-12 font-body">
+            <p class="px-4 text-left sm:text-center">
+              Meine Name ist <span class="text-xl font-bold">Brigitta Heyl</span> und als begeisterte Wahlpfälzerin liebe ich die Pfalz und meinen Wohnort Gimmeldingen. Seit 2023 bin ich <span class="text-xl font-bold text-gray-900/70">zertifizierte Kultur- und Weinbotschafterin</span> und freue mich, Ihnen die Schönheit und Vielfalt unserer Region näher zu bringen.
             </p>
           </div>
         </div>
       </div>
 
       <!-- Row 3, Col 1: Text Block -->
-      <div class="max-w-sm md:max-w-2xl  md:mx-auto 
-      md:col-start-1 md:col-span-1 md:row-start-2 md:mt-12">
-        <div class="flex flex-col justify-center relative mt-12 md:mt-0 space-y-4 md:space-y-0 text-lg px-4 text-gray-600 font-body mix-blend-color-burn">
+      <div class="max-w-sm md:max-w-2xl md:mx-auto md:col-start-1 md:col-span-1 md:row-start-2 md:mt-12">
+        <div class="flex relative flex-col justify-center px-4 mt-12 space-y-4 text-lg text-gray-600 mix-blend-color-burn md:mt-0 md:space-y-0 font-body">
           <h2 class="text-[44px] md:text-6xl font-bold  text-text/40 md:text-text/40   mb-4
           font-bonanova tracking-tighter leading-none text-center md:text-left">
             Je nach Jahreszeit
           </h2>
           <p class="text-left">
-            biete ich verschiedene ca 4-stündige Wein-Erlebnistouren/Weinbergs-Wanderungen an, die Sie durch unsere idyllischen Weinberge, zu den schönsten Aussichtspunkten oder durch den charmanten Ortskern von Gimmeldingen führen. An mehreren Stationen verkosten wir die Weine der umliegenden Weingüter mit hausgemachten Pfälzer Snacks – ein genussvolles Food-Pairing, das die Aromen perfekt zur Geltung bringt. Bei einigen Touren besuchen wir auch mehrere Weingüter direkt im historischen Ortskern. 
+            biete ich verschiedene ca 4-stündige Wein-Erlebnistouren/Weinbergs-Wanderungen an, die Sie durch unsere idyllischen Weinberge, zu den schönsten Aussichtspunkten oder durch den charmanten Ortskern von Gimmeldingen führen. An mehreren Stationen verkosten wir die Weine der umliegenden Weingüter mit liebevoll hergestellten Pfälzer Snacks – ein genussvolles Food-Pairing, das die Aromen perfekt zur Geltung bringt. Bei meinen Touren besuchen wir auch mehrere Weingüter direkt im historischen Ortskern. 
           </p>
         </div>
       </div>
 
       <!-- Row 4, Col 1: Text Block -->
-      <div class="max-w-sm mx-auto 2xl:max-w-lg 2xl:pt-10
-      col-start-2 col-span-1 row-start-5 row-span-1
-      xl:col-start-1">
-      <div class="relative mt-12 mx-auto">
+      <div class="col-span-1 col-start-2 row-span-1 row-start-5 mx-auto max-w-sm 2xl:max-w-lg 2xl:pt-10 xl:col-start-1">
+      <div class="relative mx-auto mt-12">
         <svg class="absolute top-0 -left-5 sm:-top-8 sm:-left-8 2xl:-top-2  w-12 h-12 text-accent1/40 transform -rotate-[192deg]" fill="currentColor" viewBox="0 0 24 24">
           <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
         </svg>
-        <blockquote class="text-lg md:text-xl xl:text-2xl text-text/65 leading-normal sm:leading-relaxed font-medium italic px-8 py-4">
-          <p class="text-center leading-tight">
+        <blockquote class="px-8 py-4 text-lg italic font-medium leading-normal md:text-xl xl:text-2xl text-text/65 sm:leading-relaxed">
+          <p class="leading-tight text-center">
             "Bei jeder Tour erhalten Sie spannende Informationen zu Weinen und Weingütern, zum Weinbau, seiner Zukunft und zur Gimmeldinger Mandelblüte."
           </p>
         </blockquote>
-        <svg class="absolute bottom-0 right-2 sm:-bottom-4 sm:-right-5 w-12 h-12 text-accent1/40 transform rotate-12" fill="currentColor" viewBox="0 0 24 24">
+        <svg class="absolute bottom-0 right-2 w-12 h-12 transform rotate-12 sm:-bottom-4 sm:-right-5 text-accent1/40" fill="currentColor" viewBox="0 0 24 24">
           <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
         </svg>
       </div>
-      <p class="w-full relative xl:hidden block text-6xl text-center mt-8">
-        <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-        grayscale text-stone-100 pt-8">🌸</span>
-        <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-         bg-accent1 opacity-85 text-transparent bg-clip-text pt-8">🌸</span>
+      <p class="block relative mt-8 w-full text-6xl text-center xl:hidden">
+        <span class="absolute top-1/2 left-1/2 pt-8 grayscale -translate-x-1/2 -translate-y-1/2 text-stone-100">🌸</span>
+        <span class="absolute top-1/2 left-1/2 pt-8 text-transparent bg-clip-text -translate-x-1/2 -translate-y-1/2 bg-accent1 opacity-85">🌸</span>
       </p> 
     </div>
 
     <!-- Row 5, Col 1: Text Block -->
-    <div class="flex flex-col justify-center relative xl:pl-16
-    col-start-1 xl:col-start-2 col-span-1 row-start-5 row-span-1 mt-12 xl:mt-8
-    text-lg px-4 text-gray-600 font-body mix-blend-color-burn">
-    <h2 class="text-6xl font-bold  text-text/40 text-nowrap
-    font-bonanova tracking-tighter leading-none ">
+    <div class="flex relative flex-col col-span-1 col-start-1 row-span-1 row-start-5 justify-center px-4 mt-12 text-lg text-gray-600 mix-blend-color-burn xl:pl-16 xl:col-start-2 xl:mt-8 font-body">
+    <h2 class="text-6xl font-bold tracking-tighter leading-none text-text/40 text-nowrap font-bonanova">
             Freuen Sie sich
           </h2>
       <p class="text-left">

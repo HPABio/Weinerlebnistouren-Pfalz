@@ -36,7 +36,7 @@ const steps = [
   },
   {
     title: "Die Geschichte erwacht",
-    text: "Aus „Napoleon war einmal hier“ wird: Jemand aus der Gruppe ist Napoleon. Sie spielen mit — und werden Teil der Geschichte.",
+    text: "Aus „Napoleon war einmal hier“ wird: Jemand von uns ist Napoleon — und plötzlich wird die Geschichte lebendig.",
   },
   {
     title: "Wein & Food-Pairing",
@@ -56,7 +56,7 @@ const steps = [
 <section
   id="tour-ablauf"
   aria-labelledby="timeline-title"
-  class="relative overflow-hidden bg-soft-sand/40 py-16 scroll-mt-24 sm:py-24"
+  class="overflow-hidden relative py-16 bg-soft-sand/40 scroll-mt-24 sm:py-24"
 >
   <!-- stilles Wasserzeichen -->
   <span
@@ -71,23 +71,23 @@ const steps = [
   >
     <!-- Kopf + echte Tour-Momente -->
     <div class="lg:sticky lg:top-28">
-      <p class="font-doulaise text-3xl text-accent1 sm:text-4xl">
+      <p class="text-3xl font-doulaise text-accent1 sm:text-4xl">
         So fühlt sich eine Tour an
       </p>
-      <div aria-hidden="true" class="mt-5 h-px w-16 bg-accent1/50"></div>
+      <div aria-hidden="true" class="mt-5 w-16 h-px bg-accent1/50"></div>
       <h2
         id="timeline-title"
-        class="mt-5 font-bonanova text-3xl font-bold leading-tight sm:text-4xl"
+        class="mt-5 text-3xl font-bold leading-tight font-bonanova sm:text-4xl"
       >
         Vier Stunden, die schneller vergehen als gedacht
       </h2>
-      <p class="mt-4 max-w-prose font-body leading-relaxed text-text/75">
+      <p class="mt-4 max-w-prose leading-relaxed font-body text-text/75">
         Keine Tour gleicht der anderen — aber so ungefähr dürfen Sie sich den
         Nachmittag vorstellen. Den Rest verrate ich unterwegs.
       </p>
 
       <!-- Zwei echte Momente: Rolle & Runde -->
-      <div class="mt-10 hidden gap-5 sm:flex lg:mt-12">
+      <div class="hidden gap-5 mt-10 sm:flex lg:mt-12">
         <figure class="w-1/2 rotate-[-2deg]">
           <div
             class="overflow-hidden rounded-xl border-4 border-white shadow-lg"
@@ -104,7 +104,7 @@ const steps = [
             />
           </div>
           <figcaption
-            class="mt-2 text-center font-caveat text-base text-text/60"
+            class="mt-2 text-base text-center font-caveat text-text/60"
           >
             Heute mal Napoleon sein
           </figcaption>
@@ -125,7 +125,7 @@ const steps = [
             />
           </div>
           <figcaption
-            class="mt-2 text-center font-caveat text-base text-text/60"
+            class="mt-2 text-base text-center font-caveat text-text/60"
           >
             Auf die Pfalz!
           </figcaption>
@@ -137,7 +137,7 @@ const steps = [
     <ol class="relative">
       {
         steps.map((step, index) => (
-          <li class="relative flex gap-5 pb-9 last:pb-0 sm:gap-7">
+          <li class="flex relative gap-5 pb-9 last:pb-0 sm:gap-7">
             {/* Verbindungslinie — beim letzten Schritt ausgeblendet */}
             {index < steps.length - 1 && (
               <span
@@ -147,15 +147,15 @@ const steps = [
             )}
             <span
               aria-hidden="true"
-              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent1/40 bg-white font-bonanova text-sm font-bold text-accent1 shadow-sm sm:h-11 sm:w-11 sm:text-base"
+              class="flex justify-center items-center w-9 h-9 text-sm font-bold bg-white rounded-full border shadow-sm shrink-0 border-accent1/40 font-bonanova text-accent1 sm:h-11 sm:w-11 sm:text-base"
             >
               {index + 1}
             </span>
             <div class="pt-1 sm:pt-2">
-              <h3 class="font-bonanova text-lg font-bold leading-snug sm:text-xl">
+              <h3 class="text-lg font-bold leading-snug font-bonanova sm:text-xl">
                 {step.title}
               </h3>
-              <p class="mt-1.5 max-w-prose font-body text-sm leading-relaxed text-text/70 sm:text-base">
+              <p class="mt-1.5 max-w-prose text-sm leading-relaxed font-body text-text/70 sm:text-base">
                 {step.text}
               </p>
             </div>

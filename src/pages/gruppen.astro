@@ -20,7 +20,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
 
 <Layout content={{ title: "Gruppen - Weinerlebnistouren-Pfalz" }}>
   <Header isHome={false} isGroupe={true} />
-  <main class="min-h-screen bg-gradient-to-b from-white to-gray-50 relative">
+  <main class="relative min-h-screen bg-gradient-to-b from-white to-gray-50">
     <!-- <ScreenSizeDEVTOOL /> -->
     <!-- Hero Section -->
     <div
@@ -32,18 +32,17 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
       }}
     >
       <div
-        class="w-full h-full flex items-center justify-center
-				bg-gradient-to-t from-black/80 via-black/60 to-transparent"
+        class="flex justify-center items-center w-full h-full bg-gradient-to-t to-transparent from-black/80 via-black/60"
       >
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center flex flex-col items-center justify-center">
+        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div class="flex flex-col justify-center items-center text-center">
             <h1
-              class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-100 mb-6"
+              class="mb-6 text-4xl font-bold text-gray-100 sm:text-5xl md:text-6xl"
             >
               Gruppen-Erlebnisse
             </h1>
             <p
-              class="text-sm sm:text-base md:text-xl lg:text-2xl sm:max-w-md md:max-w-xl text-accent1 max-w-4xl mx-auto leading-relaxed"
+              class="mx-auto max-w-4xl text-sm leading-relaxed sm:text-base md:text-xl lg:text-2xl sm:max-w-md md:max-w-xl text-accent1"
             >
               Entdecken Sie die Pfalz gemeinsam - maßgeschneiderte
               Wein-Erlebnistouren für Gruppen jeder Größe
@@ -54,7 +53,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
     </div>
     <!-- Group Types Overview -->
     <div
-      class="w-screen mx-auto"
+      class="mx-auto w-screen"
       style={{
         backgroundImage: `url("${GimmeldingenMap.src}")`,
         backgroundSize: "cover",
@@ -63,8 +62,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
       }}
     >
       <div
-        class="w-screen px-4 sm:px-6 md:px-14 pt-16
-				 bg-gradient-to-r from-gray-200/45 via-gray-200 to-gray-200/45"
+        class="px-4 pt-16 w-screen bg-gradient-to-r via-gray-200 sm:px-6 md:px-14 from-gray-200/45 to-gray-200/45"
       >
         <!-- Desktop -->
         <!-- <GroupDescriptionOverview className="hidden lg:flex w-full flex-row mb-16 gap-x-4 max-w-[400px] lg:max-w-[1000px] mx-auto" />
@@ -80,15 +78,15 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
         >
           <!-- Small Groups -->
           <div
-            class="bg-white rounded-xl shadow-lg py-2 px-9 text-center hover:shadow-xl transition-shadow relative pt-6 borter-2 border-text/20"
+            class="relative px-9 py-2 pt-6 text-center bg-white rounded-xl shadow-lg transition-shadow hover:shadow-xl borter-2 border-text/20"
           >
             <h3
-              class="text-xl font-bonanova font-bold text-text mb-4 mt-1 leading-none border-b-2 border-accent2-wine"
+              class="mt-1 mb-4 text-xl font-bold leading-none border-b-2 font-bonanova text-text border-accent2-wine"
             >
               Kleingruppen
             </h3>
             <div
-              class="w-12 h-12 bg-stone-300/20 rounded-full flex items-center justify-center mx-auto -5xl 8"
+              class="flex justify-center items-center mx-auto w-12 h-12 rounded-full bg-stone-300/20 -5xl 8"
             >
               <svg
                 class="w-7 h-7 text-accent2-wine"
@@ -104,33 +102,34 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                 ></path>
               </svg>
             </div>
-            <p class="text-accent1/60 text-5xl">10-28</p>
+            <p class="text-5xl text-accent1/60">10-28</p>
             <p
-              class="text-accent1 -mt-2 mb-2 text-base tracking-widest uppercase"
+              class="-mt-2 mb-2 text-base tracking-widest uppercase text-accent1"
             >
               Personen
             </p>
-            <div class="w-full flex justify-center">
+            <div class="flex justify-center w-full">
               <div
-                class="w-16 h-16 bg-accent2-wine bg-opacity-80 text-white mt-2 rounded-full flex items-center justify-center"
+                class="flex justify-center items-center mt-2 w-16 h-16 text-white bg-opacity-80 rounded-full bg-accent2-wine"
               >
                 <span class="text-lg font-bold">4h</span>
               </div>
             </div>
-            <!-- <p class="text-text/20 text-3xl -mt-2">---</p> -->
+            <!-- <p class="-mt-2 text-3xl text-text/20">---</p> -->
           </div>
 
           <!-- Corporate Events -->
-          <div
-            class="bg-white rounded-xl shadow-lg py-4 px-9 text-center hover:shadow-xl transition-shadow relative pt-6 borter-2 border-text/20"
+          <a
+            class="relative px-9 py-4 pt-6 text-center bg-white rounded-xl shadow-lg transition-shadow hover:shadow-xl borter-2 border-text/20"
+            href="/firmen-events"
           >
             <h3
-              class="text-xl font-bonanova font-bold text-text mb-4 mt-1 leading-none border-b-2 border-accent2-wine"
+              class="mt-1 mb-4 text-xl font-bold leading-none border-b-2 font-bonanova text-text border-accent2-wine"
             >
               FirmenEvents
             </h3>
             <div
-              class="w-12 h-12 bg-stone-300/20 rounded-full flex items-center justify-center mx-auto -5xl 8"
+              class="flex justify-center items-center mx-auto w-12 h-12 rounded-full bg-stone-300/20 -5xl 8"
             >
               <svg
                 class="w-7 h-7 text-accent2-wine"
@@ -146,33 +145,33 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                 ></path>
               </svg>
             </div>
-            <p class="text-accent1/60 text-5xl">10-28</p>
+            <p class="text-5xl text-accent1/60">10-28</p>
             <p
-              class="text-accent1 -mt-2 mb-2 text-base tracking-widest uppercase"
+              class="-mt-2 mb-2 text-base tracking-widest uppercase text-accent1"
             >
               Personen
             </p>
-            <div class="w-full flex justify-center">
+            <div class="flex justify-center w-full">
               <div
-                class="w-16 h-16 bg-accent2-wine bg-opacity-80 text-white mt-2 rounded-full flex items-center justify-center"
+                class="flex justify-center items-center mt-2 w-16 h-16 text-white bg-opacity-80 rounded-full bg-accent2-wine"
               >
                 <span class="text-base font-bold">4-8h</span>
               </div>
             </div>
-            <!-- <p class="text-text/20 text-3xl -mt-2">---</p> -->
-          </div>
+            <!-- <p class="-mt-2 text-3xl text-text/20">---</p> -->
+          </a>
 
           <!-- Travel Groups -->
           <div
-            class="bg-white rounded-xl shadow-lg py-4 px-9 text-center hover:shadow-xl transition-shadow relative pt-6 borter-2 border-text/20"
+            class="relative px-9 py-4 pt-6 text-center bg-white rounded-xl shadow-lg transition-shadow hover:shadow-xl borter-2 border-text/20"
           >
             <h3
-              class="text-xl font-bonanova font-bold text-text mb-4 mt-1 leading-none border-b-2 border-accent2-wine"
+              class="mt-1 mb-4 text-xl font-bold leading-none border-b-2 font-bonanova text-text border-accent2-wine"
             >
               Reisegruppen
             </h3>
             <div
-              class="w-12 h-12 bg-stone-300/20 rounded-full flex items-center justify-center mx-auto -5xl 8"
+              class="flex justify-center items-center mx-auto w-12 h-12 rounded-full bg-stone-300/20 -5xl 8"
             >
               <svg
                 class="w-7 h-7 text-accent2-wine"
@@ -187,20 +186,20 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
               </svg>
             </div>
-            <p class="text-accent1/60 text-5xl">30-50</p>
+            <p class="text-5xl text-accent1/60">30-50</p>
             <p
-              class="text-accent1 -mt-2 mb-2 text-base tracking-widest uppercase"
+              class="-mt-2 mb-2 text-base tracking-widest uppercase text-accent1"
             >
               Personen
             </p>
-            <div class="w-full flex justify-center">
+            <div class="flex justify-center w-full">
               <div
-                class="w-16 h-16 bg-accent2-wine bg-opacity-80 text-white mt-2 rounded-full flex items-center justify-center"
+                class="flex justify-center items-center mt-2 w-16 h-16 text-white bg-opacity-80 rounded-full bg-accent2-wine"
               >
                 <span class="text-base font-bold">1-2h</span>
               </div>
             </div>
-            <!-- <p class="text-text/20 text-3xl -mt-2">---</p> -->
+            <!-- <p class="-mt-2 text-3xl text-text/20">---</p> -->
           </div>
         </div>
 
@@ -210,12 +209,12 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
         >
           <!-- Small Groups Section -->
           <section
-            class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-orange-200/50 relative"
+            class="overflow-hidden relative bg-white rounded-2xl border-2 shadow-lg border-orange-200/50"
           >
             <div class="grid grid-cols-1 lg:grid-cols-2">
               <!-- Image Area left LG and bigger -->
               <div
-                class="hidden lg:flex items-center justify-center relative overflow-hidden"
+                class="hidden overflow-hidden relative justify-center items-center lg:flex"
               >
                 <Image
                   src={OnSitePhotosGruppenfotoBeiSteigelmanns}
@@ -224,16 +223,16 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   class="w-full h-full object-cover absolute top-0 left-0 z-0 scale-[2.2]"
                 />
                 <div
-                  class="flex items-center justify-center h-full w-full z-10 bg-gradient-to-br lg:bg-gradient-to-tl from-white via-white/80 to-white/5"
+                  class="flex z-10 justify-center items-center w-full h-full bg-gradient-to-br from-white lg:bg-gradient-to-tl via-white/80 to-white/5"
                 >
                   <div
-                    class="text-center w-full h-full flex flex-col items-center justify-center bg-gradient-to-tl from-white via-white/40 to-white/0"
+                    class="flex flex-col justify-center items-center w-full h-full text-center bg-gradient-to-tl from-white via-white/40 to-white/0"
                   >
                     <div
-                      class="hidden lg:flex relative aspect-square p-8 bg-white/80 rounded-full items-center justify-center flex-col mx-auto mb-2"
+                      class="hidden relative flex-col justify-center items-center p-8 mx-auto mb-2 rounded-full lg:flex aspect-square bg-white/80"
                     >
                       <svg
-                        class="w-full h-full absolute m-auto text-text/5 p-12 z-0"
+                        class="absolute z-0 p-12 m-auto w-full h-full text-text/5"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -246,12 +245,12 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                         ></path>
                       </svg>
                       <p
-                        class="hidden lg:block text-accent1 text-6xl tracking-tighter mx-4 z-10 mt-4"
+                        class="hidden z-10 mx-4 mt-4 text-6xl tracking-tighter lg:block text-accent1"
                       >
                         10-28
                       </p>
                       <p
-                        class="hidden lg:block text-accent1 -mt-4 text-lg tracking-widest uppercase z-10"
+                        class="hidden z-10 -mt-4 text-lg tracking-widest uppercase lg:block text-accent1"
                       >
                         Personen
                       </p>
@@ -260,7 +259,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                 </div>
               </div>
               <!-- Image Area left MD and smaller -->
-              <div class="inset-0 z-10 block lg:hidden">
+              <div class="block inset-0 z-10 lg:hidden">
                 <Image
                   src={OnSitePhotosGruppenfotoBeiSteigelmanns}
                   loading="lazy"
@@ -269,7 +268,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   class="w-2/3 aspect-square object-cover absolute bottom-0 left-2/3 sm:-bottom-44 sm:-right-20 z-0 scale-[1.7]"
                 />
                 <div
-                  class="w-full h-full absolute top-0 left-0 bg-gradient-to-br from-white via-white/50 to-white/0"
+                  class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white via-white/50 to-white/0"
                 >
                 </div>
                 <div
@@ -281,17 +280,17 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                 >
                 </div>
                 <div
-                  class="md:hidden w-1/3 sm:w-1/2 lg:w-full h-full absolute top-0 left-1/4 sm:right-12 bg-gradient-to-r from-white via-white/90 to-transparent"
+                  class="absolute top-0 left-1/4 w-1/3 h-full bg-gradient-to-r from-white to-transparent md:hidden sm:w-1/2 lg:w-full sm:right-12 via-white/90"
                 >
                 </div>
               </div>
               <!-- Content Area left MD and smaller -->
-              <div class="p-8 lg:p-12 relative z-10">
+              <div class="relative z-10 p-8 lg:p-12">
                 <div
-                  class="flex flex-row items-center justify-center mx-auto mb-3"
+                  class="flex flex-row justify-center items-center mx-auto mb-3"
                 >
                   <div
-                    class="lg:hidden flex w-24 aspect-square bg-stone-50/80 rounded-full items-center justify-center mx-auto mb-3"
+                    class="flex justify-center items-center mx-auto mb-3 w-24 rounded-full lg:hidden aspect-square bg-stone-50/80"
                   >
                     <svg
                       class="w-12 h-12 text-accent2-wine"
@@ -307,12 +306,12 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                       ></path>
                     </svg>
                   </div>
-                  <h2 class="w-4/5 text-3xl font-bold text-text mb-6">
+                  <h2 class="mb-6 w-4/5 text-3xl font-bold text-text">
                     Kleingruppen-Erlebnisse
                   </h2>
                 </div>
                 <p
-                  class="text-sm sm:text-base text-text/60 mb-8 px-8 leading-relaxed"
+                  class="px-8 mb-8 text-sm leading-relaxed sm:text-base text-text/60"
                 >
                   Verschiedene 4-stündige Wein-Erlebnistouren für private
                   Gruppen. Erleben Sie die Pfalz an Ihrem Wunschtermin in
@@ -320,10 +319,10 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   oder Kollegen aus Verein oder Beruf, die interaktiven Touren
                   stärken Ihren Gruppenzusammenhalt.
                 </p>
-                <div class="space-y-4 mb-8">
+                <div class="mb-8 space-y-4">
                   <div class="flex items-start space-x-3">
                     <svg
-                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      class="flex-shrink-0 mt-1 w-6 h-6 text-accent1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -343,7 +342,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   </div>
                   <div class="flex items-start space-x-3">
                     <svg
-                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      class="flex-shrink-0 mt-1 w-6 h-6 text-accent1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -363,7 +362,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   </div>
                   <div class="flex items-start space-x-3">
                     <svg
-                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      class="flex-shrink-0 mt-1 w-6 h-6 text-accent1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -384,24 +383,24 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                 </div>
                 <div class="block lg:hidden">
                   <p
-                    class="text-text/40 font-bold mt-12 text-base tracking-widest uppercase"
+                    class="mt-12 text-base font-bold tracking-widest uppercase text-text/40"
                   >
                     Geeignet Für
                   </p>
-                  <p class="text-accent1/80 text-6xl -mt-1">10-28</p>
+                  <p class="-mt-1 text-6xl text-accent1/80">10-28</p>
                   <p
-                    class="text-accent1 -mt-4 text-3xl tracking-wide uppercase font-playfair"
+                    class="-mt-4 text-3xl tracking-wide uppercase text-accent1 font-playfair"
                   >
                     Personen
                   </p>
                 </div>
                 <a
                   href="/kontakt"
-                  class="inline-flex items-center px-6 py-3 bg-accent2-plum mb-4 bg-gradient-to-r from-accent2-wine to-accent2-wine/80 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors"
+                  class="inline-flex items-center px-6 py-3 mb-4 font-semibold text-white bg-gradient-to-r rounded-lg transition-colors bg-accent2-plum from-accent2-wine to-accent2-wine/80 hover:bg-orange-700"
                 >
                   Jetzt anmelden
                   <svg
-                    class="w-4 h-4 ml-2"
+                    class="ml-2 w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -419,7 +418,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
 
           <!-- Corporate Events Section -->
           <section
-            class="w-full h-full bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-orange-200/50 relative"
+            class="overflow-hidden relative w-full h-full bg-white rounded-2xl border-2 shadow-lg border-orange-200/50"
           >
             <div class="inset-0">
               <Image
@@ -430,7 +429,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                 class="w-1/2 aspect-square object-cover absolute bottom-0 right-0 z-0 scale-[1.5] sm:scale-[1]"
               />
               <div
-                class="w-full h-full absolute top-0 left-0 bg-gradient-to-br from-white via-white/50 to-white/0"
+                class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white via-white/50 to-white/0"
               >
               </div>
               <div
@@ -438,17 +437,17 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
               >
               </div>
               <div
-                class="w-full h-full absolute top-0 -left-7 sm:left-0 bg-gradient-to-r from-white via-white to-transparent"
+                class="absolute top-0 -left-7 w-full h-full bg-gradient-to-r from-white via-white to-transparent sm:left-0"
               >
               </div>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 relative z-10">
+            <div class="grid relative z-10 grid-cols-1 lg:grid-cols-2">
               <div class="p-8 lg:p-12">
                 <div
-                  class="flex flex-row items-center justify-center mx-auto mb-3"
+                  class="flex flex-row justify-center items-center mx-auto mb-3"
                 >
                   <div
-                    class="lg:hidden flex w-24 aspect-square bg-stone-50/80 rounded-full items-center justify-center mx-auto mb-3"
+                    class="flex justify-center items-center mx-auto mb-3 w-24 rounded-full lg:hidden aspect-square bg-stone-50/80"
                   >
                     <svg
                       class="w-12 h-12 text-accent2-wine"
@@ -464,22 +463,22 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                       ></path>
                     </svg>
                   </div>
-                  <h2 class="w-4/5 text-3xl font-bold text-text mb-6">
+                  <h2 class="mb-6 w-4/5 text-3xl font-bold text-text">
                     Firmen-Events & Team-Building
                   </h2>
                 </div>
                 <p
-                  class="text-sm sm:text-base text-text/60 mb-8 leading-snug px-8"
+                  class="px-8 mb-8 text-sm leading-snug sm:text-base text-text/60"
                 >
                   Ein exklusives Event auf Basis meiner Wein-Erlebnistouren –
                   speziell für Ihr Unternehmen. Dauer: 4–8 Stunden, auf Wunsch
                   inklusive Organisation eines gemeinsamen Essens. Perfekt für
                   genussvolles Teambuilding und unvergessliche Firmenausflüge.
                 </p>
-                <div class="space-y-4 mb-8">
+                <div class="mb-8 space-y-4">
                   <div class="flex items-start space-x-3">
                     <svg
-                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      class="flex-shrink-0 mt-1 w-6 h-6 text-accent1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -499,7 +498,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   </div>
                   <div class="flex items-start space-x-3">
                     <svg
-                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      class="flex-shrink-0 mt-1 w-6 h-6 text-accent1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -520,7 +519,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   </div>
                   <div class="flex items-start space-x-3">
                     <svg
-                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      class="flex-shrink-0 mt-1 w-6 h-6 text-accent1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -539,26 +538,26 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                     </div>
                   </div>
                 </div>
-                <div class="block lg:hidden w-full">
+                <div class="block w-full lg:hidden">
                   <p
-                    class="text-text/40 font-bold mt-12 text-base tracking-widest uppercase"
+                    class="mt-12 text-base font-bold tracking-widest uppercase text-text/40"
                   >
                     Geeignet Für
                   </p>
-                  <p class="text-accent1/80 text-6xl -mt-1">10-28</p>
+                  <p class="-mt-1 text-6xl text-accent1/80">10-28</p>
                   <p
-                    class="text-accent1 -mt-4 text-3xl tracking-wide uppercase font-playfair"
+                    class="-mt-4 text-3xl tracking-wide uppercase text-accent1 font-playfair"
                   >
                     Personen
                   </p>
                 </div>
                 <a
                   href="/kontakt"
-                  class="inline-flex items-center px-6 py-3 bg-accent2-plum mb-4 bg-gradient-to-r from-accent2-wine to-accent2-wine/80 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors"
+                  class="inline-flex items-center px-6 py-3 mb-4 font-semibold text-white bg-gradient-to-r rounded-lg transition-colors bg-accent2-plum from-accent2-wine to-accent2-wine/80 hover:bg-orange-700"
                 >
                   Event planen
                   <svg
-                    class="w-4 h-4 ml-2"
+                    class="ml-2 w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -571,9 +570,9 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   </svg>
                 </a>
               </div>
-              <div class="items-center justify-center hidden lg:flex">
+              <div class="hidden justify-center items-center lg:flex">
                 <div
-                  class="flex items-center justify-center h-full w-full relative overflow-hidden"
+                  class="flex overflow-hidden relative justify-center items-center w-full h-full"
                 >
                   <Image
                     src={GeminiBusinessTrip}
@@ -583,19 +582,17 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                     class="w-full h-full object-cover object-[-50px_-50px] absolute top-0 left-0 z-0 scale-[1.2]"
                   />
                   <div
-                    class="flex items-center justify-center h-full w-full
-										bg-gradient-to-tr from-white via-white/60 to-white/0 z-10"
+                    class="flex z-10 justify-center items-center w-full h-full bg-gradient-to-tr from-white via-white/60 to-white/0"
                   >
                     <div
-                      class="text-center w-full h-full flex flex-col items-center justify-center
-										bg-gradient-to-tr from-white via-white/75 to-white/0"
+                      class="flex flex-col justify-center items-center w-full h-full text-center bg-gradient-to-tr from-white via-white/75 to-white/0"
                     >
-                      <!-- <h3 class="text-3xl font-bold text-gray-900 my-6 leading-none">FirmenEvents</h3> -->
+                      <!-- <h3 class="my-6 text-3xl font-bold leading-none text-gray-900">FirmenEvents</h3> -->
                       <div
-                        class="hidden lg:flex relative aspect-square p-8 bg-white/80 rounded-full items-center justify-center flex-col mx-auto"
+                        class="hidden relative flex-col justify-center items-center p-8 mx-auto rounded-full lg:flex aspect-square bg-white/80"
                       >
                         <svg
-                          class="w-full h-full absolute m-auto text-text/5 p-12 z-0"
+                          class="absolute z-0 p-12 m-auto w-full h-full text-text/5"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -608,12 +605,12 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                           ></path>
                         </svg>
                         <p
-                          class="hidden lg:block text-accent1 text-6xl tracking-tighter mx-4 z-10 mt-4"
+                          class="hidden z-10 mx-4 mt-4 text-6xl tracking-tighter lg:block text-accent1"
                         >
                           10-28
                         </p>
                         <p
-                          class="hidden lg:block text-accent1 -mt-4 text-lg tracking-widest uppercase z-10"
+                          class="hidden z-10 -mt-4 text-lg tracking-widest uppercase lg:block text-accent1"
                         >
                           Personen
                         </p>
@@ -627,12 +624,12 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
 
           <!-- Travel Groups Section -->
           <section
-            class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-orange-200/50 relative"
+            class="overflow-hidden relative bg-white rounded-2xl border-2 shadow-lg border-orange-200/50"
           >
             <div class="grid grid-cols-1 lg:grid-cols-2">
               <!-- Image Area left LG and bigger -->
               <div
-                class="hidden lg:flex items-center justify-center order-2 lg:order-1 relative overflow-hidden"
+                class="hidden overflow-hidden relative order-2 justify-center items-center lg:flex lg:order-1"
               >
                 <Image
                   src={GeminiTravelBus}
@@ -642,19 +639,17 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   class="w-full h-full object-cover absolute top-0 left-[50%] translate-x-[-80%] translate-y-[-30%] z-0 scale-[2.2]"
                 />
                 <div
-                  class="flex items-center justify-center h-full w-full z-10 relative
-									bg-gradient-to-tl from-white via-white/70 to-white/15"
+                  class="flex relative z-10 justify-center items-center w-full h-full bg-gradient-to-tl from-white via-white/70 to-white/15"
                 >
                   <div
-                    class="text-center w-full h-full flex flex-col items-center justify-center
-									bg-gradient-to-tl from-white via-white/40 to-white/0"
+                    class="flex flex-col justify-center items-center w-full h-full text-center bg-gradient-to-tl from-white via-white/40 to-white/0"
                   >
-                    <!-- <h3 class="text-3xl font-bold text-gray-900 my-6 leading-none">Reisegruppen</h3> -->
+                    <!-- <h3 class="my-6 text-3xl font-bold leading-none text-gray-900">Reisegruppen</h3> -->
                     <div
-                      class="hidden lg:flex relative aspect-square p-8 bg-white/80 rounded-full items-center justify-center flex-col mx-auto mb-2"
+                      class="hidden relative flex-col justify-center items-center p-8 mx-auto mb-2 rounded-full lg:flex aspect-square bg-white/80"
                     >
                       <svg
-                        class="w-full h-full absolute m-auto text-text/5 p-12 z-0"
+                        class="absolute z-0 p-12 m-auto w-full h-full text-text/5"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -667,12 +662,12 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                         ></path>
                       </svg>
                       <p
-                        class="hidden lg:block text-accent1 text-6xl tracking-tighter mx-4 z-10 mt-4"
+                        class="hidden z-10 mx-4 mt-4 text-6xl tracking-tighter lg:block text-accent1"
                       >
                         30-50
                       </p>
                       <p
-                        class="hidden lg:block text-accent1 -mt-4 text-lg tracking-widest uppercase z-10"
+                        class="hidden z-10 -mt-4 text-lg tracking-widest uppercase lg:block text-accent1"
                       >
                         Personen
                       </p>
@@ -690,7 +685,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   class="w-1/2 aspect-square object-cover absolute bottom-24 sm:bottom-0 -right-12 z-0 scale-[2.5] sm:scale-[2.1]"
                 />
                 <div
-                  class="w-full h-full absolute top-0 left-0 bg-gradient-to-br from-white via-white/50 to-white/0"
+                  class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white via-white/50 to-white/0"
                 >
                 </div>
                 <div
@@ -698,7 +693,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                 >
                 </div>
                 <div
-                  class="w-full h-full absolute top-0 left-0 bg-gradient-to-r from-white via-white to-transparent"
+                  class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white via-white to-transparent"
                 >
                 </div>
                 <div
@@ -707,12 +702,12 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                 </div>
               </div>
               <!-- Content Area right -->
-              <div class="p-8 lg:p-12 order-1 lg:order-2 relative z-10">
+              <div class="relative z-10 order-1 p-8 lg:p-12 lg:order-2">
                 <div
-                  class="flex flex-row items-center justify-center mx-auto mb-3"
+                  class="flex flex-row justify-center items-center mx-auto mb-3"
                 >
                   <div
-                    class="lg:hidden flex w-24 aspect-square bg-stone-50/80 rounded-full items-center justify-center mx-auto mb-3"
+                    class="flex justify-center items-center mx-auto mb-3 w-24 rounded-full lg:hidden aspect-square bg-stone-50/80"
                   >
                     <svg
                       class="w-12 h-12 text-accent2-wine"
@@ -728,12 +723,12 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                       ></path>
                     </svg>
                   </div>
-                  <h2 class="w-4/5 text-3xl font-bold text-text mb-6">
+                  <h2 class="mb-6 w-4/5 text-3xl font-bold text-text">
                     Reisegruppen & Reisebusse
                   </h2>
                 </div>
                 <p
-                  class="text-sm sm:text-base text-text/60 mb-8 px-8 leading-relaxed"
+                  class="px-8 mb-8 text-sm leading-relaxed sm:text-base text-text/60"
                 >
                   Kürzere thematische Führungen (1-2h) zu Wein, Weinlagen oder
                   Mandelblüte für private Gruppen, Reisegruppen oder Reisebusse
@@ -742,10 +737,10 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   oder Ihres Urlaubes eine kleine Auszeit, je nach individuellem
                   Zeitplan auch mit 1-3 Weinen und Snacks.
                 </p>
-                <div class="space-y-4 mb-8">
+                <div class="mb-8 space-y-4">
                   <div class="flex items-start space-x-3">
                     <svg
-                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      class="flex-shrink-0 mt-1 w-6 h-6 text-accent1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -765,7 +760,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   </div>
                   <div class="flex items-start space-x-3">
                     <svg
-                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      class="flex-shrink-0 mt-1 w-6 h-6 text-accent1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -785,7 +780,7 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                   </div>
                   <div class="flex items-start space-x-3">
                     <svg
-                      class="w-6 h-6 text-accent1 mt-1 flex-shrink-0"
+                      class="flex-shrink-0 mt-1 w-6 h-6 text-accent1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -806,24 +801,24 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
                 </div>
                 <div class="block lg:hidden">
                   <p
-                    class="text-text/40 font-bold mt-12 text-base tracking-widest uppercase"
+                    class="mt-12 text-base font-bold tracking-widest uppercase text-text/40"
                   >
                     Geeignet Für
                   </p>
-                  <p class="text-accent1/80 text-6xl -mt-1">30-50</p>
+                  <p class="-mt-1 text-6xl text-accent1/80">30-50</p>
                   <p
-                    class="text-accent1 -mt-4 text-3xl tracking-wide uppercase font-playfair"
+                    class="-mt-4 text-3xl tracking-wide uppercase text-accent1 font-playfair"
                   >
                     Personen
                   </p>
                 </div>
                 <a
                   href="/kontakt"
-                  class="inline-flex items-center px-6 py-3 bg-accent2-plum mb-4 bg-gradient-to-r from-accent2-wine to-accent2-wine/80 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors"
+                  class="inline-flex items-center px-6 py-3 mb-4 font-semibold text-white bg-gradient-to-r rounded-lg transition-colors bg-accent2-plum from-accent2-wine to-accent2-wine/80 hover:bg-orange-700"
                 >
                   Anfrage senden
                   <svg
-                    class="w-4 h-4 ml-2"
+                    class="ml-2 w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -848,23 +843,23 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
 
           <!-- CTA Section -->
           <div
-            class="hidden py-20 bg-gradient-to-r from-orange-600 to-amber-600 rounded-t-2xl p-8 lg:p-12 text-center text-white mt-12 lg:mt-24"
+            class="hidden p-8 py-20 mt-12 text-center text-white bg-gradient-to-r from-orange-600 to-amber-600 rounded-t-2xl lg:p-12 lg:mt-24"
           >
-            <h2 class="text-3xl lg:text-4xl font-bold mb-6">
+            <h2 class="mb-6 text-3xl font-bold lg:text-4xl">
               Bereit für Ihr Gruppen-Erlebnis?
             </h2>
-            <p class="text-xl mb-8 text-orange-100 max-w-3xl mx-auto">
+            <p class="mx-auto mb-8 max-w-3xl text-xl text-orange-100">
               Kontaktieren Sie mich für eine individuelle Beratung und
               maßgeschneiderte Angebote für Ihre Gruppe.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <div class="flex flex-col gap-4 justify-center sm:flex-row">
               <a
                 href="/kontakt"
-                class="inline-flex items-center px-8 py-4 bg-white text-accent2-wine font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                class="inline-flex items-center px-8 py-4 font-semibold bg-white rounded-lg transition-colors text-accent2-wine hover:bg-gray-100"
               >
                 Kontakt aufnehmen
                 <svg
-                  class="w-5 h-5 ml-2"
+                  class="ml-2 w-5 h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -879,11 +874,11 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
               </a>
               <a
                 href="tel:+491707110535"
-                class="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-accent2-wine transition-colors"
+                class="inline-flex items-center px-8 py-4 font-semibold text-white rounded-lg border-2 border-white transition-colors hover:bg-white hover:text-accent2-wine"
               >
                 Telefon: +49 170 7110535
                 <svg
-                  class="w-5 h-5 ml-2"
+                  class="ml-2 w-5 h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -902,24 +897,23 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
         <GetInTouch
           className="bg-gradient-to-t from-stone-100 to-transparent mt-24 pb-12"
         />
-        <div class="w-full bg-stone-100 relative overflow-hidden">
+        <div class="overflow-hidden relative w-full bg-stone-100">
           <Image
             src={GimmeldingenMap}
             loading="lazy"
             fetchpriority="auto"
             alt="GimmeldingenMap"
-            class="absolute top-50 left-0 object-cover opacity-65 z-0"
+            class="object-cover absolute left-0 z-0 top-50 opacity-65"
           />
           <div
-            class="absolute inset-0 bg-gradient-to-b from-stone-100 to-transparent"
+            class="absolute inset-0 bg-gradient-to-b to-transparent from-stone-100"
           >
           </div>
           <div
-            class="relative flex flex-col justify-between items-center z-10 mb-14 mt-10
-					bg-gr"
+            class="flex relative z-10 flex-col justify-between items-center mt-10 mb-14 bg-gr"
           >
             <p
-              class="text-sm text-gray-500 mb-4 md:mb-0 text-center md:text-left"
+              class="mb-4 text-sm text-center text-gray-500 md:mb-0 md:text-left"
             >
               &copy; 2024 Brigitta Heyl –<br class="md:hidden" /> Geführte Wein-Erlebnistouren.
               <br class="sm:hidden" /> Alle Rechte vorbehalten.
@@ -927,20 +921,20 @@ import GroupDescriptionOverviewV4 from "@/components/GroupDescriptionOverview-V4
             <div class="flex space-x-6">
               <a
                 href="/kontakt"
-                class="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                class="text-sm text-gray-500 transition-colors hover:text-gray-700"
                 >Kontakt</a
               >
               <a
                 href="/impressum"
-                class="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                class="text-sm text-gray-500 transition-colors hover:text-gray-700"
                 >Impressum</a
               >
               <a
                 href="/datenschutz"
-                class="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                class="text-sm text-gray-500 transition-colors hover:text-gray-700"
                 >Datenschutz</a
               >
-              <!-- <a href="/barrierefreiheit" class=" text-sm text-gray-500 hover:text-gray-700 transition-colors">Barrierefreiheit</a> -->
+              <!-- <a href="/barrierefreiheit" class="text-sm text-gray-500 transition-colors hover:text-gray-700">Barrierefreiheit</a> -->
             </div>
           </div>
         </div>
