@@ -76,7 +76,7 @@ const tourDefinitions = [
     cardImage: MJAlmondFlowerMosaicGlass,
     accentText: "text-accent2-wine",
     accentBg: "bg-accent2-wine hover:bg-accent2-wine/90",
-    accentBorder: "border-accent2-wine/30",
+    accentBorder: "border-accent2-wine",
     accentLine: "bg-accent2-wine/40",
   },
   {
@@ -91,7 +91,7 @@ const tourDefinitions = [
     cardImage: WassermuehleImWald,
     accentText: "text-accent1",
     accentBg: "bg-accent1 hover:bg-accent1/90",
-    accentBorder: "border-accent1/40",
+    accentBorder: "border-accent1",
     accentLine: "bg-accent1/50",
   },
   {
@@ -106,7 +106,7 @@ const tourDefinitions = [
     cardImage: MJBachusMosaicGlass,
     accentText: "text-accent2-brick",
     accentBg: "bg-accent2-brick hover:bg-accent2-brick/90",
-    accentBorder: "border-accent2-brick/30",
+    accentBorder: "border-accent2-brick",
     accentLine: "bg-accent2-brick/40",
   },
   {
@@ -121,7 +121,7 @@ const tourDefinitions = [
     cardImage: MJGluehweinV1,
     accentText: "text-accent2-plum",
     accentBg: "bg-accent2-plum hover:bg-accent2-plum/90",
-    accentBorder: "border-accent2-plum/30",
+    accentBorder: "border-accent2-plum",
     accentLine: "bg-accent2-plum/40",
   },
 ];
@@ -193,11 +193,11 @@ const tours = tourDefinitions.map((tour, index) => ({
             >
               {/* Torbogen-Form: Anklang an Pfälzer Kellertüren */}
               <div
-                class={`w-2/3 mx-auto sm:w-full relative aspect-[3/4] overflow-hidden rounded-t-full rounded-b-2xl border-2 ${tour.accentBorder} shadow-md transition-all duration-500 group-hover:-translate-y-1.5 group-hover:shadow-xl`}
+                class={`w-2/3 mx-auto sm:w-full relative aspect-[3/4] overflow-hidden rounded-t-full rounded-b-2xl border-8 ${tour.accentBorder} shadow-md transition-all duration-500 group-hover:-translate-y-1.5 group-hover:shadow-xl`}
               >
                 <Image
                   alt={`${tour.season}stour: ${tour.title}`}
-                  class="object-cover w-full h-full transition-transform duration-700 full w- sm:w-full group-hover:scale-105"
+                  class="object-cover w-full h-full transition-transform duration-700 sm:w-full group-hover:scale-105"
                   decoding="async"
                   format="webp"
                   loading={index < 2 ? "eager" : "lazy"}
@@ -205,7 +205,7 @@ const tours = tourDefinitions.map((tour, index) => ({
                   src={tour.cardImage}
                   width={520}
                 />
-                <div class="absolute inset-0 bg-gradient-to-t via-transparent to-transparent from-text/50"></div>
+                <div class="pointer-events-none rounded-t-full absolute inset-0 transition-all duration-700 group-hover:shadow-[inset_-10px_-30px_30px_rgba(0,0,0,0.5)] bg-gradient-to-t via-transparent to-transparent from-black/40"></div>
                 <span class="absolute inset-x-0 bottom-2 text-xl drop-shadow-md font-doulaise text-stone-50 sm:bottom-2.5 sm:text-xl md:bottom-3 md:text-2xl lg:text-3xl">
                   {tour.season}
                 </span>
@@ -272,10 +272,10 @@ const tours = tourDefinitions.map((tour, index) => ({
                   Termine & Buchung
                 </a>
                 <a
-                  class="text-sm transition text-text/60 underline-offset-4 hover:text-text hover:underline"
-                  href={`/tours?tour=${tour.id}`}
-                >
-                  Mehr erfahren
+                  class="text-sm opacity-70 transition-all text-text/60 underline-offset-4 hover:text-accent2-brick hover:opacity-100"
+                  // href={`/tours?tour=${tour.id}`}
+                  href="/kontakt">
+                  kontakt aufnehmen
                 </a>
               </div>
             </div>
@@ -306,7 +306,7 @@ const tours = tourDefinitions.map((tour, index) => ({
       </p>
       <div class="flex flex-wrap gap-4 justify-center items-center mt-8">
         <a
-          class="rounded-full bg-accent2-wine px-8 py-3 font-bonanova text-sm font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg"
+          class="px-8 py-3 text-sm font-bold tracking-wider uppercase rounded-full shadow-md transition-all duration-300 bg-accent2-wine font-bonanova text-stone-50 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg"
           href="https://eveeno.com/de/event-cal/34263?style=grid"
           rel="noopener noreferrer"
           target="_blank"
