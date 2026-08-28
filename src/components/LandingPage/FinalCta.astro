@@ -4,47 +4,51 @@
  * Bewusst die letzte Station vor dem Footer — wer bis hierher gescrollt hat,
  * bekommt alle drei Wege noch einmal gebündelt.
  */
+
+import GimmeldingenMap from "@images/GimmeldingenMap.jpg";
+import { Image } from "astro:assets";
 ---
 
 <section
   aria-labelledby="final-cta-title"
-  class="container-padding relative w-full overflow-hidden bg-white py-16 text-center sm:py-24"
+  class="overflow-hidden relative py-16 w-full text-center bg-transparent container-padding sm:py-24"
 >
   <!-- zarte Farbnebel, wie auf den Unterseiten -->
   <div
     aria-hidden="true"
-    class="pointer-events-none absolute -top-10 left-[10%] h-64 w-64 rounded-full bg-accent1/15 blur-3xl"
+    class="absolute inset-0 pointer-events-none"
   >
+  <Image src={GimmeldingenMap} alt="Gimmeldingen Map" class="object-cover object-top absolute bottom-0 left-0 z-0 opacity-30" />
   </div>
   <div
     aria-hidden="true"
-    class="pointer-events-none absolute bottom-0 right-[8%] h-72 w-72 rounded-full bg-accent2-wine/10 blur-3xl"
+    class="absolute inset-0 bg-gradient-to-t to-transparent pointer-events-none from-gray-200/80"
   >
   </div>
 
   <div class="relative mx-auto max-w-3xl">
-    <div class="mb-8 flex justify-center" aria-hidden="true">
+    <div class="flex justify-center mb-8" aria-hidden="true">
       <div
-        class="h-14 w-px bg-gradient-to-b from-transparent via-accent1/60 to-transparent"
+        class="w-px h-14 bg-gradient-to-b from-transparent to-transparent via-accent1/60"
       >
       </div>
     </div>
-    <p class="font-doulaise text-3xl text-accent1 sm:text-4xl">
+    <p class="text-3xl font-doulaise text-accent1 sm:text-4xl">
       Auf bald in Gimmeldingen!
     </p>
     <h2
       id="final-cta-title"
-      class="mx-auto mt-4 font-bonanova text-3xl font-bold sm:text-5xl"
+      class="mx-auto mt-4 text-3xl font-bold font-bonanova sm:text-5xl"
     >
       Sichern Sie sich Ihren Platz
     </h2>
-    <p class="mx-auto mt-5 max-w-xl font-body leading-relaxed text-text/75 sm:text-lg">
+    <p class="mx-auto mt-5 max-w-xl leading-relaxed font-body text-text/75 sm:text-lg">
       Alle Termine für jede Jahreszeit finden Sie im Buchungskalender — oder
       Sie verschenken eine Weinerlebnistour an Ihre Liebsten.
     </p>
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+    <div class="flex flex-wrap gap-4 justify-center items-center mt-8">
       <a
-        class="rounded-full bg-accent2-wine px-8 py-3 font-bonanova text-sm font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg"
+        class="px-8 py-3 text-sm font-bold tracking-wider uppercase rounded-full shadow-md transition-all duration-300 bg-accent2-wine font-bonanova text-stone-50 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg"
         href="https://eveeno.com/de/event-cal/34263?style=grid"
         rel="noopener noreferrer"
         target="_blank"
@@ -52,7 +56,7 @@
         Zum Buchungskalender
       </a>
       <a
-        class="rounded-full border-2 border-accent1 px-8 py-3 font-bonanova text-sm font-bold uppercase tracking-wider text-text transition-all duration-300 hover:-translate-y-0.5 hover:bg-soft-beige/60"
+        class="px-8 py-3 text-sm font-bold tracking-wider uppercase rounded-full border-2 transition-all duration-300 border-accent1 font-bonanova text-text hover:-translate-y-0.5 hover:bg-soft-beige/60"
         href="/kontakt"
       >
         Tour verschenken
@@ -60,10 +64,10 @@
     </div>
     <p class="mt-6 text-sm text-text/60">
       Sie planen mit Team, Verein oder Familie? <a
-        class="underline decoration-accent1/50 underline-offset-4 transition hover:text-accent2-wine"
+        class="underline transition decoration-accent1/50 underline-offset-4 hover:text-accent2-wine"
         href="/gruppen">Gruppen & private Touren</a
       > · <a
-        class="underline decoration-accent1/50 underline-offset-4 transition hover:text-accent2-wine"
+        class="underline transition decoration-accent1/50 underline-offset-4 hover:text-accent2-wine"
         href="/firmen-events">Firmen-Events</a
       >
     </p>
