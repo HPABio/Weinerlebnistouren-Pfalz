@@ -1,0 +1,876 @@
+---
+// src/pages/presskit.astro
+//
+// Presse & Media Kit — Marken-Assets, Pressetexte, Bildmaterial und Fakten
+// für Journalisten und Medienpartner. Gestaltung folgt der Bildsprache der
+// Touren-Seite: Bona Nova Überschriften, Doulaise-Schreibschrift als Kicker,
+// Wasserzeichen-Ziffern und abwechselnde Sand-Flächen.
+import Layout from "@/layouts/main.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { Image } from "astro:assets";
+
+// Logo-Assets
+import HWELogoV2Svg from "@images/HWE-LogoV2.svg";
+import HWELogoV2Png from "@images/HWE-LogoV2.png";
+import HWELogoNoTextSvg from "@images/HWE-LogoV2-noText.svg";
+import SchriftlogoDark from "@images/Heyl-Weintouren-Logo-(noBottle)-dark.png";
+import SchriftlogoLight from "@images/Heyl-Weintouren-Logo-(noBottle)-light.svg";
+import EmblemSvg from "@images/HWE-H-plus-bottle.svg";
+
+// Tour-Key-Visuals (identisch mit der Touren-Seite)
+import MandelblueteImg from "@images/compressed/webP/compressed-mj-almondFlower-mosaicGlass.webp";
+import MussbachImg from "@images/compressed/webP/compressed-Wassermühle-im-Wald.png";
+import BacchusImg from "@images/compressed/webP/compressed-mj-Bachus-mosaicGlass.webp";
+import GluehweinImg from "@images/compressed/webP/compressed-mj-GlühweinV1.webp";
+
+// Pressefotos (echte Aufnahmen von den Touren)
+import FotoGruppeBaeume from "@images/compressed/webP/Brigitta-in-group-trees.webp";
+import FotoJungeGruppe from "@images/compressed/webP/young-group-wine-tour.webp";
+import FotoMeerspinne from "@images/compressed/webP/Meerspinne und Gugelhupf.webp";
+import FotoNapoleon from "@images/compressed/webP/Maja-Nett-als-Napoleon.webp";
+import FotoRosenTraktor from "@images/compressed/webP/Rosen+Traktor.webp";
+import FotoSnacks from "@images/compressed/webP/Snacks-pink.sweet-.webp";
+
+// Gründerin-Porträts
+import BrigittaPortrait from "@images/BrigittaHeylPortrait.png";
+import BrigittaPortrait2 from "@images/BrigittaHeylPortrait2.png";
+
+const title = "Presse & Media Kit | Weinerlebnistouren Pfalz";
+const description =
+  "Offizielle Marken-Assets, Logos, Tour-Bildmaterialien, Pressefotos, Pressetexte und Fakten von Weinerlebnistouren Pfalz für Journalisten und Medienpartner.";
+
+const oneLinerText =
+  "Geführte Wein-Erlebnistouren in Neustadt-Gimmeldingen: Genuss, Geschichte & Pfälzer Kultur zum Mitspielen mit Kultur- und Weinbotschafterin Brigitta Heyl.";
+
+const boilerplateText =
+  "Weinerlebnistouren Pfalz bietet inszenierte Genuss- und Erlebnistouren rund um Neustadt an der Weinstraße und Gimmeldingen. Geführt von der zertifizierten Kultur- und Weinbotschafterin Brigitta Heyl verbinden die Touren erlesene regionale Weine, Kulinarik und humorvolle historische Rollenspiele, bei denen Gäste selbst in die Geschichte eintauchen. Ob zur weltbekannten Mandelblüte, im sommerlichen Weinberg oder im vorweihnachtlichen Lichterglanz – jede Tour ist eine Ode an die Pfälzer Lebensfreude. Die Touren richten sich an Privatpersonen, Gruppen sowie Firmenevents und stehen für unvergessliche Momente in einer der sonnigsten Weinregionen Deutschlands.";
+
+const bulletsText =
+  "• Standort: Neustadt an der Weinstraße / Gimmeldingen (Pfalz)\n• Gründerin: Brigitta Heyl (Zertifizierte Kultur- und Weinbotschafterin Pfalz)\n• Besonderheit: Weinverkostung kombiniert mit historischem Mitmach-Schauspiel & Kulinarik\n• Saisons: Ganzjährig (Mandelblüte im Frühling, Sommer in Mußbach, Weinlese im Herbst, Adventszauber im Winter)\n• Zielgruppen: Weinliebhaber, Urlaubsgäste, Gruppen- & Teamevents";
+
+// Zartes Linien-Ikonen-Set (24×24, stroke, currentColor) — statt Emojis.
+const icons = {
+  fileText:
+    '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>',
+  grapes:
+    '<path d="M12 4.5V7"/><path d="M12 4.5c1.6-2 3.4-2.4 5-2"/><circle cx="12" cy="9" r="2.4"/><circle cx="8.4" cy="13" r="2.4"/><circle cx="15.6" cy="13" r="2.4"/><circle cx="12" cy="17.5" r="2.4"/>',
+  image:
+    '<rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
+  camera:
+    '<path d="M14.5 4h-5L7.5 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3.5z"/><circle cx="12" cy="13" r="3"/>',
+  user: '<circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>',
+  palette:
+    '<path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8Z"/><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/>',
+  download:
+    '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>',
+  copy: '<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>',
+  link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+  mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+};
+
+// Schnellnavigation im Hero
+const anchors = [
+  { href: "#pressetexte", label: "Pressetexte", icon: icons.fileText },
+  { href: "#logos", label: "Logos & Signets", icon: icons.grapes },
+  { href: "#tourmotive", label: "Tour-Motive", icon: icons.image },
+  { href: "#pressefotos", label: "Pressefotos", icon: icons.camera },
+  { href: "#portrait-fakten", label: "Porträt & Fakten", icon: icons.user },
+  { href: "#farben", label: "Markenfarben", icon: icons.palette },
+];
+
+// Logo-Karten. Der SVG-Schriftzug des Hauptlogos nutzt eine eingebettete
+// Schrift, die Browser nicht laden — als Vorschau dient daher immer eine
+// verlässlich gerenderte Variante; der Download liefert das Original.
+const logoAssets = [
+  {
+    name: "Hauptlogo (SVG)",
+    badge: "Vektor",
+    note: "Verlustfrei skalierbar für Druck & Web.",
+    preview: HWELogoV2Png,
+    downloadUrl: HWELogoV2Svg.src,
+    filename: "Weinerlebnistouren-Pfalz-Logo-Haupt.svg",
+    downloadLabel: "SVG herunterladen",
+    darkBg: false,
+  },
+  {
+    name: "Hauptlogo (PNG)",
+    badge: "Transparent",
+    note: "Hochauflösend mit transparentem Hintergrund.",
+    preview: HWELogoV2Png,
+    downloadUrl: HWELogoV2Png.src,
+    filename: "Weinerlebnistouren-Pfalz-Logo-Haupt.png",
+    downloadLabel: "PNG herunterladen",
+    darkBg: false,
+  },
+  {
+    name: "Signet ohne Schriftzug",
+    badge: "Vektor",
+    note: "Flasche & Reben — für kleine Flächen und Avatare.",
+    preview: HWELogoNoTextSvg,
+    downloadUrl: HWELogoNoTextSvg.src,
+    filename: "Weinerlebnistouren-Pfalz-Signet.svg",
+    downloadLabel: "SVG herunterladen",
+    darkBg: false,
+  },
+  {
+    name: "Schriftlogo (Dunkel)",
+    badge: "Helle Flächen",
+    note: "Kompakte Wortmarke für helle Hintergründe.",
+    preview: SchriftlogoDark,
+    downloadUrl: SchriftlogoDark.src,
+    filename: "Weinerlebnistouren-Pfalz-Schriftlogo-Dunkel.png",
+    downloadLabel: "PNG herunterladen",
+    darkBg: false,
+  },
+  {
+    name: "Schriftlogo (Hell)",
+    badge: "Dunkle Flächen",
+    note: "Helle Wortmarke für dunkle Hintergründe & Fotos.",
+    preview: SchriftlogoLight,
+    downloadUrl: SchriftlogoLight.src,
+    filename: "Weinerlebnistouren-Pfalz-Schriftlogo-Hell.svg",
+    downloadLabel: "SVG herunterladen",
+    darkBg: true,
+  },
+  {
+    name: "Emblem „H & Flasche“",
+    badge: "Vektor",
+    note: "Initial-Signet, auch als Favicon-Grafik im Einsatz.",
+    preview: EmblemSvg,
+    downloadUrl: EmblemSvg.src,
+    filename: "Weinerlebnistouren-Pfalz-Emblem.svg",
+    downloadLabel: "SVG herunterladen",
+    darkBg: false,
+  },
+];
+
+// Saisonale Key-Visuals — Akzentfarben wie auf der Touren-Seite.
+const tourVisuals = [
+  {
+    season: "Frühling · Mandelblüte",
+    title: "Mandelblüte, Meerspinne & Monarchen",
+    text: "Mosaikglas-Motiv zur pfälzischen Mandelblüte in Gimmeldingen — rosa Blütenpracht trifft historische Weinmonarchen.",
+    format: "WebP / High-Res",
+    image: MandelblueteImg,
+    position: "object-[center_35%]",
+    filename: "Weinerlebnistouren-Pfalz-Mandelbluete.webp",
+    badgeClass: "bg-accent2-wine text-stone-50",
+  },
+  {
+    season: "Sommer · Magischer Mussbach",
+    title: "Magischer Mussbach & Wassermühle",
+    text: "Idyllisches Sommermotiv der historischen Wassermühle im Pfälzerwald — schattiger Bachverlauf und Naturerlebnis.",
+    format: "PNG / High-Res",
+    image: MussbachImg,
+    position: "object-center",
+    filename: "Weinerlebnistouren-Pfalz-Magischer-Mussbach.png",
+    badgeClass: "bg-accent1 text-text",
+  },
+  {
+    season: "Herbst · Weinlese & Bacchus",
+    title: "Von Bacchus bis Christophorus",
+    text: "Künstlerisches Glasmosaik zur Herbsttour — die mythologische Zeitreise durch die Weinberge zur Weinlese.",
+    format: "WebP / High-Res",
+    image: BacchusImg,
+    position: "object-[center_30%]",
+    filename: "Weinerlebnistouren-Pfalz-Bacchus.webp",
+    badgeClass: "bg-accent2-brick text-stone-50",
+  },
+  {
+    season: "Winter · Adventszauber",
+    title: "Geheimnisvolles Gimmeldingen",
+    text: "Winterliches Glühweinerlebnis durch alte Weinkeller und erleuchtete Winzergassen im Lichterglanz.",
+    format: "WebP / High-Res",
+    image: GluehweinImg,
+    position: "object-[center_40%]",
+    filename: "Weinerlebnistouren-Pfalz-Gluehwein.webp",
+    badgeClass: "bg-accent2-plum text-stone-50",
+  },
+];
+
+// Echte Fotografien von den Touren — redaktionell frei verwendbar.
+const pressPhotos = [
+  {
+    image: FotoGruppeBaeume,
+    caption: "Brigitta Heyl mit Gästen unter blühenden Mandelbäumen",
+    filename: "Weinerlebnistouren-Pfalz-Pressefoto-Mandelbaeume-Gruppe.webp",
+  },
+  {
+    image: FotoJungeGruppe,
+    caption: "Tourgruppe beim Anstoßen im Weinberg",
+    filename: "Weinerlebnistouren-Pfalz-Pressefoto-Gruppe-Weinberg.webp",
+  },
+  {
+    image: FotoNapoleon,
+    caption: "Historisches Rollenspiel während der Tour",
+    filename: "Weinerlebnistouren-Pfalz-Pressefoto-Rollenspiel.webp",
+  },
+  {
+    image: FotoMeerspinne,
+    caption: "Meerspinne & Gugelhupf — Pfälzer Kulinarik",
+    filename: "Weinerlebnistouren-Pfalz-Pressefoto-Meerspinne-Gugelhupf.webp",
+  },
+  {
+    image: FotoRosenTraktor,
+    caption: "Rosen und Traktor am Rand der Weinberge",
+    filename: "Weinerlebnistouren-Pfalz-Pressefoto-Rosen-Traktor.webp",
+  },
+  {
+    image: FotoSnacks,
+    caption: "Hausgemachte Snacks zur Verkostung",
+    filename: "Weinerlebnistouren-Pfalz-Pressefoto-Snacks.webp",
+  },
+];
+
+// Markenfarben — identisch mit den Tailwind-Tokens des Projekts.
+const colorPalette = [
+  { name: "Creme Weiß (Hintergrund)", hex: "#F4F0E6", rgb: "244, 240, 230", class: "bg-background text-text border border-soft-beige" },
+  { name: "Erdbraun (Haupttext)", hex: "#4B3A2B", rgb: "75, 58, 43", class: "bg-text text-background" },
+  { name: "Warmes Gold (Akzent 1)", hex: "#C8A974", rgb: "200, 169, 116", class: "bg-accent1 text-text" },
+  { name: "Ziegelbraun (Akzent 2)", hex: "#B46B54", rgb: "180, 107, 84", class: "bg-accent2-brick text-stone-50" },
+  { name: "Pflaume (Akzent 3)", hex: "#55354E", rgb: "85, 53, 78", class: "bg-accent2-plum text-stone-50" },
+  { name: "Weinrot (Highlights)", hex: "#8A2D52", rgb: "138, 45, 82", class: "bg-accent2-wine text-stone-50" },
+];
+---
+
+<Layout content={{ title, description }}>
+  <Header isDarkMode={false} />
+
+  <main class="overflow-x-clip bg-background font-body text-text">
+    <!-- ================= Hero ================= -->
+    <section class="relative pt-16 pb-10 text-center container-padding sm:pt-24 sm:pb-14">
+      <!-- zarte Farbnebel wie auf der Touren-Seite -->
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-24 left-[8%] h-72 w-72 rounded-full bg-accent2-wine/10 blur-3xl"
+      >
+      </div>
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute top-10 right-[6%] h-80 w-80 rounded-full bg-accent1/15 blur-3xl"
+      >
+      </div>
+
+      <p class="relative text-2xl font-doulaise text-accent1 sm:text-4xl">
+        für Journalisten & Medienpartner
+      </p>
+      <h1
+        class="relative mx-auto mt-4 max-w-4xl font-bonanova text-3xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl"
+      >
+        Presse & Media Kit
+      </h1>
+      <p
+        class="relative mx-auto mt-6 max-w-2xl text-base leading-relaxed font-body text-text/75 sm:text-lg"
+      >
+        Willkommen im Pressebereich von Weinerlebnistouren Pfalz. Hier finden
+        Sie Logos und Signets, Tour-Bildmaterial, Pressefotos, ein Porträt von
+        Brigitta Heyl sowie vorgefertigte Pressetexte zur freien
+        redaktionellen Verwendung.
+      </p>
+
+      <!-- Schnellnavigation -->
+      <nav
+        aria-label="Bereiche des Media Kits"
+        class="relative mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-2.5 sm:gap-3"
+      >
+        {
+          anchors.map((anchor) => (
+            <a
+              class="inline-flex items-center gap-2 rounded-full border border-soft-beige bg-white/60 px-4 py-2 font-bonanova text-xs tracking-wide text-text/80 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-accent2-wine hover:text-accent2-wine sm:text-sm"
+              href={anchor.href}
+            >
+              <svg
+                aria-hidden="true"
+                class="h-3.5 w-3.5 text-accent1"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <Fragment set:html={anchor.icon} />
+              </svg>
+              {anchor.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="flex justify-center mt-10" aria-hidden="true">
+        <div class="w-px h-14 bg-gradient-to-b from-transparent to-transparent via-accent1/60"></div>
+      </div>
+    </section>
+
+    <!-- ================= 01 · Pressetexte ================= -->
+    <section id="pressetexte" class="relative scroll-mt-24 py-14 sm:py-20">
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute top-4 right-4 select-none font-bonanova text-[7rem] font-bold leading-none opacity-[0.05] sm:right-10 sm:text-[10rem]"
+      >
+        01
+      </span>
+
+      <div class="container-padding relative mx-auto max-w-7xl">
+        <p class="font-doulaise text-3xl text-accent1 sm:text-4xl">Texte zum Übernehmen</p>
+        <h2 class="mt-2 font-bonanova text-2xl font-bold sm:text-4xl">
+          Pressetexte & Textbausteine
+        </h2>
+        <p class="mt-3 max-w-xl text-sm text-text/60 sm:text-base">
+          Vorgefertigte Texte für Artikel, Veranstaltungskalender und
+          redaktionelle Beiträge — per Klick in die Zwischenablage.
+        </p>
+        <div aria-hidden="true" class="mt-6 h-px w-16 bg-accent1/50"></div>
+
+        <div class="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <!-- One-Liner -->
+          <div class="flex flex-col justify-between rounded-2xl border border-soft-beige/80 bg-white/70 p-6 shadow-sm transition-shadow hover:shadow-md sm:p-8">
+            <div>
+              <div class="mb-4 flex items-center justify-between gap-3">
+                <span class="rounded-full bg-accent2-wine/10 px-3 py-1 font-bonanova text-xs font-semibold uppercase tracking-wider text-accent2-wine">
+                  Kurzbeschreibung
+                </span>
+                <span class="text-xs text-text/40">One-Liner · 148 Zeichen</span>
+              </div>
+              <p class="mb-6 rounded-xl border border-soft-beige/60 bg-background/80 p-4 font-body text-base italic leading-relaxed text-text sm:text-lg">
+                „{oneLinerText}“
+              </p>
+            </div>
+            <div class="flex items-center justify-between gap-4 border-t border-soft-beige/60 pt-4">
+              <span class="text-xs text-text/50">Ideal für Social Media & Kurzeinträge</span>
+              <button
+                class="copy-btn inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-full bg-accent2-wine px-5 py-2 font-bonanova text-xs font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg active:scale-95"
+                data-copy={oneLinerText}
+              >
+                <svg aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.copy} /></svg>
+                <span>Text kopieren</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Boilerplate -->
+          <div class="flex flex-col justify-between rounded-2xl border border-soft-beige/80 bg-white/70 p-6 shadow-sm transition-shadow hover:shadow-md sm:p-8">
+            <div>
+              <div class="mb-4 flex items-center justify-between gap-3">
+                <span class="rounded-full bg-accent2-plum/10 px-3 py-1 font-bonanova text-xs font-semibold uppercase tracking-wider text-accent2-plum">
+                  Presse-Boilerplate
+                </span>
+                <span class="text-xs text-text/40">Offizielles Kurzporträt</span>
+              </div>
+              <p class="mb-6 max-h-64 overflow-y-auto rounded-xl border border-soft-beige/60 bg-background/80 p-4 text-sm leading-relaxed text-text/90 sm:text-base">
+                {boilerplateText}
+              </p>
+            </div>
+            <div class="flex items-center justify-between gap-4 border-t border-soft-beige/60 pt-4">
+              <span class="text-xs text-text/50">Für Pressemitteilungen & Artikel</span>
+              <button
+                class="copy-btn inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-full bg-accent2-wine px-5 py-2 font-bonanova text-xs font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg active:scale-95"
+                data-copy={boilerplateText}
+              >
+                <svg aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.copy} /></svg>
+                <span>Text kopieren</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stichpunkte -->
+        <div class="mt-8 rounded-2xl border border-soft-beige/80 bg-white/70 p-6 shadow-sm sm:p-8">
+          <div class="mb-4 flex flex-col justify-between gap-4 border-b border-soft-beige/60 pb-4 sm:flex-row sm:items-center">
+            <div>
+              <h3 class="font-bonanova text-lg font-bold">Stichpunkte & Fakten auf einen Blick</h3>
+              <p class="text-xs text-text/50">Formatierte Liste für Infoboxen & Schnellübersichten</p>
+            </div>
+            <button
+              class="copy-btn inline-flex shrink-0 cursor-pointer items-center gap-2 self-start rounded-full bg-accent2-wine px-5 py-2 font-bonanova text-xs font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg active:scale-95 sm:self-center"
+              data-copy={bulletsText}
+            >
+              <svg aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.copy} /></svg>
+              <span>Stichpunkte kopieren</span>
+            </button>
+          </div>
+          <pre class="whitespace-pre-wrap rounded-xl border border-soft-beige/60 bg-background/80 p-4 font-body text-sm leading-relaxed text-text/90">{bulletsText}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02 · Logos & Signets ================= -->
+    <section id="logos" class="relative scroll-mt-24 bg-soft-sand/40 py-14 sm:py-20">
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute top-4 left-4 select-none font-bonanova text-[7rem] font-bold leading-none opacity-[0.05] sm:left-10 sm:text-[10rem]"
+      >
+        02
+      </span>
+
+      <div class="container-padding relative mx-auto max-w-7xl">
+        <p class="font-doulaise text-3xl text-accent1 sm:text-4xl">die Marke</p>
+        <h2 class="mt-2 font-bonanova text-2xl font-bold sm:text-4xl">
+          Logos & Signets
+        </h2>
+        <p class="mt-3 max-w-xl text-sm text-text/60 sm:text-base">
+          Vektorgrafiken (SVG) und hochauflösende Rasterbilder (PNG) für Print
+          & Digital — jeweils mit passender Variante für helle und dunkle
+          Flächen.
+        </p>
+        <div aria-hidden="true" class="mt-6 h-px w-16 bg-accent1/50"></div>
+
+        <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            logoAssets.map((logo) => (
+              <div class="flex flex-col justify-between rounded-2xl border border-soft-beige/80 bg-white/70 p-5 shadow-sm transition-shadow hover:shadow-md">
+                <div>
+                  <div
+                    class={`mb-4 flex h-44 items-center justify-center overflow-hidden rounded-xl p-5 ${logo.darkBg ? "bg-text" : "border border-soft-beige/60 bg-background/80"}`}
+                  >
+                    <Image
+                      alt={`${logo.name} — Weinerlebnistouren Pfalz`}
+                      class="max-h-32 w-auto object-contain"
+                      src={logo.preview}
+                    />
+                  </div>
+                  <div class="mb-1 flex items-center justify-between gap-2">
+                    <h3 class="font-bonanova text-base font-bold">{logo.name}</h3>
+                    <span class="shrink-0 rounded-full border border-accent1/40 bg-accent1/15 px-2.5 py-0.5 font-bonanova text-[10px] font-semibold uppercase tracking-wider text-text/70">
+                      {logo.badge}
+                    </span>
+                  </div>
+                  <p class="mb-4 text-xs text-text/50">{logo.note}</p>
+                </div>
+                <div class="space-y-2 border-t border-soft-beige/60 pt-3">
+                  <button
+                    class="download-btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-text px-3 py-2 font-bonanova text-xs font-bold uppercase tracking-wider text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-text/90 hover:shadow-md"
+                    data-filename={logo.filename}
+                    data-url={logo.downloadUrl}
+                  >
+                    <svg aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.download} /></svg>
+                    <span>{logo.downloadLabel}</span>
+                  </button>
+                  <button
+                    class="copy-btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-soft-beige bg-white/60 px-3 py-2 font-bonanova text-xs tracking-wide text-text/70 transition-all hover:border-accent2-wine hover:text-accent2-wine"
+                    data-copy={logo.downloadUrl}
+                  >
+                    <svg aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.link} /></svg>
+                    <span>Asset-Link kopieren</span>
+                  </button>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03 · Tour-Motive ================= -->
+    <section id="tourmotive" class="relative scroll-mt-24 py-14 sm:py-20">
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute top-4 right-4 select-none font-bonanova text-[7rem] font-bold leading-none opacity-[0.05] sm:right-10 sm:text-[10rem]"
+      >
+        03
+      </span>
+
+      <div class="container-padding relative mx-auto max-w-7xl">
+        <p class="font-doulaise text-3xl text-accent1 sm:text-4xl">vier Jahreszeiten</p>
+        <h2 class="mt-2 font-bonanova text-2xl font-bold sm:text-4xl">
+          Tour-Bildmaterial & Key-Visuals
+        </h2>
+        <p class="mt-3 max-w-xl text-sm text-text/60 sm:text-base">
+          Die illustrierten Key-Visuals der vier saisonalen
+          Wein-Erlebnistouren — redaktionell frei verwendbar.
+        </p>
+        <div aria-hidden="true" class="mt-6 h-px w-16 bg-accent1/50"></div>
+
+        <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+          {
+            tourVisuals.map((tour) => (
+              <div class="group flex flex-col justify-between overflow-hidden rounded-2xl border border-soft-beige/80 bg-white/70 shadow-sm transition-shadow hover:shadow-md">
+                <div class="relative aspect-[16/10] overflow-hidden bg-soft-sand/60">
+                  <Image
+                    alt={`Key-Visual: ${tour.title}`}
+                    class={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${tour.position}`}
+                    src={tour.image}
+                  />
+                  <div class={`absolute top-3 left-3 rounded-full px-3 py-1 font-bonanova text-xs font-semibold uppercase tracking-wide shadow ${tour.badgeClass}`}>
+                    {tour.season}
+                  </div>
+                </div>
+                <div class="flex flex-1 flex-col justify-between p-6">
+                  <div>
+                    <h3 class="mb-2 font-bonanova text-xl font-bold">{tour.title}</h3>
+                    <p class="mb-4 text-xs leading-relaxed text-text/60 sm:text-sm">{tour.text}</p>
+                    <div class="mb-6 flex items-center gap-2 text-[11px] text-text/40">
+                      <span>Format: {tour.format}</span>
+                      <span aria-hidden="true">·</span>
+                      <span>Redaktionell frei verwendbar</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3 border-t border-soft-beige/60 pt-4">
+                    <button
+                      class="download-btn inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-full bg-accent2-wine px-4 py-2.5 font-bonanova text-xs font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg active:scale-95 sm:text-sm"
+                      data-filename={tour.filename}
+                      data-url={tour.image.src}
+                    >
+                      <svg aria-hidden="true" class="h-4 w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.download} /></svg>
+                      <span>Bild herunterladen</span>
+                    </button>
+                    <button
+                      class="copy-btn inline-flex cursor-pointer items-center justify-center rounded-full border border-soft-beige bg-white/60 p-2.5 text-text/60 transition-all hover:border-accent2-wine hover:text-accent2-wine"
+                      data-copy={tour.image.src}
+                      title="Bild-URL kopieren"
+                    >
+                      <svg aria-hidden="true" class="h-4 w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.link} /></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 04 · Pressefotos ================= -->
+    <section id="pressefotos" class="relative scroll-mt-24 bg-soft-sand/40 py-14 sm:py-20">
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute top-4 left-4 select-none font-bonanova text-[7rem] font-bold leading-none opacity-[0.05] sm:left-10 sm:text-[10rem]"
+      >
+        04
+      </span>
+
+      <div class="container-padding relative mx-auto max-w-7xl">
+        <p class="font-doulaise text-3xl text-accent1 sm:text-4xl">mitten im Weinberg</p>
+        <h2 class="mt-2 font-bonanova text-2xl font-bold sm:text-4xl">
+          Pressefotos von den Touren
+        </h2>
+        <p class="mt-3 max-w-xl text-sm text-text/60 sm:text-base">
+          Echte Aufnahmen von den Wein-Erlebnistouren — Gruppen, Rollenspiel
+          und Pfälzer Kulinarik. Bildnachweis siehe Nutzungshinweise.
+        </p>
+        <div aria-hidden="true" class="mt-6 h-px w-16 bg-accent1/50"></div>
+
+        <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            pressPhotos.map((photo) => (
+              <figure class="group overflow-hidden rounded-2xl border border-soft-beige/80 bg-white/70 shadow-sm transition-shadow hover:shadow-md">
+                <div class="relative aspect-[4/3] overflow-hidden bg-soft-sand/60">
+                  <Image
+                    alt={photo.caption}
+                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    src={photo.image}
+                    width={900}
+                  />
+                </div>
+                <figcaption class="flex items-center justify-between gap-3 p-4">
+                  <span class="text-xs leading-snug text-text/70 sm:text-sm">{photo.caption}</span>
+                  <button
+                    class="download-btn inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full bg-text p-2.5 text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-text/90 hover:shadow-md"
+                    data-filename={photo.filename}
+                    data-url={photo.image.src}
+                    title="Foto herunterladen"
+                  >
+                    <svg aria-hidden="true" class="h-4 w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.download} /></svg>
+                  </button>
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05 · Porträt & Factsheet ================= -->
+    <section id="portrait-fakten" class="relative scroll-mt-24 py-14 sm:py-20">
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute top-4 right-4 select-none font-bonanova text-[7rem] font-bold leading-none opacity-[0.05] sm:right-10 sm:text-[10rem]"
+      >
+        05
+      </span>
+
+      <div class="container-padding relative mx-auto max-w-7xl">
+        <p class="font-doulaise text-3xl text-accent1 sm:text-4xl">Ihre Gastgeberin</p>
+        <h2 class="mt-2 font-bonanova text-2xl font-bold sm:text-4xl">
+          Gründerin-Porträt & Factsheet
+        </h2>
+        <p class="mt-3 max-w-xl text-sm text-text/60 sm:text-base">
+          Pressefotos von Brigitta Heyl sowie die Unternehmens-Eckdaten auf
+          einen Blick.
+        </p>
+        <div aria-hidden="true" class="mt-6 h-px w-16 bg-accent1/50"></div>
+
+        <div class="mt-10 grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12">
+          <!-- Porträt-Karte -->
+          <div class="flex flex-col justify-between rounded-2xl border border-soft-beige/80 bg-white/70 p-6 shadow-sm lg:col-span-5">
+            <div>
+              <!-- Torbogen-Rahmung als Anklang an die Touren-Seite -->
+              <div class="relative mx-auto mb-6 aspect-[4/5] w-full max-w-sm overflow-hidden rounded-t-[10rem] rounded-b-2xl border-8 border-accent2-wine/80 bg-soft-sand/60 shadow-md">
+                <Image
+                  alt="Brigitta Heyl — Kultur- und Weinbotschafterin Pfalz"
+                  class="h-full w-full object-cover object-top"
+                  src={BrigittaPortrait}
+                />
+              </div>
+              <h3 class="font-bonanova text-xl font-bold">Brigitta Heyl</h3>
+              <p class="mb-3 font-bonanova text-xs font-semibold uppercase tracking-wider text-accent2-wine">
+                Zertifizierte Kultur- und Weinbotschafterin Pfalz
+              </p>
+              <p class="mb-6 text-xs leading-relaxed text-text/60 sm:text-sm">
+                Offizielle Porträtfotos für Presse- und Buchveröffentlichungen,
+                verwendbar im Rahmen der Berichterstattung über
+                Weinerlebnistouren Pfalz.
+              </p>
+            </div>
+            <div class="space-y-2 border-t border-soft-beige/60 pt-4">
+              <button
+                class="download-btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-accent2-wine px-4 py-2.5 font-bonanova text-xs font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg active:scale-95 sm:text-sm"
+                data-filename="Brigitta-Heyl-Portrait-Presse.png"
+                data-url={BrigittaPortrait.src}
+              >
+                <svg aria-hidden="true" class="h-4 w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.download} /></svg>
+                <span>Porträt 1 herunterladen</span>
+              </button>
+              <button
+                class="download-btn inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-soft-beige bg-white/60 px-4 py-2.5 font-bonanova text-xs tracking-wide text-text/70 transition-all hover:border-accent2-wine hover:text-accent2-wine"
+                data-filename="Brigitta-Heyl-Portrait-Presse-2.png"
+                data-url={BrigittaPortrait2.src}
+              >
+                <svg aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.download} /></svg>
+                <span>Porträt 2 (Alternative) herunterladen</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Factsheet -->
+          <div class="flex flex-col justify-between rounded-2xl border border-soft-beige/80 bg-white/70 p-6 shadow-sm sm:p-8 lg:col-span-7">
+            <div>
+              <div class="mb-6 flex items-center justify-between border-b border-soft-beige/60 pb-4">
+                <h3 class="font-bonanova text-xl font-bold">Unternehmens-Factsheet</h3>
+                <span class="text-xs text-text/40">Stand: 2026</span>
+              </div>
+
+              <dl class="space-y-4 text-xs sm:text-sm">
+                <div class="flex flex-col justify-between gap-1 border-b border-soft-beige/50 pb-3 sm:flex-row sm:items-center">
+                  <dt class="w-44 font-semibold text-text/50">Unternehmensname:</dt>
+                  <dd class="font-bold sm:text-right">Weinerlebnistouren Pfalz</dd>
+                </div>
+                <div class="flex flex-col justify-between gap-1 border-b border-soft-beige/50 pb-3 sm:flex-row sm:items-center">
+                  <dt class="w-44 font-semibold text-text/50">Inhaberin & Leitung:</dt>
+                  <dd class="font-bold sm:text-right">Brigitta Heyl (Kultur- & Weinbotschafterin)</dd>
+                </div>
+                <div class="flex flex-col justify-between gap-1 border-b border-soft-beige/50 pb-3 sm:flex-row sm:items-center">
+                  <dt class="w-44 font-semibold text-text/50">Hauptstandort / Region:</dt>
+                  <dd class="sm:text-right">Neustadt an der Weinstraße / Gimmeldingen</dd>
+                </div>
+                <div class="flex flex-col justify-between gap-1 border-b border-soft-beige/50 pb-3 sm:flex-row sm:items-center">
+                  <dt class="w-44 font-semibold text-text/50">Kernangebot:</dt>
+                  <dd class="max-w-md sm:text-right">Geführte Erlebnis- & Genusstouren, historische Rollenspiele, Weinverkostungen, Gruppen- & Firmenevents</dd>
+                </div>
+                <div class="flex flex-col justify-between gap-1 border-b border-soft-beige/50 pb-3 sm:flex-row sm:items-center">
+                  <dt class="w-44 font-semibold text-text/50">Durchschnittliche Dauer:</dt>
+                  <dd class="sm:text-right">ca. 3,5 bis 4 Stunden pro Tour (~4 km Wegstrecke)</dd>
+                </div>
+                <div class="flex flex-col justify-between gap-1 border-b border-soft-beige/50 pb-3 sm:flex-row sm:items-center">
+                  <dt class="w-44 font-semibold text-text/50">Inkludierte Leistungen:</dt>
+                  <dd class="max-w-md sm:text-right">5 regionale Weine / Glühweine, hausgemachte Snacks & kulinarische Happen, historische Kostümrollen</dd>
+                </div>
+                <div class="flex flex-col justify-between gap-1 border-b border-soft-beige/50 pb-3 sm:flex-row sm:items-center">
+                  <dt class="w-44 font-semibold text-text/50">Webseite:</dt>
+                  <dd class="font-medium text-accent2-wine sm:text-right">www.weinerlebnistouren-pfalz.de</dd>
+                </div>
+              </dl>
+            </div>
+
+            <!-- Pressekontakt -->
+            <div class="mt-8 flex flex-col justify-between gap-4 rounded-xl border border-soft-beige/70 bg-background/80 p-4 sm:flex-row sm:items-center sm:p-5">
+              <div>
+                <span class="font-bonanova text-[11px] font-semibold uppercase tracking-wider text-text/40">Pressekontakt</span>
+                <p class="text-sm font-bold">Brigitta Heyl</p>
+                <p class="text-xs text-text/60">kontakt@weinerlebnistouren-pfalz.de</p>
+              </div>
+              <button
+                class="copy-btn inline-flex shrink-0 cursor-pointer items-center gap-2 self-start rounded-full bg-accent2-wine px-5 py-2 font-bonanova text-xs font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg active:scale-95 sm:self-center"
+                data-copy="kontakt@weinerlebnistouren-pfalz.de"
+              >
+                <svg aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.mail} /></svg>
+                <span>E-Mail kopieren</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 06 · Markenfarben ================= -->
+    <section id="farben" class="relative scroll-mt-24 bg-soft-sand/40 py-14 sm:py-20">
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute top-4 left-4 select-none font-bonanova text-[7rem] font-bold leading-none opacity-[0.05] sm:left-10 sm:text-[10rem]"
+      >
+        06
+      </span>
+
+      <div class="container-padding relative mx-auto max-w-7xl">
+        <p class="font-doulaise text-3xl text-accent1 sm:text-4xl">Farben der Pfalz</p>
+        <h2 class="mt-2 font-bonanova text-2xl font-bold sm:text-4xl">
+          Offizielle Markenfarben
+        </h2>
+        <p class="mt-3 max-w-xl text-sm text-text/60 sm:text-base">
+          Farbcodes für Grafikdesign, Web und Printproduktionen.
+        </p>
+        <div aria-hidden="true" class="mt-6 h-px w-16 bg-accent1/50"></div>
+
+        <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            colorPalette.map((color) => (
+              <div class="flex flex-col justify-between rounded-2xl border border-soft-beige/80 bg-white/70 p-4 shadow-sm transition-shadow hover:shadow-md">
+                <div>
+                  <div class={`mb-4 flex h-24 items-end justify-between rounded-xl p-3 font-mono text-xs font-semibold shadow-inner ${color.class}`}>
+                    <span>{color.hex}</span>
+                    <span class="text-[10px] opacity-80">RGB: {color.rgb}</span>
+                  </div>
+                  <h3 class="font-bonanova text-sm font-bold">{color.name}</h3>
+                </div>
+                <div class="mt-3 flex items-center justify-between border-t border-soft-beige/60 pt-3">
+                  <span class="font-mono text-xs text-text/50">{color.hex}</span>
+                  <button
+                    class="copy-btn inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-soft-beige bg-white/60 px-3 py-1.5 font-bonanova text-xs tracking-wide text-text/70 transition-all hover:border-accent2-wine hover:text-accent2-wine active:scale-95"
+                    data-copy={color.hex}
+                  >
+                    <svg aria-hidden="true" class="h-3 w-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.copy} /></svg>
+                    <span>HEX kopieren</span>
+                  </button>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Nutzungshinweise ================= -->
+    <section class="relative py-14 container-padding sm:py-20">
+      <div class="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-soft-beige/80 bg-white/70 p-8 shadow-sm sm:p-12">
+        <div aria-hidden="true" class="pointer-events-none absolute top-0 right-0 h-64 w-64 rounded-full bg-accent1/10 blur-3xl"></div>
+        <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 h-56 w-56 rounded-full bg-accent2-wine/10 blur-3xl"></div>
+
+        <div class="relative max-w-3xl">
+          <p class="font-doulaise text-3xl text-accent1 sm:text-4xl">gut zu wissen</p>
+          <h2 class="mt-2 mb-4 font-bonanova text-2xl font-bold sm:text-4xl">
+            Nutzungsrechte für Medienvertreter
+          </h2>
+          <p class="mb-6 text-sm leading-relaxed text-text/70 sm:text-base">
+            Alle in diesem Presskit bereitgestellten Grafiken, Logos und Fotos
+            sind im Rahmen der Berichterstattung über
+            <strong>Weinerlebnistouren Pfalz</strong> honorarfrei nutzbar. Eine
+            anderweitige gewerbliche Nutzung bedarf der vorherigen
+            schriftlichen Zustimmung.
+          </p>
+
+          <div class="mb-8 flex flex-col justify-between gap-4 rounded-xl border border-soft-beige/70 bg-background/80 p-4 sm:flex-row sm:items-center">
+            <div>
+              <span class="font-bonanova text-xs font-semibold uppercase tracking-wider text-text/40">Erforderlicher Bildnachweis:</span>
+              <p class="text-sm font-semibold">„Foto: Weinerlebnistouren Pfalz / Brigitta Heyl“</p>
+            </div>
+            <button
+              class="copy-btn inline-flex shrink-0 cursor-pointer items-center gap-2 self-start rounded-full border border-soft-beige bg-white/60 px-4 py-2 font-bonanova text-xs tracking-wide text-text/70 transition-all hover:border-accent2-wine hover:text-accent2-wine sm:self-center"
+              data-copy="Foto: Weinerlebnistouren Pfalz / Brigitta Heyl"
+            >
+              <svg aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.copy} /></svg>
+              <span>Bildnachweis kopieren</span>
+            </button>
+          </div>
+
+          <div class="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
+            <a
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-accent2-wine px-8 py-3 font-bonanova text-sm font-bold uppercase tracking-wider text-stone-50 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg"
+              href="mailto:kontakt@weinerlebnistouren-pfalz.de?subject=Presseanfrage%20Weinerlebnistouren%20Pfalz"
+            >
+              <svg aria-hidden="true" class="h-4 w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><Fragment set:html={icons.mail} /></svg>
+              <span>Presseanfrage senden</span>
+            </a>
+            <a
+              class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent1 px-8 py-3 font-bonanova text-sm font-bold uppercase tracking-wider text-text transition-all duration-300 hover:-translate-y-0.5 hover:bg-soft-beige/60"
+              href="/kontakt"
+            >
+              <span>Kontaktformular öffnen</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<!-- Clipboard- & Download-Handler -->
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const checkSvg =
+      '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+    // 1. In die Zwischenablage kopieren
+    document.querySelectorAll(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const textToCopy = btn.getAttribute("data-copy");
+        if (!textToCopy) return;
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+          const originalHTML = btn.innerHTML;
+          btn.innerHTML = `${checkSvg}<span>Kopiert!</span>`;
+          btn.classList.add("bg-accent1", "!text-text", "!border-accent1");
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.classList.remove("bg-accent1", "!text-text", "!border-accent1");
+          }, 2000);
+        } catch (err) {
+          console.error("Kopieren fehlgeschlagen:", err);
+        }
+      });
+    });
+
+    // 2. Datei-Download
+    document.querySelectorAll(".download-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const url = btn.getAttribute("data-url");
+        const filename = btn.getAttribute("data-filename") || "asset-download";
+        if (!url) return;
+
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = `
+          <svg class="h-4 w-4 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span>Laden…</span>
+        `;
+
+        try {
+          const response = await fetch(url);
+          const blob = await response.blob();
+          const blobUrl = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = blobUrl;
+          link.download = filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(blobUrl);
+
+          btn.innerHTML = `${checkSvg}<span>Fertig!</span>`;
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+          }, 2000);
+        } catch (err) {
+          console.error("Download fehlgeschlagen, öffne in neuem Tab:", err);
+          window.open(url, "_blank");
+          btn.innerHTML = originalHTML;
+        }
+      });
+    });
+  });
+</script>
