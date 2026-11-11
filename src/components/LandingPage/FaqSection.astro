@@ -4,10 +4,13 @@
  * (Wetter, Schuhwerk, alkoholfrei, Kinder, Anreise, Storno …).
  *
  * Rein statisch über native <details>-Elemente — funktioniert ohne JS.
- * Inhalte: src/data/landingPage.ts. Liefert zusätzlich FAQPage-Markup
+ * Inhalte: CMS › Häufige Fragen. Liefert zusätzlich FAQPage-Markup
  * (JSON-LD) für Suchmaschinen.
  */
-import { faqs } from "@/data/landingPage";
+import CmsText from "@/components/cms/CmsText.astro";
+import { getFaqs } from "@/lib/cms/content";
+
+const faqs = await getFaqs();
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -15,7 +18,7 @@ const faqSchema = {
   mainEntity: faqs.map((faq) => ({
     "@type": "Question",
     name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    acceptedAnswer: { "@type": "Answer", text: faq.answerText },
   })),
 };
 
@@ -37,22 +40,19 @@ const columns = [faqs.slice(0, midpoint), faqs.slice(midpoint)];
   <div class="container-padding relative mx-auto max-w-6xl">
 
   <p class="text-center font-doulaise text-3xl text-accent1 sm:text-4xl">
-    Gut zu wissen
+    <CmsText k="home.faq.kicker" />
   </p>
   <h2
     id="faq-title"
     class="mx-auto mt-3 max-w-2xl text-center font-bonanova text-3xl font-bold sm:text-4xl"
   >
-    Alles Wichtige vor Ihrer Tour
+    <CmsText k="home.faq.title" />
   </h2>
-  <p
-    class="mx-auto mt-4 max-w-xl text-center font-body leading-relaxed text-text/70"
+  <div
+    class="cms-rich mx-auto mt-4 max-w-xl text-center font-body leading-relaxed text-text/70"
   >
-    Die häufigsten Fragen auf einen Blick — alles Weitere beantworte ich gerne <a
-      class="underline decoration-accent1/50 underline-offset-4 transition hover:text-accent2-wine"
-      href="/kontakt">persönlich</a
-    >.
-  </p>
+    <CmsText k="home.faq.intro" />
+  </div>
 
   <div class="mt-10 grid items-start gap-x-8 gap-y-3 lg:grid-cols-2">
     {
@@ -79,9 +79,10 @@ const columns = [faqs.slice(0, midpoint), faqs.slice(midpoint)];
                   </svg>
                 </span>
               </summary>
-              <p class="mt-3 max-w-prose font-body text-sm leading-relaxed text-text/70 sm:text-base">
-                {faq.answer}
-              </p>
+              <div
+                class="cms-rich mt-3 max-w-prose font-body text-sm leading-relaxed text-text/70 sm:text-base"
+                set:html={faq.answer}
+              />
             </details>
           ))}
         </div>

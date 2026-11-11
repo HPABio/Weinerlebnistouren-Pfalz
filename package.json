@@ -8,7 +8,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "reviews:auth": "bun run scripts/google-oauth-setup.ts",
-    "reviews:fetch": "bun run scripts/fetch-google-reviews.ts"
+    "reviews:fetch": "bun run scripts/fetch-google-reviews.ts",
+    "cms:setup": "bun run scripts/cms-setup.ts",
+    "cms:migrate-images": "bun run scripts/migrate-tour-images.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "7.0.8",
@@ -34,6 +36,7 @@
     "nodemailer": "^7.0.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "sanitize-html": "2",
     "shadcn": "^4.19.0",
     "sharp": "^0.34.5",
     "tailwind-merge": "^3.6.0",
@@ -42,6 +45,7 @@
   },
   "devDependencies": {
     "@types/bun": "^1.4.0",
+    "@types/sanitize-html": "2",
     "browserslist": "^4.28.8",
     "tailwindcss": "^3.4.19",
     "vite": "^7.3.6"

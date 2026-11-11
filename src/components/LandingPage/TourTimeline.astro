@@ -6,51 +6,17 @@
  * zu spoilern: bewusst ohne Uhrzeiten (die Startzeiten variieren je Tour)
  * und generisch genug für alle vier Jahreszeiten.
  */
-import { Image } from "astro:assets";
+import CmsImage from "@/components/cms/CmsImage.astro";
+import CmsText from "@/components/cms/CmsText.astro";
+import { getSlotImage, getTimelineSteps } from "@/lib/cms/content";
 
-// Glob-Lookup wie auf /firmen-events (Dateinamen enthalten teils Leerzeichen).
-const imageModules = import.meta.glob<{ default: ImageMetadata }>(
-  [
-    "../../assets/images/tours/**/*.{png,jpg,jpeg,webp}",
-    "../../assets/images/compressed/webP/*.{png,jpg,jpeg,webp}",
-  ],
-  { eager: true }
-);
-
-function photo(relPath: string): ImageMetadata {
-  const key = `../../assets/images/${relPath}`;
-  const mod = imageModules[key];
-  if (!mod) throw new Error(`Foto nicht gefunden: ${relPath}`);
-  return mod.default;
-}
-
+// Inhalte: CMS › Tour-Ablauf (Stationen), Texte, Fotos auf der Website.
 // Titel ohne „ß" — Bona Nova SC hat keine saubere ß-Glyphe.
-const steps = [
-  {
-    title: "Willkommen im Weingut",
-    text: "Ankommen, anstoßen: Begrüßung mit dem ersten Glas und einem Pfälzer Häppchen.",
-  },
-  {
-    title: "Hinaus in die Weinberge",
-    text: "Ausblicke über das Rebenmeer — und Einblicke, warum genau hier besondere Weine wachsen.",
-  },
-  {
-    title: "Die Geschichte erwacht",
-    text: "Aus „Napoleon war einmal hier“ wird: Jemand von uns ist Napoleon — und plötzlich wird die Geschichte lebendig.",
-  },
-  {
-    title: "Wein & Food-Pairing",
-    text: "Fünf Weine lokaler Winzer, jeder mit einem eigens abgestimmten, liebevoll gemachten Snack.",
-  },
-  {
-    title: "Historisches Gimmeldingen",
-    text: "Durch malerische Gassen und Höfe — weitere Kapitel der Pfälzer Weingeschichte inklusive.",
-  },
-  {
-    title: "Gemeinsamer Abschluss",
-    text: "Ein letztes Glas, viele Anekdoten und Erinnerungen, die noch lange Gesprächsstoff bleiben.",
-  },
-];
+const [steps, photo1, photo2] = await Promise.all([
+  getTimelineSteps(),
+  getSlotImage("home.timeline.photo1"),
+  getSlotImage("home.timeline.photo2"),
+]);
 ---
 
 <section
@@ -63,7 +29,7 @@ const steps = [
     aria-hidden="true"
     class="pointer-events-none absolute -top-2 right-8 hidden select-none font-doulaise text-[10rem] leading-none text-text opacity-[0.05] sm:block"
   >
-    vier Stunden
+    <CmsText k="home.timeline.watermark" />
   </span>
 
   <div
@@ -72,19 +38,18 @@ const steps = [
     <!-- Kopf + echte Tour-Momente -->
     <div class="lg:sticky lg:top-28">
       <p class="text-3xl font-doulaise text-accent1 sm:text-4xl">
-        So fühlt sich eine Tour an
+        <CmsText k="home.timeline.kicker" />
       </p>
       <div aria-hidden="true" class="mt-5 w-16 h-px bg-accent1/50"></div>
       <h2
         id="timeline-title"
         class="mt-5 text-3xl font-bold leading-tight font-bonanova sm:text-4xl"
       >
-        Vier Stunden, die schneller vergehen als gedacht
+        <CmsText k="home.timeline.title" />
       </h2>
-      <p class="mt-4 max-w-prose leading-relaxed font-body text-text/75">
-        Keine Tour gleicht der anderen — aber so ungefähr dürfen Sie sich den
-        Nachmittag vorstellen. Den Rest verrate ich unterwegs.
-      </p>
+      <div class="cms-rich mt-4 max-w-prose leading-relaxed font-body text-text/75">
+        <CmsText k="home.timeline.intro" />
+      </div>
 
       <!-- Zwei echte Momente: Rolle & Runde -->
       <div class="hidden gap-5 mt-10 sm:flex lg:mt-12">
@@ -92,42 +57,40 @@ const steps = [
           <div
             class="overflow-hidden rounded-xl border-4 border-white shadow-lg"
           >
-            <Image
-              alt="Ein Gast in der Rolle Napoleons am Napoleonsbänkel in den Weinbergen"
+            <CmsImage
+              alt={photo1?.alt ?? ""}
               class="aspect-[4/5] h-auto w-full object-cover"
-              decoding="async"
-              format="webp"
+              file={photo1?.file}
               loading="lazy"
               quality={70}
-              src={photo("compressed/webP/Maja-Nett-als-Napoleon.webp")}
+              sizes="(min-width: 1024px) 230px, 45vw"
               width={480}
             />
           </div>
           <figcaption
             class="mt-2 text-base text-center font-caveat text-text/60"
           >
-            Heute mal Napoleon sein
+            <CmsText k="home.timeline.caption1" />
           </figcaption>
         </figure>
         <figure class="mt-8 w-1/2 rotate-[2deg]">
           <div
             class="overflow-hidden rounded-xl border-4 border-white shadow-lg"
           >
-            <Image
-              alt="Gruppe stößt mit Weingläsern über den Weinbergen an"
+            <CmsImage
+              alt={photo2?.alt ?? ""}
               class="aspect-[4/5] h-auto w-full object-cover"
-              decoding="async"
-              format="webp"
+              file={photo2?.file}
               loading="lazy"
               quality={70}
-              src={photo("tours/bacchus/IMG_4770_bacchus.webp")}
+              sizes="(min-width: 1024px) 230px, 45vw"
               width={480}
             />
           </div>
           <figcaption
             class="mt-2 text-base text-center font-caveat text-text/60"
           >
-            Auf die Pfalz!
+            <CmsText k="home.timeline.caption2" />
           </figcaption>
         </figure>
       </div>
@@ -155,9 +118,10 @@ const steps = [
               <h3 class="text-lg font-bold leading-snug font-bonanova sm:text-xl">
                 {step.title}
               </h3>
-              <p class="mt-1.5 max-w-prose text-sm leading-relaxed font-body text-text/70 sm:text-base">
-                {step.text}
-              </p>
+              <div
+                class="cms-rich mt-1.5 max-w-prose text-sm leading-relaxed font-body text-text/70 sm:text-base"
+                set:html={step.text}
+              />
             </div>
           </li>
         ))
