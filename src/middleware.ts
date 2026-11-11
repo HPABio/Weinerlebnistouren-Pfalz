@@ -34,6 +34,10 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
   if (sameKey(ctx.url.searchParams.get("key") ?? undefined)) {
     ctx.cookies.set(COOKIE, ACCESS_KEY, { httpOnly: true, secure: true, sameSite: "lax", path: "/", maxAge: 60 * 60 * 12 });
   } else if (!sameKey(ctx.cookies.get(COOKIE)?.value)) {
+    // Direkt im Browser aufgerufen → zum Visual Editor im CMS weiterleiten.
+    if (ctx.request.method === "GET" && ctx.request.headers.get("accept")?.includes("text/html") && CMS_URL) {
+      return new Response(null, { status: 302, headers: { Location: `${CMS_URL}/admin/visual`, ...PRIVATE_HEADERS } });
+    }
     return new Response(
       "Diese Seite ist nur zum Bearbeiten gedacht. Bitte im CMS anmelden: https://cms.weinerlebnistouren-pfalz.de/admin",
       { status: 401, headers: { "Content-Type": "text/plain; charset=utf-8", ...PRIVATE_HEADERS } },
