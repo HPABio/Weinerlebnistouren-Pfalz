@@ -6,47 +6,15 @@
  * Buchungs-CTA, damit Besucher WAS / WANN / WAS KOSTET beantwortet bekommen,
  * ohne erst den externen Buchungskalender öffnen zu müssen.
  *
- * Inhalte & Saisonwahl: src/data/landingPage.ts (Auswahl erfolgt beim Build,
- * aktualisiert sich also mit jedem Deploy).
+ * Inhalte, Foto & Saisonwahl: CMS › Touren / Einstellungen (Auswahl erfolgt
+ * beim Build; der nächtliche Neubau hält sie aktuell).
  */
-import { Image } from "astro:assets";
-import { getFeaturedTour, type TourId } from "@/data/landingPage";
+import CmsImage from "@/components/cms/CmsImage.astro";
+import CmsText from "@/components/cms/CmsText.astro";
+import { getFeaturedTour } from "@/lib/cms/content";
 
-// Echte Tour-Fotos statt Illustrationen — pro Saison ein kuratiertes Motiv.
-// Glob-Lookup wie auf /firmen-events (Dateinamen enthalten teils Leerzeichen).
-const tourImageModules = import.meta.glob<{ default: ImageMetadata }>(
-  "../../assets/images/tours/**/*.{png,jpg,jpeg,webp}",
-  { eager: true }
-);
-
-function tourPhoto(relPath: string): ImageMetadata {
-  const key = `../../assets/images/tours/${relPath}`;
-  const mod = tourImageModules[key];
-  if (!mod) throw new Error(`Tour-Foto nicht gefunden: ${relPath}`);
-  return mod.default;
-}
-
-const photos: Record<TourId, { src: ImageMetadata; alt: string }> = {
-  mandelbluete: {
-    src: tourPhoto("mandelbluete/Brigitta lacht_mandelbluete.webp"),
-    alt: "Gästegruppe lacht gemeinsam mit Gästeführerin Brigitta Heyl zwischen blühenden Mandelbäumen",
-  },
-  mussbach: {
-    src: tourPhoto("mussbach/IMG_0968_mussbach.webp"),
-    alt: "Der schattige Mussbach fließt durch den sommerlichen Wald",
-  },
-  bacchus: {
-    src: tourPhoto("bacchus/ANETTE_IMG_4666_bacchus.webp"),
-    alt: "Große Gruppe lauscht der Gästeführerin an Picknickbänken in den Weinbergen",
-  },
-  gluehwein: {
-    src: tourPhoto("gluehwein/IMG_1837_gluehwein.webp"),
-    alt: "Winterliche Glühwein-Station im Lichterglanz von Gimmeldingen",
-  },
-};
-
-const tour = getFeaturedTour();
-const photo = photos[tour.id];
+const tour = await getFeaturedTour();
+const photo = tour.spotlightImage;
 ---
 
 <section
@@ -67,7 +35,7 @@ const photo = photos[tour.id];
   >
     <div>
       <p class="text-3xl font-meie text-accent1 sm:text-4xl">
-        Als Nächstes imWeinjahr
+        <CmsText k="home.spotlight.kicker" />
       </p>
       <p class="mt-2 text-xs uppercase tracking-[0.25em] text-text/50">
         {tour.season} · {tour.months}
@@ -111,10 +79,9 @@ const photo = photos[tour.id];
             </span>
           </p>
         ) : (
-          <p class="mt-7 text-sm text-text/60">
-            Alle Preise finden Sie direkt beim jeweiligen Termin im
-            Buchungskalender.
-          </p>
+          <div class="cms-rich mt-7 text-sm text-text/60">
+            <CmsText k="home.spotlight.noPrice" />
+          </div>
         )
       }
       {
@@ -132,13 +99,13 @@ const photo = photos[tour.id];
           rel="noopener noreferrer"
           target="_blank"
         >
-          Jetzt Platz sichern
+          <CmsText k="home.spotlight.ctaPrimary" />
         </a>
         <a
           class="text-sm transition text-text/60 underline-offset-4 hover:text-text hover:underline"
           href={tour.tourenHref}
         >
-          Mehr zur Tour erfahren
+          <CmsText k="home.spotlight.ctaSecondary" />
         </a>
       </div>
     </div>
@@ -148,14 +115,13 @@ const photo = photos[tour.id];
       <div
         class={`relative aspect-[3/4] overflow-hidden rounded-t-full rounded-b-2xl border-2 ${tour.accentBorder} shadow-xl`}
       >
-        <Image
-          alt={photo.alt}
+        <CmsImage
+          alt={photo?.alt ?? ""}
           class="object-cover w-full h-full"
-          decoding="async"
-          format="webp"
+          file={photo?.file}
           loading="lazy"
           quality={72}
-          src={photo.src}
+          sizes="(min-width: 1024px) 420px, 66vw"
           width={640}
         />
         <div

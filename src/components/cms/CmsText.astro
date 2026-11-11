@@ -1,0 +1,23 @@
+---
+/**
+ * Gibt einen pflegbaren Text aus dem CMS aus (Fallback: Standardtext).
+ *
+ *   <h2 class="…"><CmsText k="home.faq.title" /></h2>
+ *   <div class="… cms-rich"><CmsText k="home.faq.intro" /></div>
+ *
+ * Formatierte Texte („rich") bringen eigene <p>/<ul> mit — ihr Container
+ * muss daher ein <div class="cms-rich"> sein, kein <p>.
+ */
+import { getText } from "@/lib/cms/content";
+import { TEXTS, type TextKey } from "@/lib/cms/texts";
+
+interface Props {
+  k: TextKey;
+}
+
+const { k } = Astro.props;
+const value = await getText(k);
+const isRich = TEXTS[k].kind === "rich";
+---
+
+{isRich ? <Fragment set:html={value} /> : value}

@@ -7,6 +7,10 @@
 
 import GimmeldingenMap from "@images/GimmeldingenMap.jpg";
 import { Image } from "astro:assets";
+import CmsText from "@/components/cms/CmsText.astro";
+import { getSettings } from "@/lib/cms/content";
+
+const settings = await getSettings();
 ---
 
 <section
@@ -34,42 +38,35 @@ import { Image } from "astro:assets";
       </div>
     </div>
     <p class="text-3xl font-doulaise text-accent1 sm:text-4xl">
-      Auf bald in Gimmeldingen!
+      <CmsText k="home.cta.kicker" />
     </p>
     <h2
       id="final-cta-title"
       class="mx-auto mt-4 text-3xl font-bold font-bonanova sm:text-5xl"
     >
-      Sichern Sie sich Ihren Platz
+      <CmsText k="home.cta.title" />
     </h2>
-    <p class="mx-auto mt-5 max-w-xl leading-relaxed font-body text-text/75 sm:text-lg">
-      Alle Termine für jede Jahreszeit finden Sie im Buchungskalender — oder
-      Sie verschenken eine Weinerlebnistour an Ihre Liebsten.
-    </p>
+    <div class="cms-rich mx-auto mt-5 max-w-xl leading-relaxed font-body text-text/75 sm:text-lg">
+      <CmsText k="home.cta.text" />
+    </div>
     <div class="flex flex-wrap gap-4 justify-center items-center mt-8">
       <a
         class="px-8 py-3 text-sm font-bold tracking-wider uppercase rounded-full shadow-md transition-all duration-300 bg-accent2-wine font-bonanova text-stone-50 hover:-translate-y-0.5 hover:bg-accent2-wine/90 hover:shadow-lg"
-        href="https://eveeno.com/de/event-cal/34263?style=grid"
+        href={settings.booking_calendar_url}
         rel="noopener noreferrer"
         target="_blank"
       >
-        Zum Buchungskalender
+        <CmsText k="home.cta.ctaPrimary" />
       </a>
       <a
         class="px-8 py-3 text-sm font-bold tracking-wider uppercase rounded-full border-2 transition-all duration-300 border-accent1 font-bonanova text-text hover:-translate-y-0.5 hover:bg-soft-beige/60"
-        href="/kontakt"
+        href={settings.voucher_url}
       >
-        Tour verschenken
+        <CmsText k="home.cta.ctaSecondary" />
       </a>
     </div>
-    <p class="mt-6 text-sm text-text/60">
-      Sie planen mit Team, Verein oder Familie? <a
-        class="underline transition decoration-accent1/50 underline-offset-4 hover:text-accent2-wine"
-        href="/gruppen">Gruppen & private Touren</a
-      > · <a
-        class="underline transition decoration-accent1/50 underline-offset-4 hover:text-accent2-wine"
-        href="/firmen-events">Firmen-Events</a
-      >
-    </p>
+    <div class="cms-rich mt-6 text-sm text-text/60">
+      <CmsText k="home.cta.groups" />
+    </div>
   </div>
 </section>

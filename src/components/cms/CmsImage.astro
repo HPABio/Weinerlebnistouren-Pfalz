@@ -1,0 +1,43 @@
+---
+/**
+ * Responsives Foto aus der Directus-Mediathek.
+ *
+ * Ersetzt <Image> aus astro:assets für Inhaltsfotos: Directus skaliert und
+ * konvertiert serverseitig (WebP), der Browser wählt per srcset die passende
+ * Größe. width/height kommen aus den Datei-Metadaten → kein Layout-Springen.
+ */
+import { assetSrcset, assetUrl, type CmsFile } from "@/lib/cms/content";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends Omit<HTMLAttributes<"img">, "src" | "srcset" | "width" | "height" | "alt"> {
+  file: CmsFile | null | undefined;
+  alt: string;
+  /** Angezeigte Breite in CSS-Pixeln (Basis für 1x/2x). */
+  width: number;
+  quality?: number;
+}
+
+const { file, alt, width, quality = 72, sizes, loading = "lazy", decoding = "async", ...rest } = Astro.props;
+
+// Nie über die Originalgröße hinaus skalieren.
+const maxW = file?.width ?? width * 2;
+const widths = [...new Set([width, Math.round(width * 1.5), width * 2].map((w) => Math.min(w, maxW)))];
+const renderW = Math.min(width, maxW);
+const renderH = file?.width && file.height ? Math.round((renderW / file.width) * file.height) : undefined;
+---
+
+{
+  file && (
+    <img
+      src={assetUrl(file.id, renderW, quality)}
+      srcset={assetSrcset(file.id, widths, quality)}
+      sizes={sizes ?? `${width}px`}
+      width={renderW}
+      height={renderH}
+      alt={alt}
+      loading={loading}
+      decoding={decoding}
+      {...rest}
+    />
+  )
+}

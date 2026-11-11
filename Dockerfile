@@ -6,7 +6,11 @@ WORKDIR /app
 COPY package.json bun.lockb* ./
 RUN bun install --frozen-lockfile
 COPY . .
-RUN bun run build
+# Inhalte & Bilder kommen beim Build aus dem Directus-CMS (Coolify → Build-Variablen).
+# Nur in dieser Build-Stage vorhanden, nicht im fertigen Runtime-Image.
+ARG CMS_URL
+ARG CMS_TOKEN
+RUN CMS_URL="$CMS_URL" CMS_TOKEN="$CMS_TOKEN" bun run build
 
 ########## RUNTIME ##########
 FROM node:20-alpine AS runtime
