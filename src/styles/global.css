@@ -138,13 +138,13 @@
   /* Formatierte CMS-Texte (Editor im CMS): erben Schrift, Farbe & Größe vom
      Container und bekommen nur Absatzabstände, Listen und den Link-Stil,
      den die Seite bisher inline verwendet hat. */
-  .cms-rich > p + p,
-  .cms-rich > p + ul,
-  .cms-rich > p + ol,
-  .cms-rich > ul + p,
-  .cms-rich > ol + p,
-  .cms-rich > blockquote + p,
-  .cms-rich > p + blockquote {
+  .cms-rich p + p,
+  .cms-rich p + ul,
+  .cms-rich p + ol,
+  .cms-rich ul + p,
+  .cms-rich ol + p,
+  .cms-rich blockquote + p,
+  .cms-rich p + blockquote {
     margin-top: 0.75em;
   }
   .cms-rich ul {

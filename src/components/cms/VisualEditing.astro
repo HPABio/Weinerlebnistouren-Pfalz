@@ -1,0 +1,22 @@
+---
+/**
+ * Aktiviert Klick-zum-Bearbeiten, wenn die Seite im Visual Editor von
+ * Directus (cms.weinerlebnistouren-pfalz.de › Visual Editor) geöffnet ist.
+ * Wird nur im Bearbeitungs-Modus gerendert (siehe layouts/main.astro).
+ * Nach dem Speichern lädt die Seite neu und zeigt die Änderung sofort.
+ */
+import { CMS_URL } from "@/lib/cms/client";
+---
+
+<div id="cms-visual-editing" data-directus-url={CMS_URL} hidden></div>
+
+<script>
+  import { apply } from "@directus/visual-editing";
+
+  const directusUrl = document.getElementById("cms-visual-editing")?.dataset.directusUrl;
+  const insideCms = window.parent !== window;
+
+  if (directusUrl && insideCms) {
+    apply({ directusUrl, onSaved: () => window.location.reload() });
+  }
+</script>

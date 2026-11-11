@@ -10,7 +10,7 @@
  *   image_slots     austauschbare Fotos, siehe ./images.ts
  *   directus_files  Galerien: Ordner „Touren/<Tour>" in der Mediathek
  */
-import { CMS_URL, cmsEnabled, cmsFetch, cmsOr } from "./client";
+import { CMS_URL, cached, cmsEnabled, cmsFetch, cmsOr } from "./client";
 import { sanitizeRich } from "./rich";
 import { TEXTS, type TextKey } from "./texts";
 import { IMAGES, type ImageKey } from "./images";
@@ -64,14 +64,13 @@ export const fallbackSettings: SiteSettings = {
   featured_tour: null,
 };
 
-let settingsPromise: Promise<SiteSettings> | undefined;
-
 export function getSettings(): Promise<SiteSettings> {
-  settingsPromise ??= cmsOr<Partial<SiteSettings>>("/items/site_settings", fallbackSettings).then((s) => ({
-    ...fallbackSettings,
-    ...Object.fromEntries(Object.entries(s).filter(([, v]) => v != null && v !== "")),
-  }));
-  return settingsPromise;
+  return cached("settings", () =>
+    cmsOr<Partial<SiteSettings>>("/items/site_settings", fallbackSettings).then((s) => ({
+      ...fallbackSettings,
+      ...Object.fromEntries(Object.entries(s).filter(([, v]) => v != null && v !== "")),
+    })),
+  );
 }
 
 /* ── Texte ──────────────────────────────────────────────────────────── */
@@ -83,13 +82,12 @@ interface TextRow {
   rich: string | null;
 }
 
-let textMap: Promise<Map<string, string>> | undefined;
-
 function loadTexts(): Promise<Map<string, string>> {
-  textMap ??= cmsOr<TextRow[]>("/items/text_blocks?limit=-1&fields=key,kind,text,rich", []).then(
-    (rows) => new Map(rows.map((r) => [r.key, ((r.kind === "rich" ? r.rich : r.text) ?? "").trim()])),
+  return cached("texts", () =>
+    cmsOr<TextRow[]>("/items/text_blocks?limit=-1&fields=key,kind,text,rich", []).then(
+      (rows) => new Map(rows.map((r) => [r.key, ((r.kind === "rich" ? r.rich : r.text) ?? "").trim()])),
+    ),
   );
-  return textMap;
 }
 
 /**
@@ -110,11 +108,9 @@ export interface SlotImage {
   alt: string;
 }
 
-let slotMap: Promise<Map<string, SlotImage>> | undefined;
-
 export async function getSlotImage(key: ImageKey): Promise<SlotImage | null> {
   if (!cmsEnabled) return null;
-  slotMap ??= cmsFetch<{ key: string; alt: string | null; image: CmsFile | null }[]>(
+  const slotMap = cached("slots", () => cmsFetch<{ key: string; alt: string | null; image: CmsFile | null }[]>(
     `/items/image_slots?limit=-1&fields=key,alt,${fileFields("image")}`,
   ).then(
     (rows) =>
@@ -123,7 +119,7 @@ export async function getSlotImage(key: ImageKey): Promise<SlotImage | null> {
           .filter((r) => r.image)
           .map((r) => [r.key, { file: r.image!, alt: r.alt || IMAGES[r.key as ImageKey]?.alt || "" }]),
       ),
-  );
+  ));
   return (await slotMap).get(key) ?? null;
 }
 
@@ -169,10 +165,8 @@ interface TourRow {
   spotlight_image_alt: string | null;
 }
 
-let toursPromise: Promise<Tour[]> | undefined;
-
 export function getTours(): Promise<Tour[]> {
-  toursPromise ??= (async () => {
+  return cached("tours", async () => {
     if (!cmsEnabled) return fallbackTours.map((t) => ({ ...t, spotlightImage: null }));
     const rows = await cmsFetch<TourRow[]>(
       `/items/tours?sort=sort&limit=-1&fields=*,${fileFields("spotlight_image")}`,
@@ -192,8 +186,7 @@ export function getTours(): Promise<Tour[]> {
       spotlightImage: r.spotlight_image ? { file: r.spotlight_image, alt: r.spotlight_image_alt ?? "" } : null,
       ...ACCENTS[r.id],
     }));
-  })();
-  return toursPromise;
+  });
 }
 
 /**
@@ -232,6 +225,8 @@ export async function getTourGallery(id: TourId): Promise<CmsFile[]> {
 /* ── FAQ & Ablauf ───────────────────────────────────────────────────── */
 
 export interface Faq {
+  /** CMS-ID (fehlt im Fallback) — für Klick-zum-Bearbeiten */
+  id?: number;
   question: string;
   /** gesäubertes HTML */
   answer: string;
@@ -242,17 +237,18 @@ export interface Faq {
 const stripTags = (html: string) => html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 
 export async function getFaqs(): Promise<Faq[]> {
-  const rows = await cmsOr<{ question: string; answer: string }[]>(
-    "/items/faqs?sort=sort&limit=-1&fields=question,answer&filter[status][_eq]=published",
+  const rows = await cmsOr<{ id?: number; question: string; answer: string }[]>(
+    "/items/faqs?sort=sort&limit=-1&fields=id,question,answer&filter[status][_eq]=published",
     fallbackFaqs,
   );
   return rows.map((r) => {
     const answer = sanitizeRich(r.answer);
-    return { question: r.question, answer, answerText: stripTags(answer) };
+    return { id: r.id, question: r.question, answer, answerText: stripTags(answer) };
   });
 }
 
 export interface TimelineStep {
+  id?: number;
   title: string;
   text: string;
 }
@@ -267,6 +263,6 @@ export const fallbackSteps: TimelineStep[] = [
 ];
 
 export async function getTimelineSteps(): Promise<TimelineStep[]> {
-  const rows = await cmsOr<TimelineStep[]>("/items/timeline_steps?sort=sort&limit=-1&fields=title,text", fallbackSteps);
-  return rows.map((r) => ({ title: r.title, text: sanitizeRich(r.text) }));
+  const rows = await cmsOr<TimelineStep[]>("/items/timeline_steps?sort=sort&limit=-1&fields=id,title,text", fallbackSteps);
+  return rows.map((r) => ({ id: r.id, title: r.title, text: sanitizeRich(r.text) }));
 }

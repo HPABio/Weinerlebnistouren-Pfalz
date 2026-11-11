@@ -11,10 +11,15 @@
  */
 import CmsImage from "@/components/cms/CmsImage.astro";
 import CmsText from "@/components/cms/CmsText.astro";
+import { cmsEnabled } from "@/lib/cms/client";
 import { getFeaturedTour } from "@/lib/cms/content";
+import { editAttr } from "@/lib/cms/edit";
 
 const tour = await getFeaturedTour();
 const photo = tour.spotlightImage;
+// Bearbeitungs-Modus: Klick auf ein Element öffnet das passende Tour-Feld.
+const tourId = cmsEnabled ? tour.id : null;
+const edit = (fields: string | string[], mode?: "popover" | "modal") => editAttr("tours", tourId, fields, mode);
 ---
 
 <section
@@ -45,16 +50,18 @@ const photo = tour.spotlightImage;
       <h2
         id="next-tour-title"
         class="mt-5 text-3xl font-bold leading-tight font-bonanova sm:text-4xl xl:text-5xl"
+        {...edit("title")}
       >
         {tour.title}
       </h2>
       <p
         class="mt-4 max-w-prose leading-relaxed font-body text-text/75 sm:text-lg"
+        {...edit("claim", "modal")}
       >
         {tour.claim}
       </p>
 
-      <ul class="flex flex-wrap gap-2 mt-6">
+      <ul class="flex flex-wrap gap-2 mt-6" {...edit("facts", "modal")}>
         {
           tour.facts.map((fact) => (
             <li
@@ -68,7 +75,7 @@ const photo = tour.spotlightImage;
 
       {
         tour.priceFrom ? (
-          <p class="flex flex-wrap gap-y-1 gap-x-3 items-baseline mt-7">
+          <p class="flex flex-wrap gap-y-1 gap-x-3 items-baseline mt-7" {...edit(["price_from", "price_includes"], "modal")}>
             <span
               class={`font-bonanova text-4xl font-bold sm:text-5xl ${tour.accentText}`}
             >
@@ -86,7 +93,7 @@ const photo = tour.spotlightImage;
       }
       {
         tour.dateHint && (
-          <p class="mt-2 text-[0.68rem] uppercase tracking-[0.14em] text-text/50 sm:text-xs">
+          <p class="mt-2 text-[0.68rem] uppercase tracking-[0.14em] text-text/50 sm:text-xs" {...edit("date_hint")}>
             {tour.dateHint}
           </p>
         )
@@ -123,6 +130,7 @@ const photo = tour.spotlightImage;
           quality={72}
           sizes="(min-width: 1024px) 420px, 66vw"
           width={640}
+          edit={{ collection: "tours", item: tourId, fields: ["spotlight_image", "spotlight_image_alt"] }}
         />
         <div
           class="absolute inset-0 bg-gradient-to-t via-transparent to-transparent from-text/40"

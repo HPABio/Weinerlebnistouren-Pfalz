@@ -9,6 +9,7 @@
  */
 import CmsText from "@/components/cms/CmsText.astro";
 import { getFaqs } from "@/lib/cms/content";
+import { editAttr } from "@/lib/cms/edit";
 
 const faqs = await getFaqs();
 
@@ -59,7 +60,10 @@ const columns = [faqs.slice(0, midpoint), faqs.slice(midpoint)];
       columns.map((column) => (
         <div class="space-y-3">
           {column.map((faq) => (
-            <details class="group rounded-2xl border border-accent1/25 bg-white/70 px-5 py-4 shadow-sm transition-shadow duration-300 open:shadow-md sm:px-6">
+            <details
+              class="group rounded-2xl border border-accent1/25 bg-white/70 px-5 py-4 shadow-sm transition-shadow duration-300 open:shadow-md sm:px-6"
+              {...editAttr("faqs", faq.id, ["question", "answer", "status"], "modal")}
+            >
               <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bonanova text-base font-bold text-text/85 [&::-webkit-details-marker]:hidden sm:text-lg">
                 {faq.question}
                 <span

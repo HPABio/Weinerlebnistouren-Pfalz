@@ -7,6 +7,7 @@
  * Größe. width/height kommen aus den Datei-Metadaten → kein Layout-Springen.
  */
 import { assetSrcset, assetUrl, type CmsFile } from "@/lib/cms/content";
+import { editAttr } from "@/lib/cms/edit";
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends Omit<HTMLAttributes<"img">, "src" | "srcset" | "width" | "height" | "alt"> {
@@ -15,9 +16,12 @@ interface Props extends Omit<HTMLAttributes<"img">, "src" | "srcset" | "width" |
   /** Angezeigte Breite in CSS-Pixeln (Basis für 1x/2x). */
   width: number;
   quality?: number;
+  /** Bearbeitungs-Modus: welches CMS-Feld ein Klick auf das Foto öffnet. */
+  edit?: { collection: string; item: string | number | null | undefined; fields: string[] };
 }
 
-const { file, alt, width, quality = 72, sizes, loading = "lazy", decoding = "async", ...rest } = Astro.props;
+const { file, alt, width, quality = 72, sizes, loading = "lazy", decoding = "async", edit, ...rest } = Astro.props;
+const editProps = edit ? editAttr(edit.collection, edit.item, edit.fields, "modal") : {};
 
 // Nie über die Originalgröße hinaus skalieren.
 const maxW = file?.width ?? width * 2;
@@ -38,6 +42,7 @@ const renderH = file?.width && file.height ? Math.round((renderW / file.width) *
       loading={loading}
       decoding={decoding}
       {...rest}
+      {...editProps}
     />
   )
 }

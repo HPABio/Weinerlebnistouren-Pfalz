@@ -1,0 +1,37 @@
+# syntax=docker/dockerfile:1
+#
+# Bearbeitungs-Instanz: edit.weinerlebnistouren-pfalz.de
+# Gleicher Code wie die Website, aber serverseitig gerendert (CMS_EDIT_MODE=1):
+# liest bei jedem Aufruf die aktuellen CMS-Inhalte und markiert Texte/Fotos
+# für den Visual Editor von Directus. Die öffentliche Website nutzt weiterhin
+# das normale Dockerfile (statischer Build).
+#
+# Laufzeit-Variablen in Coolify: CMS_URL, CMS_TOKEN, EDIT_ACCESS_KEY
+
+########## BUILD ##########
+FROM oven/bun:1 AS build
+WORKDIR /app
+COPY package.json bun.lock* ./
+RUN bun install --frozen-lockfile
+COPY . .
+ARG CMS_URL
+ENV CMS_EDIT_MODE=1
+# Kein Token beim Build nötig: im Server-Modus wird nichts vorab gerendert.
+RUN CMS_URL="$CMS_URL" bun run build
+
+########## RUNTIME ##########
+# Debian-basiert wie die Build-Stage (sharp-Binaries für glibc).
+FROM node:22-slim AS runtime
+WORKDIR /srv
+COPY --from=build /app/package.json ./
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
+
+ENV NODE_ENV=production \
+    CMS_EDIT_MODE=1 \
+    HOST=0.0.0.0 \
+    PORT=80
+EXPOSE 80
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s \
+  CMD node -e "fetch('http://127.0.0.1/').then(r=>process.exit(r.status<500?0:1)).catch(()=>process.exit(1))"
+CMD ["node", "dist/server/entry.mjs"]

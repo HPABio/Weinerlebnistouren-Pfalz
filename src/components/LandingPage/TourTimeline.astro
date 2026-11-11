@@ -9,6 +9,7 @@
 import CmsImage from "@/components/cms/CmsImage.astro";
 import CmsText from "@/components/cms/CmsText.astro";
 import { getSlotImage, getTimelineSteps } from "@/lib/cms/content";
+import { editAttr } from "@/lib/cms/edit";
 
 // Inhalte: CMS › Tour-Ablauf (Stationen), Texte, Fotos auf der Website.
 // Titel ohne „ß" — Bona Nova SC hat keine saubere ß-Glyphe.
@@ -65,6 +66,7 @@ const [steps, photo1, photo2] = await Promise.all([
               quality={70}
               sizes="(min-width: 1024px) 230px, 45vw"
               width={480}
+              edit={{ collection: "image_slots", item: photo1 && "home.timeline.photo1", fields: ["image", "alt"] }}
             />
           </div>
           <figcaption
@@ -85,6 +87,7 @@ const [steps, photo1, photo2] = await Promise.all([
               quality={70}
               sizes="(min-width: 1024px) 230px, 45vw"
               width={480}
+              edit={{ collection: "image_slots", item: photo2 && "home.timeline.photo2", fields: ["image", "alt"] }}
             />
           </div>
           <figcaption
@@ -114,7 +117,7 @@ const [steps, photo1, photo2] = await Promise.all([
             >
               {index + 1}
             </span>
-            <div class="pt-1 sm:pt-2">
+            <div class="pt-1 sm:pt-2" {...editAttr("timeline_steps", step.id, ["title", "text"], "modal")}>
               <h3 class="text-lg font-bold leading-snug font-bonanova sm:text-xl">
                 {step.title}
               </h3>

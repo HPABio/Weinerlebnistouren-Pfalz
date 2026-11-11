@@ -8,7 +8,9 @@
  * Formatierte Texte („rich") bringen eigene <p>/<ul> mit — ihr Container
  * muss daher ein <div class="cms-rich"> sein, kein <p>.
  */
+import { isEditMode } from "@/lib/cms/client";
 import { getText } from "@/lib/cms/content";
+import { editAttr } from "@/lib/cms/edit";
 import { TEXTS, type TextKey } from "@/lib/cms/texts";
 
 interface Props {
@@ -18,6 +20,16 @@ interface Props {
 const { k } = Astro.props;
 const value = await getText(k);
 const isRich = TEXTS[k].kind === "rich";
+// Bearbeitungs-Modus: anklickbarer Rahmen um den Text (öffentlich: kein Wrapper).
+const edit = editAttr("text_blocks", k, isRich ? "rich" : "text", isRich ? "modal" : "popover");
 ---
 
-{isRich ? <Fragment set:html={value} /> : value}
+{
+  isEditMode ? (
+    <span {...edit}>{isRich ? <Fragment set:html={value} /> : value}</span>
+  ) : isRich ? (
+    <Fragment set:html={value} />
+  ) : (
+    value
+  )
+}

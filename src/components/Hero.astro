@@ -4,6 +4,7 @@ import HWELogoV2NoText from "@images/HWE-LogoV2-noText.svg";
 import CompressedMjVineYardPencilSketch from "@images/compressed/webP/compressed-mj-vineYard-pencilSketch-1.webp";
 import CmsText from "@/components/cms/CmsText.astro";
 import { getSettings, getText } from "@/lib/cms/content";
+import { editAttr } from "@/lib/cms/edit";
 
 const settings = await getSettings();
 // Eckdaten im CMS mit „·" getrennt; Darstellung wie bisher mit breiten Abständen.
@@ -118,6 +119,7 @@ max-h-[800px] md:max-h-none"
           <p
             class="mt-3 font-bonanova text-[0.62rem] font-bold uppercase tracking-[0.16em] text-text/65 sm:text-xs sm:tracking-[0.2em] sm:text-text/55
                 [text-shadow:0_1px_8px_rgba(255,255,255,0.9)]"
+            {...editAttr("text_blocks", "home.hero.facts", "text")}
           >
             {facts.map((fact, i) => <Fragment>{i > 0 && <Fragment set:html="&ensp;·&ensp;" />}{fact}</Fragment>)}
           </p>
